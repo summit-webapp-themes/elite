@@ -1,0 +1,8 @@
+.profile_section {
+    .tab_width{
+        width: 200px;
+    }
+}
+.tab_width.active {
+    background-color: $themeternary-btncolor !important;
+}
