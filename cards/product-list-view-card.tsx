@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CONSTANTS } from "../services/config/app-config";
 import AddToCartApi from "../services/api/cart-page-api/add-to-cart-api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchCartListing } from "../store/slices/cart-listing-page-slice/cart-listing-slice";
 
 import { fetchWishlistUser } from "../store/slices/wishlist-slice/wishlist-slice";
@@ -11,6 +11,11 @@ import {
   failmsg,
   hideToast,
 } from "../store/slices/general_slices/toast_notification_slice";
+import {
+  get_access_token,
+  updateAccessToken,
+} from "../store/slices/auth/token-login-slice";
+import { SelectedFilterLangDataFromStore } from "../store/slices/general_slices/selected-multilanguage-slice";
 
 const ProductListViewCard = (props: any) => {
   const {
@@ -24,6 +29,15 @@ const ProductListViewCard = (props: any) => {
   let requestList: any;
   const dispatch = useDispatch();
   console.log("product card list view", product_data);
+  const TokenFromStore: any = useSelector(get_access_token);
+  const SelectedLangDataFromStore = useSelector(
+    SelectedFilterLangDataFromStore
+  );
+
+  console.log(
+    "SelectedLangDataFromStore in tsx",
+    SelectedLangDataFromStore?.selectedLanguageData
+  );
 
   const AddToCartProduct = async (name: any) => {
     const addCartData = [];
@@ -31,10 +45,20 @@ const ProductListViewCard = (props: any) => {
       item_code: name,
       quantity: 1,
     });
-    let AddToCartProductRes: any = await AddToCartApi(addCartData, currency_state_from_redux?.selected_currency_value);
+    let AddToCartProductRes: any = await AddToCartApi(
+      addCartData,
+      currency_state_from_redux?.selected_currency_value,
+      TokenFromStore?.token
+    );
+    console.log("cart response", AddToCartProductRes);
     if (AddToCartProductRes.msg === "success") {
       dispatch(successmsg("Item Added to cart"));
-      dispatch(fetchCartListing());
+      console.log("AddToCartProductRes", AddToCartProductRes);
+      if (AddToCartProductRes?.data?.access_token !== null) {
+        localStorage.setItem("guest", AddToCartProductRes?.data?.email);
+        dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
+        // dispatch(fetchCartListing());
+      }
       setTimeout(() => {
         dispatch(hideToast());
       }, 1200);
@@ -55,9 +79,12 @@ const ProductListViewCard = (props: any) => {
               <div className="col-md-4 my-auto">
                 <div className="product-tags col-md-4">
                   <p className="product_tag text-center my-0">
-                  {product_data?.display_tag.length > 0 && <span className="badge text-bg-primary p-2 fs-5">
-                      {product_data?.display_tag.length > 0 && product_data?.display_tag[0]}
-                    </span>}
+                    {product_data?.display_tag.length > 0 && (
+                      <span className="badge text-bg-primary p-2 fs-5">
+                        {product_data?.display_tag.length > 0 &&
+                          product_data?.display_tag[0]}
+                      </span>
+                    )}
                   </p>
                 </div>
                 <Link
@@ -133,7 +160,10 @@ const ProductListViewCard = (props: any) => {
                         className="btn btn-primary button_color"
                         onClick={() => AddToCartProduct(product_data.name)}
                       >
-                        Add to cart
+                        {
+                          SelectedLangDataFromStore?.selectedLanguageData
+                            ?.add_to_cart
+                        }
                       </button>
                     </div>
                   </div>

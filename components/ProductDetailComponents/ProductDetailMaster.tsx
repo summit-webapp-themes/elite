@@ -1,5 +1,6 @@
-
+import { useSelector } from "react-redux";
 import useProductDetail from "../../hooks/ProductDetailHook/product-detail-hook";
+import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { Norecord } from "../NoRecord";
 import ProductDetailLoadingLayout from "./ProductDetailLoadingLayout";
 import BreadCrumbs from "./ProductDetails/BreadCrumbs";
@@ -8,6 +9,7 @@ import ProductDetail from "./ProductDetails/ProductDetail";
 import ProductItemsOptions from "./ProductDetails/ProductItemsOptions";
 import ProductEnlargeImage from "./ProductEnlargeImage";
 import ProductSpecificationMaster from "./ProductSpecifications/ProductSpecificationMaster";
+import { useEffect, useState } from "react";
 
 const ProductDetailMaster = () => {
   const {
@@ -33,67 +35,90 @@ const ProductDetailMaster = () => {
     productDetailLoading,
   } = useProductDetail();
 
-console.log(productDetailLoading,"productDetailData")
+  const SelectedLangDataFromStore = useSelector(
+    SelectedFilterLangDataFromStore
+  );
+  const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
+
+  useEffect(() => {
+    if (
+      Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0
+    ) {
+      setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
+    }
+  }, [SelectedLangDataFromStore]);
+
+  console.log("no product heading set", selectedMultiLangData);
   return (
     <div className="">
       <div className="container product_detail_container">
         <div className="row">
-          <div className="col-12 mt-4" >
+          <div className="col-12 mt-4">
             <BreadCrumbs />
           </div>
-          {productDetailLoading === true ? (
-        <div className="row justify-content-center">
-          {[...Array(1)].map(() => (
-            <>
-              <div className="col-lg-12 mx-auto">
-                <ProductDetailLoadingLayout/>
-              </div>
-            </>
-          ))}
-        </div>
-      ) :(
-        <>
-          {Object?.keys(productDetailData)?.length > 0 ? (
-            <>
-              <div className="col-lg-6">
-                <ProductEnlargeImage productImages={productImages} />
-              </div>
-              <div className="col-lg-6">
-                <ProductDetail
-                  productDetailData={productDetailData}
-                  productVariants={productVariants}
-                  selectedVariant={selectedVariant}
-                  thumbnailOfVariants={thumbnailOfVariants}
-                  handleVariantSelect={handleVariantSelect}
-                  handleQuantity={handleQuantity}
-                  handleQuantityIncrement={handleQuantityIncrement}
-                  handleQuantityDecrement={handleQuantityDecrement}
-                  productQuantity={productQuantity}
-                  minQty={minQty}
-                  stockAvailabilityTextChanges={stockAvailabilityTextChanges}
-                  handleStockAvail={handleStockAvail}
-                  testBtn={testBtn}
-                  productDetailLoading={productDetailLoading}
-                  doesSelectedVariantDoesNotExists={
-                    doesSelectedVariantDoesNotExists
-                  }
-                  stockDoesNotExistsForSelectedVariants={
-                    stockDoesNotExistsForSelectedVariants
-                  }
-                />
-              </div>
-            </>
+          {productDetailLoading === "pending" ? (
+            <div className="row justify-content-center">
+              {[...Array(10)].map(() => (
+                <>
+                  <div className="col-lg-9 mx-auto">
+                    <ProductDetailLoadingLayout />
+                  </div>
+                </>
+              ))}
+            </div>
           ) : (
-            <Norecord
-              heading="Product Not Found!!"
-              content="This Particular Product is not Available Right Now. Soon you can purchase it."
-            />
-          )}</>)}
+            <>
+              {productDetailData.hasOwnProperty("name") ? (
+                <>
+                  <div className="col-lg-6">
+                    <ProductEnlargeImage productImages={productImages} />
+                  </div>
+                  <div className="col-lg-6">
+                    <ProductDetail
+                      productDetailData={productDetailData}
+                      productVariants={productVariants}
+                      selectedVariant={selectedVariant}
+                      thumbnailOfVariants={thumbnailOfVariants}
+                      handleVariantSelect={handleVariantSelect}
+                      handleQuantity={handleQuantity}
+                      handleQuantityIncrement={handleQuantityIncrement}
+                      handleQuantityDecrement={handleQuantityDecrement}
+                      productQuantity={productQuantity}
+                      minQty={minQty}
+                      stockAvailabilityTextChanges={
+                        stockAvailabilityTextChanges
+                      }
+                      handleStockAvail={handleStockAvail}
+                      testBtn={testBtn}
+                      productDetailLoading={productDetailLoading}
+                      doesSelectedVariantDoesNotExists={
+                        doesSelectedVariantDoesNotExists
+                      }
+                      stockDoesNotExistsForSelectedVariants={
+                        stockDoesNotExistsForSelectedVariants
+                      }
+                      SelectedLangDataFromStore={SelectedLangDataFromStore}
+                      selectedMultiLangData={selectedMultiLangData}
+                    />
+                  </div>
+                </>
+              ) : (
+                <Norecord
+                  heading={selectedMultiLangData?.product_not_found}
+                  content={selectedMultiLangData?.product_not_found_s}
+                  selectLangData={selectedMultiLangData}
+                />
+              )}
+            </>
+          )}
         </div>
 
         {checkStock === true && (
           <div className="col-lg-12 mt-5">
-            <CheckStockAvailability stockAvailability={stockAvailability} />
+            <CheckStockAvailability
+              stockAvailability={stockAvailability}
+              selectedMultiLangData={selectedMultiLangData}
+            />
           </div>
         )}
       </div>
@@ -101,6 +126,7 @@ console.log(productDetailLoading,"productDetailData")
         {productDetailData?.prod_specifications?.length > 0 && (
           <ProductSpecificationMaster
             specifications={productDetailData?.prod_specifications}
+            selectedMultiLangData={selectedMultiLangData}
           />
         )}
       </div>
@@ -111,7 +137,10 @@ console.log(productDetailLoading,"productDetailData")
             <>
               <div key={index}>
                 {items?.values?.length > 0 && (
-                  <ProductItemsOptions items={items} />
+                  <ProductItemsOptions
+                    items={items}
+                    selectedMultiLangData={selectedMultiLangData}
+                  />
                 )}
               </div>
             </>

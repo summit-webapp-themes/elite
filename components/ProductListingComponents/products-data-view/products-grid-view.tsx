@@ -1,12 +1,12 @@
-import React, { useState } from "react";
 import CardsLoadingLayout from "../../../cards/CardsLoadingLayout";
 import ProductCard from "../../../cards/product-card";
 import { ProductsViewProps } from "../../../interfaces/products-view-interface";
 import styles from "../../../styles/Product_Listing.module.css";
 import { Norecord } from "../../NoRecord";
 import Topbar from "../Topbar";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 import { CONSTANTS } from "../../../services/config/app-config";
+import { useState } from "react";
 
 const ProductsGridView = (props: ProductsViewProps) => {
   const {
@@ -17,22 +17,22 @@ const ProductsGridView = (props: ProductsViewProps) => {
     handleLoadMore,
     wishlistData,
     currency_state_from_redux,
-    handlePaginationBtn 
+    handlePaginationBtn,
+    selectLangData,
   } = props;
 
   console.log("cube in card", listItems);
-
 
   const [pageNumber, setPageNumber] = useState(0);
   const [pageOffset, setpageOffset] = useState(0);
   const usersPerPage = 12;
   const pagesVisited = pageNumber * usersPerPage;
 
-  const pageCount = Math.ceil( productListTotalCount/ 8);
+  const pageCount = Math.ceil(productListTotalCount / 8);
   // pageCount={Math.ceil( productListTotalCount/ 12)}
   const changePage = ({ selected }: any) => {
     setPageNumber(selected);
-  }
+  };
 
   const handlePageClick = (event: any) => {
     console.log("page number", event?.selected);
@@ -41,8 +41,9 @@ const ProductsGridView = (props: ProductsViewProps) => {
   };
   return (
     <div
-      className={`${filtersData && filtersData?.length > 0 ? "col-lg-9" : "col-lg-12"
-        }`}
+      className={`${
+        filtersData && filtersData?.length > 0 ? "col-lg-9" : "col-lg-12"
+      }`}
     >
       <div className="row">
         {loading ? (
@@ -58,8 +59,6 @@ const ProductsGridView = (props: ProductsViewProps) => {
         ) : listItems.length > 0 ? (
           listItems?.map((items: any, index: number) => (
             <div className="col-md-3 mt-3 my-2" key={index}>
-
-
               <ProductCard
                 key={index}
                 name={items?.name}
@@ -77,48 +76,56 @@ const ProductsGridView = (props: ProductsViewProps) => {
                 star_rating={items?.rating}
                 wishlistData={wishlistData}
                 currency_state_from_redux={currency_state_from_redux}
+                selectLangData={selectLangData}
               />
             </div>
           ))
         ) : (
           <Norecord
-            heading=""
-            content="Seeking a specific item?"
+            heading={selectLangData?.product_not_found}
+            content={selectLangData?.product_not_found_s}
+            selectLangData={selectLangData}
           />
         )}
       </div>
-     { CONSTANTS.ENABLE_PAGINATION ? productListTotalCount > listItems?.length && <div>
-        <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
-          pageCount={pageCount}
-          pageRangeDisplayed={3}
-          onPageChange={handlePageClick}
-          containerClassName={"paginationBttns"}
-          previousLinkClassName={"previousBttn"}
-          nextLinkClassName={"nextBttn"}
-          disabledClassName={"paginationDisabled"}
-          activeClassName={"paginationActive"}
-          forcePage={pageOffset}
-        />
-      </div>:""}
+      {CONSTANTS.ENABLE_PAGINATION
+        ? productListTotalCount > listItems?.length && (
+            <div>
+              <ReactPaginate
+                previousLabel={selectLangData?.prev}
+                nextLabel={selectLangData?.next}
+                pageCount={pageCount}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+                forcePage={pageOffset}
+              />
+            </div>
+          )
+        : ""}
 
-      { CONSTANTS.ENABLE_LOAD_MORE ? productListTotalCount > listItems?.length && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <button
-            className="btn btn-primary button_color my-5"
-            onClick={handleLoadMore}
-          >
-            load more
-          </button>
-        </div>
-      ):""} 
+      {CONSTANTS.ENABLE_LOAD_MORE
+        ? productListTotalCount > listItems?.length && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <button
+                className="btn btn-primary button_color my-5"
+                onClick={handleLoadMore}
+              >
+                {selectLangData?.load_more}
+              </button>
+            </div>
+          )
+        : ""}
     </div>
   );
 };

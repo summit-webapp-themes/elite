@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { cart_listing_state } from "../../../../store/slices/cart-listing-page-slice/cart-listing-slice";
 import useWishlist from "../../../../hooks/WishListHooks/WishListHooks";
 import LogoutList from "../../../../services/api/auth/logout_api";
+import useMultilangHook from "../../../../hooks/LanguageHook/Multilanguages-hook";
 
 const Home4WebNavbar = ({
   navbarData,
@@ -20,12 +21,13 @@ const Home4WebNavbar = ({
   searchValue,
   setSearchValue,
   handleSearch,
-  handleLanguageChange,
+  // handleLanguageChange,
   handleCurrencyValueChange,
   selectedCurrencyValue,
-  handleKeyDown
+  handleKeyDown,
 }: any) => {
   const { wishlistCount } = useWishlist();
+  const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
   console.log("navmenu click", navMenuclick);
   const cartlisting_data: any = useSelector(cart_listing_state);
   const [cartCount, setCartCount] = useState<number>();
@@ -97,95 +99,90 @@ const Home4WebNavbar = ({
 
   return (
     <>
-      <header className="header" >
-      <div className="header-bottom sticky-content fix-top sticky-header has-dropdown home4-navbar-header fouthTheme-header" >
+      <header className="header">
+        <div className="header-bottom sticky-content fix-top sticky-header has-dropdown home4-navbar-header">
           <div className="container">
             <div className="inner-wrap d-flex justify-content-between">
               <div className="header-left">
-              <div className="mobile-nav">
-              <Link href="#" legacyBehavior>
-                <a
-                  className="mobile-menu-toggle  w-icon-hamburger"
-                  aria-label="menu-toggle"
-                  onClick={navMenuclick}
-                ></a>
-              </Link>
-            </div>
-            <div className="mx-2 my-4 logo_containers">
-              <Link href="/" legacyBehavior>
-                <Image
-                  src="/assets/images/summit-logo-homepage4.png"
-                  width={100}
-                  height={50}
-                  alt="logo"
-                />
-                {/* <h1 className="text-white text-uppercase">Summit</h1> */}
-              </Link>
-            </div>
-             
-              
+                <div className="mobile-nav">
+                  <Link href="#" legacyBehavior>
+                    <a
+                      className="mobile-menu-toggle  w-icon-hamburger"
+                      aria-label="menu-toggle"
+                      onClick={navMenuclick}
+                    ></a>
+                  </Link>
+                </div>
+                <div className="mx-2 my-4 logo_containers">
+                  <Link href="/" legacyBehavior>
+                    <Image
+                      src="/assets/images/summit-logo-homepage4.png"
+                      width={100}
+                      height={50}
+                      alt="logo"
+                    />
+                    {/* <h1 className="text-white text-uppercase">Summit</h1> */}
+                  </Link>
+                </div>
               </div>
               <div className="header-search  hs-expanded hs-round d-none d-md-flex input-wrapper ">
-              <input
-                type="text"
-                className="form-control "
-                name="search"
-                id="search"
-                placeholder="Search ..."
-                value={searchValue}
-                onChange={(e: any) => setSearchValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                required style={{border:"none"}}
-              />
-              <button
-                className="btn btn-search"
-                type="submit"
-                onClick={handleSearch} style={{backgroundColor:"#febd69"}}
-              >
-                <i className="w-icon-search"></i>
-              </button>
-            </div>
-            </div>
-            <div className="mx-2">
-            <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
-              <Link href="/wishlist" legacyBehavior>
-                <a className=" cart-toggle label-down link">
-                  <i className="w-icon-heart fs-1">
-                    <span className="cart-count wishlist_count text-white">
-                      {wishlistCount || 0}
-                    </span>
-                  </i>
-                  <span className="wishlist-label d-lg-show">Wishlist</span>
-                </a>
-              </Link>
-            </div>
+                <input
+                  type="text"
+                  className="form-control "
+                  name="search"
+                  id="search"
+                  placeholder="Search ..."
+                  value={searchValue}
+                  onChange={(e: any) => setSearchValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  required
+                  style={{ border: "none" }}
+                />
+                <button
+                  className="btn btn-search"
+                  type="submit"
+                  onClick={handleSearch}
+                  style={{ backgroundColor: "#febd69" }}
+                >
+                  <i className="w-icon-search"></i>
+                </button>
+              </div>
             </div>
             <div className="mx-2">
-            <div className="dropdown cart-dropdown cart-offcanvas text-white mx-lg-4 ml-3">
-              <Link href="/cart" legacyBehavior>
-                <a className="cart-toggle label-down link">
-                  <i className="fa fa-shopping-cart fs-1" aria-hidden="true">
-                    <span className="cart-count text-white">
-                      {cartCount || 0}
-                    </span>
-                  </i>
-                  <span className="cart-label">Cart</span>
-                </a>
-              </Link>
+              <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
+                <Link href="/wishlist" legacyBehavior>
+                  <a className=" cart-toggle label-down link">
+                    <i className="w-icon-heart fs-1">
+                      <span className="cart-count wishlist_count text-white">
+                        {wishlistCount || 0}
+                      </span>
+                    </i>
+                    <span className="wishlist-label d-lg-show">Wishlist</span>
+                  </a>
+                </Link>
+              </div>
             </div>
+            <div className="mx-2">
+              <div className="dropdown cart-dropdown cart-offcanvas text-white mx-lg-4 ml-3">
+                <Link href="/cart" legacyBehavior>
+                  <a className="cart-toggle label-down link">
+                    <i className="fa fa-shopping-cart fs-1" aria-hidden="true">
+                      <span className="cart-count text-white">
+                        {cartCount || 0}
+                      </span>
+                    </i>
+                    <span className="cart-label">Cart</span>
+                  </a>
+                </Link>
+              </div>
             </div>
-           
-    
           </div>
         </div>
 
-
-
         <div className="home4-header-middle navbar-header">
           <div className="container">
-         <div className="inner-wrap d-flex justify-content-between">
+            <div className="inner-wrap d-flex justify-content-between">
               <div className="header-left">
-               
                 <nav className="main-nav">
                   <ul className="menu active-underline">
                     {navbarData?.length > 0 &&
@@ -233,9 +230,7 @@ const Home4WebNavbar = ({
                 </nav>
               </div>
             </div>
-           
-           
-           
+
             <div className="mx-3">
               <select
                 // value={selectedLanguage}
@@ -247,23 +242,20 @@ const Home4WebNavbar = ({
               </select>
             </div>
             <div className="mx-3">
-            <select onChange={(e) => handleLanguageChange(e.target.value)}>
-                <option value="en">English</option>
-                <option value="hi">हिंदी</option>
-                {/* <option value="ta">தமிழ்</option>
-                <option value="te">తెలుగు</option>
-                <option value="ml">മലയാളം</option> */}
-                {/* Add more language options here */}
+              <select onChange={(e) => handleLanguageChange(e.target.value)}>
+                {multiLanguagesData?.length > 0 &&
+                  multiLanguagesData !== null &&
+                  multiLanguagesData.map((lang: any) => {
+                    return (
+                      <option value={lang.lang_code}>{lang.lang_name}</option>
+                    );
+                  })}
               </select>
             </div>
 
-            <div className={`custom_dropdown`}>
-            
-            </div>
+            {/* <div className={`custom_dropdown`}></div> */}
           </div>
         </div>
-
-       
       </header>
     </>
   );

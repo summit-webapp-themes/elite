@@ -10,6 +10,7 @@ const MobNavbar = ({
   setSearchValue,
   handleSearch,
   isLoading,
+  selectedMultiLangData,
 }: any) => {
   // const setmainLink = () => {
   //   let element: HTMLElement = document.getElementsByClassName(
@@ -45,7 +46,7 @@ const MobNavbar = ({
       <div className="mobile-menu-wrapper">
         <div className="mobile-menu-overlay"></div>
         <div className="mobile-menu-container scrollable bg-light">
-          <div className="d-flex justify-content-end justify-content-md-starts headermon3 justify-content-sm-start mb-1 ">
+          <div className="d-flex justify-content-end mb-1 ">
             <Link href="#" legacyBehavior>
               <a className="#" onClick={navMenuclick}>
                 <i className="close-icon"></i>

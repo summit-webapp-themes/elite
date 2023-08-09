@@ -5,14 +5,16 @@ import NoProducts from "../public/assets/images/No-product.png";
 import MissingPartsModal from "./ProductListingComponents/MissingPartsModal";
 import { CONSTANTS } from "../services/config/app-config";
 
-export const Norecord = ({ heading, content, img }: any) => {
+export const Norecord = ({ heading, content, img, selectLangData }: any) => {
   const [showMissingPartsModal, setShowMissingPartsModal] = useState(false);
 
   const handleMissingPartsModalClose = () => {
     setShowMissingPartsModal(false);
   };
+
+  console.log("no product heading", heading, content);
   return (
-    <div className="container text-center norecord_container" >
+    <div className="container text-center norecord_container">
       <div className="row">
         <div className="col-lg-12">
           <Image src={NoProducts} alt="" width={100} height={100} />
@@ -20,8 +22,7 @@ export const Norecord = ({ heading, content, img }: any) => {
           <p className="my-2">{content}</p>
         </div>
         <div>
-          {content ===
-          "Seeking a specific item?" ? (
+          {content === "Seeking a specific item?" ? (
             <>
               {CONSTANTS.ENABLE_MISSING_PARTS && (
                 <button
@@ -30,7 +31,7 @@ export const Norecord = ({ heading, content, img }: any) => {
                   }}
                   className="btn btn-warning my-4 button_color "
                 >
-                   Request Here
+                  {selectLangData?.request_here}
                 </button>
               )}
             </>
@@ -40,7 +41,7 @@ export const Norecord = ({ heading, content, img }: any) => {
               className="btn btn-warning my-4 button_color "
             >
               <Link href="/" legacyBehavior>
-                <a>Shop Now</a>
+                <a>{selectLangData?.shop_now}</a>
               </Link>
             </button>
           )}

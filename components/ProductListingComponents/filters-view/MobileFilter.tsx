@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { SelectedFilterLangDataFromStore } from "../../../store/slices/general_slices/selected-multilanguage-slice";
 
 const MobileFilter = ({
   filtersData,
   selectedFilters,
   handleApplyFilters,
 }: any) => {
+  const SelectedLangDataFromStore = useSelector(
+    SelectedFilterLangDataFromStore
+  );
+
+  const [selectLangData, setLangData] = useState<any>();
+
+  useEffect(() => {
+    if (
+      Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0
+    ) {
+      setLangData(SelectedLangDataFromStore?.selectedLanguageData);
+    }
+  }, [SelectedLangDataFromStore?.selectedLanguageData]);
+
   return (
     <div className="container-fluid d-block d-lg-none">
       <div className="row sticky_btn_bar">
@@ -13,17 +29,16 @@ const MobileFilter = ({
           data-bs-target="#myFilterModal"
           className="text-uppercase sticky_btn"
         >
-          <i className="fa fa-filter me-1" aria-hidden="true"></i>Filter
+          <i className="fa fa-filter me-1" aria-hidden="true"></i>
+          {selectLangData?.filter}
         </a>
-
-     
       </div>
 
       <div className="modal" id="myFilterModal">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h4 className="modal-title">Filters</h4>
+              <h4 className="modal-title">{selectLangData?.filter}</h4>
               <button
                 type="button"
                 className="btn-close"
@@ -34,7 +49,7 @@ const MobileFilter = ({
             <div className="modal-body">
               <div className="clear_filter mb-1">
                 <a href="#" className="clear_filter_link">
-                  Clear Filter
+                  {selectLangData?.clear_filter}
                 </a>
               </div>
               <div className="filter_section">
@@ -85,10 +100,11 @@ const MobileFilter = ({
                                         value={vals}
                                         id="flexCheckDefault"
                                         checked={selectedFilters.some(
-                                            (selectedFilter: any) =>
-                                              selectedFilter.name === item.section &&
-                                              selectedFilter.value.includes(vals)
-                                          )}
+                                          (selectedFilter: any) =>
+                                            selectedFilter.name ===
+                                              item.section &&
+                                            selectedFilter.value.includes(vals)
+                                        )}
                                         onChange={(e) =>
                                           handleApplyFilters(
                                             e,
@@ -111,7 +127,7 @@ const MobileFilter = ({
                             </div>
                           );
                         })
-                      : "Sorry no filters available for this page"}
+                      : ""}
                   </div>
                 </div>
               </div>
@@ -123,7 +139,7 @@ const MobileFilter = ({
                 className="btn button_color text-center"
                 data-bs-dismiss="modal"
               >
-                Submit
+                {selectLangData?.submit}
               </button>
             </div>
           </div>
@@ -142,7 +158,7 @@ const MobileFilter = ({
               ></button>
             </div> */}
 
-            {/* <div className="modal-body sort-by">
+      {/* <div className="modal-body sort-by">
               <div className="p-0 text-right d-flex align-items-center justify-content-end">
                 <p>Price:</p>
                 <select
@@ -157,7 +173,7 @@ const MobileFilter = ({
                 </select>
               </div>
             </div> */}
-          {/* </div>
+      {/* </div>
         </div>
       </div> */}
     </div>

@@ -12,13 +12,13 @@ const HomeTopBrands4= () => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
   return (
-    <div className="container category_heading" >
-      <h3 className="text-center mt-5 mb-5 text-uppercase brand-heading">Featured Brands</h3>
-      <div className="row text-center brand-container mt-5 ">
+    <div className="container" >
+      <h3 className="text-center mt-5 text-uppercase brand-heading">Featured Brands</h3>
+      <div className="row text-center brand-container ">
         {brandListing?.length > 0 &&
           brandListing?.map((imgs: any, i: any) => (
             <>
-              <div className="col-md-2 mb-4 brand-container-sub " key={i} >
+              <div className="col-md-2 mb-4 brand-container-sub" key={i} >
                 <Link href={`${imgs?.url}?page=1`}>
                     <Image
                       loader={imageLoader}

@@ -12,39 +12,100 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { fetchLoginUser } from "../../store/slices/auth/login_slice";
+
 import {
-  fetchLoginUser,
-  login_state,
-} from "../../store/slices/auth/login_slice";
+  getAccessToken,
+  get_access_token,
+} from "../../store/slices/auth/token-login-slice";
+import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
+import {
+  failmsg,
+  hideToast,
+  successmsg,
+} from "../../store/slices/general_slices/toast_notification_slice";
 
 const Loginpage = () => {
   const dispatch = useDispatch();
-  const loginSucess = useSelector(login_state);
-  const [newState, setNewState] = useState<any>([]);
   const [newValues, setnewValue] = useState<any>("");
-  let isLoggedIn: any;
+
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  let guestLogin: any;
+
+  const SelectedLangDataFromStore: any = useSelector(
+    SelectedFilterLangDataFromStore
+  );
+  const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
+  useEffect(() => {
+    if (
+      Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0
+    ) {
+      setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
+    }
+  }, [SelectedLangDataFromStore]);
+
+  if (typeof window !== "undefined") {
+    guestLogin = localStorage.getItem("guest");
+  }
+
+  const TokenFromStore: any = useSelector(get_access_token);
+
+  console.log("token in login page", TokenFromStore);
+
   const router = useRouter();
   let obj = {
     isGoogleLogin: false,
     visitor: false,
     isOtpLogin: false,
   };
-  if (typeof window !== "undefined") {
-    isLoggedIn = localStorage.getItem("isLoggedIn");
-  }
 
-  const handlesubmit = (values: any) => {
-    const val = Object.assign(obj, values);
-    dispatch(fetchLoginUser(val));
+  // const handlesubmit = (values: any) => {
+  //   const val = Object.assign(obj, values);
+  //   const reqParams = {
+  //     values: values,
+  //     guest: guestLogin,
+  //   };
+  //   dispatch(getAccessToken(reqParams));
+
+  //   setTimeout(() => {
+  //     const loginStatusFromStorage: any = localStorage.getItem("isLoggedIn");
+  //     setLoginStatus(loginStatusFromStorage);
+  //   }, 2000);
+  // };
+
+  const handlesubmit = async (values: any) => {
+    try {
+      const val = Object.assign(obj, values);
+      const reqParams = {
+        values: values,
+        guest: guestLogin,
+      };
+      const AccessTokenData = await dispatch(getAccessToken(reqParams));
+
+      if (AccessTokenData?.payload?.hasOwnProperty("access_token")) {
+        console.log("push to home");
+        setTimeout(() => {
+          router.push("/");
+          setLoginStatus(true);
+        }, 1500);
+        // localStorage.removeItem("guest");
+        // localStorage.removeItem("guestToken");
+      }
+    } catch (error) {
+      console.log("Error occurred:", error);
+    }
   };
+
+  console.log("loginStatus", loginStatus);
   useEffect(() => {
-    if (loginSucess.user === "LoggedIn") {
+    if (loginStatus === true) {
       router.push("/");
+      localStorage.removeItem("guest");
+      localStorage.removeItem("guestToken");
     }
   }, [handlesubmit]);
-  console.log(loginSucess, "loginSucess");
 
-  console.log(isLoggedIn, "newState");
   const FormObserver: React.FC = () => {
     const { values }: any = useFormikContext();
     useEffect(() => {
@@ -95,14 +156,15 @@ const Loginpage = () => {
                       <div className="row">
                         <div className="col-lg-6 logo-wrapper">
                           <h2 className="login_heading mt-3">
-                            Login
+                            {selectedMultiLangData?.login}
                             {/* {loginToken} */}
                           </h2>
                           <Form.Group controlId="formName">
                             <div className="row mt-3">
                               <div className="col-md-4">
                                 <Form.Label className="login-label">
-                                  Mobile No / Email ID:
+                                  {selectedMultiLangData?.mobile_number} /{" "}
+                                  {selectedMultiLangData?.email}:
                                 </Form.Label>
                               </div>
 
@@ -126,7 +188,7 @@ const Loginpage = () => {
                                       href="#"
                                       onClick={(e) => otpSubmit(e)}
                                     >
-                                      Get Otp
+                                      {selectedMultiLangData?.get_otp}
                                     </Link>
                                   </div>
                                 </div>
@@ -138,7 +200,7 @@ const Loginpage = () => {
                             <div className="row mt-3">
                               <div className="col-md-4">
                                 <Form.Label className="login-label">
-                                  Password / OTP:
+                                  {selectedMultiLangData?.password_otp}:
                                 </Form.Label>
                               </div>
 
@@ -161,7 +223,7 @@ const Loginpage = () => {
                                       className={`linkss`}
                                       href="/forgot-password"
                                     >
-                                      Forgot Password ?
+                                      {selectedMultiLangData?.forgot_password}?
                                     </Link>
                                   </div>
                                 </div>
@@ -173,7 +235,7 @@ const Loginpage = () => {
                               type="submit"
                               className={` btn btn-warning button_color`}
                             >
-                              Submit
+                              {selectedMultiLangData?.submit}
                             </button>
                             {/* {isAlertVisible && (
                                     <div
@@ -206,9 +268,9 @@ const Loginpage = () => {
                             >
                               <div className="register ms-2 account-margin">
                                 <span className="not_an_account">
-                                  Not an account?{" "}
+                                  {selectedMultiLangData?.not_an_account}?{" "}
                                   <Link className={`linkss`} href="/register">
-                                    Register
+                                    {selectedMultiLangData?.register}
                                   </Link>
                                 </span>
                               </div>
