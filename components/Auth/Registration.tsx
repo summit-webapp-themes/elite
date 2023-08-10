@@ -289,7 +289,7 @@ const Registration = () => {
                             <div className="m-2">
                               <button
                                 type="submit"
-                                className="btn btn-warning text-uppercase bold button_color"
+                                className="btn text-uppercase bold button_color"
                               >
                                 {selectedMultiLangData?.submit}
                               </button>

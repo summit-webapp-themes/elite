@@ -1,6 +1,7 @@
 import React from "react";
 import OrderSummary from "../OrderSummary/OrderSummary";
 import { CONSTANTS } from "../../services/config/app-config";
+import useProfilePage from "../../hooks/GeneralHooks/ProfileHooks/ProfileHooks";
 
 const HandleOrderSection = (props: any) => {
   const {
@@ -20,6 +21,8 @@ const HandleOrderSection = (props: any) => {
   } = props;
 
   let isDealer = JSON.parse(localStorage.getItem("isDealer") as any);
+
+  const { profileList }: any = useProfilePage();
 
   return (
     <div>
@@ -132,7 +135,7 @@ const HandleOrderSection = (props: any) => {
                         aria-expanded="false"
                         aria-controls="collapseTwo"
                       >
-                        {selectedMultiLangData?.use_store_credit}
+                        {selectedMultiLangData?.use_store_credit} :{" "}
                       </button>
                     </h2>
                     <div
@@ -158,11 +161,16 @@ const HandleOrderSection = (props: any) => {
                         </form>
                         <button
                           type="button"
-                          className="btn btn-sm transparent custom-btn d-block w-100 button_color mt-2"
+                          className="btn btn-sm transparent custom-btn d-block w-100 button_color my-2"
                           onClick={(e: any) => handleStoreCredit(e)}
                         >
                           {selectedMultiLangData?.use_store_credit}
                         </button>
+                        <span>
+                          Total store credit assigned :{" "}
+                          {profileList &&
+                            profileList?.store_credit_details?.balance}
+                        </span>
                       </div>
                     </div>
                   </div>
