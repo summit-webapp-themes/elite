@@ -65,7 +65,7 @@ const MissingPartsModal = ({
           <p className="text-danger">{messageNew}</p>
           <div className="text-right mt-4">
             <button
-              className="btn btn-primary button_color text-white"
+              className="btn button_color"
               onClick={(e) => handleSubmit(e)}
             >
               {selectLangData?.submit_enquiry}

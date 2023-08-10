@@ -145,8 +145,8 @@ const CartListing = () => {
         <>
           {Object.keys(cartListingItems).length > 0 ? (
             <div className="container py-5">
-              <div className="cart_heading mb-3">
-                <h3 className="text-uppercase">
+              <div className="cart_heading">
+                <h3 className="text-uppercase my-0">
                   {selectedMultiLangData?.shopping_cart}
                 </h3>
               </div>

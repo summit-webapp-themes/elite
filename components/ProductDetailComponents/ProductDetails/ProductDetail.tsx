@@ -32,6 +32,10 @@ import {
   TwitterIcon,
   WorkplaceShareButton,
 } from "react-share";
+import {
+  get_access_token,
+  updateAccessToken,
+} from "../../../store/slices/auth/token-login-slice";
 const ProductDetail = ({
   productDetailData,
   productVariants,
@@ -53,9 +57,13 @@ const ProductDetail = ({
 }: any) => {
   const dispatch = useDispatch();
   const currency_state_from_redux = useSelector(currency_selector_state);
+  console.log(
+    "productQuantity in detail page",
+    doesSelectedVariantDoesNotExists
+  );
   const router = useRouter();
 
-  const languageData = useMultiLingual();
+  const TokenFromStore: any = useSelector(get_access_token);
 
   const [newobjectState, setnewObjectState] = useState<any>([]);
 
@@ -110,15 +118,28 @@ const ProductDetail = ({
         item_code: productDetailData?.name,
         quantity: productQuantity,
       });
-      let AddToCartRes: any = await AddToCartApi(
+      let AddToCartProductRes: any = await AddToCartApi(
         addCartData,
-        currency_state_from_redux?.selected_currency_value
+        currency_state_from_redux?.selected_currency_value,
+        TokenFromStore?.token
       );
-      if (AddToCartRes.msg === "success") {
+
+      if (AddToCartProductRes.msg === "success") {
         dispatch(successmsg("Item Added to cart"));
-        if (AddToCartRes?.data?.access_token !== null) {
-          localStorage.setItem("token", AddToCartRes?.data?.access_token);
-          dispatch(fetchCartListing());
+
+        if (AddToCartProductRes?.data?.access_token !== null) {
+          dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
+          localStorage.setItem(
+            "guest",
+            AddToCartProductRes?.data?.access_token
+          );
+          console.log("token api res", AddToCartProductRes);
+          if (AddToCartProductRes?.data?.access_token !== null) {
+            console.log("token from api");
+            dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
+          }
+        } else {
+          dispatch(fetchCartListing(TokenFromStore?.token));
         }
         setTimeout(() => {
           dispatch(hideToast());
@@ -370,42 +391,45 @@ const ProductDetail = ({
                     </div>
                   </div>
                 )}
-                {CONSTANTS.ADD_TO_CART_FOR_GUEST === true ? (
-                  <div className="col-md-6">
-                    <div className="mt-5">
-                      <div className="row">
-                        <button
-                          type="button"
-                          className={`w-50 btn btn-primary button_color cart_btn_gtag`}
-                          onClick={handleAddCart}
-                          disabled={
-                            doesSelectedVariantDoesNotExists ||
-                            stockDoesNotExistsForSelectedVariants
-                          }
-                        >
-                          {selectedMultiLangData?.add_to_cart}
-                        </button>
-                      </div>
-                      <div className="col-12">
-                        <div className="ms-5">
-                          {productQuantity < minQty ? (
-                            <p className="text-danger">
-                              {selectedMultiLangData?.minimum_order_qty}:
-                              {minQty}
-                            </p>
-                          ) : (
-                            ""
-                          )}
-                        </div>
+                {/* {CONSTANTS.ADD_TO_CART_FOR_GUEST === true ? ( */}
+                <div className="col-md-6">
+                  <div className="mt-5">
+                    <div className="row">
+                      <button
+                        type="button"
+                        className={`${
+                          productQuantity < minQty ? "disabled" : "enabled"
+                        } w-50 btn button_color cart_btn_gtag`}
+                        onClick={handleAddCart}
+                        disabled={
+                          doesSelectedVariantDoesNotExists ||
+                          stockDoesNotExistsForSelectedVariants
+                        }
+                      >
+                        {selectedMultiLangData?.add_to_cart}
+                      </button>
+                    </div>
+                    <div className="col-12">
+                      <div className="">
+                        {productQuantity < minQty ? (
+                          <p className="text-danger">
+                            {selectedMultiLangData?.minimum_order_qty}:{minQty}
+                          </p>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </div>
                   </div>
-                ) : (
+                </div>
+                {/* ) : (
                   <div className="col-md-6 mx-auto">
                     <div className="mt-5">
                       <div className="row">
                         <button
-                          className={`w-75 btn btn-primary button_color cart_btn_gtag `}
+                          className={`${
+                            productQuantity < minQty ? "disabled" : "enabled"
+                          } w-75 btn btn-primary button_color cart_btn_gtag `}
                           disabled={
                             doesSelectedVariantDoesNotExists ||
                             stockDoesNotExistsForSelectedVariants
@@ -427,7 +451,13 @@ const ProductDetail = ({
                       </div>
                     </div>
                   </div>
-                )}
+                )} */}
+              </div>
+              <div className="mt-2">
+                <p className="text-danger">
+                  {productDetailData.in_stock_status === false &&
+                    "Product is out of stock"}
+                </p>
               </div>
               {/* WhatsApp share button */}
               <div className="mt-5 d-flex align-items-center">

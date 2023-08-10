@@ -56,9 +56,9 @@ const ProductDetailMaster = () => {
           <div className="col-12 mt-4">
             <BreadCrumbs />
           </div>
-          {productDetailLoading === "pending" ? (
+          {productDetailLoading === true ? (
             <div className="row justify-content-center">
-              {[...Array(10)].map(() => (
+              {[...Array(1)].map(() => (
                 <>
                   <div className="col-lg-9 mx-auto">
                     <ProductDetailLoadingLayout />

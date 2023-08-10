@@ -42,6 +42,7 @@ const BillingAddressCard = ({
   };
 
   const handleBilling = (e: any) => {
+    console.log("select bill add", e.target.value);
     setselectedbillAddress(e?.target?.value);
     setChangeaddress(true);
   };

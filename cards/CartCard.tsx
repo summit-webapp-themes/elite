@@ -42,11 +42,11 @@ const CartCard = ({
   };
 
   const handleQuantityDecrement = async (item_code: any) => {
-    setCartQty(cartQty + 1);
+    setCartQty(cartQty - 1);
     const addCartData = [];
     addCartData.push({
       item_code: item_code,
-      quantity: cartQty + 1,
+      quantity: cartQty - 1,
     });
     let AddToCartRes: any = await AddToCartApi(
       addCartData,

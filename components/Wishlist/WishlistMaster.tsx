@@ -22,6 +22,10 @@ import {
 import ListViewLoadingLayout from "../ProductListingComponents/products-data-view/ListViewLoadingLayout";
 import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
+import {
+  get_access_token,
+  updateAccessToken,
+} from "../../store/slices/auth/token-login-slice";
 const WishlistMaster = () => {
   const { productQuantity, stockAvailability } = useProductDetail();
   console.log("stock check", stockAvailability);
@@ -29,9 +33,10 @@ const WishlistMaster = () => {
   let requestNew: any;
   let requestList: any;
   const { wishlistData, wishlistCount, Loadings } = useWishlist();
-  console.log("wishlist response in render file", wishlistData);
+  console.log("wishlist response in render file", Loadings);
 
   const currency_state_from_redux: any = useSelector(currency_selector_state);
+  const TokenFromStore: any = useSelector(get_access_token);
   const SelectedLangDataFromStore = useSelector(
     SelectedFilterLangDataFromStore
   );
@@ -44,7 +49,8 @@ const WishlistMaster = () => {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore]);
-  const [showToast, setshowToast] = useState(false);
+
+  console.log(selectedMultiLangData, "selectedMultiLangData");
   const [productCounts, setProductCounts] = useState<any>({});
   const [alertMinQty, setAlertMinQty] = useState(false);
   const [showAvailabilityModal, setshowAvailabilityModal] = useState(false);
@@ -61,12 +67,21 @@ const WishlistMaster = () => {
   };
 
   const incrementCount = (productId: any, min_qty: any) => {
+    console.log("minqty", productId, min_qty);
+
     const currentCount = parseInt(productCounts[productId], 10);
     if (productCounts[productId] === undefined) {
-      setProductCounts({
-        ...productCounts,
-        [productId]: min_qty + 1,
-      });
+      if (min_qty > 0) {
+        setProductCounts({
+          ...productCounts,
+          [productId]: min_qty + 1,
+        });
+      } else {
+        setProductCounts({
+          ...productCounts,
+          [productId]: min_qty + 2,
+        });
+      }
     }
     if (currentCount < 99999) {
       setProductCounts({
@@ -100,49 +115,94 @@ const WishlistMaster = () => {
     productCountsQty: any,
     min_qty: any
   ) => {
-    console.log(
-      "add to cart id",
-      id,
-      in_stock_status,
-      productCountsQty,
-      min_qty
-    );
+    console.log("add to cart id", productCountsQty, min_qty);
     console.log("cart product count in ", productCounts);
 
-    if (min_qty <= productCountsQty) {
-      console.log("add cart success productCountqty");
-      const addListMessage = await AddToCartApi(id, productCountsQty);
-      if (addListMessage.msg === "success") {
-        dispatch(successmsg("item added to cart"));
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 700);
-        router.push("/cart");
-      } else {
-        dispatch(failmsg("Error in adding item in wishlist"));
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 700);
-      }
-      setTimeout(() => {
-        dispatch(fetchCartListing());
-      }, 5000);
-    } else if (productCountsQty === undefined) {
-      console.log("add cart failed min qty");
-      const addListMessage = await AddToCartApi(id, min_qty);
-      if (addListMessage.msg === "success") {
-        dispatch(successmsg("item added to cart"));
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 700);
-        router.push("/cart");
-      } else {
-        dispatch(failmsg("Error in adding item in wishlist"));
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 700);
-      }
+    // if (min_qty <= productCountsQty) {
+    console.log("add cart success productCountqty");
+    const addCartData = [];
+    if (productCountsQty === undefined && min_qty > 0) {
+      addCartData.push({
+        item_code: id,
+        quantity: min_qty,
+      });
+    } else if (productCountsQty === undefined && min_qty === 0) {
+      addCartData.push({
+        item_code: id,
+        quantity: 1,
+      });
+    } else if (productCountsQty === 0 && min_qty === 0) {
+      addCartData.push({
+        item_code: id,
+        quantity: 1,
+      });
+    } else {
+      addCartData.push({
+        item_code: id,
+        quantity: productCountsQty,
+      });
     }
+
+    if (productCountsQty !== 0 || min_qty !== 0) {
+      let AddToCartProductRes: any = await AddToCartApi(
+        addCartData,
+        currency_state_from_redux?.selected_currency_value,
+        TokenFromStore?.token
+      );
+
+      if (AddToCartProductRes.msg === "success") {
+        dispatch(successmsg("Item Added to cart"));
+
+        if (AddToCartProductRes?.data?.access_token !== null) {
+          dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
+          localStorage.setItem(
+            "guest",
+            AddToCartProductRes?.data?.access_token
+          );
+          console.log("token api res", AddToCartProductRes);
+          if (AddToCartProductRes?.data?.access_token !== null) {
+            console.log("token from api");
+            dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
+          }
+
+          // if (Object.keys(TokenFromStore)?.length > 0) {
+          //   dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
+          // } else {
+          //   dispatch(fetchCartListing(TokenFromStore?.token));
+          // }
+        } else {
+          dispatch(fetchCartListing(TokenFromStore?.token));
+        }
+        setTimeout(() => {
+          dispatch(hideToast());
+        }, 1200);
+      }
+    } else {
+      dispatch(failmsg("Failed to Add to cart"));
+      setTimeout(() => {
+        dispatch(hideToast());
+      }, 1500);
+    }
+    // } else if (productCountsQty === undefined) {
+    //   console.log("add cart failed min qty");
+    //   const addListMessage = await AddToCartApi(
+    //     id,
+    //     min_qty,
+    //     TokenFromStore?.token
+    //   );
+    //   if (addListMessage.msg === "success") {
+    //     dispatch(successmsg("item added to cart"));
+    //     setTimeout(() => {
+    //       dispatch(hideToast());
+    //     }, 700);
+    //     router.push("/cart");
+    //   } else {
+    //     dispatch(failmsg("Error in adding item in wishlist"));
+    //     setTimeout(() => {
+    //       dispatch(hideToast());
+    //     }, 700);
+    //   }
+    // }
   };
 
   const handleStockModel = (id: any, min_qty: any, productQty: any) => {
@@ -151,6 +211,7 @@ const WishlistMaster = () => {
       const stockAvailable = {
         item_code: id,
         qty: min_qty,
+        token: TokenFromStore?.token,
       };
       setshowAvailabilityModal(false);
       dispatch(fetchStockAvailability(stockAvailable));
@@ -158,6 +219,7 @@ const WishlistMaster = () => {
       const stockAvailable = {
         item_code: id,
         qty: productQty,
+        token: TokenFromStore?.token,
       };
       console.log("dispatch min1 ");
       console.log(productQty, "idqty");
@@ -175,10 +237,14 @@ const WishlistMaster = () => {
               return (
                 <>
                   <tr key={index}>
-                    <td className="text-center">{stockData?.warehouse}</td>
-                    <td className="text-center">{stockData?.qty}</td>
-                    <td className="text-center">{stockData?.incoming_qty}</td>
-                    <td className="text-center">
+                    <td className="text-center border">
+                      {stockData?.warehouse}
+                    </td>
+                    <td className="text-center border">{stockData?.qty}</td>
+                    <td className="text-center border">
+                      {stockData?.incoming_qty}
+                    </td>
+                    <td className="text-center border">
                       {" "}
                       {stockData?.incoming_date !== ""
                         ? stockData?.incoming_date
@@ -187,8 +253,10 @@ const WishlistMaster = () => {
                             .join("-")
                         : stockData?.incoming_date === ""}
                     </td>
-                    <td className="text-center">{stockData?.additional_qty}</td>
-                    <td className="text-center">
+                    <td className="text-center border">
+                      {stockData?.additional_qty}
+                    </td>
+                    <td className="text-center border">
                       {stockData?.available_on !== ""
                         ? stockData?.available_on
                             ?.split("-")
@@ -299,11 +367,13 @@ const WishlistMaster = () => {
                                     getWishlist: false,
                                     deleteWishlist: true,
                                     addTowishlist: false,
+                                    token: TokenFromStore?.token,
                                   };
                                   requestList = {
                                     getWishlist: true,
                                     deleteWishlist: false,
                                     addTowishlist: false,
+                                    token: TokenFromStore?.token,
                                   };
                                   dispatch(fetchWishlistUser(requestNew));
                                   setTimeout(() => {
@@ -484,6 +554,7 @@ const WishlistMaster = () => {
                   content={
                     selectedMultiLangData?.items_added_to_your_wishlist_will_show_up_here
                   }
+                  selectLangData={selectedMultiLangData}
                 />
               </>
             )}

@@ -22,7 +22,7 @@ const OrderSummary = ({
   useEffect(() => {
     setcartListingItems(cartProducts.data);
     setInitial(true);
-  }, []);
+  }, [cartProducts]);
   const handleShow = () => {
     setshow(!show);
   };

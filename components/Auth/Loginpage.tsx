@@ -233,7 +233,7 @@ const Loginpage = () => {
                           <div className={`mt-5 login_submitbtn`}>
                             <button
                               type="submit"
-                              className={` btn btn-warning button_color`}
+                              className={` btn button_color`}
                             >
                               {selectedMultiLangData?.submit}
                             </button>

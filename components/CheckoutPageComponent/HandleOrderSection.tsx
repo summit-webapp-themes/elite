@@ -29,7 +29,6 @@ const HandleOrderSection = (props: any) => {
           <button
             type="button"
             onClick={handlePlaceOrder}
-            // disabled={!acceptedTerms}
             className="d-grid gap-2 col-lg-12 col-12 btn btn-md bold button_color mt-2"
           >
             {deleteCoupon}

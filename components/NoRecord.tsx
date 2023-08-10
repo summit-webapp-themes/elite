@@ -36,12 +36,9 @@ export const Norecord = ({ heading, content, img, selectLangData }: any) => {
               )}
             </>
           ) : (
-            <button
-              type="button"
-              className="btn btn-warning my-4 button_color "
-            >
+            <button type="button" className="btn my-4 button_color ">
               <Link href="/" legacyBehavior>
-                <a>{selectLangData?.shop_now}</a>
+                <a className="text-dark">{selectLangData?.shop_now}</a>
               </Link>
             </button>
           )}
