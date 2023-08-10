@@ -189,7 +189,7 @@ const CheckoutPageMaster = () => {
                   {selectedMultiLangData?.checkout_details}
                 </h4>
                 <div className="d-flex align-items-center">
-                  <button className="btn btn-warning btn-sm rounded-0 bold yellow_btn">
+                  <button className="btn btn-sm rounded-0 bold yellow_btn">
                     <Link href={"/login"} legacyBehavior>
                       <a>{selectedMultiLangData?.login}</a>
                     </Link>

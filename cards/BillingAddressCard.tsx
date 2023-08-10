@@ -42,7 +42,6 @@ const BillingAddressCard = ({
   };
 
   const handleBilling = (e: any) => {
-    console.log("select bill add", e.target.value);
     setselectedbillAddress(e?.target?.value);
     setChangeaddress(true);
   };
@@ -226,7 +225,7 @@ const BillingAddressCard = ({
                       onChange={() =>
                         setInitialBillingAddress(detail?.address_id)
                       }
-                      onClick={() => initialShippingAddress(detail?.address_id)}
+                      onClick={() => handleBilling(detail?.address_id)}
                       className={
                         shippingAddresses &&
                         initialShippingAddress === detail?.address_id
