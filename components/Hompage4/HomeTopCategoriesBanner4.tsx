@@ -13,7 +13,7 @@ const HomeTopCategoriesBanner4 = ({ homeTopCategories }: any) => {
     return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
   };
   return (
-    <div className='container category_heading'>
+    <div className='container mt-5'>
       <div className='row'>
 {/*        
         {
@@ -35,7 +35,7 @@ const HomeTopCategoriesBanner4 = ({ homeTopCategories }: any) => {
           })
         } */}
          {
-          homeTopCategories?.length > 0 && homeTopCategories.slice(8, 10).map((categoryBanner: any, index: any) => {
+          homeTopCategories?.length > 0 && homeTopCategories.slice(0, 2).map((categoryBanner: any, index: any) => {
             return (
               <div className='col-lg-6' key={index}>
                   <Link href={`/product-category/${categoryBanner?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}>
@@ -45,6 +45,9 @@ const HomeTopCategoriesBanner4 = ({ homeTopCategories }: any) => {
                   width={800}
                   height={200}
                   alt="img"
+<<<<<<< HEAD
+                  style={{ height: "385px" }}
+=======
                 
                   className='rounded-2 home4-top-banner'
                 />
@@ -67,6 +70,7 @@ const HomeTopCategoriesBanner4 = ({ homeTopCategories }: any) => {
                   height={200}
                   alt="img"
                   
+>>>>>>> 6e0d722667b4c0605199e7b8018a09fb62014b76
                 />
                 </Link>
               </div>

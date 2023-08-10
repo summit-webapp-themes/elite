@@ -13,7 +13,7 @@ const ToastNotification = () => {
     <ToastContainer className="p-3 toast_custom_css ">
       <Toast show={selector_state?.show} delay={3000} autohide>
         <Toast.Body
-          className="p-4 toast_custom"
+          className="px-3 py-4 toast_custom fs-5"
           style={{ backgroundColor: selector_state?.bgColor, color: "white" }}
         >
           {selector_state?.data}

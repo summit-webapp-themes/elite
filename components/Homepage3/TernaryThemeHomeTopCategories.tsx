@@ -8,8 +8,7 @@ import { useSelector } from "react-redux";
 import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
 
 const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
-
-  console.log("homeTopCategories",homeTopCategories)
+  console.log("homeTopCategories", homeTopCategories);
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const imageLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
@@ -27,7 +26,7 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                     ?.map((banner: any, index: any) => (
                       <div className="col-lg-6 col-12" key={banner.name}>
                         <>
-                        <Link href={`/product-category/${banner?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}>
+                          {/* <Link href={`/product-category/${banner?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}> */}
                           <Image
                             loader={imageLoader}
                             src={banner?.product_img}
@@ -35,9 +34,8 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                             width={600}
                             height={150}
                             className="topcat_banner"
-                          
                           />
-                           </Link>
+                          {/* </Link> */}
                         </>
                       </div>
                     ))}
@@ -45,7 +43,9 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
               ) : (
                 <>
                   <div className="col-lg-6">
-                    <Link href={`/product-category/juicer?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}>
+                    {/* <Link
+                      href={`/product-category/juicer?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
+                    > */}
                     <Image
                       src="/assets/images/jucierBanner.png"
                       alt="banner of Topcategory"
@@ -53,19 +53,20 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                       height={350}
                       className="hometopcat_banner"
                     />
-                    </Link>
+                    {/* </Link> */}
                   </div>
                   <div className="col-lg-6">
-                  <Link href={`/product-category/moisturizers?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}>
+                    {/* <Link
+                      href={`/product-category/moisturizers?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
+                    > */}
                     <Image
                       src="/assets/images/moisturizerBanner.png"
                       alt="banner of Topcategory"
                       width={600}
                       height={350}
                       className="hometopcat_banner"
-      
                     />
-                     </Link>
+                    {/* </Link> */}
                   </div>
                 </>
               )}

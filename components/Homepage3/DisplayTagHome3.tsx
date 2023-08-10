@@ -30,7 +30,7 @@ const DisplayTagHome3 = (props: any) => {
                 <>
                   {data?.value?.length > 0 &&
                     data?.value?.map((list: any, i: any) => (
-                      <div className="col-md-3 py-4" key={i}>
+                      <div className="col-md-3 py-4">
                       <div
                         className="h-100 mx-1 mt-5 displaytag-listhome3"
                         key={i}

@@ -4,7 +4,6 @@ import HomeTopCategoriesBanner4 from "./Hompage4/HomeTopCategoriesBanner4";
 import DisplayTagMaster4 from "./Hompage4/DisplayTagMaster4";
 import useHomeTopCategories from "../hooks/HomePageHooks/HomeTopCategoriesHook";
 import HomeTopCategories4 from "./Hompage4/HomeTopCategories4";
-import HomeTopBrands from "./HomeTopBrand/HomeTopBrands";
 import useWishlist from "../hooks/WishListHooks/WishListHooks";
 import Home4WebNavbar from "./Hompage4/Navbar/components/Home4WebNavbar";
 import MobNavbar from "./Hompage4/Navbar/components/MobNavbar";
@@ -31,15 +30,26 @@ const Homepage4Master = () => {
         return null;
     }
   };
+
+  console.log("display tag in home ", allTagsData);
   return (
     <>
-      <div>
+      <div style={{ backgroundColor: "rgb(242, 243, 245)" }}>
         <Home4Banner />
+
         <HomeTopCategories4
           homeTopCategories={homeTopCategories}
           isLoading={isLoading}
         />
         <DisplayTagMaster4 allTagsData={allTagsData} />
+
+        {/* {allTagsData?.map((data: any, index: number) => (
+               <React.Fragment key={index}>
+                   <DisplayTagMaster4 data={data} wishlistData={wishlistData}/>
+                  
+               </React.Fragment>
+               
+           ))} */}
 
         {allTagsData?.map((data: any, index: number) => (
           <React.Fragment key={index}>

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { ShippingValidation } from "../../../validation/addressFormValidation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchBillingAddress } from "../../../store/slices/checkoutPage-slice/customer-billing-address-slice";
 import { fetchShippingAddress } from "../../../store/slices/checkoutPage-slice/customer-shipping-address-slice";
 import { storeCustomerAddresses } from "../../../store/slices/checkoutPage-slice/store-customer-address-slice";
 import { fetchprofileDataThunk } from "../../../store/slices/general_slices/profile-page-slice";
+import { get_access_token } from "../../../store/slices/auth/token-login-slice";
 
 const EditAddressForm = ({
   show,
@@ -20,8 +21,10 @@ const EditAddressForm = ({
   city,
   state,
   selectedCity,
+  selectedMultiLangData,
 }: any) => {
   const dispatch = useDispatch();
+  const TokenFromStore: any = useSelector(get_access_token);
   let [selectedStates, setSelectedStates] = useState(detailData?.state);
 
   console.log("address_type", address_type);
@@ -44,7 +47,9 @@ const EditAddressForm = ({
     <>
       <Modal show={show} onHide={toHide}>
         <Modal.Header closeButton>
-          <Modal.Title className="bold">Customer Address Form</Modal.Title>
+          <Modal.Title className="bold">
+            {selectedMultiLangData?.customer_address_form}
+          </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -53,11 +58,15 @@ const EditAddressForm = ({
             validationSchema={ShippingValidation}
             onSubmit={(values: any, action: any) => {
               console.log("form shipping/billing address form values", values);
-              dispatch(storeCustomerAddresses({ ...values }));
+              const requestParams = {
+                value: { ...values },
+                token: TokenFromStore?.token,
+              };
+              dispatch(storeCustomerAddresses(requestParams));
               setTimeout(() => {
-                dispatch(fetchShippingAddress());
-                dispatch(fetchBillingAddress());
-                dispatch(fetchprofileDataThunk());
+                dispatch(fetchShippingAddress(TokenFromStore?.token));
+                dispatch(fetchBillingAddress(TokenFromStore?.token));
+                dispatch(fetchprofileDataThunk(TokenFromStore?.token));
               }, 1000);
               action.resetForm();
               toHide();
@@ -73,7 +82,7 @@ const EditAddressForm = ({
                       <div className="col-lg-12">
                         <div className="billing-add-heading">
                           <h4 className="mb-4 my-sm-2 mt-lg-0 fw-bold billing-header">
-                            Customer address
+                            {selectedMultiLangData?.customer_address}
                           </h4>
                         </div>
                       </div>
@@ -82,7 +91,8 @@ const EditAddressForm = ({
                         <div className="fields-group-md mb-4 fs-6">
                           <div className="form-group">
                             <label className="form-Form.Label fs-4 text-dark">
-                              Name <span className="red">*</span>
+                              {selectedMultiLangData?.name}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               type="text"
@@ -103,7 +113,8 @@ const EditAddressForm = ({
                         <div>
                           <div className="form-group mt-3 fs-6">
                             <label className="form-Form.Label fs-4 text-dark">
-                              Address 1<span className="red">*</span>
+                              {selectedMultiLangData?.address_1}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               className="form-control rounded-0"
@@ -122,7 +133,8 @@ const EditAddressForm = ({
                         <div>
                           <div className="form-group mt-3 fs-6">
                             <label className="form-Form.Label fs-4 text-dark">
-                              Address 2<span className="red">*</span>
+                              {selectedMultiLangData?.address_2}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               as="textarea"
@@ -138,7 +150,8 @@ const EditAddressForm = ({
                         <div>
                           <div className="form-group mt-3 fs-6">
                             <label className="form-Form.Label fs-4 text-dark">
-                              Country <span className="red">*</span>
+                              {selectedMultiLangData?.country}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               component="select"
@@ -161,7 +174,8 @@ const EditAddressForm = ({
                         <div>
                           <div className="form-group mt-3 fs-6">
                             <label className="form-Form.Label fs-4 text-dark">
-                              State/Province <span className="red">*</span>
+                              {selectedMultiLangData?.state}{" "}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               component="select"
@@ -178,7 +192,7 @@ const EditAddressForm = ({
                               onClick={handleChange}
                             >
                               <option>
-                                Select Select a region, state or province
+                                {selectedMultiLangData?.please_select_a_state}
                               </option>
                               {state?.length > 0 && (
                                 <>
@@ -204,7 +218,8 @@ const EditAddressForm = ({
                         <div>
                           <div className="form-group mt-3 fs-6">
                             <label className="form-Form.Label fs-4 text-dark">
-                              City <span className="red">*</span>
+                              {selectedMultiLangData?.city}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               component="select"
@@ -220,7 +235,9 @@ const EditAddressForm = ({
                               onClick={handleChange}
                               onBlur={handleBlur}
                             >
-                              <option>Please select a city.</option>
+                              <option>
+                                {selectedMultiLangData?.please_select_a_city}
+                              </option>
                               {city?.length > 0 && (
                                 <>
                                   {city.map((data: any, index: any) => (
@@ -241,7 +258,8 @@ const EditAddressForm = ({
                         <div>
                           <div className="form-group mt-3 fs-6">
                             <label className="form-Form.Label fs-4 text-dark">
-                              Zip/Postal Code <span className="red">*</span>
+                              {selectedMultiLangData?.postal_code}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               type="text"
@@ -268,14 +286,15 @@ const EditAddressForm = ({
                             onChange={handleChange}
                           />
                           <span className="fs-6 align-bottom mx-1 fs-5">
-                            Set as default address
+                            {selectedMultiLangData?.set_as_default_address}
                           </span>
                         </div>
 
                         <div>
                           <div className="form-group  mt-3 fs-6">
                             <label className="form-Form.Label fs-4 text-dark">
-                              Email ID <span className="red">*</span>
+                              {selectedMultiLangData?.email}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               type="email"
@@ -296,7 +315,8 @@ const EditAddressForm = ({
                         <div>
                           <div className="form-gr2oup  mt-3 fs-6">
                             <label className="form-Form.Label fs-4 text-dark">
-                              Mobile No <span className="red">*</span>
+                              {selectedMultiLangData?.mobile_number}
+                              <span className="red">*</span>
                             </label>
                             <Field
                               type="text"
@@ -317,10 +337,10 @@ const EditAddressForm = ({
                         <div className="text-center ">
                           <button
                             type="submit"
-                            className="btn btn-warning mt-3 px-2 py-3 text-uppercase rounded-0 button_color"
+                            className="btn mt-3 px-2 py-3 text-uppercase rounded-0 button_color"
                             disabled={isSubmitting}
                           >
-                            save the address
+                            {selectedMultiLangData?.save_address}
                           </button>
                         </div>
                       </div>

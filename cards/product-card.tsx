@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CONSTANTS } from "../services/config/app-config";
 import { ProductCardProps } from "../interfaces/product-card-interface";
 import { fetchWishlistUser } from "../store/slices/wishlist-slice/wishlist-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   failmsg,
   hideToast,
@@ -11,14 +11,15 @@ import {
 } from "../store/slices/general_slices/toast_notification_slice";
 import { fetchCartListing } from "../store/slices/cart-listing-page-slice/cart-listing-slice";
 import AddToCartApi from "../services/api/cart-page-api/add-to-cart-api";
-import useProductDetail from "../hooks/ProductDetailHook/product-detail-hook";
-import useMultiLingual from "../hooks/LanguageHook/multilingual-hook";
+import {
+  get_access_token,
+  updateAccessToken,
+} from "../store/slices/auth/token-login-slice";
 
 const ProductCard = (props: ProductCardProps) => {
   const {
     key,
     name,
-    in_stock_status,
     url,
     img_url,
     display_tag,
@@ -29,9 +30,10 @@ const ProductCard = (props: ProductCardProps) => {
     item_slug,
     wishlistData,
     currency_state_from_redux,
+    selectLangData,
   } = props;
 
-  const languageData = useMultiLingual();
+  const TokenFromStore: any = useSelector(get_access_token);
 
   let wishproducts: any;
   let requestNew: any;
@@ -40,27 +42,37 @@ const ProductCard = (props: ProductCardProps) => {
   const dispatch = useDispatch();
 
   const handleAddCart = async () => {
-    console.log(
-      "add currency",
-      currency_state_from_redux?.selected_currency_value
-    );
-
-    console.log(
-      "add currency in else",
-      currency_state_from_redux?.selected_currency_value
-    );
     const addCartData = [];
     addCartData.push({
-      item_code:  name,
+      item_code: name,
       quantity: 1,
     });
-    let AddToCartRes: any = await AddToCartApi(
+    let AddToCartProductRes: any = await AddToCartApi(
       addCartData,
-      currency_state_from_redux?.selected_currency_value
+      currency_state_from_redux?.selected_currency_value,
+      TokenFromStore?.token
     );
-    if (AddToCartRes.msg === "success") {
+
+    if (AddToCartProductRes.msg === "success") {
       dispatch(successmsg("Item Added to cart"));
-      dispatch(fetchCartListing());
+
+      if (AddToCartProductRes?.data?.access_token !== null) {
+        dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
+        localStorage.setItem("guest", AddToCartProductRes?.data?.access_token);
+        console.log("token api res", AddToCartProductRes);
+        if (AddToCartProductRes?.data?.access_token !== null) {
+          console.log("token from api");
+          dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
+        }
+
+        // if (Object.keys(TokenFromStore)?.length > 0) {
+        //   dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
+        // } else {
+        //   dispatch(fetchCartListing(TokenFromStore?.token));
+        // }
+      } else {
+        dispatch(fetchCartListing(TokenFromStore?.token));
+      }
       setTimeout(() => {
         dispatch(hideToast());
       }, 1200);
@@ -97,11 +109,13 @@ const ProductCard = (props: ProductCardProps) => {
                   getWishlist: false,
                   deleteWishlist: false,
                   addTowishlist: true,
+                  token: TokenFromStore?.token,
                 };
                 requestList = {
                   getWishlist: true,
                   deleteWishlist: false,
                   addTowishlist: false,
+                  token: TokenFromStore?.token,
                 };
                 dispatch(fetchWishlistUser(requestNew));
 
@@ -126,11 +140,13 @@ const ProductCard = (props: ProductCardProps) => {
                   getWishlist: false,
                   deleteWishlist: true,
                   addTowishlist: false,
+                  token: TokenFromStore?.token,
                 };
                 requestList = {
                   getWishlist: true,
                   deleteWishlist: false,
                   addTowishlist: false,
+                  token: TokenFromStore?.token,
                 };
                 dispatch(fetchWishlistUser(requestNew));
 
@@ -188,24 +204,29 @@ const ProductCard = (props: ProductCardProps) => {
               </Link>
             </h4>
             <div className="product-price d-flex">
-              <ins className="new-price">
-                {currency_symbol}
-                {price}
-              </ins>
-              <del className="old-price">
-                {currency_symbol}
-                {mrp_price}
-              </del>
+              <div className="w-75">
+                <ins className="new-price">
+                  {currency_symbol}
+                  {price}
+                </ins>
+                <del className="old-price">
+                  {currency_symbol}
+                  {mrp_price}
+                </del>
+              </div>
+
               <button
-              type="button"
-              className={` btn btn-primary ml-3 cart_btn_gtag listing-cartbtn`}
-              onClick={handleAddCart}
-            >
-             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-              {/* {multilingualData?.add_to_cart} */}
-            </button>
+                type="button"
+                className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn`}
+                onClick={handleAddCart}
+              >
+                <i
+                  className="fa fa-shopping-cart pe-5 pb-1"
+                  aria-hidden="true"
+                ></i>
+                {/* {multilingualData?.add_to_cart} */}
+              </button>
             </div>
-         
           </div>
         </div>
       </div>
