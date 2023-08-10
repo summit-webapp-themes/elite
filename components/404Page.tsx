@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import notfound404_img from "../public/assets/images/404img.png";
+import notfound404_img from "../public/assets/images/notfound404_img.png";
 import Link from "next/link";
 const Pagenotfound = () => {
   return (
     <>
-      <div className={`container  notfound_container`}>
+      <div className={`container mb-5 notfound_container`}>
         <Image
           src={notfound404_img}
           width={200}
@@ -19,7 +19,7 @@ const Pagenotfound = () => {
         </p>
         <Link href="/">
           <button className={`btn btn-danger notfound_btn`}>
-            Go to Homepage
+            Go Home
           </button>
         </Link>
       </div>

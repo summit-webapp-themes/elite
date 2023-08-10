@@ -35,7 +35,7 @@ const HomeTopCategories4 = ({ homeTopCategories }: any) => {
                             alt="banner of Topcategory"
                             width={600}
                             height={150}
-                            className="topcat_banners-fourth rounded-2"
+                            className="topcat_banner"
                           
                           />
                           </Link>
@@ -52,7 +52,7 @@ const HomeTopCategories4 = ({ homeTopCategories }: any) => {
                       alt="banner of Topcategory"
                       width={600}
                       height={350}
-                      className="hometopcat_banner rounded-2"
+                      className="hometopcat_banner"
                     />
                     </Link>
                   </div>
@@ -63,7 +63,7 @@ const HomeTopCategories4 = ({ homeTopCategories }: any) => {
                       alt="banner of Topcategory"
                       width={600}
                       height={350}
-                      className="hometopcat_banner rounded-2"
+                      className="hometopcat_banner"
       
                     />
                      </Link>

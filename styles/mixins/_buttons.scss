@@ -1,6 +1,6 @@
 // Button Variant Mixin
 @mixin button-variant( $color ) {
-    color: #fff;
+    color: #fff !important;
     border-color: $color;
     background-color: $color;
     &:hover,

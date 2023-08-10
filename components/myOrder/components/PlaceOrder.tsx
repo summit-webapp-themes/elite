@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { FetchOrderListing } from "../../../store/slices/order-listing-page-slice/order-listing-page-slice";
+
 import MyOrderCard from "../../../cards/MyOrderCard";
 import { Norecord } from "../../NoRecord";
+import ListViewLoadingLayout from "../../ProductListingComponents/products-data-view/ListViewLoadingLayout";
 
-const PlaceOrder = ({ orderHistoryItems }: any) => {
-  const dispatch = useDispatch();
-  console.log("orderHistoryItems", orderHistoryItems);
-const placeorderCount = orderHistoryItems && orderHistoryItems?.filter((items:any)=>(items?.payment_status !=="Cancelled"))
-  const [history, setHistory] = useState("this_month");
+const PlaceOrder = ({
+  orderHistoryItems,
+  selectedMultiLangData,
+  handleHistoryDate,
+  history,
+  loading,
+}: any) => {
+  console.log("orderHistoryItems", orderHistoryItems, loading);
 
-  useEffect(() => {
-    dispatch(FetchOrderListing(history, ""));
-  }, [history]);
+  const placeorderCount =
+    orderHistoryItems &&
+    orderHistoryItems?.filter(
+      (items: any) => items?.payment_status !== "Cancelled"
+    );
 
-  const handleHistoryDate = (e: any) => {
-    setHistory(e.target.value);
-  };
+  // useEffect(() => {
+  //   dispatch(FetchOrderListing(history, "", TokenFromStore?.token));
+  // }, [history]);
+
+  // const handleHistoryDate = (e: any) => {
+  //   setHistory(e.target.value);
+  // };
 
   return (
     <>
@@ -30,9 +39,16 @@ const placeorderCount = orderHistoryItems && orderHistoryItems?.filter((items:an
                   onChange={handleHistoryDate}
                   value={history}
                 >
-                  <option value="this_month">This Month</option>
-                  <option value="last_30_days">last 30 days</option>
-                  <option value="past_3_months">past 3 months</option>
+                  <option value="this_month">
+                    {selectedMultiLangData?.this_month}
+                  </option>
+                  <option value="last_30_days">
+                    {selectedMultiLangData?.last_30_days}
+                  </option>
+                  <option value="past_3_months">
+                    {" "}
+                    {selectedMultiLangData?.past_3_months}
+                  </option>
                   <option value="2022">2022</option>
                   <option value="2021">2021</option>
                   <option value="2020">2020</option>
@@ -40,31 +56,71 @@ const placeorderCount = orderHistoryItems && orderHistoryItems?.filter((items:an
               </div>
               <div className="col text-end">
                 <p className="mb-0 order-ptag">
-                  <span className="bold">{placeorderCount?.length}</span> orders
+                  <span className="bold">{placeorderCount?.length}</span>{" "}
+                  {selectedMultiLangData?.orders}
                 </p>
               </div>
             </div>
           </div>
         </div>
-
-        {orderHistoryItems && orderHistoryItems?.length > 0 ? (
-          <>
-            {orderHistoryItems && orderHistoryItems?.filter((items:any)=>(items?.payment_status !=="Cancelled"))?.map((data: any, i: any) => (
-                <div className="row" key={i}>
-                  <div className="col-lg-12">
-                    <div className="order_card cart_table mb-3 card">
-                      <MyOrderCard data={data} />
-                    </div>
+        {loading ? (
+          <div className="row justify-content-center">
+            {[...Array(10)].map(() => (
+              <>
+                <div className="col-lg-2 mx-3">
+                  <ListViewLoadingLayout />
+                </div>
+              </>
+            ))}
+          </div>
+        ) : orderHistoryItems?.length > 0 ? (
+          orderHistoryItems
+            ?.filter((items: any) => items?.payment_status !== "Cancelled")
+            ?.map((data: any, i: any) => (
+              <div className="row" key={i}>
+                <div className="col-lg-12">
+                  <div className="order_card cart_table mb-3 card">
+                    <MyOrderCard
+                      data={data}
+                      selectedMultiLangData={selectedMultiLangData}
+                    />
                   </div>
                 </div>
-              ))}
+              </div>
+            ))
+        ) : (
+          <Norecord
+            heading={selectedMultiLangData?.no_orders_found}
+            content={selectedMultiLangData?.orders_show_up_here}
+            selectLangData={selectedMultiLangData}
+          />
+        )}
+
+        {/* {orderHistoryItems && orderHistoryItems?.length > 0 ? (
+          <>
+            {orderHistoryItems &&
+              orderHistoryItems
+                ?.filter((items: any) => items?.payment_status !== "Cancelled")
+                ?.map((data: any, i: any) => (
+                  <div className="row" key={i}>
+                    <div className="col-lg-12">
+                      <div className="order_card cart_table mb-3 card">
+                        <MyOrderCard
+                          data={data}
+                          selectedMultiLangData={selectedMultiLangData}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
           </>
         ) : (
           <Norecord
-          heading="No orders Found!!"
-          content="Orders show up here"
-        />
-        )}
+            heading={selectedMultiLangData?.no_orders_found}
+            content={selectedMultiLangData?.orders_show_up_here}
+            selectLangData={selectedMultiLangData}
+          />
+        )} */}
       </div>
     </>
   );

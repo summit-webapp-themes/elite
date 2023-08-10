@@ -12,6 +12,8 @@ const WebFilters = (props: FiltersViewProps) => {
     selectedFilters,
     handleApplyFilters,
     productListingData,
+    SelectedLangDataFromStore,
+    selectLangData,
   } = props;
 
   const [filterLang, setFilterLang] = useState("");
@@ -33,31 +35,32 @@ const WebFilters = (props: FiltersViewProps) => {
       <div className="col-md-12 col-12 mt-2">
         {CONSTANTS.ENABLE_MISSING_PARTS && productListingData.length > 0 && (
           <>
-          <span>Looking for something specific?</span><button
-            onClick={() => {
-              setShowMissingPartsModal(true);
-            }}
-            className="missing_parts_btn ps-0 "
-          >
-            Let us know
-          </button>
+            <span>{selectLangData?.looking_for_something_specific}</span>
+            <button
+              onClick={() => {
+                setShowMissingPartsModal(true);
+              }}
+              className="missing_parts_btn ps-0 "
+            >
+              {selectLangData?.let_us_know}
+            </button>
           </>
         )}
       </div>
 
-      <div
+      {/* <div
         className={` ${
           filtersData?.length > 0 ? "clear_filter mb-2" : "d-none"
         }`}
       >
         <a
-          //   onClick={handleClearFilter}
+        
           href="#"
           className="clear_filter_link"
         >
-          Clear Filter
+          {SelectedLangDataFromStore?.selectedLanguageData?.clear_filter}
         </a>
-      </div>
+      </div> */}
 
       <div className="filter_section">
         <div className="filter_block">
@@ -143,6 +146,7 @@ const WebFilters = (props: FiltersViewProps) => {
         show={showMissingPartsModal}
         handlemodalclose={handleMissingPartsModalClose}
         setShow={setShowMissingPartsModal}
+        selectLangData={selectLangData}
       />
     </div>
   );

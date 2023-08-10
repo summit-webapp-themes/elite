@@ -3,7 +3,13 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MissingPartsAPI } from "../../services/api/product-listing-page-api/missing-parts-api";
 
-const MissingPartsModal = ({ show, handlemodalclose, setShow }: any) => {
+const MissingPartsModal = ({
+  show,
+  handlemodalclose,
+  setShow,
+  SelectedLangDataFromStore,
+  selectLangData,
+}: any) => {
   const [descriptionVal, setdescriptionval] = useState<any>("");
   const [message, setMessage] = useState<any>("");
   const [showToast, setshowToast] = useState(false);
@@ -39,12 +45,12 @@ const MissingPartsModal = ({ show, handlemodalclose, setShow }: any) => {
     <>
       <Modal show={show} onHide={handlemodalclose}>
         <Modal.Header closeButton>
-          <h4 className="text-center mt-2">Missing Parts</h4>
+          <h4 className="text-center mt-2">{selectLangData?.missing_parts}</h4>
         </Modal.Header>
         <Modal.Body>
           <div className="form-group mt-2">
             <h6 className="text-capitalize">
-              Let us know if you couldn&apos;t Find any Product of your Choice
+              {selectLangData?.choice_product_not_f}
             </h6>
             <textarea
               className="form-control"
@@ -59,10 +65,10 @@ const MissingPartsModal = ({ show, handlemodalclose, setShow }: any) => {
           <p className="text-danger">{messageNew}</p>
           <div className="text-right mt-4">
             <button
-              className="btn btn-primary button_color text-white"
+              className="btn button_color"
               onClick={(e) => handleSubmit(e)}
             >
-              Submit Enquiry
+              {selectLangData?.submit_enquiry}
             </button>
           </div>
         </Modal.Body>

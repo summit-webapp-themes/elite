@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import useDisplayTagHooks from "../hooks/HomePageHooks/DisplayTagHooks";
 import useHomeTopCategories from "../hooks/HomePageHooks/HomeTopCategoriesHook";
@@ -9,19 +8,22 @@ import TernaryThemeTopCategoriesBanner from "./Homepage3/TernaryThemeTopCategori
 import TernaryThemeHomeBanner from "./Homepage3/TernaryThemeHomeBanner";
 
 const HomepageMaster = () => {
-
   const { allTagsData } = useDisplayTagHooks();
 
-  const { homeTopCategories, isLoading,selectedCurrencyVal } = useHomeTopCategories();
+  const { homeTopCategories, isLoading, selectedCurrencyVal } =
+    useHomeTopCategories();
 
   const renderSectionComponent = (index: number) => {
     switch (index) {
       case 0:
         return (
-          <TernaryThemeTopCategoriesBanner homeTopCategories={homeTopCategories} selectedCurrencyVal={selectedCurrencyVal}/>
+          <TernaryThemeTopCategoriesBanner
+            homeTopCategories={homeTopCategories}
+            selectedCurrencyVal={selectedCurrencyVal}
+          />
         );
       case 1:
-        return <OurFeaturedBrand/>;
+        return <OurFeaturedBrand />;
       // Add more cases as needed for other section components
       default:
         return null;

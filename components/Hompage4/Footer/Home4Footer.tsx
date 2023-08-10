@@ -50,7 +50,7 @@ const Home4Footer = () => {
             <div className="col-lg-2 col-sm-6">
               
                 <div className="widget">
-                  <h3 className="widget-title fourthTheme-title">Get to know us</h3>
+                  <h3 className="widget-title">Get to know us</h3>
                   <ul className="widget-body">
                     <li>
                       <Link href="#" legacyBehavior>
@@ -73,7 +73,7 @@ const Home4Footer = () => {
               </div>
               <div className="col-lg-2 col-sm-6">
                 <div className="widget">
-                  <h3 className="widget-title fourthTheme-title">Connect with us</h3>
+                  <h3 className="widget-title">Connect with us</h3>
                   <ul className="widget-body">
                     <li>
                       <Link href="#" legacyBehavior>
@@ -96,10 +96,10 @@ const Home4Footer = () => {
               </div>
               <div className="col-lg-2 col-sm-6">
                 <div className="widget">
-                  <h4 className="widget-title fourthTheme-title">My Account</h4>
+                  <h4 className="widget-title">My Account</h4>
                   <ul className="widget-body">
                     <li>
-                      <Link href="/cart" className="text-white" legacyBehavior>
+                      <Link href="/cart" legacyBehavior>
                         View Cart
                       </Link>
                     </li>
@@ -118,7 +118,7 @@ const Home4Footer = () => {
               </div>
               <div className="col-lg-2 col-sm-6">
                 <div className="widget">
-                  <h4 className="widget-title fourthTheme-title">Let Us Help You</h4>
+                  <h4 className="widget-title">Let Us Help You</h4>
                   <ul className="widget-body">
                     <li>
                       <Link href="#" legacyBehavior>
@@ -145,24 +145,17 @@ const Home4Footer = () => {
             <div className="widget widget-category">
               {navbarData?.length > 0 && navbarData !== null && (
                 <>
-                  {navbarData.map((items: any, i: any) => {
-                    <div key={i}>
-                      {
-                      items.values.map((items_name: any) => (
-                        <div className="category-box" key={i}>
-                          <h6 className="category-name">{items_name.name}:</h6>
-                          {items_name.values.map((names: any, index: any) => (
-                            <div key={index}>
-                            <Link href={names.url} legacyBehavior>
-                              <a key={index}>{names.name}</a>
-                            </Link>
-                            </div>
-                          ))}
-                        </div>
-                      ))
-                      }
-                    </div>
-                  }
+                  {navbarData.map((items: any, i: any) =>
+                    items.values.map((items_name: any) => (
+                      <div className="category-box" key={i}>
+                        <h6 className="category-name">{items_name.name}:</h6>
+                        {items_name.values.map((names: any, index: any) => (
+                          <Link href={names.url} legacyBehavior>
+                            <a key={index}>{names.name}</a>
+                          </Link>
+                        ))}
+                      </div>
+                    ))
                   )}
                 </>
               )}
@@ -202,7 +195,7 @@ const Home4Footer = () => {
                     required
                   />
                   <button
-                    className="btn btn-primary btn-rounded btn-left  footer-button fourthTheme-btn"
+                    className="btn btn-primary btn-rounded btn-left  footer-button"
                     type="submit"
                     onClick={handleSubscription}
                   >
@@ -221,7 +214,7 @@ const Home4Footer = () => {
             </div>
             <div className="footer-right">
               <span className="payment-label mr-lg-8">
-                We are using safe payment for
+                We're using safe payment for
               </span>
               <figure className="payment">
                 <Image

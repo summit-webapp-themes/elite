@@ -23,15 +23,15 @@ const DisplayTagMaster4 = (props: any) => {
 
   return (
     <>
-      <div className="container product-offer-container category_heading">
+      <div className="container product-offer-container ">
         <Tab.Container id="left-tabs-example" defaultActiveKey={allTagsData[0]?.tag_name}>
           <Row>
             <Col sm={3} className="product-offer-left-container ">
               <Nav variant="pills" className="flex-column text-center ">
                 {allTagsData.map((item: any, index: number) => (
                   <Nav.Item key={index} >
-                    <Nav.Link eventKey={item.tag_name} className="tab-container">
-                      {item.tag_name}<i className="fa fa-angle-right ml-3" aria-hidden="true"></i>
+                    <Nav.Link eventKey={item.tag_name}>
+                      {item.tag_name}
                     </Nav.Link>
                   </Nav.Item>
                 ))}
@@ -47,7 +47,7 @@ const DisplayTagMaster4 = (props: any) => {
                           {item?.value?.length > 0 &&
                             item?.value?.map((list: any, i: any) => (
                               <div
-                                className="mx-2 mt-5 displaytag-list"
+                                className="border mx-2 mt-5 displaytag-list home4-displaytag-list"
                                 key={i}
                               >
                                 <div
@@ -92,7 +92,7 @@ const DisplayTagMaster4 = (props: any) => {
                                       )}
                                     </figure>
                                     <div
-                                      className=""
+                                      className="home4-product-details"
                                       // style={{
                                       //   border: "2px solid red",
                                        

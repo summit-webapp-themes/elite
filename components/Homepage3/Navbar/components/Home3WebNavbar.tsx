@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import useWishlist from "../../../../hooks/WishListHooks/WishListHooks";
 import LogoutList from "../../../../services/api/auth/logout_api";
 import UseCartPageHook from "../../../../hooks/CartPageHooks/cart-page-hook";
+import { ClearToken } from "../../../../store/slices/auth/token-login-slice";
 const Home3WebNavbar = ({
   navbarData,
   isLoading,
@@ -23,15 +24,17 @@ const Home3WebNavbar = ({
   handleCurrencyValueChange,
   selectedCurrencyValue,
   handleKeyDown,
+  multiLanguagesData,
+  selectedMultiLangData,
 }: any) => {
   const { wishlistCount } = useWishlist();
-  const { cartListingItems} = UseCartPageHook()
+  const { cartListingItems } = UseCartPageHook();
   console.log("navmenu click", cartListingItems);
   const [cartCount, setCartCount] = useState<number>();
   const [isShown, setIsShown] = useState(false);
   const [isId, setId] = useState();
   const [LoggedIn, setLoggedIn] = useState(false);
-  const isLoggedIn = useSelector(login_state);
+  const [loginStatus, setLoginStatus] = useState("");
 
   const dispatch = useDispatch();
   const handleHover = (id: any) => {
@@ -43,14 +46,17 @@ const Home3WebNavbar = ({
     setCartCount(cartListingItems?.total_qty);
   }, [cartListingItems]);
 
+  let isLoggedIn: any;
+
   useEffect(() => {
-    if (isLoggedIn.user === "LoggedIn") {
-      setLoggedIn(true);
+    if (typeof window !== "undefined") {
+      isLoggedIn = localStorage.getItem("isLoggedIn");
+      setLoginStatus(isLoggedIn);
     }
-  }, [login_state]);
+  }, []);
 
   const router = useRouter();
-  console.log("isLoggedIn12", LoggedIn);
+  console.log("isLoggedIn12", loginStatus);
   const handleLeave = (id: any) => {
     setId(id);
     setIsShown(false);
@@ -65,6 +71,7 @@ const Home3WebNavbar = ({
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("isDealer");
     localStorage.removeItem("isSuperAdmin");
+    dispatch(ClearToken());
     setLoggedIn(false);
     router.push("/login");
 
@@ -97,8 +104,8 @@ const Home3WebNavbar = ({
   return (
     <div>
       <header className="header">
-        <div className="header-middle ternarytheme-middle-header pt-1 pb-1 ">
-          <div className="container justify-content-lg-end justify-content-xl-end justify-content-md-starts headermon3 justify-content-sm-start ">
+        <div className="header-middle ternarytheme-middle-header pt-1 pb-1">
+          <div className="container justify-content-end">
             <div className="mobile-nav">
               <Link href="#" legacyBehavior>
                 <a
@@ -110,7 +117,6 @@ const Home3WebNavbar = ({
             </div>
             <div className="mx-3">
               <select
-                // value={selectedLanguage}
                 onChange={(e) => handleCurrencyValueChange(e.target.value)}
                 className="ternary-select"
               >
@@ -119,27 +125,32 @@ const Home3WebNavbar = ({
                 <option value="EUR">€</option>
               </select>
             </div>
+
             <div className="mx-3">
-              <select onChange={(e) => handleLanguageChange(e.target.value)}  className="ternary-select">
-                <option value="en">English</option>
-                <option value="hi">हिंदी</option>
+              <select
+                onChange={(e) => handleLanguageChange(e.target.value)}
+                className="ternary-select"
+              >
+                {multiLanguagesData?.length > 0 &&
+                  multiLanguagesData !== null &&
+                  multiLanguagesData.map((lang: any) => {
+                    return (
+                      <option value={lang.lang_code}>{lang.lang_name}</option>
+                    );
+                  })}
               </select>
             </div>
+
             <div className="mx-3">
               <div className={`custom_dropdown`}>
                 <Dropdown>
-                  {LoggedIn === true ? (
+                  {loginStatus === "true" ? (
                     <Dropdown.Toggle
                       id="dropdown-basic"
                       className="dropdown-icon ternarytheme-login"
                     >
-                      {/* <i
-                    
-                      className="fa fa-sign-out mt-2 fs-1"
-                      aria-hidden="true"
-                    ></i> */}
                       <i
-                        className=" fa fa-user-o mt-5 mb-2  fs-1 logout-icon"
+                        className="fa fa-user-o mt-5 mb-2 fs-1 logout-icon"
                         aria-hidden="true"
                       ></i>
                     </Dropdown.Toggle>
@@ -148,29 +159,33 @@ const Home3WebNavbar = ({
                       id="dropdown-basic"
                       className="dropdown-icon ternarytheme-login"
                     >
-                     Log In
+                      {selectedMultiLangData?.login}
                     </Dropdown.Toggle>
                   )}
 
-                  {LoggedIn === true ? (
+                  {loginStatus === "true" ? (
                     <Dropdown.Menu className="fs-4">
                       <Dropdown.Item className="nav_dropdown">
+                        <Link href="/quick-order" className="text-dark">
+                          {selectedMultiLangData?.quick_order}
+                        </Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item className="nav_dropdown">
                         <Link href="profile" className="text-dark">
-                          My Account
+                          {selectedMultiLangData?.my_account}
                         </Link>
                       </Dropdown.Item>
 
                       <Dropdown.Item className="nav_dropdown">
                         <Link href="/myOrder" className="text-dark">
-                          My Order
+                          {selectedMultiLangData?.my_order}
                         </Link>
                       </Dropdown.Item>
                       <Dropdown.Item
                         className="nav_dropdown text-dark"
                         onClick={handleClick}
                       >
-                        {" "}
-                        Logout{" "}
+                        {selectedMultiLangData?.logout}
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   ) : (
@@ -178,7 +193,7 @@ const Home3WebNavbar = ({
                       <Dropdown.Item className="nav_dropdown">
                         {" "}
                         <Link href="/login" className="text-dark ">
-                          Login{" "}
+                          {selectedMultiLangData?.login}
                         </Link>
                       </Dropdown.Item>
                     </Dropdown.Menu>
@@ -203,12 +218,14 @@ const Home3WebNavbar = ({
                 </div>
                 <div className="mx-2 my-1 logo_containers">
                   <Link href="/" legacyBehavior>
-                    <Image
-                      src="/assets/images/summit-thirdtheme-logo.png"
-                      width={150}
-                      height={60}
-                      alt="logo"
-                    />
+                    <a>
+                      <Image
+                        src="/assets/images/summit-thirdtheme-logo.png"
+                        width={150}
+                        height={60}
+                        alt="logo"
+                      />
+                    </a>
                   </Link>
                 </div>
                 <nav className="main-nav">
@@ -263,7 +280,7 @@ const Home3WebNavbar = ({
                   className="form-control "
                   name="search"
                   id="search"
-                  placeholder="Search in..."
+                  placeholder={selectedMultiLangData?.search_in}
                   value={searchValue}
                   onChange={(e: any) => setSearchValue(e.target.value)}
                   onKeyDown={handleKeyDown}
@@ -281,7 +298,7 @@ const Home3WebNavbar = ({
             <div className="mx-2">
               <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
                 <Link href="/wishlist" legacyBehavior>
-                  <a className=" cart-toggle label-down link ternarytheme-icon">
+                  <a className="cart-toggle label-down link ternarytheme-icon">
                     <i className="w-icon-heart fs-1 wishlist-icon">
                       <span className="cart-count wishlist_count text-white">
                         {wishlistCount || 0}

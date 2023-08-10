@@ -1,22 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import getSubscriber from "../../services/api/general_apis/newsletter-subscription-api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   hideToast,
   successmsg,
 } from "../../store/slices/general_slices/toast_notification_slice";
-// import {navbarData} from "../../datasets/Digitalshelf_dataset/navbar"
+import { get_access_token } from "../../store/slices/auth/token-login-slice";
+import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
+
 const TernaryThemeFooter = () => {
-  // const { navbarData } = useNavbar();
   const dispatch = useDispatch();
+  const TokenFromStore: any = useSelector(get_access_token);
+  const SelectedLangDataFromStore = useSelector(
+    SelectedFilterLangDataFromStore
+  );
+  console.log("SelectedLangDataFromStore", SelectedLangDataFromStore);
+  const [selectLangData, setLangData] = useState<any>();
+
+  useEffect(() => {
+    if (
+      Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0
+    ) {
+      setLangData(SelectedLangDataFromStore?.selectedLanguageData);
+    }
+  }, [SelectedLangDataFromStore?.selectedLanguageData]);
   const navbarData: any = [];
   const [subScription, setSubscriptions] = useState();
   const handleSubscription = async (event: any) => {
     event?.preventDefault();
     console.log(subScription, "subScription");
-    let subScriptionRes = await getSubscriber(subScription);
+    let subScriptionRes = await getSubscriber(
+      subScription,
+      TokenFromStore?.token
+    );
     console.log("subScriptionRes", subScriptionRes);
     if (subScriptionRes?.data?.message?.msg === "success") {
       dispatch(successmsg("subscribed successfully"));
@@ -29,7 +47,6 @@ const TernaryThemeFooter = () => {
   console.log("nav footer", navbarData);
   return (
     <>
-      {/* <h1 className='mb-5'>Footer page</h1> */}
       <footer className="footer footer-dark footer-section ternaryfooter">
         <div className="container ">
           <div className="footer-top">
@@ -52,11 +69,12 @@ const TernaryThemeFooter = () => {
                           <div className="icon-box icon-box-side text-dark mt-5">
                             <div className="icon-box-content">
                               <h5 className="icon-box-title text-uppercase font-weight-bold text-white text-left pl-1">
-                                Subscribe To Our Newsletter
+                                {selectLangData?.subscribe_to_our_newsletter}
                               </h5>
                               <p className="text-light">
-                                Get all the latest information on Events, Sales
-                                and Offers.
+                                {
+                                  selectLangData?.get_all_the_latest_information_on_events_sales_offers
+                                }
                               </p>
                               <form
                                 method="get"
@@ -78,7 +96,7 @@ const TernaryThemeFooter = () => {
                                   type="submit"
                                   onClick={handleSubscription}
                                 >
-                                  Subscribe
+                                  {selectLangData?.subscribe}
                                   <i className="w-icon-long-arrow-right"></i>
                                 </button>
                               </form>
@@ -92,21 +110,23 @@ const TernaryThemeFooter = () => {
               </div>
               <div className="col-lg-2 col-sm-6">
                 <div className="widget">
-                  <h3 className="widget-title ternaryTheme-footerTitle">Company</h3>
+                  <h3 className="widget-title ternaryTheme-footerTitle">
+                    {selectLangData?.company}
+                  </h3>
                   <ul className="widget-body">
                     <li>
                       <Link href="#" legacyBehavior>
-                        <a>About Us</a>
+                        <a> {selectLangData?.about_us}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="#" legacyBehavior>
-                        <a>Contact Us</a>
+                        <a>{selectLangData?.contact_us}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="#" legacyBehavior>
-                        <a>Order History</a>
+                        <a>{selectLangData?.order_history}</a>
                       </Link>
                     </li>
                   </ul>
@@ -131,21 +151,23 @@ const TernaryThemeFooter = () => {
               </div>
               <div className="col-lg-2 col-sm-6">
                 <div className="widget">
-                  <h4 className="widget-title ternaryTheme-footerTitle">My Account</h4>
+                  <h4 className="widget-title ternaryTheme-footerTitle">
+                    {selectLangData?.my_account}
+                  </h4>
                   <ul className="widget-body">
                     <li>
                       <Link href="/cart" legacyBehavior>
-                        View Cart
+                        <a>{selectLangData?.view_cart}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="/login" legacyBehavior>
-                        Sign In
+                        <a>{selectLangData?.sign_in}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="#" legacyBehavior>
-                        Privacy Policy
+                        <a>{selectLangData?.privacy_policy}</a>
                       </Link>
                     </li>
                   </ul>
@@ -153,21 +175,23 @@ const TernaryThemeFooter = () => {
               </div>
               <div className="col-lg-2 col-sm-6">
                 <div className="widget">
-                  <h4 className="widget-title ternaryTheme-footerTitle">Customer Service</h4>
+                  <h4 className="widget-title ternaryTheme-footerTitle">
+                    {selectLangData?.customer_service}
+                  </h4>
                   <ul className="widget-body">
                     <li>
                       <Link href="#" legacyBehavior>
-                        <a>Payment Methods</a>
+                        <a>{selectLangData?.payment_methods}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="#" legacyBehavior>
-                        <a>Product Returns</a>
+                        <a>{selectLangData?.product_returns}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="#" legacyBehavior>
-                        <a>Term and Conditions</a>
+                        <a>{selectLangData?.terms_and_conditions}</a>
                       </Link>
                     </li>
                   </ul>
@@ -179,27 +203,17 @@ const TernaryThemeFooter = () => {
             <div className="widget widget-category">
               {navbarData?.length > 0 && navbarData !== null && (
                 <>
-                  {navbarData.map((items: any, i: any) => {
-                    <div key={i}>
-                      {
-
-                        items.values.map((items_name: any) => (
-                          <div className="category-box" key={i}>
-                            <h6 className="category-name">{items_name.name}:</h6>
-                            {items_name.values.map((names: any, index: any) => (
-                              <div key={index}>
-                                 
-                              <Link href={names.url} legacyBehavior>
-                                <a key={index}>{names.name}</a>
-                              </Link>
-                              </div>
-                            ))}
-                          </div>
-                        ))
-                      }
-
-                    </div>
-                  }
+                  {navbarData.map((items: any, i: any) =>
+                    items.values.map((items_name: any) => (
+                      <div className="category-box" key={i}>
+                        <h6 className="category-name">{items_name.name}:</h6>
+                        {items_name.values.map((names: any, index: any) => (
+                          <Link href={names.url} legacyBehavior>
+                            <a key={index}>{names.name}</a>
+                          </Link>
+                        ))}
+                      </div>
+                    ))
                   )}
                 </>
               )}
@@ -207,9 +221,7 @@ const TernaryThemeFooter = () => {
           </div>
           <div className="footer-bottom justify-content-center">
             <div className="text-center">
-              <p className="copyright">
-                Copyright © 2023 Summit. All Rights Reserved.
-              </p>
+              <p className="copyright">{selectLangData?.copyright_text}</p>
             </div>
           </div>
         </div>

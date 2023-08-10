@@ -205,9 +205,9 @@
     border: 1px solid gray;
 }
 .wishlisttable-header {
-    background: #ffc220;
-    color: black;
-    padding: 3px;
+    background-color: #d5a249 !important;
+    color: $white-color;
+    padding: 5px !important
 }
 .error-color {
     color: red;
