@@ -17,6 +17,7 @@ import {
 } from "../../services/api/general_apis/customer-form-data-api";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
+import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 
 const Registration = () => {
   const router = useRouter();
@@ -26,6 +27,7 @@ const Registration = () => {
     SelectedFilterLangDataFromStore
   );
   const TokenFromStore: any = useSelector(get_access_token);
+  const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
 
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   useEffect(() => {
@@ -280,7 +282,7 @@ const Registration = () => {
                             <div className="m-2">
                               <Link href="/login">
                                 <button
-                                  className={`btn bold text-uppercase border_btn text-dark`}
+                                  className={`btn bold text-uppercase button_color text-dark rounded-3`}
                                 >
                                   {selectedMultiLangData?.back}
                                 </button>
@@ -289,7 +291,7 @@ const Registration = () => {
                             <div className="m-2">
                               <button
                                 type="submit"
-                                className="btn text-uppercase bold button_color"
+                                className="btn text-uppercase bold button_color rounded-3"
                               >
                                 {selectedMultiLangData?.submit}
                               </button>

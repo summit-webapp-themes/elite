@@ -11,7 +11,7 @@ const ToastNotification = () => {
   const selector_state = useSelector(notiifcationBar);
   return (
     <ToastContainer className="p-3 toast_custom_css ">
-      <Toast show={selector_state?.show} delay={3000} autohide>
+      <Toast show={selector_state?.show} delay={3000} autohide animation>
         <Toast.Body
           className="px-3 py-4 toast_custom fs-5"
           style={{ backgroundColor: selector_state?.bgColor, color: "white" }}
