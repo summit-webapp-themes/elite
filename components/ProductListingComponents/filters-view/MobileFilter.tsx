@@ -7,7 +7,7 @@ const MobileFilter = ({
   selectedFilters,
   handleApplyFilters,
 }: any) => {
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
 

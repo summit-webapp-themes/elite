@@ -30,7 +30,7 @@ const Homepage3Master = () => {
     }
   };
 
-  console.log("display tag in home ", allTagsData);
+  // console.log("display tag in home ", allTagsData);
 
   return (
     <>
