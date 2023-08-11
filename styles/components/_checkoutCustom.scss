@@ -24,25 +24,23 @@
 }
 
 .button_color {
-    background-color: #ffc220  !important;
-    color: black !important;
-    border: none !important;
+    border-color:$themeternary-color !important;
+    color: $black-color !important;
 }
 
 .address_button {
-    background-color: #33669a !important;
-    color: white !important;
-    border: none !important;
+    border-color: $themeternary-color !important;
+    color: $black-color !important;
 }
 .selected_address_button {
-    background-color: #0071dc !important;
-    color: white !important;
-    border: none !important;
+    border-color: $themeternary-color !important;
+    background-color:   #f7cd5b !important;
+    color: $black-color !important;
 }
 .address_icon {
     border: none;
     background: none;
-    /* font-size: 10px; */
+
 }
 
 .card_p {

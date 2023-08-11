@@ -16,12 +16,12 @@ const Layout = ({ children }: any) => {
     router.pathname === "/forgot_password"
       ? false
       : true;
-     
+
   return (
     <>
-      {toShowHeader && <Home3Navbar/>}
+      {toShowHeader && <Home3Navbar />}
       {children}
-      {toShowFooter && <TernaryThemeFooter/>}
+      {toShowFooter && <TernaryThemeFooter />}
     </>
   );
 };

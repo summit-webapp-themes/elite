@@ -231,13 +231,12 @@
 // }
 
 .banner-btn{
-    background-color:#0071dc !important;
-    color: white !important;
-    border: none !important; 
+    border-color:$themeternary-color !important;
+    color: $white-color !important;
 }
 
 .btn-dark {
-    @include button-variant($dark-color);
+    @include button-variant($themeternary-color);
 }
 .btn-dark-light {
     @include button-variant($body-color);
@@ -255,7 +254,7 @@
     &:active,
     &:focus {
         color: $white-color;
-        background-color: $dark-color;
+        // background-color: $dark-color;
         border-color: $dark-color;
     }
 }
@@ -316,17 +315,7 @@
     }
 }
 
-// Search Button
-// .btn-search {
-//     padding: 0;
-//     &.btn-sm {
-//         padding: .4em .95em;
-//     }
-//     i {
-//         font-size: 1.8rem;
-//         transform: rotateZ(-95deg);
-//     }
-// }
+
 
 // Slide Button
 .btn-slide-left {
@@ -418,7 +407,7 @@
     }
 }
 .btn-viewall {
-    background-color: #293847;
+    background-color: $themeternary-color;
     padding: 10px 35px;
 }
 .title-box {

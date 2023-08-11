@@ -9,7 +9,9 @@ import useWishlist from "../../hooks/WishListHooks/WishListHooks";
 import BreadCrumbs from "../ProductDetailComponents/ProductDetails/BreadCrumbs";
 import MobileFilter from "./filters-view/MobileFilter";
 import ReactPaginate from "react-paginate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 const ProductListingMaster = () => {
   const {
     productsLoading,
@@ -23,9 +25,22 @@ const ProductListingMaster = () => {
     handleToggleProductsListingView,
     handleLoadMore,
     currency_state_from_redux,
-    handlePaginationBtn 
+    handlePaginationBtn,
   } = useProductListing();
   console.log("cube ", productListTotalCount);
+  const SelectedLangDataFromStore = useSelector(
+    SelectedFilterLangDataFromStore
+  );
+
+  const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
+
+  useEffect(() => {
+    if (
+      Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0
+    ) {
+      setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
+    }
+  }, [SelectedLangDataFromStore]);
   const { wishlistData } = useWishlist();
   const [pageOffset, setpageOffset] = useState(0);
   const myLoader = ({ src, width, quality }: any) => {
@@ -33,18 +48,19 @@ const ProductListingMaster = () => {
   };
 
   const handleDisplayOfProductsList = () => {
-   return (
-          <ProductsGridView
-            currency_state_from_redux={currency_state_from_redux}
-            loading={productsLoading}
-            listItems={productListingData}
-            filtersData={filtersData}
-            productListTotalCount={productListTotalCount}
-            handleLoadMore={handleLoadMore}
-            wishlistData={wishlistData}
-            handlePaginationBtn ={ handlePaginationBtn }
-          />
-   )
+    return (
+      <ProductsGridView
+        currency_state_from_redux={currency_state_from_redux}
+        loading={productsLoading}
+        listItems={productListingData}
+        filtersData={filtersData}
+        productListTotalCount={productListTotalCount}
+        handleLoadMore={handleLoadMore}
+        wishlistData={wishlistData}
+        handlePaginationBtn={handlePaginationBtn}
+        selectLangData={selectedMultiLangData}
+      />
+    );
   };
 
   console.log("filters product listing in master", filtersData);
@@ -53,8 +69,7 @@ const ProductListingMaster = () => {
       <div>
         <section className="listing-page mt-3">
           <div className="container">
-            <div className="mt-3">
-            </div>
+            <div className="mt-3"></div>
             <BreadCrumbs />
             <div className="row mt-2 ">
               <span className="col-lg-3 handle_display_web_filter">
@@ -64,6 +79,8 @@ const ProductListingMaster = () => {
                   selectedFilters={selectedFilters}
                   handleApplyFilters={handleApplyFilters}
                   productListingData={productListingData}
+                  SelectedLangDataFromStore={SelectedLangDataFromStore}
+                  selectLangData={selectedMultiLangData}
                 />
               </span>
               {handleDisplayOfProductsList()}
@@ -78,6 +95,7 @@ const ProductListingMaster = () => {
           loading={filtersLoading}
           selectedFilters={selectedFilters}
           handleApplyFilters={handleApplyFilters}
+          selectLangData={selectedMultiLangData}
         />
       </div>
     </>
