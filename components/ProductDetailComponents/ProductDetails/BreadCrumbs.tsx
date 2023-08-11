@@ -4,21 +4,21 @@ import Link from "next/link";
 
 const BreadCrumbs = () => {
   const { breadCrumbData } = UseBreadCrumbsHook();
-  console.log("breadCrumbData", breadCrumbData);
+  // console.log("breadCrumbData", breadCrumbData);
 
-  let sub_sub_cat: String;
-  console.log("Data from breadcrumbs - ", breadCrumbData);
+  let sub_sub_cat: string;
+  // console.log("Data from breadcrumbs - ", breadCrumbData);
   breadCrumbData?.length > 0 &&
     breadCrumbData?.map((item: any, index: number) => {
       if (item?.name === null) {
         sub_sub_cat = item?.link?.split("/")[4];
-        console.log("sub sub cat ", sub_sub_cat);
+        // console.log("sub sub cat ", sub_sub_cat);
         if (sub_sub_cat === undefined) {
           sub_sub_cat = item?.link?.split("/")[3];
         }
-        console.log("Breadcrumb index If item - ", sub_sub_cat);
+        // console.log("Breadcrumb index If item - ", sub_sub_cat);
       }
-      console.log(sub_sub_cat);
+      // console.log(sub_sub_cat);
     });
   return (
     <section className="breadcrumb_section mb-3 mt-3">

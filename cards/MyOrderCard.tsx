@@ -4,8 +4,7 @@ import IndianNumber from "../components/CheckoutPageComponent/IndianNumber";
 import { CONSTANTS } from "../services/config/app-config";
 
 const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
-  const [isDealer, setIsDealer] = useState(false);
-  console.log("o-d data", data);
+  const [isDealer, setIsDealer] = useState<boolean>(false);
   useEffect(() => {
     if (typeof window !== undefined) {
       const checkIsDealer = localStorage.getItem("isDealer");

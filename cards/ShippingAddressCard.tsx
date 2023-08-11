@@ -20,14 +20,8 @@ const ShippingAddressCard = ({
   city,
   selectedMultiLangData,
 }: any) => {
-  const [showEditModal, setshowEditModal] = useState(false);
-  const [detailData, setdetailData] = useState();
-
-  console.log(
-    "shippingAddresses in ship card",
-    shippingAddresses,
-    initialShippingAddress
-  );
+  const [showEditModal, setshowEditModal] = useState<boolean>(false);
+  const [detailData, setdetailData] = useState<any>();
 
   const handleEditModal = (cardData: any) => {
     setshowEditModal(!showEditModal);

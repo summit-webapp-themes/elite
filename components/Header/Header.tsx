@@ -7,14 +7,11 @@ interface IMetaData {
   url: string;
 }
 const Header = ({ meta_data }: any) => {
-  console.log("meta data incoming", meta_data);
   const router = useRouter();
   let isDealer;
   if (typeof window !== "undefined") {
     isDealer = localStorage.getItem("isDealer");
   }
-  console.log(isDealer);
-  console.log(typeof isDealer);
   return (
     <Head>
       <title>

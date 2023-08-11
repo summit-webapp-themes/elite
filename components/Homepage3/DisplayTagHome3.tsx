@@ -8,14 +8,11 @@ import { currency_selector_state } from "../../store/slices/general_slices/multi
 
 const DisplayTagHome3 = (props: any) => {
   const { data } = props;
-  console.log("display tag in master", data);
   const [title, setTitle] = useState([])
   const imageLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
   const currency_state_from_redux: any = useSelector(currency_selector_state);
-  
-  console.log(currency_state_from_redux,"title")
   // const { bestSellerTagListingOfProducts } =
   //   useDisplayTagHooks();
   return (

@@ -8,13 +8,10 @@ import BannerLoaderComponent from "../LoadingLayout/BannerLoaderComponent";
 
 const Home4Banner = () => {
   const { homeBannerData, isLoading } = useHomeBanner();
-  console.log("homebanner",homeBannerData, isLoading);
 
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
   };
-
-  console.log("home banner loading", isLoading);
   return (
     <>
     <div className="container mt-5">

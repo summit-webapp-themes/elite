@@ -19,12 +19,12 @@ const Navbar = () => {
   const [clicks, setClicks] = useState(false);
 
   const navMenuclick = (e: any) => {
-    console.log("clickk");
+    // console.log("clickk");
     e.preventDefault();
     setClicks(!clicks);
   };
 
-  console.log("click", multiLanguagesData);
+  // console.log("click", multiLanguagesData);
   return (
     <div className={clicks ? "mmenu-active" : ""}>
       <WebNavbar
