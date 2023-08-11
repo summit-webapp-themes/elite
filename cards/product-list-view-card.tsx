@@ -30,7 +30,7 @@ const ProductListViewCard = (props: any) => {
   const dispatch = useDispatch();
   console.log("product card list view", product_data);
   const TokenFromStore: any = useSelector(get_access_token);
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
 
