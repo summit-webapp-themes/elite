@@ -17,7 +17,7 @@ const Footer = () => {
   const handleSubscription = async (event: any) => {
     event?.preventDefault();
     console.log(subScription, "subScription");
-    let subScriptionRes = await getSubscriber(subScription);
+    let subScriptionRes:any = await getSubscriber(subScription);
     console.log("subScriptionRes", subScriptionRes);
     if (subScriptionRes?.data?.message?.msg === "success") {
       dispatch(successmsg("subscribed successfully"));
@@ -27,7 +27,7 @@ const Footer = () => {
       }, 1200);
     }
   };
-  console.log("nav footer", navbarData);
+  // console.log("nav footer", navbarData);
   return (
     <>
       {/* <h1 className='mb-5'>Footer page</h1> */}

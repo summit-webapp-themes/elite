@@ -32,8 +32,8 @@ const CartListing = () => {
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const TokenFromStore: any = useSelector(get_access_token);
 
-  const cart_listing_data_store = useSelector(cart_listing_state);
-  const SelectedLangDataFromStore = useSelector(
+  const cart_listing_data_store:any = useSelector(cart_listing_state);
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -45,7 +45,7 @@ const CartListing = () => {
     }
   }, [SelectedLangDataFromStore]);
 
-  console.log(cartListingItems, "cartListingItems");
+  // console.log(cartListingItems, "cartListingItems");
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
@@ -77,7 +77,7 @@ const CartListing = () => {
   };
 
   const HandleDeleteCart = async (item_code: any, quotationId: any) => {
-    let DeleteProduct = await DeleteProductFromCart(
+    let DeleteProduct:any = await DeleteProductFromCart(
       item_code,
       quotationId,
       TokenFromStore?.token

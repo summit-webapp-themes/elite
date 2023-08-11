@@ -28,7 +28,7 @@ const ForgotPassword = () => {
   }, [message]);
 
   const HandleSubmit = async (values: any) => {
-    let resetApi = await ResetPasswordLink(values);
+    let resetApi:any = await ResetPasswordLink(values);
     console.log("forgot pswd api res", resetApi);
     if (resetApi?.data?.message?.msg === "success") {
       dispatch(successmsg("Reset link send"));

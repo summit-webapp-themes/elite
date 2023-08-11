@@ -21,21 +21,21 @@ const ProductsGridView = (props: ProductsViewProps) => {
     selectLangData,
   } = props;
 
-  console.log("cube in card", listItems);
+  // console.log("cube in card", listItems);
 
-  const [pageNumber, setPageNumber] = useState(0);
-  const [pageOffset, setpageOffset] = useState(0);
-  const usersPerPage = 12;
+  const [pageNumber, setPageNumber] = useState<number>(0);
+  const [pageOffset, setpageOffset] = useState<number>(0);
+  const usersPerPage :number= 12;
   const pagesVisited = pageNumber * usersPerPage;
 
-  const pageCount = Math.ceil(productListTotalCount / 12);
+  const pageCount:any = Math.ceil(productListTotalCount / 12);
   // pageCount={Math.ceil( productListTotalCount/ 12)}
   const changePage = ({ selected }: any) => {
     setPageNumber(selected);
   };
 
   const handlePageClick = (event: any) => {
-    console.log("page number", event?.selected);
+    // console.log("page number", event?.selected);
     handlePaginationBtn(event?.selected);
     setpageOffset(event?.selected);
   };
