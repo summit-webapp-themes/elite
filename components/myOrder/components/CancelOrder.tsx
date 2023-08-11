@@ -12,13 +12,13 @@ const CancelOrder = ({
 }: any) => {
   const dispatch = useDispatch();
 
-  const orderCancelled =
+  const orderCancelled:any =
     orderHistoryItems.length > 0 &&
     orderHistoryItems.filter(
       (items: any) => items?.payment_status === "Cancelled"
     );
 
-  console.log("orderHistoryItems", orderCancelled);
+  // console.log("orderHistoryItems", orderCancelled);
   // useEffect(() => {
   //   dispatch(FetchOrderListing(history, ""));
   // }, [history]);

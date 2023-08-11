@@ -15,7 +15,7 @@ type PropsType = {
 
 const Index = ({ sales_order_id }: any) => {
   let { id, detail }: any = UseThankyou();
-  console.log("detail", detail);
+  // console.log("detail", detail);
   const dispatch = useDispatch();
 
   const [typeOf, setTypeOf] = useState("Replacement");
@@ -35,8 +35,8 @@ const Index = ({ sales_order_id }: any) => {
     }`;
   };
   let thankyou = router.asPath.split("/")[1];
-  console.log("thank", thankyou);
-  console.log("my orders get order detail data in order detail file", detail);
+  // console.log("thank", thankyou);
+  // console.log("my orders get order detail data in order detail file", detail);
 
   const handleTypeChange = (e: any) => {
     setTypeOf(e.target.value);
@@ -47,23 +47,23 @@ const Index = ({ sales_order_id }: any) => {
   };
 
   useEffect(() => {
-    console.log("Detail data in use", detail);
+    // console.log("Detail data in use", detail);
     if (detail?.length > 0 && detail !== null) {
       detail?.map((data: any) => setData(data.transaction_date));
     }
   }, [detail]);
 
-  console.log("newData", newData);
+  // console.log("newData", newData);
 
   const handleSubmit = async (e: any) => {
-    console.log("+++++++handle submit function");
+    // console.log("+++++++handle submit function");
     e.preventDefault();
     setProductId("");
     setTypeOf("");
     setText("");
   };
 
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();

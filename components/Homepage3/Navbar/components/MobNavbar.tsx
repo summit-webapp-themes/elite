@@ -22,7 +22,6 @@ const MobNavbar = ({
   const [indexVal, setindexVal] = useState(null);
 
   const onClickCloseNav = () => {
-    console.log("click close");
     setClicks(!clicks);
   };
 

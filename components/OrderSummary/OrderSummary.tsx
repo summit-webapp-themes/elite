@@ -14,9 +14,9 @@ const OrderSummary = ({
   selectedMultiLangData,
 }: any) => {
   const [cartListingItems, setcartListingItems] = useState<any>([]);
-  const [show, setshow] = useState(false);
-  const [initial, setInitial] = useState(false);
-  const cartProducts = useSelector(cart_listing_state);
+  const [show, setshow] = useState<boolean>(false);
+  const [initial, setInitial] = useState<boolean>(false);
+  const cartProducts:any = useSelector(cart_listing_state);
 
   let order;
   useEffect(() => {

@@ -56,11 +56,11 @@ const ProductDetail = ({
   selectedMultiLangData,
 }: any) => {
   const dispatch = useDispatch();
-  const currency_state_from_redux = useSelector(currency_selector_state);
-  console.log(
-    "productQuantity in detail page",
-    doesSelectedVariantDoesNotExists
-  );
+  const currency_state_from_redux:any = useSelector(currency_selector_state);
+  // console.log(
+  //   "productQuantity in detail page",
+  //   doesSelectedVariantDoesNotExists
+  // );
   const router = useRouter();
 
   const TokenFromStore: any = useSelector(get_access_token);
@@ -109,10 +109,10 @@ const ProductDetail = ({
       //   },
       // });
     } else {
-      console.log(
-        "add currency in else",
-        currency_state_from_redux?.selected_currency_value
-      );
+      // console.log(
+      //   "add currency in else",
+      //   currency_state_from_redux?.selected_currency_value
+      // );
       const addCartData = [];
       addCartData.push({
         item_code: productDetailData?.name,
@@ -154,14 +154,14 @@ const ProductDetail = ({
   };
   const [fullUrl, setFullUrl] = useState("");
   const shareUrl = fullUrl !== "" ? fullUrl : "http://3.13.55.94:3004/";
-  const shareMessage = `Check out this product: ${shareUrl}`;
+  const shareMessage:string = `Check out this product: ${shareUrl}`;
   useEffect(() => {
     if (router.asPath) {
       const currentUrl = window.location.origin + router.asPath;
       setFullUrl(currentUrl);
     }
   }, [router.asPath]);
-  console.log("details@@", fullUrl);
+  // console.log("details@@", fullUrl);
   return (
     <div>
       <div className="product-info">

@@ -10,9 +10,14 @@ const NewArrival = ({ newarrivalTagListing }: any) => {
     <>
       <div className="brand_container" style={{ paddingBottom: "40px" }}>
         <div className="container">
-        <div className="text-center pt-4 pb-4 mt-4 mb-4">
-        <h3 className="mb-4 category_heading text-center" style={{color:"#E03A05"}}>New Arrivals</h3>
-        </div>
+          <div className="text-center pt-4 pb-4 mt-4 mb-4">
+            <h3
+              className="mb-4 category_heading text-center"
+              style={{ color: "#E03A05" }}
+            >
+              New Arrivals
+            </h3>
+          </div>
           <div className="row banner-product-wrapper pb-1">
             <div className="product-wrapper col-xl-12 col-md-8">
               <div className="swiper-container swiper-theme" />

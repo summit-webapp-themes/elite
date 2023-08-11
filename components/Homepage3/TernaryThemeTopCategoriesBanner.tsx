@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
   // const { homeTopCategories, isLoading } = useHomeTopCategories();
   const currency_state_from_redux: any = useSelector(currency_selector_state);
-  console.log("homeTopCategories3", homeTopCategories);
   const imageLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
   };

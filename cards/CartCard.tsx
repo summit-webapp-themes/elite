@@ -24,16 +24,15 @@ const CartCard = ({
   HandleDeleteCart,
   selectedMultiLangData,
 }: any) => {
-  console.log("cart orders card data", cartListingItems);
   const dispatch = useDispatch();
-  const cart_listing_data_store = useSelector(cart_listing_state);
+  const cart_listing_data_store:any = useSelector(cart_listing_state);
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const product_listing_state_from_redux: any = useSelector(
     product_listing_selector_state
   );
   const TokenFromStore: any = useSelector(get_access_token);
 
-  const [cartQty, setCartQty] = useState(orders.qty);
+  const [cartQty, setCartQty] = useState<any>(orders.qty);
 
   const handleInputChange = (e: any) => {
     console.log("cart input", e.target.value, index, cartQty);
@@ -43,7 +42,7 @@ const CartCard = ({
 
   const handleQuantityDecrement = async (item_code: any) => {
     setCartQty(cartQty - 1);
-    const addCartData = [];
+    const addCartData:any = [];
     addCartData.push({
       item_code: item_code,
       quantity: cartQty - 1,
@@ -58,7 +57,7 @@ const CartCard = ({
 
   const handleQuantityIncrement = async (item_code: any) => {
     setCartQty(cartQty + 1);
-    const addCartData = [];
+    const addCartData:any = [];
     addCartData.push({
       item_code: item_code,
       quantity: cartQty + 1,
@@ -68,7 +67,6 @@ const CartCard = ({
       currency_state_from_redux?.selected_currency_value,
       TokenFromStore?.token
     );
-    console.log(" cart updated", AddToCartRes);
     HandleUpdatedCartResponse(AddToCartRes);
   };
 

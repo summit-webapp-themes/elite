@@ -29,11 +29,10 @@ const Home3WebNavbar = ({
 }: any) => {
   const { wishlistCount } = useWishlist();
   const { cartListingItems } = UseCartPageHook();
-  console.log("navmenu click", cartListingItems);
   const [cartCount, setCartCount] = useState<number>();
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState<boolean>(false);
   const [isId, setId] = useState();
-  const [LoggedIn, setLoggedIn] = useState(false);
+  const [LoggedIn, setLoggedIn] = useState<boolean>(false);
   const [loginStatus, setLoginStatus] = useState("");
 
   const dispatch = useDispatch();
@@ -56,7 +55,6 @@ const Home3WebNavbar = ({
   }, []);
 
   const router = useRouter();
-  console.log("isLoggedIn12", loginStatus);
   const handleLeave = (id: any) => {
     setId(id);
     setIsShown(false);
@@ -86,20 +84,6 @@ const Home3WebNavbar = ({
     localStorage.clear();
     const logoutAPI = await LogoutList();
   };
-
-  // useEffect(() => {
-  //   console.log("clear state")
-  //   const handleBeforeUnload = async () => {
-  //     localStorage.clear();
-  //     const logoutAPI = await LogoutList();
-  //   };
-
-  //   window.addEventListener('beforeunload', handleBeforeUnload);
-
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleBeforeUnload);
-  //   };
-  // }, [handleClick]);
 
   return (
     <div>

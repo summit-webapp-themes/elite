@@ -13,10 +13,9 @@ import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slic
 const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
   const TokenFromStore: any = useSelector(get_access_token);
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
-  console.log("SelectedLangDataFromStore", SelectedLangDataFromStore);
   const [selectLangData, setLangData] = useState<any>();
 
   useEffect(() => {
@@ -44,7 +43,6 @@ const TernaryThemeFooter = () => {
       }, 1200);
     }
   };
-  console.log("nav footer", navbarData);
   return (
     <>
       <footer className="footer footer-dark footer-section ternaryfooter">

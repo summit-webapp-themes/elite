@@ -8,8 +8,6 @@ import { useSelector } from "react-redux";
 import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
 
 const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
-  console.log("homeTopCategories", homeTopCategories);
-  const currency_state_from_redux: any = useSelector(currency_selector_state);
   const imageLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
   };
