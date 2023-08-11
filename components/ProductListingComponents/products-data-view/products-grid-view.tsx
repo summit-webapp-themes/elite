@@ -28,7 +28,7 @@ const ProductsGridView = (props: ProductsViewProps) => {
   const usersPerPage = 12;
   const pagesVisited = pageNumber * usersPerPage;
 
-  const pageCount = Math.ceil(productListTotalCount / 8);
+  const pageCount = Math.ceil(productListTotalCount / 12);
   // pageCount={Math.ceil( productListTotalCount/ 12)}
   const changePage = ({ selected }: any) => {
     setPageNumber(selected);
