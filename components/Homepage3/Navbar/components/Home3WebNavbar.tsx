@@ -12,6 +12,7 @@ import useWishlist from "../../../../hooks/WishListHooks/WishListHooks";
 import LogoutList from "../../../../services/api/auth/logout_api";
 import UseCartPageHook from "../../../../hooks/CartPageHooks/cart-page-hook";
 import { ClearToken } from "../../../../store/slices/auth/token-login-slice";
+import logoImg from "../../../../public/assets/images/elite_logo.jpg"
 const Home3WebNavbar = ({
   navbarData,
   isLoading,
@@ -106,9 +107,9 @@ const Home3WebNavbar = ({
                     <a>
                       <Image
                         // src="/assets/images/summit-thirdtheme-logo.png"
-                        src="/assets/images/elite_logo.jpg"
-                        width={150}
-                        height={60}
+                        src={logoImg}
+                        width={132}
+                        height={83}
                         alt="logo"
                       />
                     </a>
@@ -225,7 +226,7 @@ const Home3WebNavbar = ({
                     <a>
                       <Image
                         // src="/assets/images/summit-thirdtheme-logo.png"
-                        src="/assets/images/elite_logo.jpg"
+                        src={logoImg}
                         width={120}
                         height={50}
                         alt="logo"

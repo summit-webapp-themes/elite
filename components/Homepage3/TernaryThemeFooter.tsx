@@ -9,7 +9,7 @@ import {
 } from "../../store/slices/general_slices/toast_notification_slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
-
+import logoImg from "../../public/assets/images/elite.png"
 const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
   const TokenFromStore: any = useSelector(get_access_token);
@@ -58,10 +58,10 @@ const TernaryThemeFooter = () => {
                           <Link href="" legacyBehavior>
                             <Image
                               // src="/assets/images/summit-logo-ree.png"
-                              src="/assets/images/elite.png"
+                              src={logoImg}
                               alt="logo-footer"
-                              width={150}
-                              height={55}
+                              width={132}
+                              height={83}
                               className="footer-ternarytheme-logo"
                             />
                           </Link>

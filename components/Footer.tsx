@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import getSubscriber from "../services/api/general_apis/newsletter-subscription-api";
 import { useDispatch } from "react-redux";
+import logoImg from "../public/assets/images/elite.png"
 import {
   hideToast,
   successmsg,
 } from "../store/slices/general_slices/toast_notification_slice";
 // import {navbarData} from "../../datasets/Digitalshelf_dataset/navbar"
+
 const Footer = () => {
   // const { navbarData } = useNavbar();
   const dispatch = useDispatch();
@@ -37,12 +39,12 @@ const Footer = () => {
             <div className="row justify-content-center align-items-center ">
               <div className="col-xl-3 col-lg-2">
                 <Link href="" legacyBehavior>
-                  <Image
-                    src="/assets/images/summit-logo-ree.png"
+                  {/* <Image
+                    src={logoImg}
                     alt="logo-footer"
-                    width={150}
-                    height={55}
-                  />
+                    width={132}
+                    height={83}
+                  /> */}
                 </Link>
               </div>
               <div className="col-xl-4 col-lg-5">

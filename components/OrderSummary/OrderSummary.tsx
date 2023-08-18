@@ -40,9 +40,21 @@ const OrderSummary = ({
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
+
+  const currencySymbol = cartListingItems?.categories?.length > 0 &&
+    cartListingItems?.categories.map((value: any, index: any) => {
+      return (
+        <>
+          {cartListingItems?.categories[0]?.orders[0]?.currency_symbol}
+        </>
+      )
+    });
+
   return (
     <div>
       <div>
+
+
         {!orderSummary ? null : (
           <div>
             {couponError === false
@@ -61,12 +73,16 @@ const OrderSummary = ({
                         {data?.name === "Coupon Code" ? (
                           <p className={`mb-0 cart_p text-end`} >
                             {/* <i className="fa fa-inr"></i> */}
-                            {cartListingItems?.categories[0]?.orders[0]?.currency_symbol}
+                            {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
+
+                            {/* {currencySymbol} */}
                             <IndianNumber value={data?.value} />
                           </p>
                         ) : (
                           <div>
-                            {cartListingItems?.categories[0]?.orders[0]?.currency_symbol}
+                            {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
+
+                            {currencySymbol}
                             <IndianNumber value={data?.value} />
                           </div>
                         )}
@@ -102,15 +118,16 @@ const OrderSummary = ({
                             <div>
                               {/* <i className="fa fa-inr"></i> */}
                               {/* <span> {data?.value}</span> */}
-                              {cartListingItems?.categories[0]?.orders[0]
-                                ?.currency_symbol}
+                              {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
+                              {/* {currencySymbol} */}
                               <IndianNumber value={data?.value} />
                             </div>
                           ) : (
                             <div>
                               {/* <i className="fa fa-inr"></i> */}
                               {/* <span> {data?.value}</span> */}
-                              {cartListingItems?.categories[0]?.orders[0]?.currency_symbol}
+                              {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
+                              {currencySymbol}
                               <IndianNumber value={data?.value} />
                             </div>
                           )}
@@ -121,6 +138,8 @@ const OrderSummary = ({
                 ))}
           </div>
         )}
+
+
       </div>
 
       <div className="checkout-item mt-5" >
