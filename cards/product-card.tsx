@@ -172,7 +172,7 @@ const ProductCard = (props: ProductCardProps) => {
                     src={`${CONSTANTS.API_BASE_URL}${img_url}`}
                     alt="product-detail"
                     width={200}
-                    height={200}
+                    height={200} className="product_img_mob"
                   />
                 </Link>
               </>

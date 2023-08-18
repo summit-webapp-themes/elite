@@ -24,7 +24,7 @@ import {
   hideToast,
   successmsg,
 } from "../../store/slices/general_slices/toast_notification_slice";
-
+import logoImg from "../../public/assets/images/elite_logo.jpg"
 const Loginpage = () => {
   const dispatch = useDispatch();
   const [newValues, setnewValue] = useState<any>("");
@@ -130,9 +130,9 @@ const Loginpage = () => {
         <div className="logo mt-3">
           <Link href="/" className="navbar-brand">
             <Image
-              src="/assets/images/summit-logo-bb.jpg"
+               src={logoImg}
               alt="logo"
-              width={150}
+              width={120}
               height={55}
             />
           </Link>

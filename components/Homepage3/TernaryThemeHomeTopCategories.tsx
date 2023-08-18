@@ -31,7 +31,7 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                             alt="banner of Topcategory"
                             width={600}
                             height={150}
-                            className="topcat_banner"
+                            className="topcat_banner topcart_banner_mob" 
                           />
                           {/* </Link> */}
                         </>

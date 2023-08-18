@@ -38,7 +38,7 @@ const TernaryThemeHomeBanner = () => {
                           alt="Banner Images"
                           priority
                           width={1200}
-                          height={600}
+                          height={600}  
                         />
                       )}
                     </figure>

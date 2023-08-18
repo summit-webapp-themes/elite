@@ -17,7 +17,7 @@ import {
 } from "../../services/api/general_apis/customer-form-data-api";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
-
+import logoImg from "../../public/assets/images/elite_logo.jpg"
 const Registration = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -117,9 +117,9 @@ const Registration = () => {
               <Link href="/" legacyBehavior>
                 <a>
                   <Image
-                    src="/assets/images/summit-logo-bb.jpg"
-                    width={130}
-                    height={40}
+                    src={logoImg}
+                    width={132}
+                    height={83}
                     alt="logo"
                   />
                 </a>

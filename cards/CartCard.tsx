@@ -100,14 +100,14 @@ const CartCard = ({
       <td className="product-price">
         {orders?.details.length > 0 && orders?.details !== null && (
           <p className="text-start my-0">
-            <i className="fa fa-inr" aria-hidden="true"></i>
+            {orders.currency_symbol}
             <span className="amount">
-              <IndianNumber value={orders.details[1]?.value} />
+            {orders.amount}
             </span>
           </p>
         )}
       </td>
-      <td className="product-quantity">
+      <td className="product-quantity" >
         <div className="input-group">
           <span
             className="fs-2 ml-lg-2 arrow_pointer mr-1"
@@ -139,8 +139,8 @@ const CartCard = ({
           </Link> */}
         </div>
       </td>
-      <td className="product-subtotal">
-        <span className="amount">₹ {orders.amount}</span>
+      <td className="product-subtotal" >
+        <span className="amount">{orders.currency_symbol} {orders.amount}</span>
       </td>
       {/* For mobile responsive */}
       <div className="d-lg-none d-block">
@@ -176,7 +176,7 @@ const CartCard = ({
                 {" "}
                 <i className="fa fa-inr" aria-hidden="true"></i>{" "}
                 <span className="text-center">
-                  <IndianNumber value={orders.details[1]?.value} />
+                {orders.amount}
                 </span>
               </p>
             )}
@@ -233,9 +233,9 @@ const CartCard = ({
             </Link> */}
           </div>
         </div>
-        <div className="row">
-          <div className="col-6 fs-4">{selectedMultiLangData?.total}</div>:
-          <div className="col-5 ">₹ {orders.amount}</div>
+        <div className="row" >
+          <div className="col-6 fs-4" >{selectedMultiLangData?.total}</div>:
+          <div className="col-5 ">{orders.currency_symbol} {orders.amount}</div>
         </div>
         <h5 className="mb-0 sub-total-h5">
           {selectedMultiLangData?.sub_total}({cartListingItems?.total_qty}{" "}

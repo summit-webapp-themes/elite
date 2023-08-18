@@ -96,10 +96,10 @@ const QuickOrder = () => {
       <div className="row">
         <div className="col-12">
           <div className="row">
-            <div className="col-6">
+            <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <p>You can add upto 25 valid item code & OEM part no below</p>
             </div>
-            <div className="col-6">
+            <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <div className="d-flex">
                 <button
                   type="button"
@@ -196,10 +196,10 @@ const QuickOrder = () => {
 
         <div className="col-12">
           <div className="row">
-            <div className="col-6">
+            <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <p>You can add upto 25 valid item code & OEM part no below</p>
             </div>
-            <div className="col-6">
+            <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <div className="d-flex">
                 <button
                   type="button"

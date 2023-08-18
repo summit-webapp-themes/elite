@@ -345,7 +345,7 @@ const CartListing = () => {
                   </div>
                 </div>
                 <hr />
-                <div className="col-12">
+                <div className="col-12" >
                   <div className="row justify-content-end">
                     <h5>{selectedMultiLangData?.note}:-</h5>
                     <p className="mb-0">{selectedMultiLangData?.note_1}</p>
