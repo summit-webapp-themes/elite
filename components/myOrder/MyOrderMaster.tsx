@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 
 const MyOrderMaster = () => {
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -19,7 +19,7 @@ const MyOrderMaster = () => {
     }
   }, [SelectedLangDataFromStore]);
 
-  const { orderHistoryItems, handleHistoryDate, history, loadingStatus } =
+  const { orderHistoryItems, handleHistoryDate, history } =
     UseCartOrderHistory();
   console.log("orderHistoryItems", orderHistoryItems);
   return (
@@ -59,7 +59,6 @@ const MyOrderMaster = () => {
               handleHistoryDate={handleHistoryDate}
               selectedMultiLangData={selectedMultiLangData}
               history={history}
-              loading={loadingStatus}
             />
           </div>
           <div id="can_order" className="container tab-pane fade">

@@ -8,6 +8,7 @@ import UseThankyou from "../../hooks/order-listing-page-hook/order-list-hook";
 import { CONSTANTS } from "../../services/config/app-config";
 import IndianNumber from "../CheckoutPageComponent/IndianNumber";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
+import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
 
 type PropsType = {
   id?: any;
@@ -15,9 +16,9 @@ type PropsType = {
 
 const Index = ({ sales_order_id }: any) => {
   let { id, detail }: any = UseThankyou();
-  console.log("detail", detail);
+  // console.log("detail", detail);
   const dispatch = useDispatch();
-
+  const currency_state_from_redux: any = useSelector(currency_selector_state);
   const [typeOf, setTypeOf] = useState("Replacement");
   const [text, setText] = useState("");
   const [productId, setProductId] = useState("");
@@ -29,14 +30,10 @@ const Index = ({ sales_order_id }: any) => {
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
   };
-  const myLoadernew = ({ src, width, quality }: any) => {
-    return `http://staging-sportnetwork.ascratech.com/uploads/brands/original/${src}?w=${width}&q=${
-      quality || 75
-    }`;
-  };
+ 
   let thankyou = router.asPath.split("/")[1];
-  console.log("thank", thankyou);
-  console.log("my orders get order detail data in order detail file", detail);
+  // console.log("thank", thankyou);
+  // console.log("my orders get order detail data in order detail file", detail);
 
   const handleTypeChange = (e: any) => {
     setTypeOf(e.target.value);
@@ -47,23 +44,23 @@ const Index = ({ sales_order_id }: any) => {
   };
 
   useEffect(() => {
-    console.log("Detail data in use", detail);
+    // console.log("Detail data in use", detail);
     if (detail?.length > 0 && detail !== null) {
       detail?.map((data: any) => setData(data.transaction_date));
     }
   }, [detail]);
 
-  console.log("newData", newData);
+  // console.log("newData", newData);
 
   const handleSubmit = async (e: any) => {
-    console.log("+++++++handle submit function");
+    // console.log("+++++++handle submit function");
     e.preventDefault();
     setProductId("");
     setTypeOf("");
     setText("");
   };
 
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -306,15 +303,7 @@ const Index = ({ sales_order_id }: any) => {
                         <div className="flex-fill">
                           <h6 className="green text-capitalize bold mb-0 status"></h6>
                         </div>
-                        <div className="justify-content-end d-none d-sm-block align-items-end">
-                          <Image
-                            loader={myLoadernew}
-                            src="t37eUXG24dmzcxZV.png"
-                            alt="product_brand_img"
-                            width={100}
-                            height={30}
-                          />
-                        </div>
+                       
                       </div>
                       <div className="d-flex align-items-center row">
                         <div className="mb-3 mb-sm-0 col-lg-2 col-md-2 col-4">
@@ -424,7 +413,9 @@ const Index = ({ sales_order_id }: any) => {
                             ""
                           ) : (
                             <button className=" order_links mb-2 d-block text-uppercase">
-                              <Link href={oDetail?.product_url} legacyBehavior>
+                              <Link 
+                              href={`${oDetail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
+                              legacyBehavior>
                                 <a className="order_linkshover text-dark">
                                   {selectedMultiLangData?.view_product}
                                 </a>

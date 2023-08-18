@@ -42,7 +42,7 @@ const ProductCard = (props: ProductCardProps) => {
   const dispatch = useDispatch();
 
   const handleAddCart = async () => {
-    const addCartData = [];
+    const addCartData:any = [];
     addCartData.push({
       item_code: name,
       quantity: 1,
@@ -64,12 +64,6 @@ const ProductCard = (props: ProductCardProps) => {
           console.log("token from api");
           dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
         }
-
-        // if (Object.keys(TokenFromStore)?.length > 0) {
-        //   dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
-        // } else {
-        //   dispatch(fetchCartListing(TokenFromStore?.token));
-        // }
       } else {
         dispatch(fetchCartListing(TokenFromStore?.token));
       }
@@ -77,7 +71,7 @@ const ProductCard = (props: ProductCardProps) => {
         dispatch(hideToast());
       }, 1200);
     } else {
-      dispatch(failmsg("Failed to Add to cart"));
+      dispatch(failmsg(AddToCartProductRes?.error));
       setTimeout(() => {
         dispatch(hideToast());
       }, 1500);
@@ -178,7 +172,7 @@ const ProductCard = (props: ProductCardProps) => {
                     src={`${CONSTANTS.API_BASE_URL}${img_url}`}
                     alt="product-detail"
                     width={200}
-                    height={200}
+                    height={200} className="product_img_mob"
                   />
                 </Link>
               </>

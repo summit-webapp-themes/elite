@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import getSubscriber from "../services/api/general_apis/newsletter-subscription-api";
 import { useDispatch } from "react-redux";
+import logoImg from "../public/assets/images/elite.png"
 import {
   hideToast,
   successmsg,
 } from "../store/slices/general_slices/toast_notification_slice";
 // import {navbarData} from "../../datasets/Digitalshelf_dataset/navbar"
+
 const Footer = () => {
   // const { navbarData } = useNavbar();
   const dispatch = useDispatch();
@@ -17,7 +19,7 @@ const Footer = () => {
   const handleSubscription = async (event: any) => {
     event?.preventDefault();
     console.log(subScription, "subScription");
-    let subScriptionRes = await getSubscriber(subScription);
+    let subScriptionRes:any = await getSubscriber(subScription);
     console.log("subScriptionRes", subScriptionRes);
     if (subScriptionRes?.data?.message?.msg === "success") {
       dispatch(successmsg("subscribed successfully"));
@@ -27,7 +29,7 @@ const Footer = () => {
       }, 1200);
     }
   };
-  console.log("nav footer", navbarData);
+  // console.log("nav footer", navbarData);
   return (
     <>
       {/* <h1 className='mb-5'>Footer page</h1> */}
@@ -37,12 +39,12 @@ const Footer = () => {
             <div className="row justify-content-center align-items-center ">
               <div className="col-xl-3 col-lg-2">
                 <Link href="" legacyBehavior>
-                  <Image
-                    src="/assets/images/summit-logo-ree.png"
+                  {/* <Image
+                    src={logoImg}
                     alt="logo-footer"
-                    width={150}
-                    height={55}
-                  />
+                    width={132}
+                    height={83}
+                  /> */}
                 </Link>
               </div>
               <div className="col-xl-4 col-lg-5">

@@ -17,8 +17,8 @@ import {
 } from "../../services/api/general_apis/customer-form-data-api";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
+import logoImg from "../../public/assets/images/elite_logo.jpg";
 import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
-
 const Registration = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -118,12 +118,7 @@ const Registration = () => {
             <div className="logo mt-3">
               <Link href="/" legacyBehavior>
                 <a>
-                  <Image
-                    src="/assets/images/summit-logo-bb.jpg"
-                    width={130}
-                    height={40}
-                    alt="logo"
-                  />
+                  <Image src={logoImg} width={132} height={83} alt="logo" />
                 </a>
               </Link>
             </div>

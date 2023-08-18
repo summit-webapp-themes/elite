@@ -16,13 +16,13 @@ const ProfileMaster = () => {
   const { profileList, ageingReport, enquiryHistoryPro }: any =
     useProfilePage();
   const router = useRouter();
-  console.log("tsx profile", profileList);
-  console.log("###quot in api tsx file", enquiryHistoryPro);
-  const [showEditModal, setshowEditModal] = useState(false);
+  // console.log("tsx profile", profileList);
+  // console.log("###quot in api tsx file", enquiryHistoryPro);
+  const [showEditModal, setshowEditModal] = useState<boolean>(false);
   const TokenFromStore: any = useSelector(get_access_token);
 
-  const [showShipEditModal, setshowShipEditModal] = useState(false);
-  const SelectedLangDataFromStore = useSelector(
+  const [showShipEditModal, setshowShipEditModal] = useState<boolean>(false);
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -60,17 +60,17 @@ const ProfileMaster = () => {
   const handleSelectedState = async (stateValue: string) => {
     setSelectedCity("");
     setCity([]);
-    const getCitiesFromState = await FetchCitiesForAddressForm(
+    const getCitiesFromState:any = await FetchCitiesForAddressForm(
       stateValue,
       TokenFromStore?.token
     );
-    console.log("cities values", getCitiesFromState);
+    // console.log("cities values", getCitiesFromState);
     if (getCitiesFromState?.length > 0) {
       let citiesValues = getCitiesFromState
         .map((item: any) => item.name)
         .filter((item: any) => item !== null);
 
-      console.log("cities values new", citiesValues);
+      // console.log("cities values new", citiesValues);
       setCity(citiesValues);
     }
   };
@@ -78,9 +78,9 @@ const ProfileMaster = () => {
   const documentQueued = router.query.data
     ? JSON.parse(router.query.data as string)
     : "";
-  console.log("paytab", documentQueued.setTrue);
+  // console.log("paytab", documentQueued.setTrue);
   const handleEditModal = (billingData: any, add_type: any) => {
-    console.log("profile billing edit data", billingData);
+    // console.log("profile billing edit data", billingData);
     setshowEditModal(!showEditModal);
     // setdetailData(profileBillingData);
     // console.log("billing detail",profileList.billing_address)
@@ -89,13 +89,13 @@ const ProfileMaster = () => {
   };
 
   const handleShippingEditModal = (shippingData: any, add_type: any) => {
-    console.log("shipping data", shippingData);
+    // console.log("shipping data", shippingData);
     setshowShipEditModal(!showShipEditModal);
     setAddType(add_type);
     setShippingDetailData(profileList?.shipping_address);
   };
 
-  console.log("address_type pr", addType);
+  // console.log("address_type pr", addType);
 
   const personalDetails = () => {
     return (

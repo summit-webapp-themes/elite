@@ -56,11 +56,11 @@ const ProductDetail = ({
   selectedMultiLangData,
 }: any) => {
   const dispatch = useDispatch();
-  const currency_state_from_redux = useSelector(currency_selector_state);
-  console.log(
-    "productQuantity in detail page",
-    doesSelectedVariantDoesNotExists
-  );
+  const currency_state_from_redux:any = useSelector(currency_selector_state);
+  // console.log(
+  //   "productQuantity in detail page",
+  //   doesSelectedVariantDoesNotExists
+  // );
   const router = useRouter();
 
   const TokenFromStore: any = useSelector(get_access_token);
@@ -109,10 +109,10 @@ const ProductDetail = ({
       //   },
       // });
     } else {
-      console.log(
-        "add currency in else",
-        currency_state_from_redux?.selected_currency_value
-      );
+      // console.log(
+      //   "add currency in else",
+      //   currency_state_from_redux?.selected_currency_value
+      // );
       const addCartData = [];
       addCartData.push({
         item_code: productDetailData?.name,
@@ -145,7 +145,7 @@ const ProductDetail = ({
           dispatch(hideToast());
         }, 1200);
       } else {
-        dispatch(failmsg("Failed to Add to cart"));
+        dispatch(failmsg(AddToCartProductRes?.error));
         setTimeout(() => {
           dispatch(hideToast());
         }, 1500);
@@ -154,14 +154,14 @@ const ProductDetail = ({
   };
   const [fullUrl, setFullUrl] = useState("");
   const shareUrl = fullUrl !== "" ? fullUrl : "http://3.13.55.94:3004/";
-  const shareMessage = `Check out this product: ${shareUrl}`;
+  const shareMessage:string = `Check out this product: ${shareUrl}`;
   useEffect(() => {
     if (router.asPath) {
       const currentUrl = window.location.origin + router.asPath;
       setFullUrl(currentUrl);
     }
   }, [router.asPath]);
-  console.log("details@@", fullUrl);
+  // console.log("details@@", fullUrl);
   return (
     <div>
       <div className="product-info">
@@ -321,7 +321,7 @@ const ProductDetail = ({
                 {isDealer === "true" ? null : (
                   <>
                     <div className="d-flex align-items-center">
-                      <div className="fs-4 text-muted ">
+                      <div className="fs-4 text-muted pe-3">
                         {" "}
                         {selectedMultiLangData?.quantity}:{" "}
                       </div>
@@ -399,7 +399,7 @@ const ProductDetail = ({
                         type="button"
                         className={`${
                           productQuantity < minQty ? "disabled" : "enabled"
-                        } w-50 btn button_color cart_btn_gtag`}
+                        } w-50 btn button_color cart_btn_gtag add_cart_btn_mob`}
                         onClick={handleAddCart}
                         disabled={
                           doesSelectedVariantDoesNotExists ||

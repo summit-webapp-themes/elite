@@ -2,8 +2,8 @@ import React from "react";
 
 const StarRating = (props: any) => {
   const { rating } = props;
-  const fullStars = (rating * 10) / 2;
-  const emptyStars = 5 - fullStars;
+  const fullStars:any = (rating * 10) / 2;
+  const emptyStars:any = 5 - fullStars;
 
   const renderStar = (type: string) => {
     console.log("star rating", rating);

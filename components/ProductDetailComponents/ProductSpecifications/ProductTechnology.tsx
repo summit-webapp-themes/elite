@@ -4,13 +4,13 @@ import { CONSTANTS } from "../../../services/config/app-config";
 import TechnologyModal from "./TechnologyModal";
 
 const ProductTechnology = ({ technologyData, selectedMultiLangData }: any) => {
-  console.log("technologies", technologyData);
+  // console.log("technologies", technologyData);
 
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
-  const [showEditModal, setshowEditModal] = useState(false);
-  const [detailData, setdetailData] = useState();
+  const [showEditModal, setshowEditModal] = useState<boolean>(false);
+  const [detailData, setdetailData] = useState<any>();
 
   const handleEditModal = (cardData: any) => {
     setshowEditModal(!showEditModal);

@@ -8,6 +8,7 @@ import {
   useFormikContext,
 } from "formik";
 import { Form } from "react-bootstrap";
+import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,7 +25,7 @@ import {
   hideToast,
   successmsg,
 } from "../../store/slices/general_slices/toast_notification_slice";
-
+import logoImg from "../../public/assets/images/elite_logo.jpg"
 const Loginpage = () => {
   const dispatch = useDispatch();
   const [newValues, setnewValue] = useState<any>("");
@@ -124,15 +125,16 @@ const Loginpage = () => {
     e.preventDefault();
     dispatch(fetchLoginUser(newObj));
   };
+  const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
   return (
     <>
       <div className="container">
         <div className="logo mt-3">
           <Link href="/" className="navbar-brand">
             <Image
-              src="/assets/images/summit-logo-bb.jpg"
+               src={logoImg}
               alt="logo"
-              width={150}
+              width={120}
               height={55}
             />
           </Link>
