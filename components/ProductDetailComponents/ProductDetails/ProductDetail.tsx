@@ -145,7 +145,7 @@ const ProductDetail = ({
           dispatch(hideToast());
         }, 1200);
       } else {
-        dispatch(failmsg("Failed to Add to cart"));
+        dispatch(failmsg(AddToCartProductRes?.error));
         setTimeout(() => {
           dispatch(hideToast());
         }, 1500);

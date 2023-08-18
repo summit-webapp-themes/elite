@@ -79,6 +79,11 @@ const CartCard = ({
           token: TokenFromStore?.token,
         };
         dispatch(fetchOrderSummary(order_summary_params));
+      }else{
+        dispatch(failmsg(cartRes?.error));
+        setTimeout(() => {
+          dispatch(hideToast());
+        }, 1200);
       }
     }
   };

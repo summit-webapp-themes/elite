@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import MyOrderCard from "../../../cards/MyOrderCard";
 import { Norecord } from "../../NoRecord";
 import ListViewLoadingLayout from "../../ProductListingComponents/products-data-view/ListViewLoadingLayout";
+import { currency_selector_state } from "../../../store/slices/general_slices/multi-currency-slice";
+import { useSelector } from "react-redux";
 
 const PlaceOrder = ({
   orderHistoryItems,
@@ -26,7 +28,7 @@ const PlaceOrder = ({
   // const handleHistoryDate = (e: any) => {
   //   setHistory(e.target.value);
   // };
-
+  const currency_state_from_redux: any = useSelector(currency_selector_state);
   return (
     <>
       <div role="tabpanel" aria-hidden="false">
