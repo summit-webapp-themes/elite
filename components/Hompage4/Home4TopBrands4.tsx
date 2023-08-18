@@ -6,7 +6,6 @@ import displayTagList from "../../services/api/home_page_api/home-display-tag-ap
 
 const HomeTopBrands4= () => {
   const { brandListing }: any = useHomeTopBrand();
-  console.log(brandListing, "brandList");
   let vals;
   const imageLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;

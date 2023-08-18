@@ -12,7 +12,6 @@ const FinalReviewSection = ({
   const handleAcceptTerms = () => {
     setAcceptedTerms(!acceptedTerms);
   };
-  console.log("acceptedTerms", acceptedTerms);
   return (
     <>
       <div className="finalreview pb-3 pr-3">

@@ -22,14 +22,12 @@ const BillingAddressCard = ({
   city,
   selectedMultiLangData,
 }: any) => {
-  const [showEditModal, setshowEditModal] = useState(false);
-  const [detailData, setdetailData] = useState();
-  const [show, setshow] = useState(false);
-  const [type, setType] = useState("");
-  const [selectedbillAddress, setselectedbillAddress] = useState();
-  const [changeAddress, setChangeaddress] = useState(false);
-
-  console.log("bill data", billingAddresses);
+  const [showEditModal, setshowEditModal] = useState<any>(false);
+  const [detailData, setdetailData] = useState<any>();
+  const [show, setshow] = useState<any>(false);
+  const [type, setType] = useState<any>("");
+  const [selectedbillAddress, setselectedbillAddress] = useState<any>();
+  const [changeAddress, setChangeaddress] = useState<any>(false);
 
   const handleShow = (val: any) => {
     setshow(!show);

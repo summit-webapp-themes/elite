@@ -29,17 +29,17 @@ const WebNavbar = ({
   multiLanguagesData,
 }: any) => {
   const { wishlistCount } = useWishlist();
-  console.log("multilanguage", multiLanguagesData);
+  // console.log("multilanguage", multiLanguagesData);
   const cartlisting_data: any = useSelector(cart_listing_state);
   const [cartCount, setCartCount] = useState<number>();
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState<boolean>(false);
   const [isId, setId] = useState();
-  const [LoggedIn, setLoggedIn] = useState(false);
-  const isLoggedIn = useSelector(login_state);
+  const [LoggedIn, setLoggedIn] = useState<boolean>(false);
+  const isLoggedIn:any = useSelector(login_state);
   const MultilanguageDataFromStore: any = useSelector(
     multiLanguageDataFromStore
   );
-  console.log("MultilanguageDataFromStore", MultilanguageDataFromStore);
+  // console.log("MultilanguageDataFromStore", MultilanguageDataFromStore);
   const dispatch = useDispatch();
   const handleHover = (id: any) => {
     setId(id);
@@ -57,7 +57,7 @@ const WebNavbar = ({
   }, [login_state]);
 
   const router = useRouter();
-  console.log("isLoggedIn12", LoggedIn);
+  // console.log("isLoggedIn12", LoggedIn);
   const handleLeave = (id: any) => {
     setId(id);
     setIsShown(false);
@@ -89,20 +89,6 @@ const WebNavbar = ({
     localStorage.clear();
     const logoutAPI = await LogoutList();
   };
-
-  // useEffect(() => {
-  //   console.log("clear state")
-  //   const handleBeforeUnload = async () => {
-  //     localStorage.clear();
-  //     const logoutAPI = await LogoutList();
-  //   };
-
-  //   window.addEventListener('beforeunload', handleBeforeUnload);
-
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleBeforeUnload);
-  //   };
-  // }, [handleClick]);
 
   return (
     <div>

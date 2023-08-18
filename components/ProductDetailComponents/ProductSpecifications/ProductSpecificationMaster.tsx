@@ -8,7 +8,7 @@ const ProductSpecificationMaster = ({
   specifications,
   selectedMultiLangData,
 }: any) => {
-  console.log("specifications in master", specifications);
+  // console.log("specifications in master", specifications);
   const [key, setKey] = useState<any>(0);
 
   return (

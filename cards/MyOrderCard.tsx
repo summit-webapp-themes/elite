@@ -4,8 +4,7 @@ import IndianNumber from "../components/CheckoutPageComponent/IndianNumber";
 import { CONSTANTS } from "../services/config/app-config";
 
 const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
-  const [isDealer, setIsDealer] = useState(false);
-  console.log("o-d data", data);
+  const [isDealer, setIsDealer] = useState<boolean>(false);
   useEffect(() => {
     if (typeof window !== undefined) {
       const checkIsDealer = localStorage.getItem("isDealer");
@@ -93,7 +92,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                 {selectedMultiLangData?.orders} # {data?.name}
               </p>
 
-              <div className="d-flex justify-content-end align-items-center">
+              <div className="d-flex justify-content-end align-items-center" >
                 <div className="flex-fill detail_link text-capitalize">
                   <Link href={`myOrder/${data?.name}`} legacyBehavior>
                     <a href={`myOrder/${data?.name}`} className="order_details">

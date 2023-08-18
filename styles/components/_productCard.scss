@@ -132,3 +132,19 @@ a:hover {
   border-color: $themeternary-btncolor !important;
   color: $white-color !important;
 }
+
+
+
+@media only screen and (max-width: 600px) {
+  .product_img_mob {
+    height: 180px !important;
+    width: auto !important;
+    margin: auto;
+    // border: 2px solid green !important;
+    margin-top: 1rem;
+  }
+  .add_cart_btn_mob{
+    margin-left: 10px !important;
+    width: 17rem !important;
+  }
+}

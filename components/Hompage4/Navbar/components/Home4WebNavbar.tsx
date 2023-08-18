@@ -28,13 +28,12 @@ const Home4WebNavbar = ({
 }: any) => {
   const { wishlistCount } = useWishlist();
   const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
-  console.log("navmenu click", navMenuclick);
   const cartlisting_data: any = useSelector(cart_listing_state);
   const [cartCount, setCartCount] = useState<number>();
-  const [isShown, setIsShown] = useState(true);
+  const [isShown, setIsShown] = useState<boolean>(true);
   const [isId, setId] = useState();
-  const [LoggedIn, setLoggedIn] = useState(false);
-  const isLoggedIn = useSelector(login_state);
+  const [LoggedIn, setLoggedIn] = useState<boolean>(false);
+  const isLoggedIn : any = useSelector(login_state);
 
   const dispatch = useDispatch();
   const handleHover = (id: any) => {

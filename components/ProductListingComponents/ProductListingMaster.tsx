@@ -27,8 +27,8 @@ const ProductListingMaster = () => {
     currency_state_from_redux,
     handlePaginationBtn,
   } = useProductListing();
-  console.log("cube ", productListTotalCount);
-  const SelectedLangDataFromStore = useSelector(
+  // console.log("cube ", productListTotalCount);
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
 

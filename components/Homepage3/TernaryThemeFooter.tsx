@@ -9,14 +9,13 @@ import {
 } from "../../store/slices/general_slices/toast_notification_slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
-
+import logoImg from "../../public/assets/images/elite.png"
 const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
   const TokenFromStore: any = useSelector(get_access_token);
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
-  console.log("SelectedLangDataFromStore", SelectedLangDataFromStore);
   const [selectLangData, setLangData] = useState<any>();
 
   useEffect(() => {
@@ -44,7 +43,6 @@ const TernaryThemeFooter = () => {
       }, 1200);
     }
   };
-  console.log("nav footer", navbarData);
   return (
     <>
       <footer className="footer footer-dark footer-section ternaryfooter">
@@ -59,10 +57,11 @@ const TernaryThemeFooter = () => {
                         <div className="col-xl-12 col-lg-12">
                           <Link href="" legacyBehavior>
                             <Image
-                              src="/assets/images/summit-logo-ree.png"
+                              // src="/assets/images/summit-logo-ree.png"
+                              src={logoImg}
                               alt="logo-footer"
-                              width={150}
-                              height={55}
+                              width={132}
+                              height={83}
                               className="footer-ternarytheme-logo"
                             />
                           </Link>
