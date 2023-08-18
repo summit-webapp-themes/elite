@@ -1,14 +1,11 @@
 import Image from "next/image";
 import useProductListing from "../../hooks/product-listing-hooks/product-listing-hook";
 import { CONSTANTS } from "../../services/config/app-config";
-import Topbar from "./Topbar";
 import WebFilters from "./filters-view/web-filters-view";
 import ProductsGridView from "./products-data-view/products-grid-view";
-import ProductsListView from "./products-data-view/products-list-view";
 import useWishlist from "../../hooks/WishListHooks/WishListHooks";
 import BreadCrumbs from "../ProductDetailComponents/ProductDetails/BreadCrumbs";
 import MobileFilter from "./filters-view/MobileFilter";
-import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";

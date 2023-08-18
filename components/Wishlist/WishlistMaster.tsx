@@ -28,16 +28,23 @@ import {
 } from "../../store/slices/auth/token-login-slice";
 const WishlistMaster = () => {
   const { productQuantity, stockAvailability } = useProductDetail();
-  // console.log("stock check", stockAvailability);
+  console.log("stock check", stockAvailability);
   const dispatch = useDispatch();
   let requestNew: any;
   let requestList: any;
-  const { wishlistData, wishlistCount, Loadings } = useWishlist();
-  // console.log("wishlist response in render file", Loadings);
+  const { wishlistData, wishlistCount, Loadings }: any = useWishlist();
+  console.log("wishlist response in render file", wishlistData);
 
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const TokenFromStore: any = useSelector(get_access_token);
-  const SelectedLangDataFromStore:any = useSelector(
+  const [showToast, setshowToast] = useState<boolean>(false);
+  const [productCounts, setProductCounts] = useState<any>({});
+  const [alertMinQty, setAlertMinQty] = useState<boolean>(false);
+  const [showAvailabilityModal, setshowAvailabilityModal] =
+    useState<boolean>(false);
+  const router: any = useRouter();
+
+  const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -49,15 +56,13 @@ const WishlistMaster = () => {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore]);
-
-  // console.log(selectedMultiLangData, "selectedMultiLangData");
-  const [productCounts, setProductCounts] = useState<any>({});
-  const [alertMinQty, setAlertMinQty] = useState<boolean>(false);
-  const [showAvailabilityModal, setshowAvailabilityModal] = useState<boolean>(false);
-  const router = useRouter();
-  const handleQuantityChange = (event: any, productId: any, min_qty: any) => {
-    const inputCount:any = parseInt(event);
-    // console.log(inputCount, "inputCount");
+  const handleQuantityChange: any = (
+    event: any,
+    productId: any,
+    min_qty: any
+  ) => {
+    const inputCount: any = parseInt(event);
+    console.log(inputCount, "inputCount");
     if (!isNaN(inputCount) && inputCount >= 0 && inputCount <= 99999) {
       setProductCounts({
         ...productCounts,
@@ -66,10 +71,8 @@ const WishlistMaster = () => {
     }
   };
 
-  const incrementCount = (productId: any, min_qty: any) => {
-    console.log("minqty", productId, min_qty);
-
-    const currentCount = parseInt(productCounts[productId], 10);
+  const incrementCount: any = (productId: any, min_qty: any) => {
+    const currentCount: any = parseInt(productCounts[productId], 10);
     if (productCounts[productId] === undefined) {
       if (min_qty > 0) {
         setProductCounts({
@@ -91,25 +94,25 @@ const WishlistMaster = () => {
     }
   };
 
-  const decrementCount = (productId: any, min_qty: any) => {
-    // console.log("minqty", productId, min_qty);
+  const decrementCount: any = (productId: any, min_qty: any) => {
+    console.log("minqty", productId, min_qty);
     if (productCounts[productId] > min_qty) {
       setProductCounts({
         ...productCounts,
         [productId]: productCounts[productId] - 1,
       });
     }
-    // console.log("alert", productCounts[productId], min_qty);
+    console.log("alert", productCounts[productId], min_qty);
     if (productCounts[productId] === min_qty) {
       setAlertMinQty(true);
     }
   };
 
-  const myLoader = ({ src, width, quality }: any) => {
+  const myLoader: any = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
 
-  const handleAddCart = async (
+  const handleAddCart: any = async (
     id: any,
     in_stock_status: any,
     productCountsQty: any,
@@ -120,7 +123,7 @@ const WishlistMaster = () => {
 
     // if (min_qty <= productCountsQty) {
     console.log("add cart success productCountqty");
-    const addCartData = [];
+    const addCartData: any = [];
     if (productCountsQty === undefined && min_qty > 0) {
       addCartData.push({
         item_code: id,
@@ -150,7 +153,7 @@ const WishlistMaster = () => {
         TokenFromStore?.token
       );
 
-      if (AddToCartProductRes.msg === "success") {
+      if (AddToCartProductRes?.msg === "success") {
         dispatch(successmsg("Item Added to cart"));
 
         if (AddToCartProductRes?.data?.access_token !== null) {
@@ -159,17 +162,10 @@ const WishlistMaster = () => {
             "guest",
             AddToCartProductRes?.data?.access_token
           );
-          console.log("token api res", AddToCartProductRes);
+
           if (AddToCartProductRes?.data?.access_token !== null) {
-            console.log("token from api");
             dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
           }
-
-          // if (Object.keys(TokenFromStore)?.length > 0) {
-          //   dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
-          // } else {
-          //   dispatch(fetchCartListing(TokenFromStore?.token));
-          // }
         } else {
           dispatch(fetchCartListing(TokenFromStore?.token));
         }
@@ -183,43 +179,21 @@ const WishlistMaster = () => {
         dispatch(hideToast());
       }, 1500);
     }
-    // } else if (productCountsQty === undefined) {
-    //   console.log("add cart failed min qty");
-    //   const addListMessage = await AddToCartApi(
-    //     id,
-    //     min_qty,
-    //     TokenFromStore?.token
-    //   );
-    //   if (addListMessage.msg === "success") {
-    //     dispatch(successmsg("item added to cart"));
-    //     setTimeout(() => {
-    //       dispatch(hideToast());
-    //     }, 700);
-    //     router.push("/cart");
-    //   } else {
-    //     dispatch(failmsg("Error in adding item in wishlist"));
-    //     setTimeout(() => {
-    //       dispatch(hideToast());
-    //     }, 700);
-    //   }
-    // }
   };
 
-  const handleStockModel = (id: any, min_qty: any, productQty: any) => {
+  const handleStockModel: any = (id: any, min_qty: any, productQty: any) => {
     if (typeof productQty === "undefined") {
       console.log("dispatch min ");
-      const stockAvailable = {
+      const stockAvailable: any = {
         item_code: id,
         qty: min_qty,
-        token: TokenFromStore?.token,
       };
       setshowAvailabilityModal(false);
       dispatch(fetchStockAvailability(stockAvailable));
     } else if (productQty >= min_qty) {
-      const stockAvailable = {
+      const stockAvailable: any = {
         item_code: id,
         qty: productQty,
-        token: TokenFromStore?.token,
       };
       console.log("dispatch min1 ");
       console.log(productQty, "idqty");
@@ -228,7 +202,7 @@ const WishlistMaster = () => {
     }
   };
 
-  const handleFutureStockAvailability = (doesFutureStockExists: any) => {
+  const handleFutureStockAvailability: any = (doesFutureStockExists: any) => {
     if (doesFutureStockExists?.length > 0) {
       return (
         <>
@@ -237,14 +211,10 @@ const WishlistMaster = () => {
               return (
                 <>
                   <tr key={index}>
-                    <td className="text-center border">
-                      {stockData?.warehouse}
-                    </td>
-                    <td className="text-center border">{stockData?.qty}</td>
-                    <td className="text-center border">
-                      {stockData?.incoming_qty}
-                    </td>
-                    <td className="text-center border">
+                    <td className="text-center">{stockData?.warehouse}</td>
+                    <td className="text-center">{stockData?.qty}</td>
+                    <td className="text-center">{stockData?.incoming_qty}</td>
+                    <td className="text-center">
                       {" "}
                       {stockData?.incoming_date !== ""
                         ? stockData?.incoming_date
@@ -253,10 +223,8 @@ const WishlistMaster = () => {
                             .join("-")
                         : stockData?.incoming_date === ""}
                     </td>
-                    <td className="text-center border">
-                      {stockData?.additional_qty}
-                    </td>
-                    <td className="text-center border">
+                    <td className="text-center">{stockData?.additional_qty}</td>
+                    <td className="text-center">
                       {stockData?.available_on !== ""
                         ? stockData?.available_on
                             ?.split("-")
@@ -275,7 +243,7 @@ const WishlistMaster = () => {
     }
   };
 
-  const handleRenderingOfImages = (items: any) => {
+  const handleRenderingOfImages: any = (items: any) => {
     console.log("items img", items);
     if (items?.image_url !== null) {
       return (
@@ -329,6 +297,7 @@ const WishlistMaster = () => {
             {wishlistCount > 0 ? (
               <>
                 <h3 className="wishlist-title">
+                  {" "}
                   {selectedMultiLangData?.my_wishlist}
                 </h3>
                 <div className="row mt-2 mx-4 ">
@@ -386,7 +355,8 @@ const WishlistMaster = () => {
                           <div className="col-lg-7 col-12">
                             <p className="mb-0 fs-5 ">
                               <span className="bold">
-                                {selectedMultiLangData?.item_code} :{" "}
+                                {" "}
+                                {selectedMultiLangData?.item_code}:
                               </span>
                               {item?.name}
                             </p>
@@ -496,8 +466,8 @@ const WishlistMaster = () => {
                         )}
                       </div>
                       <div className="col-lg-3 col-md-3 ">
-                        <div className="d-lg-flex justify-content-center text-center">
-                          <button
+                        <div className="">
+                          {/* <button
                             type="button"
                             data-bs-toggle="modal"
                             data-bs-target="#stockModal "
@@ -505,7 +475,8 @@ const WishlistMaster = () => {
                               productCounts[index] < item?.min_order_qty
                                 ? "disabled"
                                 : "enabled"
-                            } wish_stock_btn btn px-2 my-0 my-lg-0 my-2 button_color`}
+                            } wish_stock_btn btn text-dark px-2 my-0 my-lg-0 my-2`}
+                            style={{border:'1px solid #0071DC',borderRadius:"7px", backgroundColor:"#fff"}}
                             onClick={(id) =>
                               handleStockModel(
                                 item?.name,
@@ -514,13 +485,16 @@ const WishlistMaster = () => {
                               )
                             }
                           >
-                            {
-                              selectedMultiLangData?.check_availability_btn_label
-                            }
-                          </button>
+                            Check Availability
+                          </button> */}
 
                           <button
-                            className="ml-1 button_color btn px-3 mt-lg-0 mt-md-2"
+                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2"
+                            style={{
+                              border: "1px solid #0071DC",
+                              borderRadius: "7px",
+                              backgroundColor: "#fff",
+                            }}
                             onClick={() =>
                               handleAddCart(
                                 item?.name,
@@ -554,7 +528,7 @@ const WishlistMaster = () => {
                   content={
                     selectedMultiLangData?.items_added_to_your_wishlist_will_show_up_here
                   }
-                  selectLangData={selectedMultiLangData}
+                  selectedMultiLangData={selectedMultiLangData}
                 />
               </>
             )}
