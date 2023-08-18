@@ -33,7 +33,7 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                           width={500}
                           height={331}
                           className=""
-                          alt="categories banner img"
+                          alt="categories banner img" 
                         />
                       </Link>
                     </div>

@@ -89,16 +89,32 @@ const Home3WebNavbar = ({
     <div>
       <header className="header">
         <div className="header-middle ternarytheme-middle-header pt-1 pb-1">
-          <div className="container justify-content-end">
-            <div className="mobile-nav">
+          <div className="container justify-content-sm-start justify-content-md-end justify-content-lg-end  justify-content-xl-end ">
+            <div className="mobile-nav d-flex justify-content-sm-between">
               <Link href="#" legacyBehavior>
                 <a
                   className="mobile-menu-toggle  w-icon-hamburger"
                   aria-label="menu-toggle"
                   onClick={navMenuclick}
                 ></a>
+               
               </Link>
+             
             </div>
+            <div className="mx-5 my-1 logo_containers_mob" >
+                  <Link href="/" legacyBehavior>
+                    <a>
+                      <Image
+                        // src="/assets/images/summit-thirdtheme-logo.png"
+                        src="/assets/images/elite_logo.jpg"
+                        width={150}
+                        height={60}
+                        alt="logo"
+                      />
+                    </a>
+                  </Link>
+                </div>
+            
             <div className="mx-3">
               <select
                 onChange={(e) => handleCurrencyValueChange(e.target.value)}
@@ -148,12 +164,12 @@ const Home3WebNavbar = ({
                   )}
 
                   {loginStatus === "true" ? (
-                    <Dropdown.Menu className="fs-4">
-                      <Dropdown.Item className="nav_dropdown">
+                    <Dropdown.Menu className="fs-4 nav_dropdown_mob" >
+                      {/* <Dropdown.Item className="nav_dropdown">
                         <Link href="/quick-order" className="text-dark">
                           {selectedMultiLangData?.quick_order}
                         </Link>
-                      </Dropdown.Item>
+                      </Dropdown.Item> */}
                       <Dropdown.Item className="nav_dropdown">
                         <Link href="profile" className="text-dark">
                           {selectedMultiLangData?.my_account}
@@ -185,6 +201,7 @@ const Home3WebNavbar = ({
                 </Dropdown>
               </div>
             </div>
+
           </div>
         </div>
         <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header">
@@ -199,19 +216,25 @@ const Home3WebNavbar = ({
                       onClick={navMenuclick}
                     ></a>
                   </Link>
+                  
                 </div>
-                <div className="mx-2 my-1 logo_containers">
+
+       
+  <div className="mx-2 my-1 logo_containers" >
                   <Link href="/" legacyBehavior>
                     <a>
                       <Image
-                        src="/assets/images/summit-thirdtheme-logo.png"
-                        width={150}
-                        height={60}
+                        // src="/assets/images/summit-thirdtheme-logo.png"
+                        src="/assets/images/elite_logo.jpg"
+                        width={120}
+                        height={50}
                         alt="logo"
                       />
                     </a>
                   </Link>
                 </div>
+           
+              
                 <nav className="main-nav">
                   <ul className="menu active-underline">
                     {navbarData?.length > 0 &&

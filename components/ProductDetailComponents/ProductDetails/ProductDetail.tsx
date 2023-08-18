@@ -321,7 +321,7 @@ const ProductDetail = ({
                 {isDealer === "true" ? null : (
                   <>
                     <div className="d-flex align-items-center">
-                      <div className="fs-4 text-muted ">
+                      <div className="fs-4 text-muted pe-3">
                         {" "}
                         {selectedMultiLangData?.quantity}:{" "}
                       </div>
@@ -399,7 +399,7 @@ const ProductDetail = ({
                         type="button"
                         className={`${
                           productQuantity < minQty ? "disabled" : "enabled"
-                        } w-50 btn button_color cart_btn_gtag`}
+                        } w-50 btn button_color cart_btn_gtag add_cart_btn_mob`}
                         onClick={handleAddCart}
                         disabled={
                           doesSelectedVariantDoesNotExists ||

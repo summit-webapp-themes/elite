@@ -428,3 +428,11 @@
 .home4-lower-banner{
     height: 230px;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .topcart_banner_mob {
+      height: 210px !important;
+    //   border: 2px solid red 
+    }
+  }

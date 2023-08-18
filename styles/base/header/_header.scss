@@ -1032,3 +1032,26 @@ border: none !important;
 .header-middle {
   height: 35px;
 }
+
+.logo_containers_mob{
+  display: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .icon-anchor-mob {
+    font-size: 2rem !important;
+  }
+  .nav_dropdown_mob{
+    margin-top: -1.6rem;
+  }
+  .logo_containers_mob{
+    display: block !important;
+    width: 70px;
+    
+    // padding-left: 2rem;
+    // display: flex;
+    // justify-content: center !important;
+    // margin: auto;
+    // border: 2px solid red;
+  }
+}

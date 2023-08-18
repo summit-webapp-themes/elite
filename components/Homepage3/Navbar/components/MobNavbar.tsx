@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
+import Image from "next/image";
 
 const MobNavbar = ({
   navbarData,
@@ -71,14 +72,15 @@ const MobNavbar = ({
               <i className="w-icon-search"></i>
             </button>
           </div>
+          
           <div className="tab-content">
-            <div className="tab-pane active bg-light" id="categories">
+            <div className="tab-pane active bg-light px-3" id="categories" >
               {navbarData?.length > 0 &&
                 navbarData.map((navbardata: any, i: any) => (
                   <ul className="mobile-menu" key={i}>
                     <li className="bg-light">
                       <a href="#" className="text-dark">
-                        <i className="fa fa-anchor " aria-hidden="true"></i>
+                        <i className="fa fa-anchor icon-anchor-mob" aria-hidden="true"></i>
                         {navbardata.name}
                         <span
                           className="toggle-btn"

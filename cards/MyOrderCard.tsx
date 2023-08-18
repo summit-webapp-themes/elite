@@ -92,7 +92,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                 {selectedMultiLangData?.orders} # {data?.name}
               </p>
 
-              <div className="d-flex justify-content-end align-items-center">
+              <div className="d-flex justify-content-end align-items-center" >
                 <div className="flex-fill detail_link text-capitalize">
                   <Link href={`myOrder/${data?.name}`} legacyBehavior>
                     <a href={`myOrder/${data?.name}`} className="order_details">

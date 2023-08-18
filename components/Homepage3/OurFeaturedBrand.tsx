@@ -72,7 +72,7 @@ const OurFeaturedBrand = () => {
                               alt="Brand"
                               width="123"
                               height="133"
-                              className="hover_border brand-container-img"
+                              className="hover_border brand-container-img" 
                             />
                           </Link>
                         </>

@@ -57,7 +57,8 @@ const TernaryThemeFooter = () => {
                         <div className="col-xl-12 col-lg-12">
                           <Link href="" legacyBehavior>
                             <Image
-                              src="/assets/images/summit-logo-ree.png"
+                              // src="/assets/images/summit-logo-ree.png"
+                              src="/assets/images/elite.png"
                               alt="logo-footer"
                               width={150}
                               height={55}

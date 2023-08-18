@@ -45,7 +45,7 @@ const ProductsGridView = (props: ProductsViewProps) => {
         filtersData && filtersData?.length > 0 ? "col-lg-9" : "col-lg-12"
       }`}
     >
-      <div className="row">
+      <div className="row" >
         {loading ? (
           <div className="row justify-content-center">
             {[...Array(10)].map(() => (

@@ -40,7 +40,7 @@ const HandleOrderSection = (props: any) => {
         </div>
       )}
 
-      <div className="shadow-sm card">
+      <div className="shadow-sm card" >
         <div className="card-body py-0 px-1">
           {isDealer ? null : (
             <div className="accordion" id="accordionExample">
@@ -119,7 +119,7 @@ const HandleOrderSection = (props: any) => {
               {CONSTANTS.ENABLE_APPLY_COUPON_CODE ? (
                 <>
                   {" "}
-                  <div className="border-bottom py-2"></div>
+                  <div className="border-bottom py-2" ></div>
                 </>
               ) : null}
 
