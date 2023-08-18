@@ -8,6 +8,7 @@ import {
   useFormikContext,
 } from "formik";
 import { Form } from "react-bootstrap";
+import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
@@ -124,6 +125,7 @@ const Loginpage = () => {
     e.preventDefault();
     dispatch(fetchLoginUser(newObj));
   };
+  const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
   return (
     <>
       <div className="container">

@@ -249,3 +249,8 @@
     color: gray;
     cursor: pointer;
 }
+
+.paginationDisabled {
+    pointer-events: none;
+    color: gray;
+  }
