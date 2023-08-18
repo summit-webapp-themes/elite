@@ -4,7 +4,7 @@ import { CONSTANTS } from "../../services/config/app-config";
 const Topbar = (props: any) => {
   const { listItems, handleToggleProductsListingView } = props;
 
-  const [showMissingPartsModal, setShowMissingPartsModal] = useState(false);
+  const [showMissingPartsModal, setShowMissingPartsModal] = useState<boolean>(false);
 
   const handleMissingPartsModalClose = () => {
     setShowMissingPartsModal(false);

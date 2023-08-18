@@ -31,7 +31,7 @@ const Homepage4Master = () => {
     }
   };
 
-  console.log("display tag in home ", allTagsData);
+  // console.log("display tag in home ", allTagsData);
   return (
     <>
       <div style={{ backgroundColor: "rgb(242, 243, 245)" }}>

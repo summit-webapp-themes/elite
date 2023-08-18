@@ -2,6 +2,7 @@ import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MissingPartsAPI } from "../../services/api/product-listing-page-api/missing-parts-api";
+import { get_access_token } from "../../store/slices/auth/token-login-slice";
 
 const MissingPartsModal = ({
   show,
@@ -10,16 +11,17 @@ const MissingPartsModal = ({
   SelectedLangDataFromStore,
   selectLangData,
 }: any) => {
+  const TokenFromStore: any = useSelector(get_access_token);
   const [descriptionVal, setdescriptionval] = useState<any>("");
   const [message, setMessage] = useState<any>("");
-  const [showToast, setshowToast] = useState(false);
-  const [messageNew, setmessageNew] = useState("");
+  const [showToast, setshowToast] = useState<boolean>(false);
+  const [messageNew, setmessageNew] = useState<string>("");
   const dispatch = useDispatch();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (descriptionVal !== "") {
-      const missingPartsApiRes = await MissingPartsAPI(null, descriptionVal);
+      const missingPartsApiRes:any = await MissingPartsAPI(TokenFromStore?.token,null, descriptionVal);
       if (
         missingPartsApiRes?.status === 200 &&
         missingPartsApiRes?.data?.message?.msg === "success"

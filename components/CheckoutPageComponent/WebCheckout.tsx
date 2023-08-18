@@ -54,12 +54,12 @@ const WebCheckout = ({
   selectedMultiLangData,
 }: CheckoutPageInterface) => {
   const [visitorState, setVisitorState] = useState<any>(null);
-  let [selectedCity, setSelectedCity] = useState("");
-  let [state, setState] = useState([]);
+  let [selectedCity, setSelectedCity] = useState<string>("");
+  let [state, setState] = useState<any>([]);
   let [city, setCity] = useState<any>([]);
   const [err, setErr] = useState(false);
-  let [selectedStates, setSelectedStates] = useState("");
-  const [shippingCheck, setShippingCheck] = useState(true);
+  let [selectedStates, setSelectedStates] = useState<string>("");
+  const [shippingCheck, setShippingCheck] = useState<boolean>(true);
   const [checkIsDealer, setCheckIsDealer] = useState<any>("");
   const TokenFromStore: any = useSelector(get_access_token);
 
@@ -74,7 +74,7 @@ const WebCheckout = ({
 
   useEffect(() => {
     const getStateData = async () => {
-      const stateData = await FetchStateForAddressForm(TokenFromStore?.token);
+      const stateData:any = await FetchStateForAddressForm(TokenFromStore?.token);
       if (stateData?.length > 0) {
         let stateValues = stateData
           .map((item: any) => item?.name)
@@ -89,17 +89,14 @@ const WebCheckout = ({
   const handleSelectedState = async (stateValue: string) => {
     setSelectedCity("");
     setCity([]);
-    const getCitiesFromState = await FetchCitiesForAddressForm(
+    const getCitiesFromState:any = await FetchCitiesForAddressForm(
       stateValue,
       TokenFromStore?.token
     );
-    console.log("cities values", getCitiesFromState);
     if (getCitiesFromState?.length > 0) {
       let citiesValues = getCitiesFromState
         .map((item: any) => item.name)
         .filter((item: any) => item !== null);
-
-      console.log("cities values new", citiesValues);
       setCity(citiesValues);
     }
   };

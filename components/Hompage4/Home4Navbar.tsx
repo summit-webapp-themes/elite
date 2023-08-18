@@ -9,8 +9,7 @@ const Home4Navbar = () => {
   const {
     navbarData,
     isLoading,
-    getSelectedLang,
-    handleLanguageChange,
+   
     handleCurrencyValueChange,
     selectedCurrencyValue,
   } = useNavbar();
@@ -30,7 +29,6 @@ const Home4Navbar = () => {
         navbarData={navbarData}
         isLoading={isLoading}
         navMenuclick={navMenuclick}
-        handleLanguageChange={handleLanguageChange}
         handleCurrencyValueChange={handleCurrencyValueChange}
         selectedCurrencyValue = {selectedCurrencyValue}
         searchValue={searchValue}
@@ -44,7 +42,6 @@ const Home4Navbar = () => {
         navMenuclick={navMenuclick}
         setClicks={setClicks}
         clicks={clicks}
-        handleLanguageChange={handleLanguageChange}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         handleSearch={handleSearch}

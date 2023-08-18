@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import QuickOrderCard from "./QuickOrderCard";
+// import QuickOrderCard from "../../cards/";
 import { useQuickOrder } from "../../hooks/GeneralHooks/QuickOrderHooks/quick-order-hook";
 // import { dealerAddCartApi } from "../store/slices/cart_page_slice/dealer_addto_cart_slice";
 import { useRouter } from "next/router";
@@ -19,68 +19,72 @@ const QuickOrder = () => {
     setPartNumberInputField,
     handleKeyDown,
     handleAddToCartQuickOrder,
-    handleClearReduxStore 
+    handleClearReduxStore,
   } = useQuickOrder();
   console.log("enter part", partNumbersData);
   const router = useRouter();
-const[ ItemCodename, setItemCodename] = useState();
-const[ ItemCodeMinQty, setItemCodeMinQty] = useState()
+  const [ItemCodename, setItemCodename] = useState<any>();
+  const [ItemCodeMinQty, setItemCodeMinQty] = useState<any>();
 
-  const handleInputChange = (e:any, index:any) => {
+  const handleInputChange = (e: any, index: any) => {
     const { value } = e.target;
-    console.log("enter min val", value);
+    // console.log("enter min val", value);
 
-    setPartNumbersData((prevState:any) => {
-      const updatedPartNumbersData =   [...partNumbersData];
+    setPartNumbersData((prevState: any) => {
+      const updatedPartNumbersData = [...partNumbersData];
       updatedPartNumbersData[index] = {
         ...updatedPartNumbersData[index],
-        min_order_qty: value === '0' || value === ""? '' : Number(value),
-        
+        min_order_qty: value === "0" || value === "" ? "" : Number(value),
       };
-      console.log("enter index",updatedPartNumbersData[index] , index)
+      console.log("enter index", updatedPartNumbersData[index], index);
       return updatedPartNumbersData;
     });
-
   };
 
   let handleRemove = (item: any) => {
-    console.log("enter name", item);
-const data = partNumbersData.filter((element:any,i:any)=>(element.name !== item.name))
-  setPartNumbersData(data)
-
+    // console.log("enter name", item);
+    const data = partNumbersData.filter(
+      (element: any, i: any) => element.name !== item.name
+    );
+    setPartNumbersData(data);
   };
   const handleAddCart = async () => {
-    const addCartData:any = [];
+    const addCartData: any = [];
     partNumbersData
-    ?.filter(
-      (element: any, i: any) =>
-        i ===
-        partNumbersData?.findIndex(
-          (elem: any) =>
-            elem?.oem_part_number === element?.oem_part_number
-        )
-    ).map((val:any)=>{
-      addCartData.push({item_code:val?.name,quantity:val?.min_order_qty})
-    })
-    console.log(ItemCodename,"mmmm")
-   await AddToCartApi(addCartData)
+      ?.filter(
+        (element: any, i: any) =>
+          i ===
+          partNumbersData?.findIndex(
+            (elem: any) => elem?.oem_part_number === element?.oem_part_number
+          )
+      )
+      .map((val: any) => {
+        addCartData.push({
+          item_code: val?.name,
+          quantity: val?.min_order_qty,
+        });
+      });
+    // console.log(ItemCodename, "mmmm");
+    await AddToCartApi(addCartData);
     // dispatch(dealerAddCartApi(addCartData));
     handleClearReduxStore();
 
     router.push("/cart");
   };
-  const showMinQty = (wholeProductData:any) =>
-  {
-    const productData = minQty.find((val:any)=>val.item_code === wholeProductData.name)
-    return(
+  const showMinQty = (wholeProductData: any) => {
+    const productData = minQty.find(
+      (val: any) => val.item_code === wholeProductData.name
+    );
+    return (
       <>
-      {
-       productData?.minQuantity === 0 ? "":
-        <p>Min Qty: {productData?.minQuantity}</p> 
-      }
+        {productData?.minQuantity === 0 ? (
+          ""
+        ) : (
+          <p>Min Qty: {productData?.minQuantity}</p>
+        )}
       </>
-    )
-  }
+    );
+  };
 
   return (
     <div className="container">
@@ -92,10 +96,10 @@ const data = partNumbersData.filter((element:any,i:any)=>(element.name !== item.
       <div className="row">
         <div className="col-12">
           <div className="row">
-            <div className="col-6">
+            <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <p>You can add upto 25 valid item code & OEM part no below</p>
             </div>
-            <div className="col-6">
+            <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <div className="d-flex">
                 <button
                   type="button"
@@ -137,7 +141,12 @@ const data = partNumbersData.filter((element:any,i:any)=>(element.name !== item.
         </div>
 
         <div className="col-12">
-          <QuickOrderCard partNumbersData={partNumbersData} handleRemove={handleRemove} showMinQty={showMinQty} handleInputChange={handleInputChange}/>
+          {/* <QuickOrderCard
+            partNumbersData={partNumbersData}
+            handleRemove={handleRemove}
+            showMinQty={showMinQty}
+            handleInputChange={handleInputChange}
+          /> */}
         </div>
 
         <div className="col-12">
@@ -157,7 +166,7 @@ const data = partNumbersData.filter((element:any,i:any)=>(element.name !== item.
               />
             </div>
           )}
- 
+
           {ifInputEmptyErr && (
             <div className="mt-3">
               <span className="error-color">Please Add Part Number </span>
@@ -173,9 +182,7 @@ const data = partNumbersData.filter((element:any,i:any)=>(element.name !== item.
 
           {inputFieldCount === 25 && (
             <div className="mt-3">
-              <span className="error-color">
-                You've added 25 Part Numbers.
-              </span>
+              <span className="error-color">You've added 25 Part Numbers.</span>
             </div>
           )}
           {itemNotFoundErr && (
@@ -189,10 +196,10 @@ const data = partNumbersData.filter((element:any,i:any)=>(element.name !== item.
 
         <div className="col-12">
           <div className="row">
-            <div className="col-6">
+            <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <p>You can add upto 25 valid item code & OEM part no below</p>
             </div>
-            <div className="col-6">
+            <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <div className="d-flex">
                 <button
                   type="button"

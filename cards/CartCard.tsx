@@ -24,16 +24,15 @@ const CartCard = ({
   HandleDeleteCart,
   selectedMultiLangData,
 }: any) => {
-  console.log("cart orders card data", cartListingItems);
   const dispatch = useDispatch();
-  const cart_listing_data_store = useSelector(cart_listing_state);
+  const cart_listing_data_store:any = useSelector(cart_listing_state);
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const product_listing_state_from_redux: any = useSelector(
     product_listing_selector_state
   );
   const TokenFromStore: any = useSelector(get_access_token);
 
-  const [cartQty, setCartQty] = useState(orders.qty);
+  const [cartQty, setCartQty] = useState<any>(orders.qty);
 
   const handleInputChange = (e: any) => {
     console.log("cart input", e.target.value, index, cartQty);
@@ -43,7 +42,7 @@ const CartCard = ({
 
   const handleQuantityDecrement = async (item_code: any) => {
     setCartQty(cartQty - 1);
-    const addCartData = [];
+    const addCartData:any = [];
     addCartData.push({
       item_code: item_code,
       quantity: cartQty - 1,
@@ -58,7 +57,7 @@ const CartCard = ({
 
   const handleQuantityIncrement = async (item_code: any) => {
     setCartQty(cartQty + 1);
-    const addCartData = [];
+    const addCartData:any = [];
     addCartData.push({
       item_code: item_code,
       quantity: cartQty + 1,
@@ -68,7 +67,6 @@ const CartCard = ({
       currency_state_from_redux?.selected_currency_value,
       TokenFromStore?.token
     );
-    console.log(" cart updated", AddToCartRes);
     HandleUpdatedCartResponse(AddToCartRes);
   };
 
@@ -102,14 +100,14 @@ const CartCard = ({
       <td className="product-price">
         {orders?.details.length > 0 && orders?.details !== null && (
           <p className="text-start my-0">
-            <i className="fa fa-inr" aria-hidden="true"></i>
+            {orders.currency_symbol}
             <span className="amount">
-              <IndianNumber value={orders.details[1]?.value} />
+            {orders.amount}
             </span>
           </p>
         )}
       </td>
-      <td className="product-quantity">
+      <td className="product-quantity" >
         <div className="input-group">
           <span
             className="fs-2 ml-lg-2 arrow_pointer mr-1"
@@ -141,8 +139,8 @@ const CartCard = ({
           </Link> */}
         </div>
       </td>
-      <td className="product-subtotal">
-        <span className="amount">₹ {orders.amount}</span>
+      <td className="product-subtotal" >
+        <span className="amount">{orders.currency_symbol} {orders.amount}</span>
       </td>
       {/* For mobile responsive */}
       <div className="d-lg-none d-block">
@@ -178,7 +176,7 @@ const CartCard = ({
                 {" "}
                 <i className="fa fa-inr" aria-hidden="true"></i>{" "}
                 <span className="text-center">
-                  <IndianNumber value={orders.details[1]?.value} />
+                {orders.amount}
                 </span>
               </p>
             )}
@@ -235,9 +233,9 @@ const CartCard = ({
             </Link> */}
           </div>
         </div>
-        <div className="row">
-          <div className="col-6 fs-4">{selectedMultiLangData?.total}</div>:
-          <div className="col-5 ">₹ {orders.amount}</div>
+        <div className="row" >
+          <div className="col-6 fs-4" >{selectedMultiLangData?.total}</div>:
+          <div className="col-5 ">{orders.currency_symbol} {orders.amount}</div>
         </div>
         <h5 className="mb-0 sub-total-h5">
           {selectedMultiLangData?.sub_total}({cartListingItems?.total_qty}{" "}

@@ -7,7 +7,7 @@ const MobileFilter = ({
   selectedFilters,
   handleApplyFilters,
 }: any) => {
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
 
@@ -23,11 +23,11 @@ const MobileFilter = ({
 
   return (
     <div className="container-fluid d-block d-lg-none">
-      <div className="row sticky_btn_bar">
+      <div className="row sticky_btn_bar " >
         <a
           data-bs-toggle="modal"
           data-bs-target="#myFilterModal"
-          className="text-uppercase sticky_btn"
+          className="text-uppercase sticky_btn filter_btn_wrapper"
         >
           <i className="fa fa-filter me-1" aria-hidden="true"></i>
           {selectLangData?.filter}
@@ -52,7 +52,7 @@ const MobileFilter = ({
                   {selectLangData?.clear_filter}
                 </a>
               </div>
-              <div className="filter_section">
+              <div className="filter_section" >
                 <div className="filter_block">
                   <div className="accordion accordion_custom" id="myAccordion">
                     {filtersData && filtersData.length > 0
@@ -137,7 +137,7 @@ const MobileFilter = ({
               <button
                 type="submit"
                 className="btn button_color text-center"
-                data-bs-dismiss="modal"
+                data-bs-dismiss="modal"  
               >
                 {selectLangData?.submit}
               </button>

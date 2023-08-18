@@ -6,7 +6,7 @@ import useWishlist from "../../../hooks/WishListHooks/WishListHooks";
 const ProductItemsOptions: any = ({ items, selectedMultiLangData }: any) => {
   const { wishlistData } = useWishlist();
   const [currentSlide, setCurrentSlide] = React.useState(0);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     slideChanged(slider) {

@@ -35,7 +35,7 @@ const ProductDetailMaster = () => {
     productDetailLoading,
   } = useProductDetail();
 
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -48,7 +48,7 @@ const ProductDetailMaster = () => {
     }
   }, [SelectedLangDataFromStore]);
 
-  console.log("no product heading set", selectedMultiLangData);
+  // console.log("no product heading set", selectedMultiLangData);
   return (
     <div className="">
       <div className="container product_detail_container">

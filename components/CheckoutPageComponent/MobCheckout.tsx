@@ -41,26 +41,22 @@ const MobCheckout = ({
   couponCodeApiRes,
   selectedMultiLangData,
 }: any) => {
-  const [showEditModal, setshowEditModal] = useState(false);
-  const [detailData, setdetailData] = useState();
-  const [show, setshow] = useState(false);
-  const [type, setType] = useState("");
-  const [visitorState, setVisitorState] = useState(null);
+  const [showEditModal, setshowEditModal] = useState<any>(false);
+  const [detailData, setdetailData] = useState<any>();
+  const [show, setshow] = useState<any>(false);
+  const [type, setType] = useState<any>("");
+  const [visitorState, setVisitorState] = useState<any>(null);
   const handleShow = (val: any) => {
     setshow(!show);
     setType(val);
   };
 
   const handleEditModal = (cardData: any) => {
-    console.log("form edit data", cardData);
     setshowEditModal(!showEditModal);
     setdetailData(cardData);
-    console.log("cardData", cardData);
   };
 
   let isDealer: any = localStorage.getItem("isDealer");
-
-  console.log("isdealer", isDealer);
 
   let visitor_login = false;
 

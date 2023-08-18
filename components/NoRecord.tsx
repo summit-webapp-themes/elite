@@ -6,13 +6,13 @@ import MissingPartsModal from "./ProductListingComponents/MissingPartsModal";
 import { CONSTANTS } from "../services/config/app-config";
 
 export const Norecord = ({ heading, content, img, selectLangData }: any) => {
-  const [showMissingPartsModal, setShowMissingPartsModal] = useState(false);
+  const [showMissingPartsModal, setShowMissingPartsModal] = useState<boolean>(false);
 
   const handleMissingPartsModalClose = () => {
     setShowMissingPartsModal(false);
   };
 
-  console.log("no product heading", heading, content);
+  // console.log("no product heading", heading, content);
   return (
     <div className="container text-center norecord_container">
       <div className="row">

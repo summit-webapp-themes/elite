@@ -16,11 +16,11 @@ const WebFilters = (props: FiltersViewProps) => {
     selectLangData,
   } = props;
 
-  const [filterLang, setFilterLang] = useState("");
+  const [filterLang, setFilterLang] = useState<string>("");
 
-  const languageData = useMultiLingual();
+  const languageData :any = useMultiLingual();
 
-  const [showMissingPartsModal, setShowMissingPartsModal] = useState(false);
+  const [showMissingPartsModal, setShowMissingPartsModal] = useState<boolean>(false);
 
   const handleMissingPartsModalClose = () => {
     setShowMissingPartsModal(false);

@@ -3,7 +3,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 
 const ProductEnlargeImage = (props: any) => {
   const { productImages } = props;
-  console.log("images ", productImages);
+  // console.log("images ", productImages);
   return (
     <>
       <ImageGallery items={productImages} />

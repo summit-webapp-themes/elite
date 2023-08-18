@@ -28,16 +28,16 @@ import {
 } from "../../store/slices/auth/token-login-slice";
 const WishlistMaster = () => {
   const { productQuantity, stockAvailability } = useProductDetail();
-  console.log("stock check", stockAvailability);
+  // console.log("stock check", stockAvailability);
   const dispatch = useDispatch();
   let requestNew: any;
   let requestList: any;
   const { wishlistData, wishlistCount, Loadings } = useWishlist();
-  console.log("wishlist response in render file", Loadings);
+  // console.log("wishlist response in render file", Loadings);
 
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const TokenFromStore: any = useSelector(get_access_token);
-  const SelectedLangDataFromStore = useSelector(
+  const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -50,14 +50,14 @@ const WishlistMaster = () => {
     }
   }, [SelectedLangDataFromStore]);
 
-  console.log(selectedMultiLangData, "selectedMultiLangData");
+  // console.log(selectedMultiLangData, "selectedMultiLangData");
   const [productCounts, setProductCounts] = useState<any>({});
-  const [alertMinQty, setAlertMinQty] = useState(false);
-  const [showAvailabilityModal, setshowAvailabilityModal] = useState(false);
+  const [alertMinQty, setAlertMinQty] = useState<boolean>(false);
+  const [showAvailabilityModal, setshowAvailabilityModal] = useState<boolean>(false);
   const router = useRouter();
   const handleQuantityChange = (event: any, productId: any, min_qty: any) => {
-    const inputCount = parseInt(event);
-    console.log(inputCount, "inputCount");
+    const inputCount:any = parseInt(event);
+    // console.log(inputCount, "inputCount");
     if (!isNaN(inputCount) && inputCount >= 0 && inputCount <= 99999) {
       setProductCounts({
         ...productCounts,
@@ -92,14 +92,14 @@ const WishlistMaster = () => {
   };
 
   const decrementCount = (productId: any, min_qty: any) => {
-    console.log("minqty", productId, min_qty);
+    // console.log("minqty", productId, min_qty);
     if (productCounts[productId] > min_qty) {
       setProductCounts({
         ...productCounts,
         [productId]: productCounts[productId] - 1,
       });
     }
-    console.log("alert", productCounts[productId], min_qty);
+    // console.log("alert", productCounts[productId], min_qty);
     if (productCounts[productId] === min_qty) {
       setAlertMinQty(true);
     }

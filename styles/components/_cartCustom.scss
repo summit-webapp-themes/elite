@@ -182,3 +182,12 @@ width: 82%;
         color: white !important;
     }
     
+
+
+   
+    @media only screen and (max-width: 600px) {
+        .card-mob-wrapper {
+          display: flex !important;
+          justify-content: center !important;
+        }
+      }

@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import useDisplayTagHooks from "../hooks/HomePageHooks/DisplayTagHooks";
 import useHomeTopCategories from "../hooks/HomePageHooks/HomeTopCategoriesHook";
 import TernaryThemeHomeTopCategories from "./Homepage3/TernaryThemeHomeTopCategories";
-import DisplayTagHome3 from "../components/Homepage3/DisplayTagHome3";
+import DisplayTagHome3 from "./Homepage3/DisplayTagHome3";
 import OurFeaturedBrand from "./Homepage3/OurFeaturedBrand";
 import TernaryThemeTopCategoriesBanner from "./Homepage3/TernaryThemeTopCategoriesBanner";
 import TernaryThemeHomeBanner from "./Homepage3/TernaryThemeHomeBanner";
 
-const Homepage3Master = () => {
+const HomepageMaster = () => {
   const { allTagsData } = useDisplayTagHooks();
 
   const { homeTopCategories, isLoading, selectedCurrencyVal } =
@@ -51,4 +51,4 @@ const Homepage3Master = () => {
   );
 };
 
-export default Homepage3Master;
+export default HomepageMaster;

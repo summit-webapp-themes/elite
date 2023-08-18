@@ -11,9 +11,9 @@ const PlaceOrder = ({
   history,
   loading,
 }: any) => {
-  console.log("orderHistoryItems", orderHistoryItems, loading);
+  // console.log("orderHistoryItems", orderHistoryItems, loading);
 
-  const placeorderCount =
+  const placeorderCount:any =
     orderHistoryItems &&
     orderHistoryItems?.filter(
       (items: any) => items?.payment_status !== "Cancelled"

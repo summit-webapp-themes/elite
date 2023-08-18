@@ -15,7 +15,7 @@ const VariantsMaster = ({
   if (typeof window !== "undefined") {
     isDealer = localStorage.getItem("isDealer");
   }
-  console.log("variants data for dealer", productVariants, variantsData);
+  // console.log("variants data for dealer", productVariants, variantsData);
   return (
     <>
       {isDealer === "true" ? (
