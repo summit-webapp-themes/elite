@@ -17,13 +17,13 @@ const NewArrivals = ({ newArrivalTagListingOfProducts }: any) => {
         {newArrivalTagListingOfProducts?.length > 0 &&
         newArrivalTagListingOfProducts !== null ? (
           <>
-              <div className="row justify-content-center">
+              <div className="row justify-content-center" >
                 {newArrivalTagListingOfProducts.map(
                   (arrivalItems: any, index: any) => {
                     return (
                       <div
                         className="col-lg-2 col-md-2 mx-md-3 mb-3 card"
-                        style={{ textAlign: "center" }}
+                        style={{ textAlign: "center" }} 
                       >
                         <Link href={arrivalItems.url}>
                           {arrivalItems.image_url !== null ? (
@@ -47,7 +47,7 @@ const NewArrivals = ({ newArrivalTagListingOfProducts }: any) => {
                             </>
                           )}
                         </Link>
-                        <div className="product-details">
+                        <div className="product-details" >
                           <h4 className="product-name truncate-overflow">
                             <Link href={arrivalItems.url}>
                               {arrivalItems.item_name}
@@ -85,7 +85,7 @@ const NewArrivals = ({ newArrivalTagListingOfProducts }: any) => {
 
   return (
     <>
-    <div className="newArrival3">
+    <div className="newArrival3" >
       <div className="container ">
         <h3 className="text-center category_heading">New Arrivals</h3>
         {DisplayNewArrivals() as any}

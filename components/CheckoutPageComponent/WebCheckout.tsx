@@ -103,7 +103,7 @@ const WebCheckout = ({
 
   return (
     <>
-      <div className="container mt-4">
+      <div className="container mt-5">
         <div>
           {visitorState !== null ? (
             <>

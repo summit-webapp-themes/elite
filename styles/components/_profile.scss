@@ -5,4 +5,21 @@
 }
 .tab_width.active {
     background-color: $themeternary-btncolor !important;
+ 
+   
 }
+.fa-user-circle.active {
+    content: "\f2bd";
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .profile_heading_mob {
+    //   background-color: lightblue;
+      text-align: center;
+    }
+    .account_tab_mob{
+        display: flex;
+        justify-content: center;
+    }
+  }

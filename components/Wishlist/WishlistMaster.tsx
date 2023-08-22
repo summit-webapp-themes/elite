@@ -401,7 +401,7 @@ const WishlistMaster = () => {
                         )}
                       </div>
                       <div className="col-lg-2 col-md-3">
-                        <div className="d-flex align-items-center  ml-2">
+                        <div className="d-flex align-items-center " >
                           <span
                             className="fs-2 ml-lg-2 icon-cursor"
                             onClick={() =>
@@ -410,7 +410,7 @@ const WishlistMaster = () => {
                           >
                             -
                           </span>
-                          <div className="pe-3 input-width ">
+                          <div className="pe-3 input-width " >
                             <input
                               type="text"
                               // defaultValue={
@@ -440,7 +440,7 @@ const WishlistMaster = () => {
                               max="99999"
                             />
                           </div>
-                          <span
+                          <span 
                             className="fs-2 ml-2 ml-md-5 icon-cursor"
                             onClick={() =>
                               incrementCount(index, item?.min_order_qty)
@@ -466,7 +466,7 @@ const WishlistMaster = () => {
                         )}
                       </div>
                       <div className="col-lg-3 col-md-3 ">
-                        <div className="">
+                        <div className="add_cart_btn_wrapper">
                           {/* <button
                             type="button"
                             data-bs-toggle="modal"
@@ -489,12 +489,8 @@ const WishlistMaster = () => {
                           </button> */}
 
                           <button
-                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2"
-                            style={{
-                              border: "1px solid #0071DC",
-                              borderRadius: "7px",
-                              backgroundColor: "#fff",
-                            }}
+                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2 add_cart_btn "
+                           
                             onClick={() =>
                               handleAddCart(
                                 item?.name,

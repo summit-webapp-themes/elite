@@ -145,7 +145,7 @@ const CartCard = ({
         </div>
       </td>
       <td className="product-subtotal" >
-        <span className="amount">{orders.currency_symbol} {orders.amount}</span>
+        <span className="amount product-price">{orders.currency_symbol} {orders.amount}</span>
       </td>
       {/* For mobile responsive */}
       <div className="d-lg-none d-block">
@@ -240,12 +240,12 @@ const CartCard = ({
         </div>
         <div className="row" >
           <div className="col-6 fs-4" >{selectedMultiLangData?.total}</div>:
-          <div className="col-5 ">{orders.currency_symbol} {orders.amount}</div>
+          <div className="col-5 product-price">{orders.currency_symbol} {orders.amount}</div>
         </div>
         <h5 className="mb-0 sub-total-h5">
           {selectedMultiLangData?.sub_total}({cartListingItems?.total_qty}{" "}
           {selectedMultiLangData?.quantity_c}):{" "}
-          <span>
+          <span className="product-price">
             {orders?.currency_symbol}{" "}
             {cartListingItems?.grand_total_excluding_tax}
           </span>

@@ -4,6 +4,7 @@ import CancelOrder from "./components/CancelOrder";
 import UseCartOrderHistory from "../../hooks/order-listing-page-hook/cart-order-history-hook";
 import { useSelector } from "react-redux";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
+import ListViewLoadingLayout from "../ProductListingComponents/products-data-view/ListViewLoadingLayout";
 
 const MyOrderMaster = () => {
   const SelectedLangDataFromStore:any = useSelector(
@@ -22,9 +23,23 @@ const MyOrderMaster = () => {
   const { orderHistoryItems, handleHistoryDate, history } =
     UseCartOrderHistory();
   console.log("orderHistoryItems", orderHistoryItems);
+
+  const {  Loadings } = UseCartOrderHistory();
+  
   return (
     <>
-      <div className="container mt-3">
+       {Loadings === "pending" ? (
+        <div className="row justify-content-center">
+          {[...Array(10)].map(() => (
+            <>
+              <div className="col-lg-9 mx-auto">
+                <ListViewLoadingLayout />
+              </div>
+            </>
+          ))}
+        </div>
+      ) : (
+        <div className="container mt-3">
         <div className="mt-4 row">
           <div className="col-md-6">
             <div className="page_heading">
@@ -72,6 +87,9 @@ const MyOrderMaster = () => {
           </div>
         </div>
       </div>
+      )
+
+      }
     </>
   );
 };

@@ -70,7 +70,7 @@ const MobCheckout = ({
   return (
     <>
       <div className="">
-        {/* <div className="mt-0">
+        <div className="mt-0">
         <button
           type="button"
           onClick={handlePlaceOrder}
@@ -79,8 +79,8 @@ const MobCheckout = ({
           {deleteCoupon}
           Place Order
         </button>
-      </div> */}
-        <div className="container ">
+      </div>
+        <div className="container " >
           <div className="row">
             {isDealer ? null : (
               <>
@@ -138,7 +138,7 @@ const MobCheckout = ({
                               aria-labelledby="headingOne"
                               data-bs-parent="#accordionExample"
                             >
-                              <div className="accordion-body py-0">
+                              <div className="accordion-body py-0" >
                                 <form className="pt-3 fields-group-md">
                                   <div className="form-group">
                                     <input
@@ -192,7 +192,7 @@ const MobCheckout = ({
                       <div
                         className="tech_details mb-3 tab-pane fade"
                         id="store"
-                        role="tabpanel"
+                        role="tabpanel" 
                       >
                         <div className="row container">
                           <form className="fields-group-md store_balance">
@@ -223,7 +223,7 @@ const MobCheckout = ({
 
                     <hr className="mt-0" />
 
-                    <div className="container order_summary_section">
+                    <div className="container order_summary_section"  >
                       <h5 className="bold">
                         {selectedMultiLangData?.order_summary}
                       </h5>
@@ -271,7 +271,7 @@ const MobCheckout = ({
                           </ul>
                         </div>
 
-                        <div className="tab-content ">
+                        <div className="tab-content " >
                           <div
                             className="address_details mb-3 tab-pane fade active show"
                             id="shipping"
@@ -412,7 +412,7 @@ const MobCheckout = ({
                           <div
                             className="tech_details mb-3 tab-pane fade"
                             id="billing"
-                            role="tabpanel"
+                            role="tabpanel" 
                           >
                             <div className="col-12 mt-2">
                               {initialBillingAddress}
@@ -592,7 +592,7 @@ const MobCheckout = ({
                           </div>
                         </div>
                       </div>
-                      <ShippingMethod
+                      {/* <ShippingMethod
                         transporterlist={transporterlist}
                         selectedVal={selectedVal}
                         queryHandle={queryHandle}
@@ -608,8 +608,8 @@ const MobCheckout = ({
                         orderSummary={orderSummary}
                         handlePlaceOrder={handlePlaceOrder}
                         deleteCoupon={deleteCoupon}
-                        selectedMultiLangData={+selectedMultiLangData}
-                      />
+                        selectedMultiLangData={selectedMultiLangData}
+                      /> */}
                     </div>
                   </div>
                 ) : (
