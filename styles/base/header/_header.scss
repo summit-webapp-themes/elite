@@ -1033,18 +1033,33 @@ header.header.fixed {
   display: none;
 }
 
+.header_web {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  
+}
+.headers{
+  margin-bottom: 120px !important;
+}
+
 @media only screen and (max-width: 600px) {
   .icon-anchor-mob {
     font-size: 2rem !important;
   }
   .nav_dropdown_mob {
-    margin-top: -.6rem;
+    margin-top: -0.6rem;
   }
   .logo_containers_mob {
     display: block !important;
   }
   .header_mob {
     padding: 2.5rem 0rem !important;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    width: 100%;
   }
   .logo_mob {
     height: 35px !important;
@@ -1054,5 +1069,4 @@ header.header.fixed {
   .wishlist_mob {
     display: block;
   }
- 
 }

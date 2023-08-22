@@ -44,7 +44,7 @@ const MobNavbar = ({
   return (
     <>
       <div className="mobile-menu-wrapper">
-        <div className="mobile-menu-overlay">
+        <div className="mobile-menu-overlay"></div>
         <div className="mobile-menu-container scrollable bg-light">
           <div className="d-flex justify-content-end mb-1 ">
             <Link href="#" legacyBehavior>
@@ -139,8 +139,6 @@ const MobNavbar = ({
             </div>
           </div>
         </div>
-        </div>
-       
       </div>
     </>
   );

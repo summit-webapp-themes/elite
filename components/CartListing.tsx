@@ -160,7 +160,7 @@ const CartListing = () => {
                     {selectedMultiLangData?.sub_total} (
                     {cartListingItems?.total_qty}{" "}
                     {selectedMultiLangData?.quantity_c}):{" "}
-                    <span>
+                    <span className="product-price">
                       {
                         cartListingItems?.categories[0]?.orders[0]
                           ?.currency_symbol
@@ -277,7 +277,7 @@ const CartListing = () => {
                             <hr className="divider" />
                             <div className="order-total d-flex justify-content-between align-items-center mt-2">
                               <label>{selectedMultiLangData?.sub_total}</label>
-                              <span className="ls-50">
+                              <span className="ls-50 product-price">
                                 {
                                   cartListingItems?.categories[0]?.orders[0]
                                     ?.currency_symbol
@@ -287,7 +287,7 @@ const CartListing = () => {
                             </div>
                             <div className="order-total d-flex justify-content-between align-items-center mt-2">
                               <label>{selectedMultiLangData?.tax}</label>
-                              <span className="ls-50">
+                              <span className="ls-50 product-price">
                                 {
                                   cartListingItems?.categories[0]?.orders[0]
                                     ?.currency_symbol
@@ -303,7 +303,7 @@ const CartListing = () => {
                                   selectedMultiLangData?.order_total_including_tax
                                 }
                               </label>
-                              <span className="ls-50">
+                              <span className="ls-50 product-price">
                                 {
                                   cartListingItems?.categories[0]?.orders[0]
                                     ?.currency_symbol

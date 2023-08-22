@@ -87,11 +87,11 @@ const Home3WebNavbar = ({
   };
 
   return (
-    <div>
-      <header className="header">
-        <div className="header-middle ternarytheme-middle-header pt-1 pb-1 header_mob align-items-sm-center">
-          <div className="container justify-content-sm-start justify-content-md-end justify-content-lg-end  justify-content-xl-end align-items-sm-center">
-            <div className="mobile-nav d-flex justify-content-sm-between align-items-sm-center">
+    <div className="headers">
+      <header className="header header_web">
+        <div className="header-middle ternarytheme-middle-header pt-1 pb-1 header_mob">
+          <div className="container justify-content-sm-start justify-content-md-end justify-content-lg-end  justify-content-xl-end ">
+            <div className="mobile-nav d-flex justify-content-sm-between ">
               <Link href="#" legacyBehavior>
                 <a
                   className="mobile-menu-toggle  w-icon-hamburger"
@@ -119,7 +119,7 @@ const Home3WebNavbar = ({
             <div className="ms-5">
               <select
                 onChange={(e) => handleCurrencyValueChange(e.target.value)}
-                className="ternary-select"
+                className="ternary-select product-price  price"
               >
                 <option value="INR">₹</option>
                 <option value="USD">$</option>
@@ -155,7 +155,7 @@ const Home3WebNavbar = ({
                 </Link>
               </div>
             </div>
-            <div className="ms-1 mb-2 wishlist_mob">
+            <div className="ms-1 mb-1 wishlist_mob">
               <div className="dropdown cart-dropdown cart-offcanvas text-white ">
                 <Link href="/cart" legacyBehavior>
                   <a className="cart-toggle label-down link wishlist-icon_mob">
@@ -230,7 +230,7 @@ const Home3WebNavbar = ({
 
           </div>
         </div>
-        <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header">
+        <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header ">
           <div className="container">
             <div className="inner-wrap d-flex justify-content-between">
               <div className="header-left">
