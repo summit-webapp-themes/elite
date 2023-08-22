@@ -9,6 +9,9 @@ import { CONSTANTS } from "../../services/config/app-config";
 import IndianNumber from "../CheckoutPageComponent/IndianNumber";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
+import ListViewLoadingLayout from "../ProductListingComponents/products-data-view/ListViewLoadingLayout";
+import UseCartOrderHistory from "../../hooks/order-listing-page-hook/cart-order-history-hook";
+
 
 type PropsType = {
   id?: any;
@@ -38,6 +41,8 @@ const Index = ({ sales_order_id }: any) => {
   const handleTypeChange = (e: any) => {
     setTypeOf(e.target.value);
   };
+
+  const {  Loadings } = UseCartOrderHistory();
 
   const handleTextChange = (e: any) => {
     setText(e.target.value);
@@ -75,7 +80,20 @@ const Index = ({ sales_order_id }: any) => {
 
   return (
     <div>
-      {detail?.length > 0 &&
+
+{Loadings === "pending" ? (
+        <div className="row justify-content-center">
+          {[...Array(10)].map(() => (
+            <>
+              <div className="col-lg-9 mx-auto">
+                <ListViewLoadingLayout />
+              </div>
+            </>
+          ))}
+        </div>
+      ) : (
+<>
+{detail?.length > 0 &&
         detail !== null &&
         detail?.map((data: any) => (
           <div className="container" key={data?.name}>
@@ -597,6 +615,10 @@ const Index = ({ sales_order_id }: any) => {
             </div>
           </div>
         ))}
+</>
+      )}
+
+    
     </div>
   );
 };

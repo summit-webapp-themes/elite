@@ -44,7 +44,7 @@ const MobNavbar = ({
   return (
     <>
       <div className="mobile-menu-wrapper">
-        <div className="mobile-menu-overlay"></div>
+        <div className="mobile-menu-overlay">
         <div className="mobile-menu-container scrollable bg-light">
           <div className="d-flex justify-content-end mb-1 ">
             <Link href="#" legacyBehavior>
@@ -72,7 +72,7 @@ const MobNavbar = ({
               <i className="w-icon-search"></i>
             </button>
           </div>
-          
+
           <div className="tab-content">
             <div className="tab-pane active bg-light px-3" id="categories" >
               {navbarData?.length > 0 &&
@@ -96,7 +96,7 @@ const MobNavbar = ({
                               <Link href={navbarVal.url} legacyBehavior>
                                 <a
                                   className="text-dark"
-                                  // onClick={onClickCloseNav}
+                                // onClick={onClickCloseNav}
                                 >
                                   {navbarVal.name}
                                   <span
@@ -139,6 +139,8 @@ const MobNavbar = ({
             </div>
           </div>
         </div>
+        </div>
+       
       </div>
     </>
   );

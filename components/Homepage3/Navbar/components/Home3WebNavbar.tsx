@@ -89,34 +89,34 @@ const Home3WebNavbar = ({
   return (
     <div>
       <header className="header">
-        <div className="header-middle ternarytheme-middle-header pt-1 pb-1">
-          <div className="container justify-content-sm-start justify-content-md-end justify-content-lg-end  justify-content-xl-end ">
-            <div className="mobile-nav d-flex justify-content-sm-between">
+        <div className="header-middle ternarytheme-middle-header pt-1 pb-1 header_mob align-items-sm-center">
+          <div className="container justify-content-sm-start justify-content-md-end justify-content-lg-end  justify-content-xl-end align-items-sm-center">
+            <div className="mobile-nav d-flex justify-content-sm-between align-items-sm-center">
               <Link href="#" legacyBehavior>
                 <a
                   className="mobile-menu-toggle  w-icon-hamburger"
                   aria-label="menu-toggle"
                   onClick={navMenuclick}
                 ></a>
-               
+
               </Link>
-             
+
             </div>
-            <div className="mx-5 my-1 logo_containers_mob" >
-                  <Link href="/" legacyBehavior>
-                    <a>
-                      <Image
-                        // src="/assets/images/summit-thirdtheme-logo.png"
-                        src={logoImg}
-                        width={132}
-                        height={83}
-                        alt="logo"
-                      />
-                    </a>
-                  </Link>
-                </div>
-            
-            <div className="mx-3">
+            <div className="my-1 ms-4  logo_containers_mob" >
+              <Link href="/" legacyBehavior>
+                <a>
+                  <Image
+                    // src="/assets/images/summit-thirdtheme-logo.png"
+                    src={logoImg}
+                    width={132}
+                    height={83}
+                    alt="logo" className="logo_mob"
+                  />
+                </a>
+              </Link>
+            </div>
+
+            <div className="ms-5">
               <select
                 onChange={(e) => handleCurrencyValueChange(e.target.value)}
                 className="ternary-select"
@@ -127,7 +127,7 @@ const Home3WebNavbar = ({
               </select>
             </div>
 
-            <div className="mx-3">
+            <div className="">
               <select
                 onChange={(e) => handleLanguageChange(e.target.value)}
                 className="ternary-select"
@@ -142,65 +142,90 @@ const Home3WebNavbar = ({
               </select>
             </div>
 
-            <div className="mx-3">
-              <div className={`custom_dropdown`}>
-                <Dropdown>
-                  {loginStatus === "true" ? (
-                    <Dropdown.Toggle
-                      id="dropdown-basic"
-                      className="dropdown-icon ternarytheme-login"
-                    >
-                      <i
-                        className="fa fa-user-o mt-5 mb-2 fs-1 logout-icon"
-                        aria-hidden="true"
-                      ></i>
-                    </Dropdown.Toggle>
-                  ) : (
-                    <Dropdown.Toggle
-                      id="dropdown-basic"
-                      className="dropdown-icon ternarytheme-login"
-                    >
-                      {selectedMultiLangData?.login}
-                    </Dropdown.Toggle>
-                  )}
+            <div className="ms-1 wishlist_mob">
+              <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
+                <Link href="/wishlist" legacyBehavior>
+                  <a className="cart-toggle label-down link ">
+                    <i className="w-icon-heart fs-1 wishlist-icon_mob">
+                      <span className="cart-count wishlist_count text-white">
+                        {wishlistCount || 0}
+                      </span>
+                    </i>
+                  </a>
+                </Link>
+              </div>
+            </div>
+            <div className="ms-1 mb-2 wishlist_mob">
+              <div className="dropdown cart-dropdown cart-offcanvas text-white ">
+                <Link href="/cart" legacyBehavior>
+                  <a className="cart-toggle label-down link wishlist-icon_mob">
+                    <i className="w-icon-cart fs-1 wishlist-icon">
+                      <span className="cart-count text-white">
+                        {cartCount || 0}
+                      </span>
+                    </i>
+                  </a>
+                </Link>
+              </div>
+            </div>
 
-                  {loginStatus === "true" ? (
-                    <Dropdown.Menu className="fs-4 nav_dropdown_mob" >
-                      {/* <Dropdown.Item className="nav_dropdown">
+            <div className="ms-1 mb-1" >
+              <Dropdown className="dropleft">
+                {loginStatus === "true" ? (
+                  <Dropdown.Toggle
+                    id="dropdown-basic"
+                    className="dropdown-icon ternarytheme-login dropleft "
+                  >
+                    <i
+                      className="fa fa-user-o mt-5 mb-2 fs-1 logout-icon "
+                      aria-hidden="true"
+                    ></i>
+                  </Dropdown.Toggle>
+                ) : (
+                  <Dropdown.Toggle
+                    id="dropdown-basic"
+                    className="dropdown-icon ternarytheme-login dropleft"
+                  >
+                    {selectedMultiLangData?.login}
+                  </Dropdown.Toggle>
+                )}
+
+                {loginStatus === "true" ? (
+                  <Dropdown.Menu className="fs-4 nav_dropdown_mob dropleft" >
+                    {/* <Dropdown.Item className="nav_dropdown">
                         <Link href="/quick-order" className="text-dark">
                           {selectedMultiLangData?.quick_order}
                         </Link>
                       </Dropdown.Item> */}
-                      <Dropdown.Item className="nav_dropdown">
-                        <Link href="profile" className="text-dark">
-                          {selectedMultiLangData?.my_account}
-                        </Link>
-                      </Dropdown.Item>
+                    <Dropdown.Item className="nav_dropdown">
+                      <Link href="profile" className="text-dark">
+                        {selectedMultiLangData?.my_account}
+                      </Link>
+                    </Dropdown.Item>
 
-                      <Dropdown.Item className="nav_dropdown">
-                        <Link href="/myOrder" className="text-dark">
-                          {selectedMultiLangData?.my_order}
-                        </Link>
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        className="nav_dropdown text-dark"
-                        onClick={handleClick}
-                      >
-                        {selectedMultiLangData?.logout}
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  ) : (
-                    <Dropdown.Menu className="fs-3">
-                      <Dropdown.Item className="nav_dropdown">
-                        {" "}
-                        <Link href="/login" className="text-dark ">
-                          {selectedMultiLangData?.login}
-                        </Link>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  )}
-                </Dropdown>
-              </div>
+                    <Dropdown.Item className="nav_dropdown">
+                      <Link href="/myOrder" className="text-dark">
+                        {selectedMultiLangData?.my_order}
+                      </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className="nav_dropdown text-dark"
+                      onClick={handleClick}
+                    >
+                      {selectedMultiLangData?.logout}
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                ) : (
+                  <Dropdown.Menu className="fs-3">
+                    <Dropdown.Item className="nav_dropdown dropleft">
+                      {" "}
+                      <Link href="/login" className="text-dark ">
+                        {selectedMultiLangData?.login}
+                      </Link>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                )}
+              </Dropdown>
             </div>
 
           </div>
@@ -217,11 +242,11 @@ const Home3WebNavbar = ({
                       onClick={navMenuclick}
                     ></a>
                   </Link>
-                  
+
                 </div>
 
-       
-  <div className="mx-2 my-1 logo_containers" >
+
+                <div className="mx-2 my-1 logo_containers" >
                   <Link href="/" legacyBehavior>
                     <a>
                       <Image
@@ -229,13 +254,13 @@ const Home3WebNavbar = ({
                         src={logoImg}
                         width={120}
                         height={50}
-                        alt="logo"
+                        alt="logo" className="logo_mob"
                       />
                     </a>
                   </Link>
                 </div>
-           
-              
+
+
                 <nav className="main-nav">
                   <ul className="menu active-underline">
                     {navbarData?.length > 0 &&
@@ -303,7 +328,7 @@ const Home3WebNavbar = ({
                 </button>
               </div>
             </div>
-            <div className="mx-2">
+            <div className="mx-2 " >
               <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
                 <Link href="/wishlist" legacyBehavior>
                   <a className="cart-toggle label-down link ternarytheme-icon">

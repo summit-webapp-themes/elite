@@ -17,158 +17,149 @@
     header: (
       font-family: $font-family,
       background: $primary-color,
-      color:$white-color,
+      color: $white-color,
       _link-color: false,
       _link-active-color: $primary-color,
 
-            // Header Top
-            top: (
-                // background: #f5f6f8,
-                font-size: 1.1rem,
-                letter-spacing: -.027em,
-                text-transform: capitalize,
-                _links-gap: false,
-                icon: (
-                    margin-#{$right}: .6rem,
-                    font-size: 1.5rem
-                )
-            ),
-            // Header Middle
-            middle: (
-                padding-top: 1.5rem,
-                padding-bottom: 1.5rem,
-                color: $dark-color,
-                // background: #fff,
-                background: $primary-color,
-                font-size: 1.2rem,
-                border-bottom: 1px solid $border-color,
-                logo: (
-                    margin-#{$right}: 4.1rem,
-                    _mobile-margin-#{$right}: 2rem
-                ),
-            ),
-            bottom: (
-                padding-top: false,
-                padding-bottom: false,
-                color: $dark-color,
-                // background: #fff,
-                background: $primary-color,
-                border-bottom: false,
-                font-family: false,
-                font-size: 1.4rem,
-                font-weight: 600,
-                letter-spacing: -.025em,
-                text-transform: false
-            ),
-            // Main Nav
-            main-nav: (
-                margin: false,
-                padding: false,
-                background: false
-            ),
-            search: (
-                _background-color: $primary-color,
-                _border-color: $primary-color,
-                _max-width: 54rem,
-                // Expanded Search
-                expanded: (
-                    // width: 55.6rem,
-                    height: false,
-                ),
-                simple: (
-                    width: 35rem,
-                    height: false
-                ),
-                round: (
-                    border-radius: 3rem
-                ),
-                rounded: (
-                    border-radius: .4rem
-                ),
-                btn: (
-                    width: 5.1rem
-                ),
-                toggle: (
-                    width: 30rem
-                )
-            ),
-            logo: (
-                min-width :14.4rem,   
-                margin-#{$right}: 2rem        
-            ),
-            // Login
-            compare: (
-                margin: side-values(-.4rem 3rem 0 0),
-                color: $dark-color,
-                label: (
-                    _gap: false,
-                    margin-top: .1rem,
-                    font-weight: inherit,
-                    text-transform: false,
-                    color: inherit
-                ),
-                icon: (
-                    font-size: 3.3rem,
-                    color: inherit
-                )
-            ),
-            // Wishlist
-            wishlist: (
-                margin-#{$right}: 2.3rem,
-                color: $dark-color,
-                label: (
-                    _gap: false,
-                    margin-top: .3rem,
-                    font-weight: inherit,
-                    text-transform: false,
-                    color: inherit
-                ),
-                icon: (
-                    font-size: 2.7rem,
-                    color: #f15622
-                )
-            ),
-            // Minicart
-            cart: (
-                margin-right: false,
-                color: $dark-color,
-                icon: (
-                    font-size: 2.6rem,
-                    color: inherit
-                )
-            ),
-            // Call
-            call: (
-                margin-#{$right}: 4.8rem,
-                _color: $primary-color,
-                icon: (
-                    margin: side-values(0 .6rem .2rem 0),
-                    font-size: 3rem
-                ),
-                info: (
-                    margin-top: .4rem
-                ),
-                num: (
-                    font-size: 1.6rem,
-                    line-height: 1.7,
-                ),
-                chat: (
-                    color: $dark-color
-                )
-            )
-        )
-    )
+      // Header Top
+      top:
+        (
+          // background: #f5f6f8,
+          font-size: 1.1rem,
+          letter-spacing: -0.027em,
+          text-transform: capitalize,
+          _links-gap: false,
+          icon: (margin-#{$right}: 0.6rem, font-size: 1.5rem),
+        ),
+      // Header Middle
+      middle:
+        (
+          padding-top: 1.5rem,
+          padding-bottom: 1.5rem,
+          color: $dark-color,
+          // background: #fff,
+          background: $primary-color,
+          font-size: 1.2rem,
+          border-bottom: 1px solid $border-color,
+          logo: (
+            margin-#{$right}: 4.1rem,
+            _mobile-margin-#{$right}: 2rem,
+          ),
+        ),
+      bottom: (
+        padding-top: false,
+        padding-bottom: false,
+        color: $dark-color,
+        // background: #fff,
+        background: $primary-color,
+        border-bottom: false,
+        font-family: false,
+        font-size: 1.4rem,
+        font-weight: 600,
+        letter-spacing: -0.025em,
+        text-transform: false,
+      ),
+      // Main Nav
+      main-nav:
+        (
+          margin: false,
+          padding: false,
+          background: false,
+        ),
+      search: (
+        _background-color: $primary-color,
+        _border-color: $primary-color,
+        _max-width: 54rem,
+        // Expanded Search
+        expanded:
+          (
+            // width: 55.6rem,
+            height: false,
+          ),
+        simple: (
+          width: 35rem,
+          height: false,
+        ),
+        round: (
+          border-radius: 3rem,
+        ),
+        rounded: (
+          border-radius: 0.4rem,
+        ),
+        btn: (
+          width: 5.1rem,
+        ),
+        toggle: (
+          width: 30rem,
+        ),
+      ),
+      logo: (
+        min-width: 14.4rem,
+        margin-#{$right}: 2rem,
+      ),
+      // Login
+      compare:
+        (
+          margin: side-values(-0.4rem 3rem 0 0),
+          color: $dark-color,
+          label: (
+            _gap: false,
+            margin-top: 0.1rem,
+            font-weight: inherit,
+            text-transform: false,
+            color: inherit,
+          ),
+          icon: (
+            font-size: 3.3rem,
+            color: inherit,
+          ),
+        ),
+      // Wishlist
+      wishlist:
+        (
+          margin-#{$right}: 2.3rem,
+          color: $dark-color,
+          label: (
+            _gap: false,
+            margin-top: 0.3rem,
+            font-weight: inherit,
+            text-transform: false,
+            color: inherit
+          ),
+          icon: (font-size: 2.7rem, color: #f15622),
+        ),
+      // Minicart
+      cart:
+        (
+          margin-right: false,
+          color: $dark-color,
+          icon: (
+            font-size: 2.6rem,
+            color: inherit,
+          ),
+        ),
+      // Call
+      call:
+        (
+          margin-#{$right}: 4.8rem,
+          _color: $primary-color,
+          icon: (margin: side-values(0 0.6rem 0.2rem 0), font-size: 3rem),
+          info: (margin-top: 0.4rem),
+          num: (font-size: 1.6rem, line-height: 1.7),
+          chat: (color: $dark-color),
+        ),
+    ),
+  )
 );
- .wishlist-label:hover{
-    color:$primary-color-light;
+.wishlist-label:hover {
+  color: $primary-color-light;
 }
 .resp-dropdown-avator {
   display: none !important;
 }
-.logout-icon{
-    margin-bottom: 2.2rem !important;
+.logout-icon {
+  margin-bottom: 2.2rem !important;
 }
-
 
 @media screen and (max-width: 1000px) {
   .resp-dropdown {
@@ -196,11 +187,9 @@
   a:not(.btn) {
     color: white;
     &:hover {
-      
     }
   }
 }
-
 
 .header-top,
 .header-middle,
@@ -607,25 +596,25 @@
       }
     }
     &.hs-round {
-        .select-box,
+      .select-box,
+      .form-control {
+        border-radius: corner-values(0.3rem 0 0 0.3rem);
+      }
+      .btn-search {
+        border-radius: corner-values(0 0.3rem 0.3rem 0);
+        border: none;
+        background-color: white;
+      }
+      &.hs-simple {
+        input.form-control {
+          border-radius: 3rem;
+        }
+      }
+      &.hs-expanded {
         .form-control {
-            border-radius: corner-values(.3rem 0 0 .3rem);
+          border-radius: 0.3rem 0rem 0rem 0.3rem;
         }
-        .btn-search {
-            border-radius: corner-values(0 .3rem .3rem 0);
-            border: none;
-            background-color: white;
-        }
-        &.hs-simple {
-            input.form-control {
-                border-radius: 3rem;
-            }
-        }
-        &.hs-expanded {
-            .form-control {
-                border-radius: 0.3rem 0rem 0rem 0.3rem;
-            }
-        }
+      }
     }
     .btn-search {
       border-radius: corner-values(0 0.3rem 0.3rem 0);
@@ -753,7 +742,6 @@
     height: 4.1rem;
     background-color: #e5e5e5;
   }
-  
 }
 
 .cart-dropdown {
@@ -923,88 +911,87 @@ header.header.fixed {
   background-color: #06306c !important;
 }
 
-    .swiper-slide span:first-child {
-        display: block !important;
-    }
-    .swiper-wrapper {
-        justify-content: center;
-    }
-    .desc_color {
-        color: white !important;
-    }
-    .newbottom_header {
-        background-color: #ffbc00 !important;
-    }
-    .header-bottom:not(.fixed) .new_category > a {
-        background-color: #ffa800 !important;
-    }
-    .logo_containers {
-        cursor: pointer;
-    }
-    .wishlist_count {
-        right: -4px !important
-    }
+.swiper-slide span:first-child {
+  display: block !important;
+}
+.swiper-wrapper {
+  justify-content: center;
+}
+.desc_color {
+  color: white !important;
+}
+.newbottom_header {
+  background-color: #ffbc00 !important;
+}
+.header-bottom:not(.fixed) .new_category > a {
+  background-color: #ffa800 !important;
+}
+.logo_containers {
+  cursor: pointer;
+}
+.wishlist_count {
+  right: -4px !important;
+}
 
+// Homepage 4
 
-
-    // Homepage 4
-
-    .navbar-header{
-      background-color: $quaternary-color !important;
-      padding-top: 1rem !important;
-  }
+.navbar-header {
+  background-color: $quaternary-color !important;
+  padding-top: 1rem !important;
+}
 // home3
 
 .home-header-search {
-max-width: 38rem !important;
+  max-width: 38rem !important;
 }
 .home-header-search.hs-expanded input.form-control {
-color: $themeternary-color !important;
-background-color: $white-color!important;
-border: 1px solid $themeternary-color !important;
-border-right: none !important;
+  color: $themeternary-color !important;
+  background-color: $white-color !important;
+  border: 1px solid $themeternary-color !important;
+  border-right: none !important;
 }
 .ternarytheme-middle-header {
-background-color: $white-color !important;
+  background-color: $white-color !important;
 }
 .mainMenu-color {
-color:$themeternary-color !important;
+  color: $themeternary-color !important;
 }
 .ternarytheme-icon {
-color: $white-color;
-background-color: $themeternary-color;
-height: 40px;
-width: 40px;
-border-radius: 20px;
+  color: $white-color;
+  background-color: $themeternary-color;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
 }
 .wishlist-icon {
-margin-top: 7px;
+  margin-top: 7px;
 }
 .home-header-btn {
-border: 1px solid $themeternary-color;
-border-left: none !important;
+  border: 1px solid $themeternary-color;
+  border-left: none !important;
 }
-.login-text, .login-text:hover {
-color:$themeternary-color !important;
-font-size: 14px;
+.login-text,
+.login-text:hover {
+  color: $themeternary-color !important;
+  font-size: 14px;
 }
 .active-underline li .menu_titlee {
-color: $white-color !important;
-visibility: visible !important;
+  color: $white-color !important;
+  visibility: visible !important;
 }
-.ternarytheme-login,.ternarytheme-login:hover {
-color:$themeternary-color !important;
+.ternarytheme-login,
+.ternarytheme-login:hover {
+  color: $themeternary-color !important;
 }
-.ternarytheme-login:active .ternarytheme-login:focus{
-background-color: transparent !important;
+.ternarytheme-login:active .ternarytheme-login:focus {
+  background-color: transparent !important;
 }
 .ternarytheme-login {
-padding: 7px !important;
+  padding: 7px !important;
 }
 .ternary-select {
-border: none !important;
+  border: none !important;
 }
- 
 
 // home 4 Header
 .home4-header-middle {
@@ -1019,12 +1006,12 @@ border: none !important;
   font-weight: 600;
   letter-spacing: -0.025em;
   padding: 0 !important;
-  margin: 0 !important
+  margin: 0 !important;
 }
 
 .home4-navbar-header {
   background-color: $quaternary-color !important;
-  padding-top: 0rem !important; 
+  padding-top: 0rem !important;
 }
 .ternarytheme-middle-header {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -1033,25 +1020,39 @@ border: none !important;
   height: 35px;
 }
 
-.logo_containers_mob{
+.logo_containers_mob {
   display: none !important;
+}
+
+.wishlist-icon_mob {
+  // border: 2px solid red;
+  color: rgb(83, 82, 82) !important;
+  margin: 0.5rem !important;
+}
+.wishlist_mob {
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {
   .icon-anchor-mob {
     font-size: 2rem !important;
   }
-  .nav_dropdown_mob{
-    margin-top: -1.6rem;
+  .nav_dropdown_mob {
+    margin-top: -.6rem;
   }
-  .logo_containers_mob{
+  .logo_containers_mob {
     display: block !important;
-    width: 70px;
-    
-    // padding-left: 2rem;
-    // display: flex;
-    // justify-content: center !important;
-    // margin: auto;
-    // border: 2px solid red;
   }
+  .header_mob {
+    padding: 2.5rem 0rem !important;
+  }
+  .logo_mob {
+    height: 35px !important;
+    width: 80px !important;
+    // background-color: red;
+  }
+  .wishlist_mob {
+    display: block;
+  }
+ 
 }

@@ -13,7 +13,7 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
   };
   return (
     <>
-      <div className="container my-5 category_heading">
+      <div className="container my-5 category_heading category_heading_mob">
         <div className="row">
           {homeTopCategories?.length > 0 && homeTopCategories !== null ? (
             <>
@@ -22,7 +22,7 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                   {homeTopCategories
                     ?.slice(3, 5)
                     ?.map((banner: any, index: any) => (
-                      <div className="col-lg-6 col-12" key={banner.name}>
+                      <div className="col-lg-6 col-6" key={banner.name} >
                         <>
                           {/* <Link href={`/product-category/${banner?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}> */}
                           <Image
@@ -30,8 +30,8 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                             src={banner?.product_img}
                             alt="banner of Topcategory"
                             width={600}
-                            height={150}
-                            className="topcat_banner topcart_banner_mob" 
+                            height={150}  
+                            className="" 
                           />
                           {/* </Link> */}
                         </>
@@ -47,9 +47,8 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                     <Image
                       src="/assets/images/jucierBanner.png"
                       alt="banner of Topcategory"
-                      width={600}
-                      height={350}
-                      className="hometopcat_banner"
+                      width={100}
+                      height={100} style={{height:"100px", width:"100px", border:"2px solid red"}}
                     />
                     {/* </Link> */}
                   </div>

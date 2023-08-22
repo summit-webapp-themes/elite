@@ -22,7 +22,7 @@ const ProfileMaster = () => {
   const TokenFromStore: any = useSelector(get_access_token);
 
   const [showShipEditModal, setshowShipEditModal] = useState<boolean>(false);
-  const SelectedLangDataFromStore:any = useSelector(
+  const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -60,7 +60,7 @@ const ProfileMaster = () => {
   const handleSelectedState = async (stateValue: string) => {
     setSelectedCity("");
     setCity([]);
-    const getCitiesFromState:any = await FetchCitiesForAddressForm(
+    const getCitiesFromState: any = await FetchCitiesForAddressForm(
       stateValue,
       TokenFromStore?.token
     );
@@ -100,7 +100,7 @@ const ProfileMaster = () => {
   const personalDetails = () => {
     return (
       <>
-        <div className="col-lg-4 bold fs-3">
+        <div className="col-lg-4 bold fs-3" >
           {selectedMultiLangData?.user_name}:
         </div>
         <div className="col-lg-8 fs-4">
@@ -553,23 +553,22 @@ const ProfileMaster = () => {
       <div className="container">
         <section className="profile_section ">
           <div className="container">
-            <h1 className="bold text-uppercase mb-3 profile_heading">
+            <h1 className="bold text-uppercase mb-3 profile_heading profile_heading_mob">
               {selectedMultiLangData?.my_account}
             </h1>
             <div className="row">
-              <div className="col-lg-3 mt-2">
-                <div className="contactus_tab">
+              <div className="col-sm-1 col-lg-3 mt-2">
+                <div className="contactus_tab ">
                   <ul
                     id="faq-tab"
                     className="nav nav-tabs d-flex flex-column contact_tabs text-center"
                     role="tablist"
                   >
-                    <li className="nav-item">
+                    <li className="nav-item account_tab_mob">
                       <Link href="#contact_faq" legacyBehavior>
                         <a
-                          className={`nav-link profile_nav border tab_width ${
-                            !documentQueued?.setTrue ? "active" : ""
-                          }  nav_tabs_list `}
+                          className={`nav-link profile_nav border tab_width ${!documentQueued?.setTrue ? "active" : ""
+                            }  nav_tabs_list `}
                           id="personal_details_faq_tab"
                           data-bs-toggle="pill"
                           href="#personal_details_faq"
@@ -582,14 +581,14 @@ const ProfileMaster = () => {
                               className="fa fa-user-circle fs-1"
                               aria-hidden="true"
                             ></i>
-                            <p className="mb-0 sidebar_texsize">
+                            <p className="mb-0 sidebar_texsize" >
                               {selectedMultiLangData?.personal_details}
                             </p>
                           </h6>
                         </a>
                       </Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item account_tab_mob">
                       <Link href="#contact_faq" legacyBehavior>
                         <a
                           className="nav-link profile_nav border nav_tabs_list tab_width"
@@ -613,7 +612,7 @@ const ProfileMaster = () => {
                         </a>
                       </Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item account_tab_mob">
                       <Link href="#offers_faq" legacyBehavior>
                         <a
                           className="nav-link profile_nav border nav_tabs_list tab_width"
@@ -638,12 +637,11 @@ const ProfileMaster = () => {
                       </Link>
                     </li>
 
-                    <li className="nav-item col-lg-10 col-11">
+                    <li className="nav-item  account_tab_mob">
                       <Link href="#pay_faq" legacyBehavior>
                         <a
-                          className={`nav-link profile_nav border tab_width ${
-                            documentQueued?.setTrue ? "active" : ""
-                          }  nav_tabs_list `}
+                          className={`nav-link profile_nav border tab_width ${documentQueued?.setTrue ? "active" : ""
+                            }  nav_tabs_list `}
                           id="pay_faq_tab"
                           data-bs-toggle="pill"
                           href="#pay_faq"
@@ -663,7 +661,7 @@ const ProfileMaster = () => {
                         </a>
                       </Link>
                     </li>
-                    <li className="nav-item col-lg-10 col-11">
+                    <li className="nav-item account_tab_mob">
                       <Link href="#enqHist_faq" legacyBehavior>
                         <a
                           className="nav-link profile_nav border nav_tabs_list tab_width"
@@ -692,9 +690,8 @@ const ProfileMaster = () => {
               <div className="col-lg-9">
                 <div className="tab-content" id="contact-tabContent">
                   <div
-                    className={`tab-pane fade show  ${
-                      !documentQueued.setTrue ? "active" : ""
-                    }  `}
+                    className={`tab-pane fade show  ${!documentQueued.setTrue ? "active" : ""
+                      }  `}
                     id="personal_details_faq"
                     role="tabpanel"
                     aria-labelledby="personal_details_faq_tab"
@@ -750,9 +747,8 @@ const ProfileMaster = () => {
                   </div>
 
                   <div
-                    className={`tab-pane fade show  ${
-                      documentQueued.setTrue ? "active" : ""
-                    }  `}
+                    className={`tab-pane fade show  ${documentQueued.setTrue ? "active" : ""
+                      }  `}
                     id="pay_faq"
                     role="tabpanel"
                     aria-labelledby="pay_faq_tab"
