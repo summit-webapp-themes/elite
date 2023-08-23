@@ -92,7 +92,7 @@ const CartCard = ({
     <>
       {/* table start */}
 
-      <td className="product-name">
+      <td className="product-name product-name-mob" >
         <Link
           href={`${orders.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
           legacyBehavior
@@ -102,7 +102,7 @@ const CartCard = ({
         <br />
         <b>{orders.item_code}</b>
       </td>
-      <td className="product-price">
+      <td className="product-price product-name-mob">
         {orders?.details.length > 0 && orders?.details !== null && (
           <p className="text-start my-0">
             {orders.currency_symbol}
@@ -112,7 +112,7 @@ const CartCard = ({
           </p>
         )}
       </td>
-      <td className="product-quantity" >
+      <td className="product-quantity product-name-mob" >
         <div className="input-group">
           <span
             className="fs-2 ml-lg-2 arrow_pointer mr-1"
@@ -129,7 +129,7 @@ const CartCard = ({
             // }}
           />
           <span
-            className="fs-2 arrow_pointer ml-1"
+            className="fs-2 arrow_pointer ml-1 "
             onClick={() => handleQuantityIncrement(orders.item_code)}
           >
             <i className="fa fa-plus fs-4"></i>
@@ -144,11 +144,11 @@ const CartCard = ({
           </Link> */}
         </div>
       </td>
-      <td className="product-subtotal" >
-        <span className="amount">{orders.currency_symbol} {orders.amount}</span>
+      <td className="product-subtotal product-name-mob" >
+        <span className="amount product-price">{orders.currency_symbol} {orders.amount}</span>
       </td>
       {/* For mobile responsive */}
-      <div className="d-lg-none d-block">
+      <div className="d-lg-none d-block" >
         <div className="row">
           <div className="col-6 fs-4">
             {selectedMultiLangData?.item_with_desc}
@@ -201,18 +201,18 @@ const CartCard = ({
         </div>
         <div className="row">
           <div className="col-6 fs-4">{selectedMultiLangData?.tax} </div>:
-          <div className="col-5 text-start">₹ {orders.tax}</div>
+          <div className="col-5 text-start product-price">₹ {orders.tax}</div>
         </div>
-        <div className="row my-5">
+        <div className="row my-5" style={{order:"2px solid red"}}>
           <div className="col-6 fs-4">{selectedMultiLangData?.quantity_c} </div>
           :
-          <div className="col-5 ">
+          <div className="col-5 " >
             <span
               className="fs-2 arrow_pointer"
               onClick={() => handleQuantityDecrement(orders.item_code)}
             >
-              <i className="fa fa-plus fs-4"></i>
-            </span>
+              <i className="fa fa-minus fs-4 pe-2"></i>
+            </span> 
             <input
               type="text"
               className="w-50 text-start"
@@ -222,10 +222,10 @@ const CartCard = ({
               // }}
             />
             <span
-              className="fs-2 arrow_pointer"
+              className="fs-2 arrow_pointer "
               onClick={() => handleQuantityIncrement(orders.item_code)}
             >
-              <i className="fa fa-plus fs-4"></i>
+              <i className="fa fa-plus fs-4 ps-2"></i>
             </span>
             <br />
             {/* <Link href="" legacyBehavior>
@@ -236,16 +236,17 @@ const CartCard = ({
                 {selectedMultiLangData?.update}{" "}
               </a>
             </Link> */}
-          </div>
+          </div> 
         </div>
         <div className="row" >
           <div className="col-6 fs-4" >{selectedMultiLangData?.total}</div>:
-          <div className="col-5 ">{orders.currency_symbol} {orders.amount}</div>
+          <div className="col-5 product-price ps-0 ms-0 total_mob">{orders.currency_symbol} {orders.amount}</div>
         </div>
+        
         <h5 className="mb-0 sub-total-h5">
           {selectedMultiLangData?.sub_total}({cartListingItems?.total_qty}{" "}
           {selectedMultiLangData?.quantity_c}):{" "}
-          <span>
+          <span className="product-price" >
             {orders?.currency_symbol}{" "}
             {cartListingItems?.grand_total_excluding_tax}
           </span>

@@ -13,11 +13,12 @@ const DisplayTagHome3 = (props: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
   const currency_state_from_redux: any = useSelector(currency_selector_state);
+  console.log("currency",currency_state_from_redux )
   // const { bestSellerTagListingOfProducts } =
   //   useDisplayTagHooks();
   return (
     <div className="">
-      <div className="container">
+      <div className="container" >
         <div className="row banner-product-wrapper pb-5 ">
           <h3 className="text-center category_heading">{data?.tag_name}</h3>
           <div className="product-wrapper col-xl-12 col-md-12" >
@@ -70,7 +71,7 @@ const DisplayTagHome3 = (props: any) => {
                                 <h4 className="product-name truncate-overflow">
                                   <Link href={`${list.url}?currency=${currency_state_from_redux?.selected_currency_value}`}>{list.item_name}</Link>
                                 </h4>
-                                <div className="product-price">
+                                <div className="product-price" >
                                   <ins className="new-price">₹{list?.price}</ins>
                                   <del className="old-price">
                                     ₹{list?.mrp_price}

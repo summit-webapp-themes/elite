@@ -8,13 +8,13 @@ const FinalReviewSection = ({
   selectedMultiLangData,
 }: any) => {
   const [acceptedTerms, setAcceptedTerms] = useState<any>(false);
-
+console.log("itemsa",selectedMultiLangData )
   const handleAcceptTerms = () => {
     setAcceptedTerms(!acceptedTerms);
   };
   return (
     <>
-      <div className="finalreview pb-3 pr-3">
+      <div className="finalreview pb-3 pr-3 " >
         <h4 className="mb-3 finalreview-heading ">
           {selectedMultiLangData?.final_review}
         </h4>
