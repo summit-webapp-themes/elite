@@ -42,7 +42,7 @@ const Index = ({ sales_order_id }: any) => {
     setTypeOf(e.target.value);
   };
 
-  const {  Loadings } = UseCartOrderHistory();
+  const {  loadingStatus } = UseCartOrderHistory();
 
   const handleTextChange = (e: any) => {
     setText(e.target.value);
@@ -81,7 +81,7 @@ const Index = ({ sales_order_id }: any) => {
   return (
     <div>
 
-{Loadings === "pending" ? (
+{loadingStatus === true ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
             <>

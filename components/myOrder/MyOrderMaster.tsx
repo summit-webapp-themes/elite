@@ -24,11 +24,11 @@ const MyOrderMaster = () => {
     UseCartOrderHistory();
   console.log("orderHistoryItems", orderHistoryItems);
 
-  const {  Loadings } = UseCartOrderHistory();
+  const {  loadingStatus } = UseCartOrderHistory();
   
   return (
     <>
-       {Loadings === "pending" ? (
+       {loadingStatus === true ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
             <>
