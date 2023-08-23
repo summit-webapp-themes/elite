@@ -44,9 +44,9 @@ const OrderSummary = ({
   const currencySymbol = cartListingItems?.categories?.length > 0 &&
     cartListingItems?.categories.map((value: any, index: any) => {
       return (
-        <>
+        <span className="product-price">
           {cartListingItems?.categories[0]?.orders[0]?.currency_symbol}
-        </>
+        </span>
       )
     });
 
@@ -206,7 +206,7 @@ const OrderSummary = ({
                                             ) : (
                                               ""
                                             )}
-                                            <p className={`mb-0 cart_p text-end`}>
+                                            <p className={`mb-0 cart_p text-end product-price`}>
                                               {/* <i className="fa fa-inr"></i> */}
                                               {cartListingItems?.categories[0]?.orders[0]
                                                 ?.currency_symbol}
@@ -240,7 +240,7 @@ const OrderSummary = ({
                                       </p>
                                     </td>
                                     <td width="50%" className="px-0 py-0 ">
-                                      <p className={`mb-0 cart_p text-end`}>
+                                      <p className={`mb-0 cart_p text-end product-price`}>
                                         {/* <i className="fa fa-inr"></i> */}
                                         {cartListingItems?.categories[0]?.orders[0]
                                           ?.currency_symbol}

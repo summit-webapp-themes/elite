@@ -69,25 +69,25 @@ const MobCheckout = ({
 
   return (
     <>
-      <div className="">
-        {/* <div className="mt-0">
-        <button
-          type="button"
-          onClick={handlePlaceOrder}
-          className=" d-block w-100 mx-auto yellow_btn p-3 text-white  bold rounded  place_order_button"
-        >
-          {deleteCoupon}
-          Place Order
-        </button>
-      </div> */}
-        <div className="container ">
+      <div className="" >
+        <div className="mt-0 mb-4">
+          <button
+            type="button"
+            onClick={handlePlaceOrder}
+            className=" d-block w-75 mx-auto yellow_btn p-3  text-white  bold rounded  place_order_button"
+          >
+            {deleteCoupon}
+            Place Order
+          </button>
+        </div>
+        <div className="container " >
           <div className="row">
             {isDealer ? null : (
               <>
                 {!visitor_login ? (
                   <div>
                     <div className="col-lg-12 mb-5 w-100">
-                      <ul className="nav nav-tabs justify-content-center ">
+                      <ul className="nav nav-tabs justify-content-center " >
                         {CONSTANTS.ENABLE_APPLY_COUPON_CODE ? (
                           <li className="nav-item ">
                             <a
@@ -98,7 +98,7 @@ const MobCheckout = ({
                               role="tab"
                               tabIndex={-1}
                             >
-                              <span className="bold couponlink-text">
+                              <span className="bold couponlink-text coupon-text" >
                                 {selectedMultiLangData?.apply_coupon_code}
                               </span>
                             </a>
@@ -115,7 +115,7 @@ const MobCheckout = ({
                               role="tab"
                               tabIndex={-1}
                             >
-                              <span className="bold couponlink-text">
+                              <span className="bold couponlink-text coupon-text">
                                 {selectedMultiLangData?.use_store_credit}
                               </span>
                             </a>
@@ -138,7 +138,7 @@ const MobCheckout = ({
                               aria-labelledby="headingOne"
                               data-bs-parent="#accordionExample"
                             >
-                              <div className="accordion-body py-0">
+                              <div className="accordion-body py-0" >
                                 <form className="pt-3 fields-group-md">
                                   <div className="form-group">
                                     <input
@@ -223,7 +223,7 @@ const MobCheckout = ({
 
                     <hr className="mt-0" />
 
-                    <div className="container order_summary_section">
+                    <div className="container order_summary_section"  >
                       <h5 className="bold">
                         {selectedMultiLangData?.order_summary}
                       </h5>
@@ -235,12 +235,12 @@ const MobCheckout = ({
                       selectedMultiLangData={selectedMultiLangData}
                     />
 
-                    <div className="container px-0 my-0">
+                    <div className="container px-0 my-0" >
                       <div className="row">
                         <h5>{initialShippingAddress}</h5>
                         <div className="col-lg-12 mb-2 w-100">
                           <ul className="nav nav-tabs justify-content-center address_header">
-                            <li className="nav-item">
+                            <li className="nav-item " >
                               <a
                                 className="nav-link active bold px-0"
                                 href="#shipping"
@@ -249,7 +249,7 @@ const MobCheckout = ({
                                 role="tab"
                                 tabIndex={-1}
                               >
-                                <span className="bold">
+                                <span className="bold coupon-text">
                                   {selectedMultiLangData?.shipping_addresses}
                                 </span>
                               </a>
@@ -263,7 +263,7 @@ const MobCheckout = ({
                                 role="tab"
                                 tabIndex={-1}
                               >
-                                <span className="bold">
+                                <span className="bold coupon-text">
                                   {selectedMultiLangData?.billing_addresses}
                                 </span>
                               </a>
@@ -271,13 +271,13 @@ const MobCheckout = ({
                           </ul>
                         </div>
 
-                        <div className="tab-content ">
+                        <div className="tab-content " >
                           <div
                             className="address_details mb-3 tab-pane fade active show"
                             id="shipping"
                             role="tabpanel"
                           >
-                            <div className="col-12 mt-2">
+                            <div className="col-12 mt-2" >
                               {initialShippingAddress}
                               {shippingAddresses &&
                                 shippingAddresses.map(
@@ -286,7 +286,7 @@ const MobCheckout = ({
                                       <div className="row ">
                                         <div className="col-1 pb-4">
                                           {shippingAddresses &&
-                                          initialShippingAddress ===
+                                            initialShippingAddress ===
                                             detail.address_id ? (
                                             <input
                                               type="radio"
@@ -334,52 +334,52 @@ const MobCheckout = ({
                                         </div>
                                       </div>
 
-                                      <div className="row">
-                                        <div className="col-6">
+                                      <div className="row" >
+                                        <div className="col-7">
                                           <div className="d-flex ">
                                             <p className="">{detail.name}</p>
                                           </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-5">
                                           <div className="d-flex">
                                             <p className="  "></p>
                                           </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-7">
                                           <div className="d-flex ">
                                             <p className="">
                                               {detail.address_1}
                                             </p>
                                           </div>
                                         </div>
-                                        <div className="col-6 d-flex ">
+                                        <div className="col-5 d-flex ">
                                           <p className="">{detail.address_2}</p>
                                         </div>
-                                        <div className="col-6 d-flex ">
+                                        <div className="col-7 d-flex ">
                                           <p className="">{detail.country}</p>
                                         </div>
-                                        <div className="col-6 d-flex ">
+                                        <div className="col-5 d-flex ">
                                           <p className="">{detail.state}</p>
                                         </div>
-                                        <div className="col-6 d-flex ">
+                                        <div className="col-7 d-flex ">
                                           <p className="">{detail.city}</p>
                                         </div>
-                                        <div className="col-6 d-flex">
+                                        <div className="col-5 d-flex">
                                           <p className="">
                                             {detail.postal_code}
                                           </p>
                                         </div>
-                                        <div className="col-6 d-flex ">
+                                        <div className="col-7 " >
                                           <a
                                             className="text-dark"
                                             href={`mailto:${detail.email}`}
                                             target="_blank"
-                                            rel="noreferrer"
+                                            rel="noreferrer" style={{}}
                                           >
                                             {detail.email}
                                           </a>
                                         </div>
-                                        <div className="col-6 d-flex ">
+                                        <div className="col-5 d-flex ">
                                           <a
                                             className="text-dark"
                                             href={`tel:${detail.contact}`}
@@ -453,7 +453,7 @@ const MobCheckout = ({
                                             <div className="row " key={index}>
                                               <div className="col-1 pb-4">
                                                 {billingAddresses &&
-                                                initialBillingAddress ===
+                                                  initialBillingAddress ===
                                                   detail.address_id ? (
                                                   <input
                                                     type="radio"
@@ -592,7 +592,7 @@ const MobCheckout = ({
                           </div>
                         </div>
                       </div>
-                      <ShippingMethod
+                      {/* <ShippingMethod
                         transporterlist={transporterlist}
                         selectedVal={selectedVal}
                         queryHandle={queryHandle}
@@ -608,8 +608,8 @@ const MobCheckout = ({
                         orderSummary={orderSummary}
                         handlePlaceOrder={handlePlaceOrder}
                         deleteCoupon={deleteCoupon}
-                        selectedMultiLangData={+selectedMultiLangData}
-                      />
+                        selectedMultiLangData={selectedMultiLangData}
+                      /> */}
                     </div>
                   </div>
                 ) : (

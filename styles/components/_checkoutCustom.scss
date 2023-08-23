@@ -1,67 +1,66 @@
-
 .bill_checkbox {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
-
 .ship_heading {
-    cursor: pointer;
-    /* padding: 0 20px; */
+  cursor: pointer;
+  /* padding: 0 20px; */
 }
 
 .ship_edit {
-    padding-top: 30px;     
+  padding-top: 30px;
 }
 
 .bill_edit {
-    padding-top: 30px;     
+  padding-top: 30px;
 }
 
 .bill_heading {
-    cursor: pointer;
-    
+  cursor: pointer;
 }
 
 .button_color {
-    border-color:$themeternary-color !important;
-    color: $black-color !important;
+  border-color: $themeternary-color !important;
+  color: $black-color !important;
 }
 
 .address_button {
-    border-color: $themeternary-color !important;
-    color: $black-color !important;
+  border-color: $themeternary-color !important;
+  color: $black-color !important;
 }
 .selected_address_button {
-    border-color: $themeternary-color !important;
-    background-color:   #f7cd5b !important;
-    color: $black-color !important;
+  border-color: $themeternary-color !important;
+  background-color: #f7cd5b !important;
+  color: $black-color !important;
 }
 .address_icon {
-    border: none;
-    background: none;
-
+  border: none;
+  background: none;
 }
 
 .card_p {
-    font-size: 13px;
-    margin-top:-5px;
+  font-size: 13px;
+  margin-top: -5px;
 }
-
 
 /* order sumamry */
 
 .cart_p {
-    margin: -6px 0px;
-    font-size: 12px;
+  margin: -6px 0px;
+  font-size: 12px;
 }
 
 .summary_p {
-    margin: -6px 0px;
+  margin: -6px 0px;
 }
 
 /* visitor checkout */
 
 .order_summary_sec {
-    margin-top: 69px;
+  margin-top: 69px;
+}
+
+.coupon-text {
+  font-size: 13px !important;
+  padding: 0px 10px;
 }

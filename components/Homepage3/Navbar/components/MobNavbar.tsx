@@ -72,7 +72,7 @@ const MobNavbar = ({
               <i className="w-icon-search"></i>
             </button>
           </div>
-          
+
           <div className="tab-content">
             <div className="tab-pane active bg-light px-3" id="categories" >
               {navbarData?.length > 0 &&
@@ -96,7 +96,7 @@ const MobNavbar = ({
                               <Link href={navbarVal.url} legacyBehavior>
                                 <a
                                   className="text-dark"
-                                  // onClick={onClickCloseNav}
+                                // onClick={onClickCloseNav}
                                 >
                                   {navbarVal.name}
                                   <span
