@@ -164,7 +164,7 @@ const ProductDetail = ({
   // console.log("details@@", fullUrl);
   return (
     <div>
-      <div className="product-info">
+      <div className="product-info" >
         <b className="product_name">{productDetailData?.item_name}</b>
         <p className=" text-dark mt-1">
           <span>
@@ -185,12 +185,12 @@ const ProductDetail = ({
 
         <h3 className="p_price m-0">
           {productDetailData?.price !== 0 ? (
-            <>
+            <span className="productdetail-price">
               {productDetailData?.currency_symbol} {productDetailData?.price}
               {/* <IndianNumber value={productDetailData?.price} /> */}
-            </>
+            </span>
           ) : (
-            <button className="button_color p-2 rounded-3 fs-4 mb-2">
+            <button className="button_color p-2 rounded-3 fs-4 mb-2 ">
               {selectedMultiLangData?.price_on_request}
             </button>
             // <p
@@ -209,7 +209,7 @@ const ProductDetail = ({
 
           {productDetailData?.mrp_price !== 0 ? (
             <>
-              <s className="old-price currency_symbol">
+              <s className="old-price currency_symbol productdetail-price">
                 {productDetailData?.currency_symbol}{" "}
                 {productDetailData?.mrp_price}
                 {/* <IndianNumber value={productDetailData?.mrp_price} /> */}
