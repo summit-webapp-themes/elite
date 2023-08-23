@@ -13,7 +13,7 @@ import logoImg from "../../public/assets/images/elite.png"
 const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
   const TokenFromStore: any = useSelector(get_access_token);
-  const SelectedLangDataFromStore:any = useSelector(
+  const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectLangData, setLangData] = useState<any>();
@@ -91,7 +91,7 @@ const TernaryThemeFooter = () => {
                                   required
                                 />
                                 <button
-                                  className="btn btn-primary btn-rounded btn-left footer-button  ternaryTheme-btn"
+                                  className="btn btn-primary btn-rounded btn-left footer-button  ternaryTheme-btn subscribe_btn_mob"
                                   type="submit"
                                   onClick={handleSubscription}
                                 >

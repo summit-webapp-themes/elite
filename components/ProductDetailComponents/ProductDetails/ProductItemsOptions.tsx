@@ -34,7 +34,7 @@ const ProductItemsOptions: any = ({ items, selectedMultiLangData }: any) => {
         <div className="navigation-wrapper">
           <div className="recommended_title mb-4">
             <h2
-              className="title justify-content-center pt-2 pb-2 ls-normal mb-5"
+              className="title justify-content-center pt-2 pb-2 ls-normal mb-5 mt-4"
               style={{ backgroundColor: "#bdc3c7" }}
             >
               {selectedMultiLangData?.display_tag_heading}&nbsp;{items?.name}{" "}
@@ -45,12 +45,12 @@ const ProductItemsOptions: any = ({ items, selectedMultiLangData }: any) => {
             {items?.values?.length > 0 &&
               items?.values?.map((newdata: any, i: any) => (
                 <div
-                  className="keen-slider__slide number-slide1 product "
-                  key={i}
+                  className="keen-slider__slide number-slide1 product border ml-2"
+                  key={i} 
                 >
                   <div
                     className=" col-lg-11 p-3 mb-2 mx-0"
-                    style={{ height: "380px" }}
+                   
                   >
                     <ProductCard
                       key={i}

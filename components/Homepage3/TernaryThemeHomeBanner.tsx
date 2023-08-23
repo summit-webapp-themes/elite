@@ -12,7 +12,7 @@ const TernaryThemeHomeBanner = () => {
   };
   return (
     <>
-      <div className="intro-section mb-2">
+      <div className="intro-section mb-2" >
         {isLoading === "pending" ? (
           <div className="row justify-content-center">
             {[...Array(1)].map(() => (
@@ -24,21 +24,21 @@ const TernaryThemeHomeBanner = () => {
             ))}
           </div>
         ) : (
-          <div className="row">
-            <div className="intro-slide-wrapper col-lg-8">
+          <div className="row banner_wrapper_mob banner_wrapper_web"  >
+            <div className="intro-slide-wrapper col-lg-8 banner_first_mob banner_first" >
               <div className="swiper-container swiper-theme animation-slider pg-inner pg-xxl-hide pg-show pg-white nav-xxl-show nav-hide">
-                <div className="swiper-wrapper gutter-no row cols-1">
-                  <div className="banner banner-fixed intro-banner col-lg-12 col-sm-6 br-sm mb-4 d-flex justify-content-around">
+                <div className="swiper-wrapper gutter-no row cols-1 " >
+                  <div className="banner banner-fixed intro-banner col-lg-12 col-sm-6 br-sm mb-4 d-flex justify-content-around banner_1">
                     <figure>
                       {homeBannerData?.length > 0 && (
                         <Image
                           loader={myLoader}
-                          className="d-block w-100"
+                          className="d-block w-100 banner_1"
                           src={homeBannerData[0]?.img}
                           alt="Banner Images"
                           priority
                           width={1200}
-                          height={600}  
+                          height={600}
                         />
                       )}
                     </figure>
@@ -55,7 +55,7 @@ const TernaryThemeHomeBanner = () => {
               </div>
             </div>
             <div className="intro-banner-wrapper col-lg-4 ">
-              <div className="banner banner-fixed intro-banner col-lg-12 col-sm-6 br-sm mb-1 d-flex justify-content-around">
+              <div className="banner banner-fixed intro-banner col-lg-12 col-sm-6 br-sm mb-1 d-flex justify-content-around" >
                 <figure>
                   {homeBannerData?.length > 0 && (
                     <Image
@@ -79,7 +79,7 @@ const TernaryThemeHomeBanner = () => {
                 </div>
               </div>
 
-              <div className="banner banner-fixed intro-banner col-lg-12 col-sm-6 intro-banner2 mb-2 br-sm d-flex justify-content-around">
+              <div className="banner banner-fixed intro-banner col-lg-12 col-sm-6 intro-banner2 mb-2 br-sm d-flex justify-content-around" >
                 <figure>
                   {homeBannerData?.length > 0 && (
                     <Image

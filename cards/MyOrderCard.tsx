@@ -28,17 +28,17 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
               <p className="gray mb-0 myorder_p">{data?.creation}</p>
             </div>
             <div className="mb-3 col-md-2 col-6 order-div">
-              <p className="text-uppercase gray mb-0 myorder_p">
+              <p className="text-uppercase gray mb-0 myorder_p ">
                 {" "}
                 {selectedMultiLangData?.total_price}
               </p>
               {data?.total === 0 ? (
-                <p className="border price_request">
+                <p className="border price_request ">
                   {" "}
                   {selectedMultiLangData?.price_on_request}
                 </p>
               ) : (
-                <p className="gray mb-0 myorder_p">
+                <p className="gray mb-0 myorder_p product-price">
                   {data?.currency_symbol} {data?.total}
                 </p>
               )}
@@ -161,7 +161,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
 
                         <tr className="item_options myorder_tr">
                           <td className="px-0 py-0 pb-0 myorder_td">
-                            <p className="text-capitalize black mb-0 myorder_p">
+                            <p className="text-capitalize black mb-0 myorder_p ">
                               {selectedMultiLangData?.price}
                             </p>
                           </td>
@@ -171,7 +171,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                           >
                             <p className="text-capitalize black mb-0 myorder_p">
                               {detail?.prod_info[1]?.value !== 0 ? (
-                                <p className="mb-0">
+                                <p className="mb-0 product-price">
                                   {" "}
                                   : {data?.currency_symbol}{" "}
                                   {detail.prod_info[1]?.value}
