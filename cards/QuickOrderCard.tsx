@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { CONSTANTS } from "../services/config/app-config";
+import { CONSTANTS } from "../../services/config/app-config";
 import Image from "next/image";
 import Link from "next/link";
-import IndianNumber from "../components/QuickOrder/IndianNumber";
-
+import IndianNumber from "./IndianNumber";
 
 const QuickOrderCard = (props: any) => {
   const {

@@ -70,8 +70,6 @@ const MobCheckout = ({
   return (
     <>
       <div className="" >
-       
-        <div className="container " >
         <div className="mt-0 mb-4">
           <button
             type="button"
@@ -82,7 +80,10 @@ const MobCheckout = ({
             Place Order
           </button>
         </div>
+        <div className="container " >
           <div className="row">
+            {isDealer ? null : (
+              <>
                 {!visitor_login ? (
                   <div>
                     <div className="col-lg-12 mb-5 w-100">
@@ -693,6 +694,8 @@ const MobCheckout = ({
                     </div>
                   </>
                 )}
+              </>
+            )}
           </div>
         </div>
       </div>
