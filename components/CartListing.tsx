@@ -120,7 +120,7 @@ const CartListing = () => {
         <Image
           loader={myLoader}
           src={`${item?.image_url}`}
-          className="product_item_img img-fluid addcart_item"
+          className="product_item_img img-fluid addcart_item "
           alt="product images"
           width={100}
           height={100}
@@ -226,17 +226,17 @@ const CartListing = () => {
                                         (orders: any, i: any) => (
                                           <tr key={i}>
                                             <td className="product-thumbnail">
-                                              <div className="p-relative" >
+                                              <div className="p-relative product_item_img_mob" >
                                                 {handleRenderingOfCartImages(
                                                   orders
                                                 )}
                                                 <button
                                                   type="submit"
-                                                  className="btn btn-close"
+                                                  className="btn btn-close" 
                                                   onClick={() =>
                                                     HandleDeleteCart(
                                                       orders.item_code,
-                                                      cartListingItems.name
+                                                      cartListingItems.name 
                                                     )
                                                   }
                                                 >

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
   value: any;
 }
 
 const IndianNumber: React.FC<Props> = ({ value }) => {
-  const formattedValue = value?.toLocaleString('en-IN', {
+  const formattedValue = value?.toLocaleString("en-IN", {
     maximumFractionDigits: 0,
     useGrouping: true,
   });

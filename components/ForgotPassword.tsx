@@ -10,11 +10,14 @@ import {
   successmsg,
 } from "../store/slices/general_slices/toast_notification_slice";
 import { SelectedFilterLangDataFromStore } from "../store/slices/general_slices/selected-multilanguage-slice";
+import { useRouter } from "next/router";
 interface FormValues {
   email: any;
 }
 const ForgotPassword = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
@@ -50,6 +53,10 @@ const ForgotPassword = () => {
         dispatch(hideToast());
       }, 2000);
     }
+  };
+
+  const HandleBackButton: any = () => {
+    router.push("/login");
   };
   return (
     <>
@@ -113,18 +120,14 @@ const ForgotPassword = () => {
                       </div>
                     </div>
                     <div className={`custom_btn my-4`}>
-                      <Link
-                        href="/login"
-                        legacyBehavior
-                        className="forgotpassword-btn"
+                      <button
+                        onClick={() => HandleBackButton()}
+                        type="button"
+                        className={`btn button_color back_forgotpassword mr-2`}
                       >
-                        <button
-                          type="button"
-                          className={`btn button_color back_forgotpassword mr-2`}
-                        >
-                          {selectedMultiLangData?.back}
-                        </button>
-                      </Link>
+                        {selectedMultiLangData?.back}
+                      </button>
+
                       <button
                         type="submit"
                         className={`btn button_color btn_forgotpassword`}

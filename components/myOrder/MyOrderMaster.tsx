@@ -4,7 +4,7 @@ import CancelOrder from "./components/CancelOrder";
 import UseCartOrderHistory from "../../hooks/order-listing-page-hook/cart-order-history-hook";
 import { useSelector } from "react-redux";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
-import ListViewLoadingLayout from "../ProductListingComponents/products-data-view/ListViewLoadingLayout";
+
 
 const MyOrderMaster = () => {
   const SelectedLangDataFromStore: any = useSelector(
@@ -20,14 +20,14 @@ const MyOrderMaster = () => {
     }
   }, [SelectedLangDataFromStore]);
 
-  const { orderHistoryItems, handleHistoryDate, history } =
+  const { orderHistoryItems, handleHistoryDate, history, loadingStatus } =
     UseCartOrderHistory();
   console.log("orderHistoryItems", orderHistoryItems);
 
-  const { loadingStatus }: any = UseCartOrderHistory();
 
   return (
     <>
+
       <div className="container mt-3">
         <div className="mt-4 row">
           <div className="col-md-6">
@@ -63,6 +63,7 @@ const MyOrderMaster = () => {
               handleHistoryDate={handleHistoryDate}
               selectedMultiLangData={selectedMultiLangData}
               history={history}
+              loadingStatus={loadingStatus}
             />
           </div>
           <div id="can_order" className="container tab-pane fade">
@@ -76,7 +77,6 @@ const MyOrderMaster = () => {
           </div>
         </div>
       </div>
-
 
 
     </>

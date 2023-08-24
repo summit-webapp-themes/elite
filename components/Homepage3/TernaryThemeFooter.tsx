@@ -9,7 +9,7 @@ import {
 } from "../../store/slices/general_slices/toast_notification_slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
-import logoImg from "../../public/assets/images/elite.png"
+import logoImg from "../../public/assets/images/elite.png";
 const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
   const TokenFromStore: any = useSelector(get_access_token);
@@ -76,8 +76,9 @@ const TernaryThemeFooter = () => {
                                 }
                               </p>
                               <form
+                                onSubmit={handleSubscription}
                                 method="get"
-                                className="input-wrapper input-wrapper-inline input-wrapper-rounded mt-2"
+                                className="input-wrapper input-wrapper-inline input-wrapper-rounded"
                               >
                                 <input
                                   type="email"
@@ -91,9 +92,8 @@ const TernaryThemeFooter = () => {
                                   required
                                 />
                                 <button
-                                  className="btn btn-primary btn-rounded btn-left footer-button  ternaryTheme-btn subscribe_btn_mob"
+                                  className="btn btn-primary btn-rounded btn-left  footer-button"
                                   type="submit"
-                                  onClick={handleSubscription}
                                 >
                                   {selectLangData?.subscribe}
                                   <i className="w-icon-long-arrow-right"></i>

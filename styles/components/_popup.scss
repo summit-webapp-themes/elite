@@ -477,11 +477,16 @@ body .product-popup {
     }
 }
 
-.toast_custom_css {
-    position: fixed !important;
-    top: 80px;
-    right: 80px;
-    z-index: 999;
-    width: 200px;
-    height: 75px;
-}
+    .toast_custom_css {
+        position: fixed !important;
+        top: 80px;
+        right: 80px;
+        z-index: 999;
+        width: 180px;
+        // height: 55px;
+     
+    }
+
+    // .toast_custom {
+    //     border-radius: 9px !important;
+    // }
