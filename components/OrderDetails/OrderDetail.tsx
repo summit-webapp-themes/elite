@@ -98,15 +98,15 @@ const Index = ({ sales_order_id }: any) => {
             detail?.map((data: any) => (
               <div className="container" key={data?.name} >
                 <div className="row">
-                  <div className="col-md-6">
+                  <div className="col-md-6" >
                     <div className="page_heading">
-                      <h5 className="bold text-uppercase black mb-2 mt-4 orderDetail-heading">
+                      <h5 className="bold text-uppercase black mb-2 mt-5 orderDetail-heading orderDetail-heading-mob ">
                         {selectedMultiLangData?.order_details}
                       </h5>
                     </div>
                   </div>
                 </div>
-                <div className="order_detail_head row">
+                <div className="order_detail_head row"  >
                   <div className="col-12">
                     <div className="item_action d-flex ">
                       <div className="item_action_link me-3 ">{data.creation}</div>

@@ -3,13 +3,39 @@ import React from "react";
 import { CONSTANTS } from "../../services/config/app-config";
 import useHomeBanner from "../../hooks/HomePageHooks/HomeBannerHook";
 import BannerLoaderComponent from "../LoadingLayout/BannerLoaderComponent";
+import { useState, useEffect, useRef } from "react";
 
 const TernaryThemeHomeBanner = () => {
   const { homeBannerData, isLoading } = useHomeBanner();
+  const [bannerUrl1, setBannerUrl1] = useState(" ");
+  const [bannerUrl2, setBannerUrl2] = useState(" ");
+  const [bannerUrl3, setBannerUrl3] = useState(" ");
+
+  useEffect(() => {
+    if (
+      homeBannerData &&
+      homeBannerData.length > 0 &&
+      homeBannerData[0]?.btn_info
+    ) {
+
+      setBannerUrl1(homeBannerData[0]?.btn_info[0]?.btn_url);
+      setBannerUrl2(homeBannerData[1]?.btn_info[0]?.btn_url);
+      setBannerUrl3(homeBannerData[2]?.btn_info[0]?.btn_url);
+
+    } else {
+      console.log("Either homeBannerData or btn_info is null or empty.");
+    }
+  }, [homeBannerData])
 
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
   };
+
+  console.log("homebannerData", homeBannerData)
+
+
+  // {console.log("bannerUrl", homeBannerData[0]?.btn_info[0]?.btn_url)}
+
   return (
     <>
       <div className="intro-section mb-2" >
@@ -44,8 +70,9 @@ const TernaryThemeHomeBanner = () => {
                     </figure>
                     <div className="banner-content  ternaryTheme-bannerContent">
                       <a
-                        href="shop-banner-sidebar.html"
+                        href={bannerUrl1}
                         className="btn btn-dark btn-link  btn-icon-right ternaryTheme-btn"
+
                       >
                         Shop Now<i className="w-icon-long-arrow-right"></i>
                       </a>
@@ -71,7 +98,7 @@ const TernaryThemeHomeBanner = () => {
                 </figure>
                 <div className="banner-content ternaryTheme-bannerContent">
                   <a
-                    href="shop-banner-sidebar.html"
+                    href={bannerUrl2}
                     className="btn btn-dark btn-link ternaryTheme-btn btn-icon-right"
                   >
                     Shop Now<i className="w-icon-long-arrow-right"></i>
@@ -95,7 +122,7 @@ const TernaryThemeHomeBanner = () => {
                 </figure>
                 <div className="banner-content ternaryTheme-bannerContent">
                   <a
-                    href="shop-banner-sidebar.html"
+                    href={bannerUrl3}
                     className="btn btn-white btn-link ternaryTheme-btn btn-icon-right"
                   >
                     Shop Now<i className="w-icon-long-arrow-right"></i>
