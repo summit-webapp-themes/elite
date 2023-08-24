@@ -12,10 +12,12 @@ const PlaceOrder = ({
   handleHistoryDate,
   history,
   loading,
+  loadingStatus,
+
 }: any) => {
   // console.log("orderHistoryItems", orderHistoryItems, loading);
 
-  const placeorderCount:any =
+  const placeorderCount: any =
     orderHistoryItems &&
     orderHistoryItems?.filter(
       (items: any) => items?.payment_status !== "Cancelled"
@@ -65,38 +67,41 @@ const PlaceOrder = ({
             </div>
           </div>
         </div>
-        {loading ? (
-          <div className="row justify-content-center" >
+        {loadingStatus === true ? (
+          <div className="row justify-content-center">
             {[...Array(10)].map(() => (
               <>
-                <div className="col-lg-2 mx-3">
+                <div className="col-lg-12 mx-3">
                   <ListViewLoadingLayout />
                 </div>
               </>
             ))}
           </div>
-        ) : orderHistoryItems?.length > 0 ? (
-          orderHistoryItems
-            ?.filter((items: any) => items?.payment_status !== "Cancelled")
-            ?.map((data: any, i: any) => (
-              <div className="row" key={i} >
-                <div className="col-lg-12">
-                  <div className="order_card cart_table mb-3 card">
-                    <MyOrderCard
-                      data={data}
-                      selectedMultiLangData={selectedMultiLangData}
-                    />
+        ) :
+          orderHistoryItems?.length > 0 ? (
+            orderHistoryItems
+              ?.filter((items: any) => items?.payment_status !== "Cancelled")
+              ?.map((data: any, i: any) => (
+                <div className="row" key={i} >
+                  <div className="col-lg-12">
+                    <div className="order_card cart_table mb-3 card">
+                      <MyOrderCard
+                        data={data}
+                        selectedMultiLangData={selectedMultiLangData}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-        ) : (
-          <Norecord
-            heading={selectedMultiLangData?.no_orders_found}
-            content={selectedMultiLangData?.orders_show_up_here}
-            selectLangData={selectedMultiLangData}
-          />
-        )}
+              ))
+          )
+
+            : (
+              <Norecord
+                heading={selectedMultiLangData?.no_orders_found}
+                content={selectedMultiLangData?.orders_show_up_here}
+                selectLangData={selectedMultiLangData}
+              />
+            )}
 
         {/* {orderHistoryItems && orderHistoryItems?.length > 0 ? (
           <>
