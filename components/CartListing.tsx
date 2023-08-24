@@ -120,7 +120,7 @@ const CartListing = () => {
         <Image
           loader={myLoader}
           src={`${item?.image_url}`}
-          className="product_item_img img-fluid addcart_item"
+          className="product_item_img img-fluid addcart_item "
           alt="product images"
           width={100}
           height={100}
@@ -144,7 +144,7 @@ const CartListing = () => {
       ) : (
         <>
           {Object.keys(cartListingItems).length > 0 ? (
-            <div className="container py-5">
+            <div className="container py-5" >
               <div className="cart_heading">
                 <h3 className="text-uppercase my-0">
                   {selectedMultiLangData?.shopping_cart}
@@ -160,7 +160,7 @@ const CartListing = () => {
                     {selectedMultiLangData?.sub_total} (
                     {cartListingItems?.total_qty}{" "}
                     {selectedMultiLangData?.quantity_c}):{" "}
-                    <span>
+                    <span className="product-price">
                       {
                         cartListingItems?.categories[0]?.orders[0]
                           ?.currency_symbol
@@ -175,7 +175,7 @@ const CartListing = () => {
                 <div className="page-content">
                   <div className="container px-0">
                     <div className="row gutter-lg mb-10 mt-5">
-                      <div className="col-lg-9 mb-6 border">
+                      <div className="col-lg-9 mb-6 border" >
                         {cartListingItems?.categories?.length > 0 &&
                           cartListingItems?.categories !== null &&
                           cartListingItems?.categories.map(
@@ -226,17 +226,17 @@ const CartListing = () => {
                                         (orders: any, i: any) => (
                                           <tr key={i}>
                                             <td className="product-thumbnail">
-                                              <div className="p-relative">
+                                              <div className="p-relative product_item_img_mob" >
                                                 {handleRenderingOfCartImages(
                                                   orders
                                                 )}
                                                 <button
                                                   type="submit"
-                                                  className="btn btn-close"
+                                                  className="btn btn-close" 
                                                   onClick={() =>
                                                     HandleDeleteCart(
                                                       orders.item_code,
-                                                      cartListingItems.name
+                                                      cartListingItems.name 
                                                     )
                                                   }
                                                 >
@@ -267,7 +267,7 @@ const CartListing = () => {
                           )}
                       </div>
 
-                      <div className="col-lg-3 sticky-sidebar-wrapper">
+                      <div className=" col-lg-3 sticky-sidebar-wrapper" >
                         <div className="sticky-sidebar">
                           <div className="cart-summary mb-4">
                             <h3 className="cart-title">
@@ -277,7 +277,7 @@ const CartListing = () => {
                             <hr className="divider" />
                             <div className="order-total d-flex justify-content-between align-items-center mt-2">
                               <label>{selectedMultiLangData?.sub_total}</label>
-                              <span className="ls-50">
+                              <span className="ls-50 product-price">
                                 {
                                   cartListingItems?.categories[0]?.orders[0]
                                     ?.currency_symbol
@@ -287,7 +287,7 @@ const CartListing = () => {
                             </div>
                             <div className="order-total d-flex justify-content-between align-items-center mt-2">
                               <label>{selectedMultiLangData?.tax}</label>
-                              <span className="ls-50">
+                              <span className="ls-50 product-price">
                                 {
                                   cartListingItems?.categories[0]?.orders[0]
                                     ?.currency_symbol
@@ -303,7 +303,7 @@ const CartListing = () => {
                                   selectedMultiLangData?.order_total_including_tax
                                 }
                               </label>
-                              <span className="ls-50">
+                              <span className="ls-50 product-price">
                                 {
                                   cartListingItems?.categories[0]?.orders[0]
                                     ?.currency_symbol
@@ -323,29 +323,38 @@ const CartListing = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="cart-action mb-6">
-                        <button
+
+                      <div className="row cart-action mb-6" >
+                       
+                       <div className="col-md-12 ">
+                       <button
                           onClick={goToHomeCheckout}
-                          className="btn btn-dark btn-rounded btn-icon-left btn-shopping mr-auto w-25 ternaryTheme-CheckOutbtn"
+                          className="btn btn-dark btn-rounded btn-icon-left btn-shopping mr-auto  ternaryTheme-CheckOutbtn CheckOutbtn_mob"
                         >
                           <i className="w-icon-long-arrow-left"></i>
                           {selectedMultiLangData?.continue_shopping}
                         </button>
+                     
+                      
                         <button
                           type="submit"
-                          className="btn btn-rounded btn-default btn-clear w-25 ml-4 ternaryTheme-Clearbtn"
+                          className="btn btn-rounded btn-default btn-clear  ml-4 ternaryTheme-Clearbtn CheckOutbtn_mob"
                           name="clear_cart"
                           value="Clear Cart"
                           onClick={() => ClearCartHandle(cartListingItems.name)}
                         >
                           {selectedMultiLangData?.clear_cart}
                         </button>
+                       </div>
+                     
+                      
                       </div>
+                    
                     </div>
                   </div>
                 </div>
                 <hr />
-                <div className="col-12" >
+                <div className="col-12"   >
                   <div className="row justify-content-end">
                     <h5>{selectedMultiLangData?.note}:-</h5>
                     <p className="mb-0">{selectedMultiLangData?.note_1}</p>
@@ -368,7 +377,7 @@ const CartListing = () => {
             <Norecord
               heading={selectedMultiLangData?.cart_is_empty}
               content={selectedMultiLangData?.cart_is_empty_s}
-              selectLangData={selectedMultiLangData}
+              selectLangData={selectedMultiLangData} 
             />
           )}
         </>

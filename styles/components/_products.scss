@@ -1016,7 +1016,29 @@
 }
   
 
-.enquiry_link{color: black !important}
+.enquiry_link{color: black !important} 
 
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
+.product-price{
+    font-family: 'Ubuntu', sans-serif !important;
+    // border: 2px solid red
+    
+}
+
+
+.productdetail-price{
+    font-size: 20px !important;
+     font-family: 'Ubuntu', sans-serif !important;
+     
+}
+
+@media only screen and (max-width: 600px) {
+    .price{
+        font-family: 'Ubuntu', sans-serif !important;
+       
+        
+    }
+  }
+  

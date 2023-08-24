@@ -31,7 +31,7 @@ const WebFilters = (props: FiltersViewProps) => {
     }
   }, [languageData]);
   return (
-    <div className=" ">
+    <div className=" " >
       <div className="col-md-12 col-12 mt-2">
         {CONSTANTS.ENABLE_MISSING_PARTS && productListingData.length > 0 && (
           <>
@@ -62,7 +62,7 @@ const WebFilters = (props: FiltersViewProps) => {
         </a>
       </div> */}
 
-      <div className="filter_section">
+      <div className="filter_section" >
         <div className="filter_block">
           <div className="accordion accordion_custom" id="myAccordion">
             {loading ? (

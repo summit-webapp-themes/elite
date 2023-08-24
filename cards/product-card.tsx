@@ -78,7 +78,7 @@ const ProductCard = (props: ProductCardProps) => {
     }
   };
   return (
-    <div key={key} className="border p-3 rounded-3 h-100 ">
+    <div key={key} className=" p-3 rounded-3 h-100 " >
       <div className="d-flex justify-content-between mb-1">
         <div
           className={`badge text-bg-primary fs-5 display_tag_badge ${
