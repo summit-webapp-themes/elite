@@ -118,7 +118,7 @@ const Home3WebNavbar = ({
 
             <div className="ms-5">
               <select
-                onChange={(e) => handleCurrencyValueChange(e.target.value)}
+                onChange={(e:any) => handleCurrencyValueChange(e.target.value)}
                 className="ternary-select product-price  price"
               >
                 <option value="INR">₹</option>
