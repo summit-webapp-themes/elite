@@ -17,7 +17,8 @@ import {
 } from "../../services/api/general_apis/customer-form-data-api";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
-import logoImg from "../../public/assets/images/elite_logo.jpg"
+import logoImg from "../../public/assets/images/elite_logo.jpg";
+import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 const Registration = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -26,7 +27,9 @@ const Registration = () => {
     SelectedFilterLangDataFromStore
   );
   const TokenFromStore: any = useSelector(get_access_token);
+  const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
 
+  console.log("SelectedLangDataFromStore", SelectedLangDataFromStore);
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   useEffect(() => {
     if (
@@ -36,7 +39,6 @@ const Registration = () => {
     }
   }, [SelectedLangDataFromStore]);
 
-  console.log("register details", register_details);
   let [selectedCity, setSelectedCity] = useState("");
   let [selectedStates, setSelectedStates] = useState("");
 
@@ -116,12 +118,7 @@ const Registration = () => {
             <div className="logo mt-3">
               <Link href="/" legacyBehavior>
                 <a>
-                  <Image
-                    src={logoImg}
-                    width={132}
-                    height={83}
-                    alt="logo"
-                  />
+                  <Image src={logoImg} width={132} height={83} alt="logo" />
                 </a>
               </Link>
             </div>
@@ -149,6 +146,7 @@ const Registration = () => {
             validationSchema={RegistrationValidation}
             onSubmit={(values, action) => {
               handlesubmit(values, action);
+              action.resetForm();
             }}
           >
             {({ handleChange, handleBlur }) => (
@@ -163,7 +161,7 @@ const Registration = () => {
                               <div className="row">
                                 <div className="col-md-4">
                                   <Form.Label className="registration_label">
-                                    {HandleRegistrationForm(details)}::
+                                    {HandleRegistrationForm(details)}:
                                   </Form.Label>
                                 </div>
                                 {details?.name !== "state" &&
@@ -174,6 +172,7 @@ const Registration = () => {
                                       onBlur={handleBlur}
                                       type={details?.type}
                                       name={details?.name}
+                                      placeholder={`Enter ${details?.label}`}
                                       className={`${
                                         details?.name === "address"
                                           ? "address_textarea"
@@ -280,7 +279,7 @@ const Registration = () => {
                             <div className="m-2">
                               <Link href="/login">
                                 <button
-                                  className={`btn bold text-uppercase border_btn text-dark`}
+                                  className={`btn bold text-uppercase button_color text-dark rounded-3`}
                                 >
                                   {selectedMultiLangData?.back}
                                 </button>
@@ -289,7 +288,7 @@ const Registration = () => {
                             <div className="m-2">
                               <button
                                 type="submit"
-                                className="btn text-uppercase bold button_color"
+                                className="btn text-uppercase bold button_color rounded-3"
                               >
                                 {selectedMultiLangData?.submit}
                               </button>
