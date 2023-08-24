@@ -8,10 +8,12 @@ import "../styles/globals.scss";
 import ToastNotification from "../components/ToastNotification";
 // import { initializeFirebase } from "../push-notifications";
 // import { initializeFirebase } from '../public/service-worker';
-import { useEffect } from "react";
+import { useEffect , useRef } from "react";
 import LogoutList from "../services/api/auth/logout_api";
+import Scrolltop from "../components/ScrollTop";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const articleRef = useRef<null | HTMLParagraphElement>(null);
   // initializeFirebase();
   // useEffect(()=>
   // {
@@ -60,6 +62,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Layout>
                 <ToastNotification />
                 <Component {...pageProps} />
+                <Scrolltop articleRef={articleRef} />
                 {/* <Scrolltop articleRef={articleRef}/> */}
               </Layout>
             </div>
