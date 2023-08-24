@@ -29,6 +29,7 @@ const Registration = () => {
   const TokenFromStore: any = useSelector(get_access_token);
   const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
 
+  console.log("SelectedLangDataFromStore", SelectedLangDataFromStore);
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   useEffect(() => {
     if (
@@ -38,7 +39,6 @@ const Registration = () => {
     }
   }, [SelectedLangDataFromStore]);
 
-  console.log("register details", register_details);
   let [selectedCity, setSelectedCity] = useState("");
   let [selectedStates, setSelectedStates] = useState("");
 
@@ -146,6 +146,7 @@ const Registration = () => {
             validationSchema={RegistrationValidation}
             onSubmit={(values, action) => {
               handlesubmit(values, action);
+              action.resetForm();
             }}
           >
             {({ handleChange, handleBlur }) => (
@@ -160,7 +161,7 @@ const Registration = () => {
                               <div className="row">
                                 <div className="col-md-4">
                                   <Form.Label className="registration_label">
-                                    {HandleRegistrationForm(details)}::
+                                    {HandleRegistrationForm(details)}:
                                   </Form.Label>
                                 </div>
                                 {details?.name !== "state" &&
@@ -171,6 +172,7 @@ const Registration = () => {
                                       onBlur={handleBlur}
                                       type={details?.type}
                                       name={details?.name}
+                                      placeholder={`Enter ${details?.label}`}
                                       className={`${
                                         details?.name === "address"
                                           ? "address_textarea"
