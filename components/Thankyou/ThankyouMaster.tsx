@@ -24,7 +24,7 @@ const ThankYou = ({}: any) => {
     <>
       <div className="container mt-5">
         <div className="row">
-          <div className="text-center mx-auto col-md-12">
+          <div className="text-center mx-auto col-md-12 mt-5">
             <Image
               src={Thankyouimg}
               className="mb-1 success_thanku"
