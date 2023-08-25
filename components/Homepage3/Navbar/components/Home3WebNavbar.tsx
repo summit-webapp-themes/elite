@@ -191,7 +191,7 @@ const Home3WebNavbar = ({
                 )}
 
                 {loginStatus === "true" ? (
-                  <Dropdown.Menu className="fs-4 nav_dropdown_mob dropleft" >
+                  <Dropdown.Menu className="fs-4 nav_dropdown_mob dropleft nav-dropdown-web">
                     {/* <Dropdown.Item className="nav_dropdown">
                         <Link href="/quick-order" className="text-dark">
                           {selectedMultiLangData?.quick_order}

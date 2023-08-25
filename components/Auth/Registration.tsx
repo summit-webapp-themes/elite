@@ -7,10 +7,7 @@ import { useRouter } from "next/router";
 import { RegistrationValidation } from "../../validation/registrationValidation";
 import Image from "next/image";
 import { register_details } from "../dataSets/registrationDataset";
-import {
-  getRegistrationData,
-  registration_state,
-} from "../../store/slices/auth/registration_slice";
+import { getRegistrationData } from "../../store/slices/auth/registration_slice";
 import {
   FetchCitiesForAddressForm,
   FetchStateForAddressForm,
@@ -18,15 +15,20 @@ import {
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
 import logoImg from "../../public/assets/images/elite_logo.jpg"
+import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
+import RegistrationApi from "../../services/api/auth/registration_api";
+import { successmsg } from "../../store/slices/general_slices/toast_notification_slice";
+import { hideToast } from "../../store/slices/general_slices/toast_notification_slice";
+import { failmsg } from "../../store/slices/general_slices/toast_notification_slice";
+
 const Registration = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const TokenFromStore: any = useSelector(get_access_token);
 
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
-  const TokenFromStore: any = useSelector(get_access_token);
-
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   useEffect(() => {
     if (
@@ -35,20 +37,22 @@ const Registration = () => {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore]);
-
   console.log("register details", register_details);
-  let [selectedCity, setSelectedCity] = useState("");
-  let [selectedStates, setSelectedStates] = useState("");
+  let [selectedCity, setSelectedCity] = useState<any>("");
+  let [selectedStates, setSelectedStates] = useState<any>("");
+  const { handleLanguageChange, multiLanguagesData }: any = useMultilangHook();
 
   let [city, setCity] = useState<any>([]);
-  const [err, setErr] = useState(false);
-  let [state, setState] = useState([]);
+  const [err, setErr] = useState<boolean>(false);
+  let [state, setState] = useState<any>([]);
 
   useEffect(() => {
-    const getStateData = async () => {
-      const stateData = await FetchStateForAddressForm(TokenFromStore?.token);
+    const getStateData: any = async () => {
+      const stateData: any = await FetchStateForAddressForm(
+        TokenFromStore?.token
+      );
       if (stateData?.length > 0) {
-        let stateValues = stateData
+        let stateValues: any = stateData
           .map((item: any) => item?.name)
           .filter((item: any) => item !== null);
         setState(stateValues);
@@ -58,16 +62,16 @@ const Registration = () => {
     };
     getStateData();
   }, []);
-  const handleSelectedState = async (stateValue: string) => {
+  const handleSelectedState: any = async (stateValue: string) => {
     setSelectedCity("");
     setCity([]);
-    const getCitiesFromState = await FetchCitiesForAddressForm(
+    const getCitiesFromState: any = await FetchCitiesForAddressForm(
       stateValue,
       TokenFromStore?.token
     );
     console.log("cities values", getCitiesFromState);
     if (getCitiesFromState?.length > 0) {
-      let citiesValues = getCitiesFromState
+      let citiesValues: any = getCitiesFromState
         .map((item: any) => item.name)
         .filter((item: any) => item !== null);
 
@@ -76,13 +80,32 @@ const Registration = () => {
     }
   };
 
-  const handlesubmit = (values: any, action: any) => {
-    console.log("form values", values);
-    dispatch(getRegistrationData(values));
+  // const handlesubmit: any = (values: any, action: any) => {
+  //   console.log("form values", values);
+  //   dispatch(getRegistrationData(values));
+  //   action.resetForm();
+  // };
+
+
+  const handlesubmit: any = async (values: any, action: any) => {
+    let RegistrationApiRes: any = await RegistrationApi(values);
+    // dispatch(getRegistrationData(values));
+    if (RegistrationApiRes?.data?.message?.msg === "success") {
+      dispatch(successmsg("Registerd sucessfully"));
+      router.push("/login");
+      setTimeout(() => {
+        dispatch(hideToast());
+      }, 1200);
+    } else {
+      dispatch(failmsg(RegistrationApiRes?.data?.message?.error));
+      setTimeout(() => {
+        dispatch(hideToast());
+      }, 1200);
+    }
     action.resetForm();
   };
 
-  const HandleRegistrationForm = (details: any) => {
+  const HandleRegistrationForm: any = (details: any) => {
     if (details.label === "Name") {
       return selectedMultiLangData?.name;
     } else if (details.label === "Email") {
@@ -114,22 +137,20 @@ const Registration = () => {
         <div className="row">
           <div className="col-12">
             <div className="logo mt-3">
-              <Link href="/" legacyBehavior>
-                <a>
-                  <Image
-                    src={logoImg}
-                    width={132}
-                    height={83}
-                    alt="logo"
-                  />
-                </a>
+              <Link href="/" className="navbar-brand">
+                <Image
+                  src={logoImg}
+                  alt="logo"
+                  width={120}
+                  height={55}
+                />
               </Link>
             </div>
           </div>
         </div>
         <div className="registration_form">
           <div className="registr-heading text-center mb-2">
-            <h1 className="text-uppercase registration_title">
+            <h1 className="text-uppercase registration_title" >
               {selectedMultiLangData?.register}
             </h1>
           </div>
@@ -149,6 +170,7 @@ const Registration = () => {
             validationSchema={RegistrationValidation}
             onSubmit={(values, action) => {
               handlesubmit(values, action);
+              action.resetForm();
             }}
           >
             {({ handleChange, handleBlur }) => (
@@ -156,30 +178,32 @@ const Registration = () => {
                 <div className="form-wrapper registration">
                   <div className="mainfields-wrapper">
                     <div className="row justify-content-center">
-                      <div className="col-10 main-column">
+                      <div className="col-10 main-column" >
                         {register_details.map((details: any, i) => (
                           <div className="row mt-3" key={i}>
                             <Form.Group controlId={details?.controlId}>
                               <div className="row">
                                 <div className="col-md-4">
-                                  <Form.Label className="registration_label">
-                                    {HandleRegistrationForm(details)}::
+                                  <Form.Label className="registration_label" >
+                                    {HandleRegistrationForm(details)}:
                                   </Form.Label>
                                 </div>
                                 {details?.name !== "state" &&
-                                details?.name !== "city" ? (
+                                  details?.name !== "city" ? (
                                   <div className="col-md-8">
                                     <Field
-                                      onChange={handleChange}
+                                      onChange={handleChange} 
                                       onBlur={handleBlur}
                                       type={details?.type}
                                       name={details?.name}
-                                      className={`${
-                                        details?.name === "address"
+                                      placeholder={`Enter ${details?.label}`}
+                                      className={`${details?.name === "address"
                                           ? "address_textarea"
                                           : ""
-                                      } form-control rounded-0`}
+                                        } form-control rounded-0`}
+                                        
                                     />
+                                     
                                     <div className="error_message">
                                       <ErrorMessage
                                         className="error_message"
@@ -198,6 +222,7 @@ const Registration = () => {
                                       className="form-control rounded-0"
                                       id="state"
                                       name="state"
+                                     
                                       value={selectedStates}
                                       onBlur={handleBlur}
                                       onChange={(e: any) => {
@@ -238,7 +263,7 @@ const Registration = () => {
                                 )}
 
                                 {details?.name === "city" && (
-                                  <div className="col-md-8">
+                                  <div className="col-md-8" >
                                     <Field
                                       component="select"
                                       className="form-control rounded-0"
@@ -254,7 +279,6 @@ const Registration = () => {
                                       onBlur={handleBlur}
                                     >
                                       <option>
-                                        {" "}
                                         {
                                           selectedMultiLangData?.please_select_a_city
                                         }
@@ -280,19 +304,21 @@ const Registration = () => {
                             <div className="m-2">
                               <Link href="/login">
                                 <button
-                                  className={`btn bold text-uppercase border_btn text-dark`}
+                                  className={`btn bold text-uppercase  text-dark border-btn-back`}
                                 >
                                   {selectedMultiLangData?.back}
                                 </button>
                               </Link>
                             </div>
                             <div className="m-2">
+                          
                               <button
                                 type="submit"
-                                className="btn text-uppercase bold button_color"
+                                className="btn btn-warning text-uppercase bold button_color btn-color-submit" 
                               >
-                                {selectedMultiLangData?.submit}
+                                {selectedMultiLangData?.submit} 
                               </button>
+                           
                             </div>
                           </div>
                         </div>

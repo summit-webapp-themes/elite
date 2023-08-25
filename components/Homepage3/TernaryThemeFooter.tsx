@@ -12,10 +12,27 @@ import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slic
 import logoImg from "../../public/assets/images/elite.png"
 const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
-  const TokenFromStore: any = useSelector(get_access_token);
+  const navbarData: any = [];
+  const [subScription, setSubscriptions] = useState<any>("");
+  const handleSubscription = async (event: any) => {
+    event?.preventDefault();
+    console.log(subScription, "subScription");
+    let subScriptionRes = await getSubscriber(subScription);
+    console.log("subScriptionRes", subScriptionRes);
+    if (subScriptionRes?.data?.message?.msg === "success") {
+      dispatch(successmsg("subscribed successfully"));
+      setSubscriptions("");
+
+      setTimeout(() => {
+        dispatch(hideToast());
+      }, 1200);
+    }
+  };
+  console.log("nav footer", navbarData);
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
+  console.log("SelectedLangDataFromStore", SelectedLangDataFromStore);
   const [selectLangData, setLangData] = useState<any>();
 
   useEffect(() => {
@@ -25,27 +42,10 @@ const TernaryThemeFooter = () => {
       setLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore?.selectedLanguageData]);
-  const navbarData: any = [];
-  const [subScription, setSubscriptions] = useState();
-  const handleSubscription = async (event: any) => {
-    event?.preventDefault();
-    console.log(subScription, "subScription");
-    let subScriptionRes = await getSubscriber(
-      subScription,
-      TokenFromStore?.token
-    );
-    console.log("subScriptionRes", subScriptionRes);
-    if (subScriptionRes?.data?.message?.msg === "success") {
-      dispatch(successmsg("subscribed successfully"));
 
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 1200);
-    }
-  };
   return (
     <>
-      <footer className="footer footer-dark footer-section ternaryfooter">
+      <footer className="footer footer-dark footer-section ternaryfooter" >
         <div className="container ">
           <div className="footer-top">
             <div className="row mt-1">
@@ -76,6 +76,7 @@ const TernaryThemeFooter = () => {
                                 }
                               </p>
                               <form
+                                onSubmit={handleSubscription}
                                 method="get"
                                 className="input-wrapper input-wrapper-inline input-wrapper-rounded mt-2"
                               >
@@ -90,10 +91,10 @@ const TernaryThemeFooter = () => {
                                   placeholder="Your E-mail Address"
                                   required
                                 />
-                                <button
+                                <button 
                                   className="btn btn-primary btn-rounded btn-left footer-button  ternaryTheme-btn subscribe_btn_mob"
                                   type="submit"
-                                  onClick={handleSubscription}
+                                
                                 >
                                   {selectLangData?.subscribe}
                                   <i className="w-icon-long-arrow-right"></i>

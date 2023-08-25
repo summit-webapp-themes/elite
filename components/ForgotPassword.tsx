@@ -10,11 +10,14 @@ import {
   successmsg,
 } from "../store/slices/general_slices/toast_notification_slice";
 import { SelectedFilterLangDataFromStore } from "../store/slices/general_slices/selected-multilanguage-slice";
+
 interface FormValues {
   email: any;
 }
+
 const ForgotPassword = () => {
   const dispatch = useDispatch();
+
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
@@ -36,8 +39,12 @@ const ForgotPassword = () => {
       setIsAlertVisible(true);
     }
   }, [message]);
+
   const HandleSubmit = async (values: any) => {
-    let resetApi = await ResetPasswordLink(values);
+    const hostName = window?.location?.hostname;
+    console.log("hostname in tsx", hostName);
+    // let
+    let resetApi = await ResetPasswordLink(values, hostName);
     console.log("forgot pswd api res", resetApi);
     if (resetApi?.data?.message?.msg === "success") {
       dispatch(successmsg("Reset link send"));
@@ -51,9 +58,10 @@ const ForgotPassword = () => {
       }, 2000);
     }
   };
+
   return (
     <>
-      <div className="container my-5">
+      <div className="container my-5 margin_from_nav">
         <div className={`col-lg-6 col-sm-9 col-12  mx-auto form_wrap`}>
           <div className="page_heading text-center">
             <h4 className="forgot_passwordh4">
@@ -112,6 +120,7 @@ const ForgotPassword = () => {
                         )} */}
                       </div>
                     </div>
+
                     <div className={`custom_btn my-4`}>
                       <Link
                         href="/login"
@@ -142,4 +151,5 @@ const ForgotPassword = () => {
     </>
   );
 };
+
 export default ForgotPassword;
