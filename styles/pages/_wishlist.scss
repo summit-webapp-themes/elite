@@ -244,9 +244,14 @@
   border-radius: 7px !important;
   background-color: #fff !important;
 }
-
+.wishlist-container-web{
+  padding-top: 40px !important;
+}
 @media only screen and (max-width: 600px) {
     .add_cart_btn_wrapper{
         margin: 2rem 0;
+    }
+    .wishlist-container-web{
+      padding-top: 0 !important;
     }
 }

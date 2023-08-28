@@ -19,7 +19,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
   return (
     <>
       <div key={data.id}>
-        <div className="card-header">
+        <div className="card-header" >
           <div className="row">
             <div className="mb-3 mb-sm-0 col-md-2 col-6 order-div">
               <p className="text-uppercase gray mb-0 myorder_p">
@@ -110,7 +110,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
         {data?.order_details?.map((detail: any) => (
           <div
             className="cart_item card-body order_cartdetails"
-            key={detail?.item_name}
+            key={detail?.item_name} 
           >
             <div className="d-flex mb-2">
               <div className="flex-fill">

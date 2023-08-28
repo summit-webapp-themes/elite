@@ -11,6 +11,7 @@ import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slic
 import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
 import ListViewLoadingLayout from "../ProductListingComponents/products-data-view/ListViewLoadingLayout";
 import UseCartOrderHistory from "../../hooks/order-listing-page-hook/cart-order-history-hook";
+import OrderDetailCard from "../../cards/OrderDetailCard";
 
 
 type PropsType = {
@@ -56,6 +57,13 @@ const Index = ({ sales_order_id }: any) => {
     }
   }, [detail]);
 
+  useEffect(() => {
+    // console.log("Detail data in use", detail);
+    if (detail?.length > 0 && detail !== null) {
+      detail?.map((data: any) => setData(data.transaction_date));
+    }
+  }, [detail]);
+
   // console.log("newData", newData);
 
   const handleSubmit = async (e: any) => {
@@ -81,7 +89,13 @@ const Index = ({ sales_order_id }: any) => {
 
   return (
     <div>
-      {loadingStatus === true ? (
+      
+          {detail?.length > 0 &&
+            detail !== null &&
+            detail?.map((data: any) => (
+              <div className="container" key={data?.name} >
+            
+{loadingStatus === true ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
             <>
@@ -93,11 +107,7 @@ const Index = ({ sales_order_id }: any) => {
         </div>
       ) : (
         <>
-          {detail?.length > 0 &&
-            detail !== null &&
-            detail?.map((data: any) => (
-              <div className="container" key={data?.name} >
-                <div className="row">
+          <div className="row">
                   <div className="col-md-6" >
                     <div className="page_heading">
                       <h5 className="bold text-uppercase black mb-2 mt-5 orderDetail-heading orderDetail-heading-mob ">
@@ -118,7 +128,7 @@ const Index = ({ sales_order_id }: any) => {
                     </div>
                   </div>
                 </div>
-                <div id="printableArea" className="row">
+                <div id="printableArea" className="row" >
                   <div className="col-lg-12">
                     <div className="order_card mb-3 card">
                       <div className="card-body">
@@ -134,7 +144,7 @@ const Index = ({ sales_order_id }: any) => {
                                         {addrValue?.address_title}
                                       </p>
                                       <p className="mb-0">{addrValue?.address_1}</p>
-                                      <p className="mb-0">
+                                      <p className="mb-0" >
                                         {addrValue?.postal_code}
                                       </p>
                                       <p className="mb-0">
@@ -148,14 +158,14 @@ const Index = ({ sales_order_id }: any) => {
                           ))}
 
                           <div className="col-md-2">
-                            <h5 className="data_heading mb-1">
+                            {/* <h5 className="data_heading mb-1">
                               {selectedMultiLangData?.shipping_method}
-                            </h5>
+                            </h5> */}
                             <div>
-                              <p className="mb-0">
+                              {/* <p className="mb-0" }>
                                 {selectedMultiLangData?.transporter} :{" "}
                                 {data.shipping_method.transporter}
-                              </p>
+                              </p> */}
 
                               {data?.shipping_method?.door_delivery === 0 &&
                                 data?.shipping_method?.godown_delivery === 0 ? (
@@ -310,314 +320,29 @@ const Index = ({ sales_order_id }: any) => {
                         </div>
                       </div>
                     </div>
-                    <div className="order_card cart_table mb-3 card">
-                      {data?.order_details.map((oDetail: any, index: any) => (
-                        <div
-                          className="cart_item card-body border-bottom"
-                          key={index}
-                        >
-                          <div className="d-flex mb-2">
-                            <div className="flex-fill">
-                              <h6 className="green text-capitalize bold mb-0 status"></h6>
-                            </div>
-
-                          </div>
-                          <div className="d-flex align-items-center row">
-                            <div className="mb-3 mb-sm-0 col-lg-2 col-md-2 col-4">
-                              <div className="product-image">
-                                {oDetail?.img === null ||
-                                  oDetail?.img?.length === 0 ? (
-                                  <Image
-                                    src={`${oDetail?.brand_img}`}
-                                    className="product_item_img img-fluid"
-                                    alt="product images"
-                                    width={100}
-                                    height={100}
-                                    loader={myLoader}
-                                  />
-                                ) : (
-                                  <Image
-                                    loader={myLoader}
-                                    src={`${oDetail?.img}`}
-                                    className="product_item_img img-fluid addcart_item"
-                                    alt="product images"
-                                    width={100}
-                                    height={100}
-                                  />
-                                )}
-                              </div>
-                            </div>
-                            <div className="product_item_details col-lg-8 col-md-7 col-8">
-                              <div className="d-flex orderdetail-name">
-                                <div className="flex-fill">
-                                  <Link href={oDetail.product_url} legacyBehavior>
-                                    <a className="product_item_name">
-                                      {oDetail?.item_name}
-                                    </a>
-                                  </Link>
-
-                                  <table
-                                    width="100%"
-                                    className="mt-2 table table-borderless"
-                                  >
-                                    <tbody>
-                                      <tr className="item_options myorder_tr">
-                                        <td className="px-0 py-0 pb-0 myorder_td">
-                                          <p className="text-capitalize black mb-0 myorder_p">
-                                            {selectedMultiLangData?.item_code}
-                                          </p>
-                                        </td>
-                                        <td
-                                          width="85%"
-                                          className="px-0 py-0 pb-0 myorder_width"
-                                        >
-                                          <p className="text-capitalize black mb-0 myorder_p">
-                                            : {oDetail?.name}
-                                          </p>
-                                        </td>
-                                      </tr>
-
-                                      <tr className="item_options myorder_tr">
-                                        <td className="px-0 py-0 pb-0 myorder_td">
-                                          <p className="text-capitalize black mb-0 myorder_p">
-                                            {selectedMultiLangData?.price}
-                                          </p>
-                                        </td>
-                                        <td
-                                          width="85%"
-                                          className="px-0 py-0 pb-0 myorder_width"
-                                        >
-                                          <p className="text-capitalize black mb-0 myorder_p">
-                                            {oDetail?.prod_info[1].value !== 0 ? (
-                                              <p className="mb-0 product-price">
-                                                {" "}
-                                                : {data?.currency_symbol}{" "}
-                                                {oDetail?.prod_info[1].value}
-                                              </p>
-                                            ) : (
-                                              <p className="border price_request">
-                                                {
-                                                  selectedMultiLangData?.price_on_request
-                                                }
-                                              </p>
-                                            )}
-                                          </p>
-                                        </td>
-                                      </tr>
-
-                                      <tr className="item_options myorder_tr">
-                                        <td className="px-0 py-0 pb-0 myorder_td">
-                                          <p className="text-capitalize black mb-0 myorder_p">
-                                            {selectedMultiLangData?.quantity}
-                                          </p>
-                                        </td>
-                                        <td
-                                          width="85%"
-                                          className="px-0 py-0 pb-0 myorder_width"
-                                        >
-                                          <p className="text-capitalize black mb-0 myorder_p">
-                                            : {oDetail?.prod_info[2].value}
-                                          </p>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="text-right col-lg-2 col-md-3 col-12">
-                              {thankyou === "thankyou" ? (
-                                ""
-                              ) : (
-                                <button className=" order_links mb-2 d-block text-uppercase">
-                                  <Link
-                                    href={`${oDetail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
-                                    legacyBehavior>
-                                    <a className="order_linkshover text-dark">
-                                      {selectedMultiLangData?.view_product}
-                                    </a>
-                                  </Link>
-                                </button>
-                              )}
-                            </div>
-                            <div
-                              role="dialog"
-                              aria-modal="true"
-                              className="fade modal"
-                              tabIndex={-1}
-                              id="myModal"
-                            >
-                              <div className="modal-dialog">
-                                <div className="modal-content">
-                                  <div className="modal-header">
-                                    <div className="modal-title h4">
-                                      {selectedMultiLangData?.return_replacement}
-                                    </div>
-                                    <a className="action_icon">
-                                      <i
-                                        className="btn-close btn_close_custom"
-                                        data-bs-dismiss="modal"
-                                      ></i>
-                                    </a>
-                                  </div>
-                                  <div className="modal-body">
-                                    <div
-                                      id="email_faq"
-                                      aria-labelledby="email_faq_tab"
-                                    >
-                                      <div>
-                                        <div className="Toastify"></div>
-                                      </div>
-                                      <div className="card">
-                                        <div className="card-body">
-                                          <h6 className="black bold text-center text-uppercase mb-4 pl-3">
-                                            {
-                                              selectedMultiLangData?.return_replacement_request
-                                            }
-                                          </h6>
-                                          <div className="row">
-                                            <div className="col">
-                                              <form
-                                                id="returnReplacement"
-                                                className="fields-group-md"
-                                                onSubmit={handleSubmit}
-                                              >
-                                                <div className="form-group mb-2">
-                                                  <label className="form-label">
-                                                    {
-                                                      selectedMultiLangData?.return_replacement
-                                                    }
-                                                  </label>
-                                                  <select
-                                                    name="refund_requests[request_for]"
-                                                    className="form-control input_tags"
-                                                    onChange={handleTypeChange}
-                                                    value={typeOf}
-                                                  >
-                                                    <option value="Replacement">
-                                                      {
-                                                        selectedMultiLangData?.replacement
-                                                      }
-                                                    </option>
-                                                    <option value="Return">
-                                                      {
-                                                        selectedMultiLangData?.return
-                                                      }
-                                                    </option>
-                                                  </select>
-                                                  <span className="red"></span>
-                                                </div>
-                                                <div className="form-group">
-                                                  <label className="form-label">
-                                                    {
-                                                      selectedMultiLangData?.reason_for_return_replacement
-                                                    }
-                                                  </label>
-                                                  <textarea
-                                                    onChange={handleTextChange}
-                                                    name="refund_requests[refund_reason]"
-                                                    className="mb-1 form-control input_tags"
-                                                    value={text}
-                                                    required
-                                                  ></textarea>
-                                                  <span className="red"></span>
-                                                </div>
-                                                <div className="form-group mb-2">
-                                                  <label className="form-label">
-                                                    {
-                                                      selectedMultiLangData?.select_image_1
-                                                    }
-                                                  </label>
-                                                  <div className="form-file">
-                                                    <input
-                                                      name="refund_request_images[0][image]"
-                                                      type="file"
-                                                      className="form-control-file"
-                                                      // onChange={(e: any) =>
-                                                      //   handleFileChange1(e)
-                                                      // }
-                                                      required
-                                                    />
-                                                  </div>
-                                                  <span className="red"></span>
-                                                </div>
-                                                <div className="form-group mb-2">
-                                                  <label className="form-label">
-                                                    {
-                                                      selectedMultiLangData?.select_image_2
-                                                    }
-                                                  </label>
-                                                  <div className="form-file">
-                                                    <input
-                                                      name="refund_request_images[1][image]"
-                                                      type="file"
-                                                      className="form-control-file"
-                                                      // onChange={(e: any) =>
-                                                      //   handleFileChange2(e)
-                                                      // }
-                                                      required
-                                                    />
-                                                  </div>
-                                                  <span className="red"></span>
-                                                </div>
-                                                <div className="form-group mb-2">
-                                                  <label className="form-label">
-                                                    {
-                                                      selectedMultiLangData?.select_image_3
-                                                    }
-                                                  </label>
-                                                  <div className="form-file">
-                                                    <input
-                                                      name="refund_request_images[2][image]"
-                                                      type="file"
-                                                      className="form-control-file"
-                                                      // onChange={(e: any) =>
-                                                      //   handleFileChange3(e)
-                                                      // }
-                                                      required
-                                                    />
-                                                  </div>
-                                                  <span className="red"></span>
-                                                </div>
-                                                <div className="text-center mt-3">
-                                                  <button
-                                                    type="submit"
-                                                    className="btn btn-warning yellow_btn"
-                                                    data-bs-toggle="modal"
-                                                  //   onClick={() =>
-                                                  //     handleSubmitReturnReplacementRequest(
-                                                  //       data.id,
-                                                  //       oDetail.prod_name
-                                                  //     )
-                                                  //   }
-                                                  >
-                                                    {
-                                                      selectedMultiLangData?.submit_request
-                                                    }
-                                                  </button>
-                                                </div>
-                                              </form>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                  
                   </div>
                 </div>
+
+
+                <div className="container" key={data?.name} > 
+                <div className="order_card cart_table mb-3 card" >
+                      {data?.order_details.map((oDetail: any, index: any) => ( 
+                        <>
+                        <OrderDetailCard oDetail={oDetail} index={index}  currency_symbol={data?.currency_symbol}/>
+                        </>
+                       ))}
+                    </div>
+
+
+    </div>
+        </>
+        )}
+
+     
+
               </div>
             ))}
-        </>
-      )}
-
-
 
     </div>
   );
