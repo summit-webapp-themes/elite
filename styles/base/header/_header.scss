@@ -1043,14 +1043,17 @@ header.header.fixed {
 .headers{
   margin-bottom: 120px !important;
 }
+.nav-dropdown-web{
+  margin-top: -12px !important
+}
 
 @media only screen and (max-width: 600px) {
   .icon-anchor-mob {
     font-size: 2rem !important;
   }
-  .nav_dropdown_mob {
-    margin-top: -0.6rem;
-  }
+  // .nav_dropdown_mob {
+  //   margin-top: -0.6rem;
+  // }
   .logo_containers_mob {
     display: block !important;
   }

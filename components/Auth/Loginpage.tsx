@@ -8,31 +8,31 @@ import {
   useFormikContext,
 } from "formik";
 import { Form } from "react-bootstrap";
-import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { fetchLoginUser } from "../../store/slices/auth/login_slice";
-
 import {
-  getAccessToken,
-  get_access_token,
-} from "../../store/slices/auth/token-login-slice";
+  fetchLoginUser,
+  login_state,
+} from "../../store/slices/auth/login_slice";
+import { getAccessToken } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
-import {
-  failmsg,
-  hideToast,
-  successmsg,
-} from "../../store/slices/general_slices/toast_notification_slice";
+import getOtpFetchApi from "../../services/api/auth/get-otp-api";
 import logoImg from "../../public/assets/images/elite_logo.jpg"
+import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
+
 const Loginpage = () => {
   const dispatch = useDispatch();
+  const loginSucess: any = useSelector(login_state);
+  const [newState, setNewState] = useState<any>([]);
+  const [loginStatus, setLoginStatus] = useState<any>("");
   const [newValues, setnewValue] = useState<any>("");
+  const [ShowAlertMsg, setShowAlertMsg] = useState<boolean>(false);
+  const [messageState, setMessageState] = useState<any>("");
+  const [isOtpLoginState, setIsOtpLoginState] = useState<boolean>(false);
 
-  const [loginStatus, setLoginStatus] = useState(false);
-
-  let guestLogin: any;
+  const { handleLanguageChange, multiLanguagesData }: any = useMultilangHook();
 
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
@@ -46,67 +46,57 @@ const Loginpage = () => {
     }
   }, [SelectedLangDataFromStore]);
 
-  if (typeof window !== "undefined") {
-    guestLogin = localStorage.getItem("guest");
-  }
-
-  const TokenFromStore: any = useSelector(get_access_token);
-
-  console.log("token in login page", TokenFromStore);
-
+  let isLoggedIn: any;
+  let guestLogin: any;
   const router = useRouter();
   let obj = {
     isGoogleLogin: false,
     visitor: false,
     isOtpLogin: false,
   };
+  if (typeof window !== "undefined") {
+    guestLogin = localStorage.getItem("guest");
+    isLoggedIn = localStorage.getItem("isLoggedIn");
+  }
 
-  // const handlesubmit = (values: any) => {
-  //   const val = Object.assign(obj, values);
-  //   const reqParams = {
-  //     values: values,
-  //     guest: guestLogin,
-  //   };
-  //   dispatch(getAccessToken(reqParams));
+  const handlesubmit = (values: any) => {
+    const val = Object.assign(obj, values);
 
-  //   setTimeout(() => {
-  //     const loginStatusFromStorage: any = localStorage.getItem("isLoggedIn");
-  //     setLoginStatus(loginStatusFromStorage);
-  //   }, 2000);
-  // };
+    const user_params = {
+      values: values,
+      guest: guestLogin,
+      isOtpLogin: isOtpLoginState === true ? true : false,
+    };
+    console.log("userparams", user_params);
 
-  const handlesubmit = async (values: any) => {
-    try {
-      const val = Object.assign(obj, values);
-      const reqParams = {
-        values: values,
-        guest: guestLogin,
-      };
-      const AccessTokenData = await dispatch(getAccessToken(reqParams));
+    dispatch(getAccessToken(user_params));
 
-      if (AccessTokenData?.payload?.hasOwnProperty("access_token")) {
-        console.log("push to home");
-        setTimeout(() => {
-          router.push("/");
-          setLoginStatus(true);
-        }, 1500);
-        // localStorage.removeItem("guest");
-        // localStorage.removeItem("guestToken");
-      }
-    } catch (error) {
-      console.log("Error occurred:", error);
-    }
+    setTimeout(() => {
+      const loginStatusFromStorage: any = localStorage.getItem("isLoggedIn");
+      setLoginStatus(loginStatusFromStorage);
+      setIsOtpLoginState(false);
+    }, 2000);
   };
-
-  console.log("loginStatus", loginStatus);
   useEffect(() => {
-    if (loginStatus === true) {
+    if (loginStatus === "true") {
+      // dispatch(successmsg("logged in sucessfully"));
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 800);
       router.push("/");
       localStorage.removeItem("guest");
       localStorage.removeItem("guestToken");
     }
+    // else if (loginStatus === null) {
+    //   dispatch(failmsg("Invalid Credential"));
+    //   setTimeout(() => {
+    //     dispatch(hideToast());
+    //   }, 800);
+    // }
   }, [handlesubmit]);
+  console.log(loginSucess, "loginSucess");
 
+  console.log(isLoggedIn, "newState");
   const FormObserver: React.FC = () => {
     const { values }: any = useFormikContext();
     useEffect(() => {
@@ -115,21 +105,34 @@ const Loginpage = () => {
     return null;
   };
 
-  const otpSubmit = async (e: any) => {
+  const HandleGetOtp = async (e: any) => {
     let newObj = {
-      // isGoogleLogin: false,
-      // visitor: false,
-      isOtpLogin: true,
       email: newValues?.email,
     };
     e.preventDefault();
-    dispatch(fetchLoginUser(newObj));
+    let GetOtpApiRes: any = await getOtpFetchApi(newObj);
+
+    if (GetOtpApiRes?.data?.message?.msg === "success") {
+      setShowAlertMsg(true);
+      setMessageState(GetOtpApiRes?.data?.message?.msg);
+      setIsOtpLoginState(true);
+      setTimeout(() => {
+        setShowAlertMsg(false);
+        setMessageState("");
+      }, 1000);
+    } else {
+      setShowAlertMsg(true);
+      setMessageState(GetOtpApiRes?.data?.message?.msg);
+      setTimeout(() => {
+        setShowAlertMsg(false);
+        setMessageState("");
+      }, 1500);
+    }
   };
-  const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
   return (
     <>
       <div className="container">
-        <div className="logo mt-3">
+      <div className="logo mt-3">
           <Link href="/" className="navbar-brand">
             <Image
                src={logoImg}
@@ -139,6 +142,7 @@ const Loginpage = () => {
             />
           </Link>
         </div>
+
         <div>
           <Formik
             initialValues={{
@@ -159,7 +163,6 @@ const Loginpage = () => {
                         <div className="col-lg-6 logo-wrapper">
                           <h2 className="login_heading mt-3">
                             {selectedMultiLangData?.login}
-                            {/* {loginToken} */}
                           </h2>
                           <Form.Group controlId="formName">
                             <div className="row mt-3">
@@ -188,11 +191,25 @@ const Loginpage = () => {
                                     <Link
                                       className="linkss"
                                       href="#"
-                                      onClick={(e) => otpSubmit(e)}
+                                      onClick={(e) => HandleGetOtp(e)}
                                     >
                                       {selectedMultiLangData?.get_otp}
                                     </Link>
                                   </div>
+                                  {ShowAlertMsg && (
+                                    <div
+                                      className={`alert ${
+                                        messageState === "success"
+                                          ? "alert-success"
+                                          : "alert-danger"
+                                      } otp_alertbox`}
+                                      role="alert"
+                                    >
+                                      {messageState === "success"
+                                        ? "OTP send sucessfully on registered email"
+                                        : "Please enter valid or registered email"}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             </div>
@@ -225,7 +242,7 @@ const Loginpage = () => {
                                       className={`linkss`}
                                       href="/forgot-password"
                                     >
-                                      {selectedMultiLangData?.forgot_password}?
+                                      {selectedMultiLangData?.forgot_password} ?
                                     </Link>
                                   </div>
                                 </div>
@@ -239,20 +256,6 @@ const Loginpage = () => {
                             >
                               {selectedMultiLangData?.submit}
                             </button>
-                            {/* {isAlertVisible && (
-                                    <div
-                                      className={`alert ${
-                                        message === "success"
-                                          ? "alert-success"
-                                          : "alert-danger"
-                                      } otp_alertbox`}
-                                      role="alert"
-                                    >
-                                      {message === "success"
-                                        ? "OTP send sucessfully on registered email"
-                                        : "Please enter valid or registered email"}
-                                    </div>
-                                  )}                  */}
                           </div>
                         </div>
 
