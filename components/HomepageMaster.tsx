@@ -6,15 +6,9 @@ import DisplayTagHome3 from "./Homepage3/DisplayTagHome3";
 import OurFeaturedBrand from "./Homepage3/OurFeaturedBrand";
 import TernaryThemeTopCategoriesBanner from "./Homepage3/TernaryThemeTopCategoriesBanner";
 import TernaryThemeHomeBanner from "./Homepage3/TernaryThemeHomeBanner";
-import { useDispatch } from "react-redux";
-import { setDefaultCurrencyValue } from "../store/slices/general_slices/multi-currency-slice";
-import { setMultiLingualData } from "../store/slices/general_slices/multilang-slice";
-const HomepageMaster = ({ default_currency_value, multi_lingual_values }: any) => {
-  const { allTagsData } = useDisplayTagHooks();
-  const dispatch = useDispatch();
 
-  // dispatch(setDefaultCurrencyValue(default_currency_value));
-  dispatch(setMultiLingualData(multi_lingual_values));
+const HomepageMaster = () => {
+  const { allTagsData } = useDisplayTagHooks();
 
   const { homeTopCategories, isLoading, selectedCurrencyVal } =
     useHomeTopCategories();

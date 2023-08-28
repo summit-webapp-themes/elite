@@ -61,7 +61,7 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <div className="container my-5 margin_from_nav">
+      <div className="container my-5 margin_from_nav forget_password_wrapper">
         <div className={`col-lg-6 col-sm-9 col-12  mx-auto form_wrap`}>
           <div className="page_heading text-center">
             <h4 className="forgot_passwordh4">
@@ -100,7 +100,7 @@ const ForgotPassword = () => {
                             onChange={handleChange}
                           />
                           <br />
-                          <div className="error_message">
+                          <div className="error_message error-message-field">
                             <ErrorMessage name="email" />
                           </div>
                         </div>
@@ -121,7 +121,7 @@ const ForgotPassword = () => {
                       </div>
                     </div>
 
-                    <div className={`custom_btn my-4`}>
+                    <div className={`custom_btn my-4 mt-5 forget_btn_wrapper`}>
                       <Link
                         href="/login"
                         legacyBehavior

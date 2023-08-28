@@ -1,61 +1,38 @@
 import type { NextPage } from "next";
 import { CONSTANTS } from "../services/config/app-config";
 import MetaTag from "../services/api/general_apis/meta-tag-api";
-
 import Header from "../components/Header/Header";
-import { getMultiCurrencyValue } from "../services/api/general_apis/default-currency-api";
-import MultiLangApi from "../services/api/general_apis/multilanguage-api";
 import HomepageMaster from "../components/HomepageMaster";
-const Home: NextPage = (fetchedDataFromServer: any) => {
-  console.log("check data of server obj", fetchedDataFromServer);
+const Home: NextPage = ({ meta_data }: any) => {
   return (
     <>
-      {CONSTANTS.ENABLE_META_TAGS && (
-        <Header meta_data={fetchedDataFromServer?.metaTagsDataFromAPI} />
-      )}
+      {CONSTANTS.ENABLE_META_TAGS && <Header meta_data={meta_data} />}
       <div>
-        <HomepageMaster
-          default_currency_value={fetchedDataFromServer?.defaultCurrencyValue}
-          multi_lingual_values={fetchedDataFromServer?.multiLingualValues}
-        />
+        <HomepageMaster />
       </div>
     </>
   );
 };
 
 export async function getServerSideProps(context: any) {
-  let fetchedDataFromServer: any = {};
   const method = "get_meta_tags";
   const version = "v1";
   const entity = "seo";
   const params = `?version=${version}&method=${method}&entity=${entity}`;
   const url = `${context.resolvedUrl.split("?")[0]}`;
-
+  console.log("context url", context.resolvedUrl);
   if (CONSTANTS.ENABLE_META_TAGS) {
     let meta_data: any = await MetaTag(
       `${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}${params}&page_name=${url}`
     );
-    if (meta_data?.status === 200 && Object.keys(meta_data).length > 0) {
-      fetchedDataFromServer.metaTagsDataFromAPI =
-        meta_data?.data?.message?.data;
+    if (meta_data !== null && Object.keys(meta_data).length > 0) {
+      return { props: { meta_data } };
     } else {
-      fetchedDataFromServer = {};
+      return { props: {} };
     }
-  }
-  let get_default_currency_value = await getMultiCurrencyValue();
-  if (get_default_currency_value?.status === 200) {
-    fetchedDataFromServer.defaultCurrencyValue =
-      get_default_currency_value?.data?.message;
   } else {
-    fetchedDataFromServer.defaultCurrencyValue = {};
+    return { props: {} };
   }
-  let get_multi_lingual_data_value = await MultiLangApi();
-  if (get_multi_lingual_data_value?.length > 0) {
-    fetchedDataFromServer.multiLingualValues = get_multi_lingual_data_value;
-  } else {
-    fetchedDataFromServer.multiLingualValues = [];
-  }
-  return { props: fetchedDataFromServer };
 }
 
 export default Home;

@@ -1047,6 +1047,22 @@ header.header.fixed {
   margin-top: -12px !important
 }
 
+
+
+// Forget password
+.forget_password_wrapper{
+  padding-top: 60px;
+}
+.error-message-field{
+  margin-top: -1.5rem;
+ 
+}
+.forget_btn_wrapper{
+  margin-top: 40px !important;
+}
+
+
+
 @media only screen and (max-width: 600px) {
   .icon-anchor-mob {
     font-size: 2rem !important;
@@ -1072,4 +1088,12 @@ header.header.fixed {
   .wishlist_mob {
     display: block;
   }
+  .forget_password_wrapper{
+    padding-top: 0px;
+  }
 }
+
+
+
+
+

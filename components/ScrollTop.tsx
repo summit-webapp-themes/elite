@@ -45,8 +45,7 @@ const Scrolltop = ({ articleRef }: any) => {
 
   return (
     <>
-
-      <a 
+      <a
         id="scroll-top"
         onClick={handleScroll}
         className="scroll-top"
@@ -55,20 +54,18 @@ const Scrolltop = ({ articleRef }: any) => {
       >
         {complete ? (
           <>
-            <i className="w-icon-angle-up scrolltop-circle fa fa-circle-o-notch fa-spin"></i>
+            <i className="w-icon-angle-up"></i>
           </>
         ) : (
           <>
-            <i className="w-icon-angle-down scrolltop-circle"></i>
+            <i className="w-icon-angle-down"></i>
           </>
         )}
 
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 70 70" 
-         
-
+          viewBox="0 0 70 70"
         >
           <circle
             cx="35"
@@ -82,10 +79,7 @@ const Scrolltop = ({ articleRef }: any) => {
             style={{
               strokeDasharray: CIRCUMFERENCE,
               strokeDashoffset: CIRCUMFERENCE * position,
-              
             }}
-            
-            
           />
         </svg>
       </a>

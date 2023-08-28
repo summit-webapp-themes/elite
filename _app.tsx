@@ -58,7 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           {() => (
-            <div>
+            <div ref={articleRef}>
               <Layout>
                 <ToastNotification />
                 <Component {...pageProps} />
