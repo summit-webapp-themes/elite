@@ -12,7 +12,8 @@ import useWishlist from "../../../../hooks/WishListHooks/WishListHooks";
 import LogoutList from "../../../../services/api/auth/logout_api";
 import UseCartPageHook from "../../../../hooks/CartPageHooks/cart-page-hook";
 import { ClearToken } from "../../../../store/slices/auth/token-login-slice";
-import logoImg from "../../../../public/assets/images/elite_logo.jpg"
+import logoImg from "../../../../public/assets/images/elite_logo.jpg";
+import LinguisticsAndForex from "./LinguisticsAndForex";
 const Home3WebNavbar = ({
   navbarData,
   isLoading,
@@ -98,11 +99,9 @@ const Home3WebNavbar = ({
                   aria-label="menu-toggle"
                   onClick={navMenuclick}
                 ></a>
-
               </Link>
-
             </div>
-            <div className="my-1 ms-4  logo_containers_mob" >
+            <div className="my-1 ms-4  logo_containers_mob">
               <Link href="/" legacyBehavior>
                 <a>
                   <Image
@@ -110,37 +109,14 @@ const Home3WebNavbar = ({
                     src={logoImg}
                     width={132}
                     height={83}
-                    alt="logo" className="logo_mob"
+                    alt="logo"
+                    className="logo_mob"
                   />
                 </a>
               </Link>
             </div>
 
-            <div className="ms-5">
-              <select
-                onChange={(e:any) => handleCurrencyValueChange(e.target.value)}
-                className="ternary-select product-price  price"
-              >
-                <option value="INR">₹</option>
-                <option value="USD">$</option>
-                <option value="EUR">€</option>
-              </select>
-            </div>
-
-            <div className="">
-              <select
-                onChange={(e) => handleLanguageChange(e.target.value)}
-                className="ternary-select"
-              >
-                {multiLanguagesData?.length > 0 &&
-                  multiLanguagesData !== null &&
-                  multiLanguagesData.map((lang: any) => {
-                    return (
-                      <option value={lang.lang_code}>{lang.lang_name}</option>
-                    );
-                  })}
-              </select>
-            </div>
+            <LinguisticsAndForex />
 
             <div className="ms-1 wishlist_mob">
               <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
@@ -169,7 +145,7 @@ const Home3WebNavbar = ({
               </div>
             </div>
 
-            <div className="ms-1 mb-1" >
+            <div className="ms-1 mb-1">
               <Dropdown className="dropleft">
                 {loginStatus === "true" ? (
                   <Dropdown.Toggle
@@ -227,7 +203,6 @@ const Home3WebNavbar = ({
                 )}
               </Dropdown>
             </div>
-
           </div>
         </div>
         <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header ">
@@ -242,11 +217,9 @@ const Home3WebNavbar = ({
                       onClick={navMenuclick}
                     ></a>
                   </Link>
-
                 </div>
 
-
-                <div className="mx-2 my-1 logo_containers" >
+                <div className="mx-2 my-1 logo_containers">
                   <Link href="/" legacyBehavior>
                     <a>
                       <Image
@@ -254,12 +227,12 @@ const Home3WebNavbar = ({
                         src={logoImg}
                         width={120}
                         height={50}
-                        alt="logo" className="logo_mob"
+                        alt="logo"
+                        className="logo_mob"
                       />
                     </a>
                   </Link>
                 </div>
-
 
                 <nav className="main-nav">
                   <ul className="menu active-underline">
@@ -328,7 +301,7 @@ const Home3WebNavbar = ({
                 </button>
               </div>
             </div>
-            <div className="mx-2 " >
+            <div className="mx-2 ">
               <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
                 <Link href="/wishlist" legacyBehavior>
                   <a className="cart-toggle label-down link ternarytheme-icon">
