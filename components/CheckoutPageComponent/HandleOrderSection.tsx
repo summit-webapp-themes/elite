@@ -2,6 +2,7 @@ import React from "react";
 import OrderSummary from "../OrderSummary/OrderSummary";
 import { CONSTANTS } from "../../services/config/app-config";
 import useProfilePage from "../../hooks/GeneralHooks/ProfileHooks/ProfileHooks";
+import UseCheckoutPageHook from "../../hooks/CheckoutHooks/checkout-page-hook";
 
 const HandleOrderSection = (props: any) => {
   const {
@@ -18,9 +19,12 @@ const HandleOrderSection = (props: any) => {
     couponError,
     handlePlaceOrder,
     selectedMultiLangData,
+   
   } = props;
 
   let isDealer = JSON.parse(localStorage.getItem("isDealer") as any);
+  
+  const {currencySymbolForSummary}: any = UseCheckoutPageHook();
 
   const { profileList }: any = useProfilePage();
 
@@ -190,6 +194,7 @@ const HandleOrderSection = (props: any) => {
             orderSummary={orderSummary}
             couponError={couponError}
             selectedMultiLangData={selectedMultiLangData}
+            currencySymbolForSummary={currencySymbolForSummary}
           />
         </div>
       </div>

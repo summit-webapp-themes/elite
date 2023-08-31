@@ -34,6 +34,7 @@ const Loginpage = () => {
 
   const { handleLanguageChange, multiLanguagesData }: any = useMultilangHook();
 
+
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
