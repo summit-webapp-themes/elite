@@ -46,6 +46,7 @@ const CheckoutPageMaster = () => {
     handlePlaceOrder,
     storeCredit,
     quotationId,
+    currencySymbolForSummary,
   } = UseCheckoutPageHook();
 
   const useMediaQuery = (width: any) => {
@@ -98,6 +99,11 @@ const CheckoutPageMaster = () => {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore]);
+
+  console.log("visitor state", currencySymbolForSummary);
+  // console.log("currencySymbolForSummary", currencySymbolForSummary);
+
+
   return (
     <div className="mt-5 mb-5">
       {isBreakpoint ? (
@@ -142,6 +148,8 @@ const CheckoutPageMaster = () => {
             handleStoreCredit={handleStoreCredit}
             handlePlaceOrder={handlePlaceOrder}
             selectedMultiLangData={selectedMultiLangData}
+            currencySymbolForSummary={currencySymbolForSummary}
+
           />
         </>
       ) : (
@@ -179,6 +187,8 @@ const CheckoutPageMaster = () => {
               setStoreCredit={setStoreCredit}
               couponCodeApiRes={couponCodeApiRes}
               selectedMultiLangData={selectedMultiLangData}
+              currencySymbolForSummary={currencySymbolForSummary}
+
             />
           ) : (
             <div className=" container row  mb-2 mx-auto">
@@ -262,7 +272,7 @@ const CheckoutPageMaster = () => {
                   {" "}
                   {selectedMultiLangData?.order_summary}
                 </h5>
-                <OrderSummary selectedMultiLangData={selectedMultiLangData} />
+                <OrderSummary selectedMultiLangData={selectedMultiLangData}  />
               </div>
             </div>
           )}
@@ -273,3 +283,9 @@ const CheckoutPageMaster = () => {
 };
 
 export default CheckoutPageMaster;
+
+
+
+
+
+
