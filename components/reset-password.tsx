@@ -8,6 +8,7 @@ import Link from "next/link";
 import { RootState } from "../store/root-reducer";
 import ResetPasswordApi from "../services/api/auth/reset-password";
 import ResetpasswordValidation from "../validation/resetPasswordValidation";
+import { showToast } from "./ToastNotificationNew";
 import {
   failmsg,
   hideToast,
@@ -34,17 +35,19 @@ const ResetPassword: any = () => {
     let resetPasswordApiRes: any = await ResetPasswordApi(values);
     console.log("resetPasswordApiRes", resetPasswordApiRes);
     if (resetPasswordApiRes?.data?.message?.msg === "success") {
-      dispatch(successmsg("Password Changed sucessfully"));
+      // dispatch(successmsg("Password Changed sucessfully"));
+      showToast("Password Changed sucessfully", "success");
       router.push("/login");
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 2000);
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 2000);
     } else {
-      dispatch(failmsg("User With this email Does Not Exists"));
+      showToast("User With this email Does Not Exists", "error");
+      // dispatch(failmsg("User With this email Does Not Exists"));
 
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 2000);
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 2000);
     }
   };
 

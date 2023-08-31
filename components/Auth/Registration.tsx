@@ -20,6 +20,7 @@ import RegistrationApi from "../../services/api/auth/registration_api";
 import { successmsg } from "../../store/slices/general_slices/toast_notification_slice";
 import { hideToast } from "../../store/slices/general_slices/toast_notification_slice";
 import { failmsg } from "../../store/slices/general_slices/toast_notification_slice";
+import { showToast } from "../ToastNotificationNew";
 
 const Registration = () => {
   const router = useRouter();
@@ -91,16 +92,18 @@ const Registration = () => {
     let RegistrationApiRes: any = await RegistrationApi(values);
     // dispatch(getRegistrationData(values));
     if (RegistrationApiRes?.data?.message?.msg === "success") {
-      dispatch(successmsg("Registerd sucessfully"));
+      showToast("Registerd sucessfully", "success");
+      // dispatch(successmsg("Registerd sucessfully"));
       router.push("/login");
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 1200);
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1200);
     } else {
-      dispatch(failmsg(RegistrationApiRes?.data?.message?.error));
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 1200);
+      showToast(RegistrationApiRes?.data?.message?.error);
+      // dispatch(failmsg(RegistrationApiRes?.data?.message?.error));
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1200);
     }
     action.resetForm();
   };

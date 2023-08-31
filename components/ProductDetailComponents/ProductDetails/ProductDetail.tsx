@@ -36,6 +36,7 @@ import {
   get_access_token,
   updateAccessToken,
 } from "../../../store/slices/auth/token-login-slice";
+import { showToast } from "../../ToastNotificationNew";
 const ProductDetail = ({
   productDetailData,
   productVariants,
@@ -91,16 +92,18 @@ const ProductDetail = ({
       let dealerApi = await DealerAddToCartApi(newObjects);
       console.log("dealer api res", dealerApi);
       if (dealerApi.msg === "success") {
-        dispatch(successmsg("Item Added to cart"));
+        // dispatch(successmsg("Item Added to cart"));
+        showToast("Item Added to cart", "success");
         dispatch(fetchCartListing());
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 1200);
+        // setTimeout(() => {
+        //   dispatch(hideToast());
+        // }, 1200);
       } else {
-        dispatch(failmsg("Failed to Add to cart"));
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 1500);
+        showToast("Failed to Add to cart", "error");
+        // dispatch(failmsg("Failed to Add to cart"));
+        // setTimeout(() => {
+        //   dispatch(hideToast());
+        // }, 1500);
       }
       // ga.event({
       //   action: "add_to_cart",
@@ -125,7 +128,8 @@ const ProductDetail = ({
       );
 
       if (AddToCartProductRes.msg === "success") {
-        dispatch(successmsg("Item Added to cart"));
+        // dispatch(successmsg("Item Added to cart"));
+        showToast("Item Added to cart", "success");
 
         if (AddToCartProductRes?.data?.access_token !== null) {
           dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
@@ -141,14 +145,15 @@ const ProductDetail = ({
         } else {
           dispatch(fetchCartListing(TokenFromStore?.token));
         }
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 1200);
+        // setTimeout(() => {
+        //   dispatch(hideToast());
+        // }, 1200);
       } else {
-        dispatch(failmsg(AddToCartProductRes?.error));
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 1500);
+        showToast("Failed to Add to cart", "error");
+        // dispatch(failmsg(AddToCartProductRes?.error));
+        // setTimeout(() => {
+        //   dispatch(hideToast());
+        // }, 1500);
       }
     }
   };
