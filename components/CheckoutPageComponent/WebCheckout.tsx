@@ -52,6 +52,7 @@ const WebCheckout = ({
   setStoreCredit,
   handleStoreCredit,
   selectedMultiLangData,
+  currencySymbolForSummary,
 }: CheckoutPageInterface) => {
   const [visitorState, setVisitorState] = useState<any>(null);
   let [selectedCity, setSelectedCity] = useState<string>("");
@@ -62,6 +63,11 @@ const WebCheckout = ({
   const [shippingCheck, setShippingCheck] = useState<boolean>(true);
   const [checkIsDealer, setCheckIsDealer] = useState<any>("");
   const TokenFromStore: any = useSelector(get_access_token);
+
+
+
+
+
 
   let isDealer: any = useRef("");
   useEffect(() => {
@@ -101,6 +107,7 @@ const WebCheckout = ({
     }
   };
 
+  console.log(" webcheckoutcurrencySymbolForSummary",  currencySymbolForSummary)
   return (
     <>
       <div className="container mt-5">
@@ -208,6 +215,7 @@ const WebCheckout = ({
             <>
               <div className=" container row mb-4 mx-auto">
                 <div className="col-lg-12 ">
+              
                   <h4 className="text-uppercase bold mt-3">
                     {selectedMultiLangData?.checkout_details}
                   </h4>
@@ -240,6 +248,7 @@ const WebCheckout = ({
                         </h4>
                         <h5 className="bold px-3 mb-0">
                           {selectedMultiLangData?.shipping}
+                          
                         </h5>
                         <VisitorAddressForm
                           address_type="Shipping"
@@ -288,10 +297,14 @@ const WebCheckout = ({
                         {" "}
                         {selectedMultiLangData?.order_summary}
                       </h5>
+                  
                       <OrderSummary
                         orderSummary={orderSummary}
                         selectedMultiLangData={selectedMultiLangData}
+                        currencySymbolForSummary={currencySymbolForSummary}
+                        
                       />
+                      
                     </div>
                   </div>
                 </div>
@@ -305,3 +318,11 @@ const WebCheckout = ({
 };
 
 export default WebCheckout;
+
+
+
+
+
+
+
+

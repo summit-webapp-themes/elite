@@ -12,6 +12,7 @@ const OrderSummary = ({
   orderSummary,
   couponError,
   selectedMultiLangData,
+  currencySymbolForSummary,
 }: any) => {
   const [cartListingItems, setcartListingItems] = useState<any>([]);
   const [show, setshow] = useState<boolean>(false);
@@ -19,7 +20,7 @@ const OrderSummary = ({
   const cartProducts: any = useSelector(cart_listing_state);
 
 
-
+  console.log("order Summary", currencySymbolForSummary);
 
   let order;
   useEffect(() => {
@@ -36,10 +37,12 @@ const OrderSummary = ({
         vals?.name !== "Coupon Code" && vals?.name !== "Coupon Amount"
     );
   }
-  console.log(orderSummary, "orderSummary")
+  // console.log(orderSummary, "orderSummary")
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
+
+  console.log("ordersummarycurrencySymbolForSummary", currencySymbolForSummary);
 
   const currencySymbol = cartListingItems?.categories?.length > 0 &&
     cartListingItems?.categories.map((value: any, index: any) => {
@@ -71,18 +74,20 @@ const OrderSummary = ({
                     <div className="col-6 text-end">
                       <p className={`mb-0 summary_p`}>
                         {data?.name === "Coupon Code" ? (
-                          <p className={`mb-0 cart_p text-end`} >
+                          <p className={`mb-0 cart_p text-end product-price`} >
                             {/* <i className="fa fa-inr"></i> */}
                             {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
 
                             {/* {currencySymbol} */}
+                            {currencySymbolForSummary}
                             <IndianNumber value={data?.value} />
                           </p>
                         ) : (
-                          <div>
+                          <div className="product-price">
                             {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
 
-                            {currencySymbol}
+                            {/* {currencySymbol} */}
+                            {currencySymbolForSummary}
                             <IndianNumber value={data?.value} />
                           </div>
                         )}
@@ -115,19 +120,23 @@ const OrderSummary = ({
                       <div className="col-6 text-end">
                         <p className={`mb-0 summary_p`}>
                           {data.name === "Coupon Code" ? (
-                            <div>
+                            <div className="product-price">
                               {/* <i className="fa fa-inr"></i> */}
                               {/* <span> {data?.value}</span> */}
                               {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
                               {/* {currencySymbol} */}
+
+                              {currencySymbolForSummary}
                               <IndianNumber value={data?.value} />
                             </div>
                           ) : (
-                            <div>
+                            <div className="product-price">
                               {/* <i className="fa fa-inr"></i> */}
                               {/* <span> {data?.value}</span> */}
                               {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
-                              {currencySymbol}
+                              {/* {currencySymbol} */}
+
+                              {currencySymbolForSummary}
                               <IndianNumber value={data?.value} />
                             </div>
                           )}
@@ -315,3 +324,21 @@ const OrderSummary = ({
 };
 
 export default OrderSummary;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

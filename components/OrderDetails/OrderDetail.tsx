@@ -88,14 +88,8 @@ const Index = ({ sales_order_id }: any) => {
   }, [SelectedLangDataFromStore]);
 
   return (
-    <div>
-      
-          {detail?.length > 0 &&
-            detail !== null &&
-            detail?.map((data: any) => (
-              <div className="container" key={data?.name} >
-            
-{loadingStatus === true ? (
+    <div className="container">
+    {detail?.length === 0 ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
             <>
@@ -105,7 +99,11 @@ const Index = ({ sales_order_id }: any) => {
             </>
           ))}
         </div>
-      ) : (
+      ) : (  <>
+        {detail?.length > 0 &&
+            detail !== null &&
+            detail?.map((data: any) => (
+              <div className="container" key={data?.name} >
         <>
           <div className="row">
                   <div className="col-md-6" >
@@ -337,12 +335,15 @@ const Index = ({ sales_order_id }: any) => {
 
     </div>
         </>
-        )}
+      
 
      
 
               </div>
             ))}
+      </>  
+
+        )}
 
     </div>
   );

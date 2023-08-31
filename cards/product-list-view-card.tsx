@@ -16,6 +16,7 @@ import {
   updateAccessToken,
 } from "../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../store/slices/general_slices/selected-multilanguage-slice";
+import { showToast } from "../components/ToastNotificationNew";
 
 const ProductListViewCard = (props: any) => {
   const {
@@ -52,21 +53,23 @@ const ProductListViewCard = (props: any) => {
     );
     console.log("cart response", AddToCartProductRes);
     if (AddToCartProductRes.msg === "success") {
-      dispatch(successmsg("Item Added to cart"));
+      // dispatch(successmsg("Item Added to cart"));
+      showToast("Item Added to cart", "success");
       console.log("AddToCartProductRes", AddToCartProductRes);
       if (AddToCartProductRes?.data?.access_token !== null) {
         localStorage.setItem("guest", AddToCartProductRes?.data?.email);
         dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
         // dispatch(fetchCartListing());
       }
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 1200);
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1200);
     } else {
-      dispatch(failmsg("Failed to Add to cart"));
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 1500);
+      showToast("Failed to Add to cart", "error");
+      // dispatch(failmsg("Failed to Add to cart"));
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1500);
     }
   };
 

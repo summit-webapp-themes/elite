@@ -15,6 +15,8 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
       }
     }
   }, []);
+
+  
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   return (
     <>
@@ -24,6 +26,9 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
             <div className="mb-3 mb-sm-0 col-md-2 col-6 order-div">
               <p className="text-uppercase gray mb-0 myorder_p">
                 {selectedMultiLangData?.order_placed}
+               <p>
+               {data?.transaction_date}
+                </p> 
               </p>
               <p className="gray mb-0 myorder_p">{data?.creation}</p>
             </div>

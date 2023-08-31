@@ -15,6 +15,7 @@ import {
   get_access_token,
   updateAccessToken,
 } from "../store/slices/auth/token-login-slice";
+import { showToast } from "../components/ToastNotificationNew";
 
 const ProductCard = (props: ProductCardProps) => {
   const {
@@ -54,7 +55,8 @@ const ProductCard = (props: ProductCardProps) => {
     );
 
     if (AddToCartProductRes.msg === "success") {
-      dispatch(successmsg("Item Added to cart"));
+      // dispatch(successmsg("Item Added to cart"));
+      showToast("Item Added to cart", "success");
 
       if (AddToCartProductRes?.data?.access_token !== null) {
         dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
@@ -67,14 +69,15 @@ const ProductCard = (props: ProductCardProps) => {
       } else {
         dispatch(fetchCartListing(TokenFromStore?.token));
       }
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 1200);
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1200);
     } else {
-      dispatch(failmsg(AddToCartProductRes?.error));
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 1500);
+      showToast("Failed to Add to cart", "error");
+      // dispatch(failmsg(AddToCartProductRes?.error));
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1500);
     }
   };
   return (

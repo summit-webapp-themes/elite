@@ -34,6 +34,7 @@ const Loginpage = () => {
 
   const { handleLanguageChange, multiLanguagesData }: any = useMultilangHook();
 
+
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
@@ -207,7 +208,7 @@ const Loginpage = () => {
                                     >
                                       {messageState === "success"
                                         ? "OTP send sucessfully on registered email"
-                                        : "Please enter valid or registered email"}
+                                        : "Please enter valid Mobile No or registered email"}
                                     </div>
                                   )}
                                 </div>
