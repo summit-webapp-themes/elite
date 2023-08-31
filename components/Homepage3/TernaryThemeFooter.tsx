@@ -9,6 +9,7 @@ import {
 } from "../../store/slices/general_slices/toast_notification_slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
+import { showToast } from "../ToastNotificationNew";
 import logoImg from "../../public/assets/images/elite.png"
 const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
@@ -20,12 +21,13 @@ const TernaryThemeFooter = () => {
     let subScriptionRes = await getSubscriber(subScription);
     console.log("subScriptionRes", subScriptionRes);
     if (subScriptionRes?.data?.message?.msg === "success") {
-      dispatch(successmsg("subscribed successfully"));
+      // dispatch(successmsg("subscribed successfully"));
+      showToast("subscribed successfully", "success");
       setSubscriptions("");
 
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 1200);
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1200);
     }
   };
   console.log("nav footer", navbarData);

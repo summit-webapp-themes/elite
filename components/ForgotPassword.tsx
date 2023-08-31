@@ -10,6 +10,7 @@ import {
   successmsg,
 } from "../store/slices/general_slices/toast_notification_slice";
 import { SelectedFilterLangDataFromStore } from "../store/slices/general_slices/selected-multilanguage-slice";
+import { showToast } from "./ToastNotificationNew";
 
 interface FormValues {
   email: any;
@@ -41,27 +42,29 @@ const ForgotPassword = () => {
   }, [message]);
 
   const HandleSubmit = async (values: any) => {
-    const hostName = window?.location?.hostname;
+    const hostName = window?.location?.host;
     console.log("hostname in tsx", hostName);
     // let
     let resetApi = await ResetPasswordLink(values, hostName);
     console.log("forgot pswd api res", resetApi);
     if (resetApi?.data?.message?.msg === "success") {
-      dispatch(successmsg("Reset link send"));
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 2000);
+      showToast("Reset link send", "success");
+      // dispatch(successmsg("Reset link send"));
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 2000);
     } else {
-      dispatch(failmsg("User With this email Does Not Exists"));
-      setTimeout(() => {
-        dispatch(hideToast());
-      }, 2000);
+      showToast("User With this email Does Not Exists", "error");
+      // dispatch(failmsg("User With this email Does Not Exists"));
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 2000);
     }
   };
 
   return (
     <>
-      <div className="container my-5 margin_from_nav">
+      <div className="container my-5 margin_from_nav forget_password_wrapper">
         <div className={`col-lg-6 col-sm-9 col-12  mx-auto form_wrap`}>
           <div className="page_heading text-center">
             <h4 className="forgot_passwordh4">
@@ -100,7 +103,7 @@ const ForgotPassword = () => {
                             onChange={handleChange}
                           />
                           <br />
-                          <div className="error_message">
+                          <div className="error_message error-message-field">
                             <ErrorMessage name="email" />
                           </div>
                         </div>
@@ -121,7 +124,7 @@ const ForgotPassword = () => {
                       </div>
                     </div>
 
-                    <div className={`custom_btn my-4`}>
+                    <div className={`custom_btn my-4 mt-5 forget_btn_wrapper`}>
                       <Link
                         href="/login"
                         legacyBehavior

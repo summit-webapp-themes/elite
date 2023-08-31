@@ -382,8 +382,9 @@
 .topcat_banner {
   height: 550px !important;
 }
-.banner_wrapper_web {
-//   padding-top: 120px;
+.banner_wrapper_web{
+  padding: 0 !important ;
+  margin: 0 !important 
 }
 .banner_1 {
   z-index: 1 !important;
