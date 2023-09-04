@@ -14,7 +14,7 @@ import {
 } from "../../services/api/general_apis/customer-form-data-api";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
-import logoImg from "../../public/assets/images/elite_logo.jpg"
+import logoImg from "../../public/assets/images/b2c_logo.png"
 import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 import RegistrationApi from "../../services/api/auth/registration_api";
 import { successmsg } from "../../store/slices/general_slices/toast_notification_slice";
@@ -144,7 +144,7 @@ const Registration = () => {
                 <Image
                   src={logoImg}
                   alt="logo"
-                  width={120}
+                  width={250}
                   height={55}
                 />
               </Link>

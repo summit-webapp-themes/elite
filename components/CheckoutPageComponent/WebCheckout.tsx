@@ -110,7 +110,7 @@ const WebCheckout = ({
   console.log(" webcheckoutcurrencySymbolForSummary",  currencySymbolForSummary)
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-5 ms-1">
         <div>
           {visitorState !== null ? (
             <>

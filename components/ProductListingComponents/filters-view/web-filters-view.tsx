@@ -31,16 +31,16 @@ const WebFilters = (props: FiltersViewProps) => {
     }
   }, [languageData]);
   return (
-    <div className=" " >
-      <div className="col-md-12 col-12 mt-2">
+    <div className=" "  >
+      <div className="col-md-12 col-12 mt-0 webfilter-sub-container" >
         {CONSTANTS.ENABLE_MISSING_PARTS && productListingData.length > 0 && (
           <>
-            <span>{selectLangData?.looking_for_something_specific}</span>
+            <span className="products-name">{selectLangData?.looking_for_something_specific}</span>
             <button
               onClick={() => {
                 setShowMissingPartsModal(true);
               }}
-              className="missing_parts_btn ps-0 "
+              className="missing_parts_btn ps-0 product-font-family ms-2"
             >
               {selectLangData?.let_us_know}
             </button>
@@ -107,10 +107,10 @@ const WebFilters = (props: FiltersViewProps) => {
                       }
                       aria-labelledby={"heading" + index}
                     >
-                      <div className="card-body p-0">
+                      <div className="card-body p-0 checkbox-wrapper product-font-family">
                         {filter.values.map(
                           (filterValue: any, innerIndex: any) => (
-                            <div className="form_check_filter" key={innerIndex}>
+                            <div className="form_check_filter checkbox-line-height d-flex align-items-center products-name" key={innerIndex}>
                               <input
                                 type="checkbox"
                                 name={filter.section}
@@ -123,7 +123,7 @@ const WebFilters = (props: FiltersViewProps) => {
                                 onChange={handleApplyFilters}
                               />
                               <label
-                                className="form-check-label filter-label accordion-checkbox"
+                                className="form-check-label filter-label accordion-checkbox products-name"
                                 htmlFor="flexCheckDefault"
                               >
                                 {filterValue}
