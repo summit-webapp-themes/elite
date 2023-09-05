@@ -110,7 +110,7 @@ const WebCheckout = ({
   console.log(" webcheckoutcurrencySymbolForSummary",  currencySymbolForSummary)
   return (
     <>
-      <div className="container mt-5 ms-1">
+      <div className="container mt-4 ms-1">
         <div>
           {visitorState !== null ? (
             <>
@@ -292,8 +292,8 @@ const WebCheckout = ({
                         )}
                       </div>
                     </div>
-                    <div className="col-lg-4 mt-2 border">
-                      <h5 className=" bold text-uppercase">
+                    <div className="col-lg-4 mt-2 border" >
+                      <h5 className=" bold text-uppercase ms-1" >
                         {" "}
                         {selectedMultiLangData?.order_summary}
                       </h5>

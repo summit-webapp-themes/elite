@@ -68,6 +68,7 @@ const ProductCard = (props: ProductCardProps) => {
         }
       } else {
         dispatch(fetchCartListing(TokenFromStore?.token));
+        
       }
       // setTimeout(() => {
       //   dispatch(hideToast());

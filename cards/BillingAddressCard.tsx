@@ -46,9 +46,9 @@ const BillingAddressCard = ({
 
   return (
     <>
-      <div className=" d-flex ">
+      <div className="  ">
         <h4 className="mb-1">{selectedMultiLangData?.billing_addresses}</h4>
-        <div className="d-flex align-items-center ml-2">
+        <div className="d-flex align-items-center ml-0 mb-2">
           <input
             className="form-check-input fs-5 bill_checkbox"
             type="checkbox"
@@ -68,13 +68,13 @@ const BillingAddressCard = ({
         </div>
       </div>
 
-      <h5>
+      {/* <h5>
         {changeAddress
           ? selectedbillAddress
           : initialShippingAddress || selectedAddress}
-      </h5>
+      </h5> */}
       <select
-        className="form-select form-select-lg w-50 mb-2"
+        className="form-select form-select-lg w-50 mb-3"
         aria-label="Default select example"
         onChange={handleBilling}
       >
@@ -95,7 +95,7 @@ const BillingAddressCard = ({
                   className="border px-1 addresscard-width"
                   key={detail?.address_id}
                 >
-                  <div className="">
+                  <div className="products-name" >
                     <p className={`mb-0 addresscard-p`}>{detail.name}</p>
                     <p className="mb-0 card_p">{detail?.address_1}</p>
                     <p className="mb-0 card_p">{detail?.address_2}</p>
@@ -124,7 +124,7 @@ const BillingAddressCard = ({
                       </a>
                     </p>
                   </div>
-                  <div className="">
+                  <div className="" >
                     <button
                       type="button"
                       onClick={() =>
@@ -186,7 +186,7 @@ const BillingAddressCard = ({
                   className="border px-1 addresscard-width"
                   key={detail?.contact_info}
                 >
-                  <div className="">
+                  <div className="ps-2 products-name" >
                     {/* <p>{detail.address_id}</p> */}
                     <p className={`mb-0 addresscard-p`}>{detail?.name}</p>
                     {/* <p className="mb-0">{detail.phone}</p> */}
@@ -201,7 +201,7 @@ const BillingAddressCard = ({
                         href={`mailto:${detail?.email}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-dark"
+                        className="text-dark products-name"
                       >
                         {detail.email}
                       </a>
@@ -211,14 +211,14 @@ const BillingAddressCard = ({
                         href={`tel:${detail?.contact}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-dark"
+                        className="text-dark products-name"
                       >
                         {detail?.contact}
                       </a>
                     </p>
                   </div>
-                  <div className="">
-                    <button
+                  <div className="mb-1">
+                    {/* <button
                       type="button"
                       onChange={() =>
                         setInitialBillingAddress(detail?.address_id)
@@ -235,7 +235,7 @@ const BillingAddressCard = ({
                       initialShippingAddress === detail?.address_id
                         ? "Address Selected"
                         : "Deliver to this address"}
-                    </button>
+                    </button> */}
                     <div className="mt-2 text-center ">
                       <button
                         type="button"
