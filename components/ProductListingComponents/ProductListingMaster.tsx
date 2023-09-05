@@ -64,9 +64,9 @@ const ProductListingMaster = () => {
   return (
     <>
       <div>
-        <section className="listing-page mt-3">
+        <section className="container listing-page mt-0 ">
           <div className="container">
-            <div className="mt-3"></div>
+            <div className="mt-0"></div>
             <BreadCrumbs />
             <div className="row mt-2 ">
               <span className="col-lg-3 handle_display_web_filter">

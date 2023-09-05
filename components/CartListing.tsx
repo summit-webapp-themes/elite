@@ -130,7 +130,7 @@ const CartListing = () => {
   };
 
   return (
-    <>
+    <div className="container">
       {Loadings === "pending" ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
@@ -144,7 +144,7 @@ const CartListing = () => {
       ) : (
         <>
           {Object.keys(cartListingItems).length > 0 ? (
-            <div className="container py-5" >
+            <div className="container py-5">
               <div className="cart_heading">
                 <h3 className="text-uppercase my-0">
                   {selectedMultiLangData?.shopping_cart}
@@ -152,10 +152,10 @@ const CartListing = () => {
               </div>
 
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-6" >
                   {/* <h5>Customer name: {cartListingItems?.party_name} </h5> */}
                 </div>
-                <div className="col-md-6 text-end">
+                <div className="col-md-6 text-end" >
                   <h5 className="mb-0 sub-total-h5">
                     {selectedMultiLangData?.sub_total} (
                     {cartListingItems?.total_qty}{" "}
@@ -170,7 +170,7 @@ const CartListing = () => {
                   </h5>
                 </div>
               </div>
-              <div className="row cart_wrapper">
+              <div className="ps-4 row cart_wrapper"  >
                 <hr />
                 <div className="page-content">
                   <div className="container px-0">
@@ -388,7 +388,7 @@ const CartListing = () => {
         handlemodalclose={handlemodalclose}
         setShow={setShow}
       />
-    </>
+    </div>
   );
 };
 

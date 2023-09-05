@@ -10,7 +10,7 @@ import {
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import { showToast } from "../ToastNotificationNew";
-import logoImg from "../../public/assets/images/elite.png"
+import logoImg from "../../public/assets/images/b2c_footer_logo.png"
 const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
   const navbarData: any = [];
@@ -62,9 +62,9 @@ const TernaryThemeFooter = () => {
                               // src="/assets/images/summit-logo-ree.png"
                               src={logoImg}
                               alt="logo-footer"
-                              width={132}
+                              width={200}
                               height={83}
-                              className="footer-ternarytheme-logo"
+                              className="footer-ternarytheme-logo "
                             />
                           </Link>
                           <div className="icon-box icon-box-side text-dark mt-5">
