@@ -208,7 +208,7 @@ const Home3WebNavbar = ({
         <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header "  >
           <div className="container">
             <div className="inner-wrap d-flex justify-content-between">
-              <div className="header-left">
+              <div className="header-left me-5">
                 <div className="mobile-nav">
                   <Link href="#" legacyBehavior>
                     <a
