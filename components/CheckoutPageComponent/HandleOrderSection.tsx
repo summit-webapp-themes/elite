@@ -47,13 +47,13 @@ const HandleOrderSection = (props: any) => {
       <div className="shadow-sm card" >
         <div className="card-body py-0 px-1">
           {isDealer ? null : (
-            <div className="accordion" id="accordionExample">
+            <div className="accordion" id="accordionExample" >
               {CONSTANTS.ENABLE_APPLY_COUPON_CODE ? (
                 <>
                   <div className="accordion-item border-0">
                     <h2 className="accordion-header" id="headingOne">
                       <button
-                        className="accordion-button collapsed pt-3 pb-1 fs-4"
+                        className="accordion-button collapsed pt-3 px-2 ms-0 ps-2 pb-1 fs-4 accorder-btn-plus"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseOne"
@@ -132,10 +132,10 @@ const HandleOrderSection = (props: any) => {
                   <div className="accordion-item border-0">
                     <h2 className="accordion-header" id="headingTwo">
                       <button
-                        className="accordion-button collapsed pt-2 fs-4"
+                        className="accordion-button collapsed pt-3 fs-4 ms-0 ps-2 accorder-btn-plus"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo"
+                        data-bs-target="#collapseTwo" 
                         aria-expanded="false"
                         aria-controls="collapseTwo"
                       >
@@ -185,12 +185,12 @@ const HandleOrderSection = (props: any) => {
             </div>
           )}
 
-          <h5 className="px-2 pt-2 text-uppercase">
+          <h5 className="px-2 pt-2 text-uppercase" >
             {" "}
             {selectedMultiLangData?.order_summary}
           </h5>
 
-          <OrderSummary
+          <OrderSummary 
             orderSummary={orderSummary}
             couponError={couponError}
             selectedMultiLangData={selectedMultiLangData}

@@ -38,10 +38,23 @@ const ShippingAddressCard = ({
 
   return (
     <>
-      <h4 className="mb-1">{selectedMultiLangData?.shipping_addresses}</h4>
-      <h5>{selectedAddress || initialShippingAddress}</h5>
+      <h4 className="mb-0 products-name">{selectedMultiLangData?.shipping_addresses}</h4>
+      {/* <h5>{selectedAddress || initialShippingAddress}</h5> */}
+      <div className="d-flex align-items-center mb-0 mt-0 pt-0 mb-1 ">
+        <button className="ms-0 ps-0 address_icon" onClick={() => handleShow("Shipping")}>
+          <i className="fa fa-edit text-primary fs-2 ship_edit"></i>
+        </button>
+
+        <div
+          className="fs-4 mt-0 ms-0 ps-0 ship_heading"
+          onClick={() => handleShow("Shipping")}
+        >
+          {selectedMultiLangData?.create_new_shipping_address}
+        </div>
+      </div>
+
       <select
-        className="form-select form-select-lg w-50 mb-2"
+        className="form-select form-select-lg w-50 mb-3 products-name"
         aria-label="Default select example"
         onChange={handleShipping}
       >
@@ -65,7 +78,7 @@ const ShippingAddressCard = ({
                 className="border px-1 addresscard-width"
                 key={detail?.address_id}
               >
-                <div className="">
+                <div className="ps-2 products-name">
                   <p className={`mb-0 addresscard-p`}>{detail?.name}</p>
 
                   <p className="mb-0 card_p">{detail?.address_1}</p>
@@ -76,7 +89,7 @@ const ShippingAddressCard = ({
                   <p className="mb-0 card_p">{detail?.country}</p>
                   <p className="mb-0 card_p ">
                     <a
-                      className="text-dark"
+                      className="text-dark products-name"
                       href={`mailto:${detail?.email}`}
                       target="_blank"
                       rel="noreferrer"
@@ -86,7 +99,7 @@ const ShippingAddressCard = ({
                   </p>
                   <p className="mb-0 card_p">
                     <a
-                      className="text-dark"
+                      className="text-dark products-name"
                       href={`tel:${detail?.contact}`}
                       target="_blank"
                       rel="noreferrer"
@@ -95,8 +108,8 @@ const ShippingAddressCard = ({
                     </a>
                   </p>
                 </div>
-                <div className="">
-                  <button
+                <div className="mb-1 products-name">
+                  {/* <button
                     type="button"
                     onChange={() =>
                       setInitialBillingAddress(detail?.address_id)
@@ -115,7 +128,7 @@ const ShippingAddressCard = ({
                     initialShippingAddress === detail?.address_id
                       ? "Address Selected"
                       : "Deliver to this address"}
-                  </button>
+                  </button> */}
                   <div className="mt-2 text-center ">
                     <button
                       type="button"
@@ -132,7 +145,7 @@ const ShippingAddressCard = ({
             </>
           ))}
 
-      <div className="d-flex align-items-center mb-5">
+      {/* <div className="d-flex align-items-center mb-5">
         <button className="address_icon" onClick={() => handleShow("Shipping")}>
           <i className="fa fa-edit text-primary fs-2 ship_edit"></i>
         </button>
@@ -143,7 +156,7 @@ const ShippingAddressCard = ({
         >
           {selectedMultiLangData?.create_new_shipping_address}
         </div>
-      </div>
+      </div> */}
 
       {show ? (
         <AddNewAddressForm

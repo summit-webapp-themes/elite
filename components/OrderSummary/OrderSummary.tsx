@@ -62,8 +62,8 @@ const OrderSummary = ({
           <div>
             {couponError === false
               ? orderSummary?.map((data: any, index: number) => (
-                <div className="order-summery px-2 px-sm-0 px-xm-0">
-                  <div className="row mb-1 ">
+                <div className="order-summery px-2 px-sm-0 px-xm-0 products-name mx-2" >
+                  <div className="row mb-1 mb-0">
                     <div className="col-6">
                       {data?.name === "Total" ? (
                         <strong className="mb-0 p-0">{data?.name}</strong>
@@ -71,10 +71,10 @@ const OrderSummary = ({
                         <p className={`mb-0 p-0 summary_p`}>{data?.name}</p>
                       )}
                     </div>
-                    <div className="col-6 text-end">
+                    <div className="col-6 text-end mt-1">
                       <p className={`mb-0 summary_p`}>
                         {data?.name === "Coupon Code" ? (
-                          <p className={`mb-0 cart_p text-end product-price`} >
+                          <p className={`mb-0 cart_p text-end products-price`} >
                             {/* <i className="fa fa-inr"></i> */}
                             {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
 
@@ -83,7 +83,7 @@ const OrderSummary = ({
                             <IndianNumber value={data?.value} />
                           </p>
                         ) : (
-                          <div className="product-price">
+                          <div className="products-price">
                             {/* {cartListingItems?.categories[0]?.orders[0]?.currency_symbol} */}
 
                             {/* {currencySymbol} */}
@@ -110,11 +110,11 @@ const OrderSummary = ({
                     key={index}
                   >
                     <div className="row mb-1 ">
-                      <div className="col-6">
+                      <div className="col-6 products-name">
                         {data.name === "Total" ? (
-                          <strong className="mb-0 p-0">{data?.name}</strong>
+                          <strong className="mb-0 p-0 products-name">{data?.name}</strong>
                         ) : (
-                          <p className={`mb-0 p-0 summary_p`}>{data?.name}</p>
+                          <p className={`mb-0 p-0 summary_p products-name`}>{data?.name}</p>
                         )}
                       </div>
                       <div className="col-6 text-end">
@@ -174,8 +174,8 @@ const OrderSummary = ({
                               {/* <h1>{data.currency_symbol}</h1> */}
                             </div>
                           </div>
-                          <div className="col-8 ">
-                            <div className="checkout_item_details ">
+                          <div className="col-8  products-name ">
+                            <div className="checkout_item_details  products-name ">
                               <h6 className="mb-0 product_item_name ">
                                 {data.item_name}
                               </h6>
@@ -183,7 +183,7 @@ const OrderSummary = ({
                                 width="100%"
                                 className="mb-0 mt-1 table table-borderless"
                               >
-                                <tbody>
+                                <tbody className=" products-name">
                                   {data.details.map(
                                     (detail: any, index: number) => (
                                       <tr
@@ -192,10 +192,10 @@ const OrderSummary = ({
                                       >
                                         <td
                                           width="50%"
-                                          className="px-0 py-0 pb-1 "
+                                          className="px-0 py-0 pb-0  products-name "
                                         >
                                           <p
-                                            className={`text-capitalize mb-0 cart_p`}
+                                            className={`text-capitalize mb-0 cart_p `}
                                           >
                                             {detail.name === "Model No"
                                               ? "Item Code"
@@ -215,7 +215,7 @@ const OrderSummary = ({
                                             ) : (
                                               ""
                                             )}
-                                            <p className={`mb-0 cart_p text-end product-price`}>
+                                            <p className={`mb-0 cart_p text-end `}>
                                               {/* <i className="fa fa-inr"></i> */}
                                               {cartListingItems?.categories[0]?.orders[0]
                                                 ?.currency_symbol}
@@ -228,7 +228,7 @@ const OrderSummary = ({
                                     )
                                   )}
                                   <tr className="item_options ">
-                                    <td width="50%" className="px-0 py-0 ">
+                                    <td width="50%" className="px-0 py-0 pb-1">
                                       <p className={`mb-0 cart_p`}>
                                         {selectedMultiLangData?.quantity_c}:
                                       </p>
@@ -240,7 +240,7 @@ const OrderSummary = ({
                                     </td>
                                   </tr>
                                   <tr className="item_options ">
-                                    <td width="50%" className="px-0 py-0 ">
+                                    <td width="50%" className="px-0 py-0 pb-1">
                                       <p className={`mb-0 cart_p`}>
                                         {
                                           selectedMultiLangData?.total_item_price
@@ -249,7 +249,7 @@ const OrderSummary = ({
                                       </p>
                                     </td>
                                     <td width="50%" className="px-0 py-0 ">
-                                      <p className={`mb-0 cart_p text-end product-price`}>
+                                      <p className={`mb-0 cart_p text-end   products-name`}>
                                         {/* <i className="fa fa-inr"></i> */}
                                         {cartListingItems?.categories[0]?.orders[0]
                                           ?.currency_symbol}
@@ -281,7 +281,7 @@ const OrderSummary = ({
                       );
                     })}
 
-                  <p>
+                  <p >
                     <Link href="" className="text-center" legacyBehavior>
                       <a
                         className="text-primary viewall_btn"
@@ -292,8 +292,8 @@ const OrderSummary = ({
                             (value: any, index: any) => (
                               <div key={index}>
                                 {value?.orders?.length > 3 && (
-                                  <div>
-                                    {selectedMultiLangData?.view_all_items}:
+                                  <div className="text-center mt-3">
+                                    {selectedMultiLangData?.view_all_items}
                                   </div>
                                 )}
                               </div>
@@ -313,7 +313,7 @@ const OrderSummary = ({
 
 
         <OrderSummaryModal
-          show={show}
+          show={show} 
           toHide={handleShow}
           cartListingItems={cartListingItems}
           selectedMultiLangData={selectedMultiLangData}

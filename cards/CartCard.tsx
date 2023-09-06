@@ -92,27 +92,27 @@ const CartCard = ({
     <>
       {/* table start */}
 
-      <td className="product-name product-name-mob" >
+      <td className="product-name product-name-mob products-name" >
         <Link
           href={`${orders.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
           legacyBehavior
         >
-          <a className="prod_name">{orders.item_name}</a>
+          <a className="prod_name products-name">{orders.item_name}</a>
         </Link>
         <br />
-        <b>{orders.item_code}</b>
+        <b>Item Code: {orders.item_code}</b>
       </td>
-      <td className="product-price product-name-mob">
+      <td className="product-price product-name-mob products-name">
         {orders?.details.length > 0 && orders?.details !== null && (
           <p className="text-start my-0">
             {orders.currency_symbol}
-            <span className="amount">
+            <span className="amount ">
               {orders.amount}
             </span>
           </p>
         )}
       </td>
-      <td className="product-quantity product-name-mob" >
+      <td className="product-quantity product-name-mob products-name" >
         <div className="input-group">
           <span
             className="fs-2 ml-lg-2 arrow_pointer mr-1"
@@ -144,14 +144,14 @@ const CartCard = ({
           </Link> */}
         </div>
       </td>
-      <td className="product-subtotal product-name-mob" >
-        <span className="amount product-price">{orders.currency_symbol} {orders.amount}</span>
+      <td className="product-subtotal product-name-mob products-name" >
+        <span className="amount product-price products-name">{orders.currency_symbol} {orders.amount}</span>
       </td>
 
       {/* For mobile responsive */}
       <div className="d-lg-none d-block productd-detail-mob" >
         <div className="row">
-          <div className="col-7 fs-4">
+          <div className="col-7 fs-4 products-name">
             {selectedMultiLangData?.item_with_desc}
           </div>
           :
