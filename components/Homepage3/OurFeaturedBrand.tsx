@@ -43,8 +43,8 @@ const OurFeaturedBrand = () => {
 
   return (
     <>
-      <div className="container">
-        <h3 className="text-center category_heading">
+      <div className="container category_heading">
+        <h3 className="text-center pb-3">
           {selectedMultiLangData?.featured_brands}
         </h3>
         <div className="row">
