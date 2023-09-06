@@ -68,6 +68,7 @@ const ProductCard = (props: ProductCardProps) => {
         }
       } else {
         dispatch(fetchCartListing(TokenFromStore?.token));
+        
       }
       // setTimeout(() => {
       //   dispatch(hideToast());
@@ -81,17 +82,17 @@ const ProductCard = (props: ProductCardProps) => {
     }
   };
   return (
-    <div key={key} className=" p-3 rounded-3 h-100 " >
-      <div className="d-flex justify-content-between mb-1">
+    <div key={key} className="border ps-0 ms-0  product-border-pd rounded-3 h-100 ">
+      <div className="d-flex justify-content-between icon-container-ps">
         <div
-          className={`badge text-bg-primary fs-5 display_tag_badge ${
+          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${
             display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
           }`}
         >
           {display_tag?.length > 0 && display_tag[0]}
         </div>
 
-        <div>
+        <div className="mb-0 mt-0 pb-0 pt-0">
           {wishlistData?.map((values: any) => {
             if (values.name === name) {
               wishproducts = values?.name;
@@ -164,7 +165,7 @@ const ProductCard = (props: ProductCardProps) => {
       </div>
       <div className="product-wrap">
         <div className="product text-center ">
-          <div className="product-media product_card_h">
+          <div className="product-media product_card_h product-main-container">
             {img_url !== "" ? (
               <>
                 <Link
@@ -192,21 +193,21 @@ const ProductCard = (props: ProductCardProps) => {
               </>
             )}
           </div>
-          <div className="product-details">
-            <h4 className="product-name truncate-overflow">
+          <div className="product-details products-name product-margin-up">
+            <h4 className="bold product-name truncate-overflow products-name">
               <Link
                 href={`${url}?currency=${currency_state_from_redux?.selected_currency_value}`}
               >
-                {item_name}
+               <span className="bold products-name"> {item_name}</span>
               </Link>
             </h4>
-            <div className="product-price d-flex">
+            <div className="product-price d-flex products-name margin-up">
               <div className="w-75">
-                <ins className="new-price">
+                <ins className="new-price products-name">
                   {currency_symbol}
                   {price}
                 </ins>
-                <del className="old-price">
+                <del className="old-price product-font-family">
                   {currency_symbol}
                   {mrp_price}
                 </del>
@@ -214,7 +215,7 @@ const ProductCard = (props: ProductCardProps) => {
 
               <button
                 type="button"
-                className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn`}
+                className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family`}
                 onClick={handleAddCart}
               >
                 <i
