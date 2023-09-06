@@ -28,14 +28,9 @@ $themeternary-btncolor:#d5a249 !default;
 $themefourth-btncolor: #febd69 !default;
 
 // 2. Font-families
-$alt-font-family: 'Nunito' !important ;
-// $font-family:'Nunito' !important;
-$font-family: 'Nunito', $alt-font-family !default;
-$second-font-family: 'Nunito', $alt-font-family !default;
-
-// $alt-font-family: sans-serif !default;
-// $font-family: Poppins, $alt-font-family !default;
-// $second-font-family: 'Open Sans', $alt-font-family !default;
+$alt-font-family: 'Nunito', sans-serif;
+$font-family:'Nunito', sans-serif;
+$second-font-family: 'Open Sans', $alt-font-family !default;
 
 // 3. Breakpoints
 $breakpoints: (xs: 480px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1600px, xlst: 1920px);
