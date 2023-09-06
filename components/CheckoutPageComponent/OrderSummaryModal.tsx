@@ -22,14 +22,14 @@ const OrderSummaryModal = ({
         </Modal.Header>
 
         <Modal.Body className="modals_body">
-          <div className="checkout-item">
+          <div className="checkout-item" >
             {cartListingItems?.categories?.length > 0 &&
               cartListingItems?.categories.map((value: any, index: any) => {
                 return (
                   <div key={index}>
                     {value?.orders?.length > 0 &&
                       value?.orders?.map((data: any, i: any) => (
-                        <div className="row border mx-2 my-1 " key={i}>
+                        <div className="row border mx-2 my-1 " key={i} >
                           <div className="col-4">
                             <div className="checkout-img mt-3">
                               <Image

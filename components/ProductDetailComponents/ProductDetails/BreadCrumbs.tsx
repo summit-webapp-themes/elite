@@ -21,11 +21,11 @@ const BreadCrumbs = () => {
       // console.log(sub_sub_cat);
     });
   return (
-    <section className="breadcrumb_section mb-3 mt-3">
+    <section className="breadcrumb_section mb-3 mt-0 product-font-family ">
       <div className="container p-0">
         <div className="row">
           <div className="col-12">
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb breadcrum-wrapper" style={{marginTop:"-16px"}}>
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
                   <Link href="/" legacyBehavior>

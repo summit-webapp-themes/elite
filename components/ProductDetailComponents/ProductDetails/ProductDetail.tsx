@@ -168,11 +168,11 @@ const ProductDetail = ({
   }, [router.asPath]);
   // console.log("details@@", fullUrl);
   return (
-    <div>
-      <div className="product-info" >
-        <b className="product_name">{productDetailData?.item_name}</b>
-        <p className=" text-dark mt-1">
-          <span>
+    <div >
+      <div className="product-info"  >
+        <b className="product_name products-name  bold-name">{productDetailData?.item_name}</b>
+        <p className=" text-dark products-name">
+          <span className="products-name">
             {" "}
             {productDetailData?.short_description ===
               productDetailData.productDetailData_name ||
@@ -181,21 +181,21 @@ const ProductDetail = ({
               : productDetailData?.short_description}
           </span>
         </p>
-        <div style={{ marginTop: "-12px" }}>
+        <div className="star-rating-container">
           <StarRating rating={productDetailData?.rating} />
         </div>
-        <p className="mt-3 text-dark p-tagfont product_item_name">
+        <p className="mt-3 text-dark p-tagfont product_item_name products-name line-height-product">
           {selectedMultiLangData?.item_code}: {productDetailData?.name}
         </p>
 
-        <h3 className="p_price m-0">
+        <h3 className="p_price m-0 line-height-product">
           {productDetailData?.price !== 0 ? (
-            <span className="productdetail-price">
+            <span className="productdetail-price products-name bold">
               {productDetailData?.currency_symbol} {productDetailData?.price}
               {/* <IndianNumber value={productDetailData?.price} /> */}
             </span>
           ) : (
-            <button className="button_color p-2 rounded-3 fs-4 mb-2 ">
+            <button className="button_color p-2 rounded-3 fs-4 mb-2 products-name">
               {selectedMultiLangData?.price_on_request}
             </button>
             // <p
@@ -214,7 +214,7 @@ const ProductDetail = ({
 
           {productDetailData?.mrp_price !== 0 ? (
             <>
-              <s className="old-price currency_symbol productdetail-price">
+              <s className="old-price currency_symbol productdetail-price product-font-family">
                 {productDetailData?.currency_symbol}{" "}
                 {productDetailData?.mrp_price}
                 {/* <IndianNumber value={productDetailData?.mrp_price} /> */}
@@ -228,21 +228,21 @@ const ProductDetail = ({
         {productDetailData?.price !== 0 ? (
           <div>
             {productDetailData?.tax_value !== null && (
-              <p className="bold text-dark mt-3 text-uppercase taxx_value">
+              <p className="products-name text-dark mt-3 text-uppercase taxx_value font-weight-normal" >
                 &#43; {selectedMultiLangData?.gst} &#x40;{" "}
                 {productDetailData?.tax_value}% {selectedMultiLangData?.extra}
               </p>
             )}
 
-            <p className="bold text-dark mt-2 text-uppercase taxx_value">
+            <p className=" text-dark mt-2 text-uppercase taxx_value products-name " >
               &#43; {selectedMultiLangData?.cost_of_transportation_extra}
             </p>
           </div>
         ) : (
           ""
         )}
-        <div className="product-feature">
-          <ul className="list-style-none px-0">
+        <div className="product-feature products-name">
+          <ul className="list-style-none px-0 products-name">
             <li>
               {Object.keys(productDetailData?.features).length > 0 && (
                 <>
@@ -252,8 +252,8 @@ const ProductDetail = ({
                       (featureL: any, index: any) => {
                         return (
                           <li key={index} className="d-flex">
-                            <span className="feature_list"> </span>
-                            <span className="fs-5 py-1">
+                            <span className="feature_list products-name"> </span>
+                            <span className="fs-5 py-1 products-name">
                               {featureL.description}
                             </span>
                           </li>
@@ -268,7 +268,7 @@ const ProductDetail = ({
 
         {productDetailData?.brand !== null &&
         productDetailData?.brand !== "" ? (
-          <p className="mt-2 text-uppercase p-tagfont product_brand_name">
+          <p className="mt-2 text-uppercase p-tagfont product_brand_name products-name">
             {selectedMultiLangData?.brand}: {productDetailData?.brand}
             {/* {multilingualData?.brand}: {productDetailData?.brand} */}
           </p>
@@ -277,7 +277,7 @@ const ProductDetail = ({
         )}
         {productDetailData?.gst_hsn_code !== null &&
         productDetailData?.gst_hsn_code !== "" ? (
-          <p className="mt-2 text-uppercase p-tagfont product_brand_name">
+          <p className="mt-2 text-uppercase p-tagfont product_brand_name products-name">
             {selectedMultiLangData?.hsn_code}: {productDetailData?.gst_hsn_code}
           </p>
         ) : (
@@ -285,7 +285,7 @@ const ProductDetail = ({
         )}
         {productDetailData?.oem_part_number !== null &&
         productDetailData?.oem_part_number !== "" ? (
-          <p className="mt-2 text-uppercase p-tagfont product_brand_name">
+          <p className="mt-2 text-uppercase p-tagfont product_brand_name products-name">
             {selectedMultiLangData?.oem_part_number}:{" "}
             {productDetailData?.oem_part_number}
           </p>
@@ -293,7 +293,7 @@ const ProductDetail = ({
           ""
         )}
         {productDetailData?.weight_per_unit !== 0 ? (
-          <p className="mt-2 text-uppercase p-tagfont product_brand_name">
+          <p className="mt-2 text-uppercase p-tagfont product_brand_name products-name">
             {selectedMultiLangData?.approx_weight}:{" "}
             {productDetailData?.weight_per_unit} {productDetailData?.weight_uom}
           </p>
@@ -318,7 +318,7 @@ const ProductDetail = ({
         />
       </div>
 
-      <table className="mx-auto mb-0 inventory_table table table-sm product_qty_sec">
+      <table className="mx-auto mb-0 inventory_table table table-sm product_qty_sec products-name">
         <tbody>
           <tr>
             <td className="qty_sec_table_data">
@@ -326,13 +326,13 @@ const ProductDetail = ({
                 {isDealer === "true" ? null : (
                   <>
                     <div className="d-flex align-items-center">
-                      <div className="fs-4 text-muted pe-3">
+                      <div className="fs-4 text-muted pe-3 products-name">
                         {" "}
                         {selectedMultiLangData?.quantity}:{" "}
                       </div>
-                      <div>
+                      <div >
                         <span
-                          className="fs-2 ml-lg-2 arrow_pointer"
+                          className="fs-2 ml-lg-2 arrow_pointer products-name"
                           onClick={handleQuantityDecrement}
                         >
                           <i className="fa fa-minus fs-4"></i>
@@ -343,19 +343,19 @@ const ProductDetail = ({
                           value={productQuantity}
                           className={`${
                             productQuantity < minQty ? "disabled" : "enabled"
-                          } varient_input mx-2 text-center`}
+                          } varient_input mx-2 text-center products-name`}
                           onChange={(e: any) => handleQuantity(e.target.value)}
                         />
 
                         <span
-                          className="fs-2 arrow_pointer"
+                          className="fs-2 arrow_pointer products-name" 
                           onClick={handleQuantityIncrement}
                         >
                           <i className="fa fa-plus fs-4"></i>
                         </span>
                       </div>
                     </div>
-                    <div className="fs-6 mt-1 text-uppercase text-dark bold">
+                    <div className="fs-6 mt-1 text-uppercase text-dark bold products-name" >
                       {productDetailData.min_order_qty === 0 ? (
                         ""
                       ) : (
@@ -370,14 +370,14 @@ const ProductDetail = ({
                 )}
               </div>
 
-              <div className="row button_sec">
+              <div className="row button_sec " >
                 {CONSTANTS.SHOW_FUTURE_STOCK_AVAILABILITY_TO_GUEST === true ? (
-                  <div className="col-lg-4 text-start">
+                  <div className="col-lg-4 text-start products-name btn-wrapper">
                     <div className="mt-5">
                       <button
                         type="button"
                         id=""
-                        className={`btn btn-primary cart_btn_gtag button_color`}
+                        className={`btn btn-primary cart_btn_gtag button_color products-name`}
                         onClick={() => handleStockAvail(productDetailData.name)}
                       >
                         {selectedMultiLangData?.check_availability_btn_label}
@@ -385,8 +385,8 @@ const ProductDetail = ({
                     </div>
                   </div>
                 ) : (
-                  <div className="col-lg-3">
-                    <div className="mt-5">
+                  <div className="col-lg-3 ">
+                    <div className="mt-5 btn-wrapper">
                       <Link
                         href="/login"
                         className="btn btn-primary button_color cart_btn_gtag "
@@ -397,14 +397,14 @@ const ProductDetail = ({
                   </div>
                 )}
                 {/* {CONSTANTS.ADD_TO_CART_FOR_GUEST === true ? ( */}
-                <div className="col-md-6">
+                <div className="col-md-6 btn-wrapper">
                   <div className="mt-5">
                     <div className="row">
                       <button
                         type="button"
                         className={`${
                           productQuantity < minQty ? "disabled" : "enabled"
-                        } w-50 btn button_color cart_btn_gtag add_cart_btn_mob`}
+                        } w-50 btn button_color cart_btn_gtag add_cart_btn_mob products-name`}
                         onClick={handleAddCart}
                         disabled={
                           doesSelectedVariantDoesNotExists ||
@@ -458,14 +458,14 @@ const ProductDetail = ({
                   </div>
                 )} */}
               </div>
-              <div className="mt-2">
+              <div className="mt-2" >
                 <p className="text-danger">
                   {productDetailData.in_stock_status === false &&
                     "Product is out of stock"}
                 </p>
               </div>
               {/* WhatsApp share button */}
-              <div className="mt-5 d-flex align-items-center">
+              <div className="mt-5 d-flex align-items-center" >
                 <i
                   className="fa fa-share me-2"
                   aria-hidden="true"

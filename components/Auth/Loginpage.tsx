@@ -19,7 +19,7 @@ import {
 import { getAccessToken } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import getOtpFetchApi from "../../services/api/auth/get-otp-api";
-import logoImg from "../../public/assets/images/elite_logo.jpg"
+import logoImg from "../../public/assets/images/b2c_logo.png"
 import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 
 const Loginpage = () => {
@@ -133,12 +133,12 @@ const Loginpage = () => {
   return (
     <>
       <div className="container">
-      <div className="logo mt-3">
+      <div className="logo mt-5">
           <Link href="/" className="navbar-brand">
             <Image
                src={logoImg}
               alt="logo"
-              width={120}
+              width={250}
               height={55}
             />
           </Link>

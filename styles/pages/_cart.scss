@@ -261,3 +261,30 @@
      
     }
   }
+
+.gutter-lg > * {
+    padding-left: 15px;
+    // padding-right: 8px !important;
+}
+.sticky-sidebar {
+    background-color: #efeeec;
+    padding: 15px;
+    height: 300px;
+}
+.text-capital{
+    text-transform: uppercase !important;
+}
+.product-quantity-margin{
+    // margin-left: 50px !important;
+    // padding-left: 50px !important;
+    // border: 2px solid red
+}
+.page-content-margin{
+    margin-top: -10px !important;
+    margin-left: 6px !important;
+    // border: 2px solid red
+}
+.padding-left-content{
+    padding-right: 15px !important
+    
+}

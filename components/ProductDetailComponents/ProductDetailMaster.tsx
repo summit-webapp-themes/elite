@@ -50,10 +50,10 @@ const ProductDetailMaster = () => {
 
   // console.log("no product heading set", selectedMultiLangData);
   return (
-    <div className="">
+    <div className="container">
       <div className="container product_detail_container">
         <div className="row">
-          <div className="col-12 mt-4">
+          <div className="col-12 mt-0">
             <BreadCrumbs />
           </div>
           {productDetailLoading === true ? (

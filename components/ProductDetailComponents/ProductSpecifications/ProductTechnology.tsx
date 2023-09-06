@@ -18,13 +18,13 @@ const ProductTechnology = ({ technologyData, selectedMultiLangData }: any) => {
   };
   return (
     <>
-      <div className="container">
+      <div className="container" >
         <div className="row">
           {technologyData?.details?.length > 0 &&
             technologyData?.details.map((cardDetails: any, index: any) => {
               return (
                 <div className="col-lg-3" key={index}>
-                  <div className="card h-100 rounded-2">
+                  <div className="card h-100 rounded-2 products-name">
                     <div className="h-100">
                       <Image
                         className="card-img-top px-1"
@@ -35,13 +35,13 @@ const ProductTechnology = ({ technologyData, selectedMultiLangData }: any) => {
                         height={100}
                       />
                     </div>
-                    <div className="card-body p-4">
-                      <h5 className="card-title">{cardDetails.name}</h5>
-                      <p className="card-text">{cardDetails.description}</p>
+                    <div className="card-body p-4 products-name">
+                      <h5 className="card-title products-name">{cardDetails.name}</h5>
+                      <p className="card-text products-name">{cardDetails.description}</p>
                       {cardDetails.technology_details?.length > 0 && (
                         <button
                           type="button"
-                          className="text-light fs-4 button_color"
+                          className="text-light fs-4 button_color product-font-family"
                           onClick={() => {
                             handleEditModal(cardDetails?.technology_details);
                           }}
