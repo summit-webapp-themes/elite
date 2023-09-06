@@ -144,7 +144,7 @@ const CartListing = () => {
       ) : (
         <>
           {Object.keys(cartListingItems).length > 0 ? (
-            <div className="container py-5 pt-0 mt-0" >
+            <div className="container py-5 pt-0 mt-0"  >
               <div className="cart_heading">
                 <h3 className="text-uppercase my-0">
                   {selectedMultiLangData?.shopping_cart}
@@ -267,8 +267,8 @@ const CartListing = () => {
                           )}
                       </div>
 
-                      <div className=" col-lg-3 sticky-sidebar-wrapper d-flex justify-content-end" >
-                        <div className="sticky-sidebar">
+                      <div className=" col-lg-3 sticky-sidebar-wrapper d-flex justify-content-end justify-content-sm-start " >
+                        <div className="sticky-sidebar cart-total-mobs">
                           <div className="cart-summary mb-4">
                             <h3 className="cart-title">
                               {selectedMultiLangData?.cart_total}
@@ -329,7 +329,7 @@ const CartListing = () => {
                        <div className="col-md-12 ">
                        <button
                           onClick={goToHomeCheckout}
-                          className="btn btn-dark btn-rounded btn-icon-left btn-shopping   ternaryTheme-CheckOutbtn CheckOutbtn_mob"
+                          className="btn btn-dark btn-rounded btn-icon-left btn-shopping  ms-0  ternaryTheme-CheckOutbtn CheckOutbtn_mob"
                         >
                           <i className="w-icon-long-arrow-left"></i>
                           {selectedMultiLangData?.continue_shopping}
@@ -338,7 +338,7 @@ const CartListing = () => {
                       
                         <button
                           type="submit"
-                          className="btn btn-rounded btn-default btn-clear  ml-4 ternaryTheme-Clearbtn CheckOutbtn_mob"
+                          className="btn btn-rounded btn-default btn-clear btn-cart-mob ml-4 ternaryTheme-Clearbtn CheckOutbtn_mob"
                           name="clear_cart"
                           value="Clear Cart"
                           onClick={() => ClearCartHandle(cartListingItems.name)}
