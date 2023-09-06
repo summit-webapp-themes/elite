@@ -136,7 +136,7 @@ const Home3WebNavbar = ({
                 <Link href="/cart" legacyBehavior>
                   <a className="cart-toggle label-down link wishlist-icon_mob">
                     <i className="w-icon-cart icon-font-size wishlist-icon" >
-                      <span className="cart-count text-white">
+                      <span className="cart-count text-white cart-count-mob">
                         {cartCount || 0}
                       </span>
                     </i>
@@ -145,7 +145,7 @@ const Home3WebNavbar = ({
               </div>
             </div>
 
-            <div className="ms-1 mb-1">
+            <div className="ms-1 mb-1 login-mob-margin" >
               <Dropdown className="dropleft">
                 {loginStatus === "true" ? (
                   <Dropdown.Toggle
@@ -208,7 +208,7 @@ const Home3WebNavbar = ({
         <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header "  >
           <div className="container">
             <div className="inner-wrap d-flex justify-content-between">
-              <div className="header-left me-5">
+              <div className="header-left">
                 <div className="mobile-nav">
                   <Link href="#" legacyBehavior>
                     <a
@@ -319,7 +319,7 @@ const Home3WebNavbar = ({
                 <Link href="/cart" legacyBehavior>
                   <a className="cart-toggle label-down link ternarytheme-icon">
                     <i className="w-icon-cart fs-1 wishlist-icon icon-font-size">
-                      <span className="cart-count text-white">
+                      <span className="cart-count text-white cart-count-mob">
                         {cartCount || 0}
                       </span>
                     </i>
