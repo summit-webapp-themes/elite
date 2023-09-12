@@ -328,7 +328,7 @@ const MobCheckout = ({
                                             }}
                                             className="text-decoration-underline  showmodal_button"
                                           >
-                                            {selectedMultiLangData?.edit}
+                                           <span className="edit_btn_web">{selectedMultiLangData?.edit}</span> 
                                           </button>
                                         </div>
                                       </div>
@@ -495,7 +495,7 @@ const MobCheckout = ({
                                                   }}
                                                   className="text-decoration-underline showmodal_button"
                                                 >
-                                                  {selectedMultiLangData?.edit}
+                                                  <span className="edit_btn_web">{selectedMultiLangData?.edit}</span>
                                                 </button>
                                               </div>
 

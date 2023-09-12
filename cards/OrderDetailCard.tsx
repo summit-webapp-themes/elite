@@ -63,7 +63,7 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
             
 
                         <div
-                          className="cart_item card-body " 
+                          className="cart_item card-body products-name" 
                           key={index}
                         >
                           <div className="d-flex mb-2">
