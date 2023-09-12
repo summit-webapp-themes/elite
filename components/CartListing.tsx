@@ -338,7 +338,9 @@ const CartListing = () => {
                       
                         <button
                           type="submit"
+
                           className="btn btn-rounded btn-default btn-clear btn-cart-mob btn-clear-cart-left ternaryTheme-Clearbtn CheckOutbtn_mob"
+
                           name="clear_cart"
                           value="Clear Cart"
                           onClick={() => ClearCartHandle(cartListingItems.name)}
