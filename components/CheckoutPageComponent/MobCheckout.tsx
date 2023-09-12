@@ -85,7 +85,7 @@ const MobCheckout = ({
           <div className="row">
                 {!visitor_login ? (
                   <div>
-                    <div className="col-lg-12 mb-5 w-100">
+                    <div className="col-lg-12 mb-5 w-100 products-name" >
                       <ul className="nav nav-tabs justify-content-center " >
                         {CONSTANTS.ENABLE_APPLY_COUPON_CODE ? (
                           <li className="nav-item ">
@@ -123,7 +123,7 @@ const MobCheckout = ({
                       </ul>
                     </div>
 
-                    <div className="tab-content">
+                    <div className="tab-content products-name" >
                       <div
                         className="specifications_details mb-3 tab-pane fade active show "
                         id="coupon"
@@ -222,22 +222,22 @@ const MobCheckout = ({
 
                     <hr className="mt-0" />
 
-                    <div className="container order_summary_section"  >
+                    <div className="container order_summary_section products-name"  >
                       <h5 className="bold">
                         {selectedMultiLangData?.order_summary}
                       </h5>
                     </div>
                     <hr />
 
-                    <OrderSummary
+                    <OrderSummary 
                       orderSummary={orderSummary}
                       selectedMultiLangData={selectedMultiLangData}
                     />
 
-                    <div className="container px-0 my-0" >
-                      <div className="row">
-                        <h5>{initialShippingAddress}</h5>
-                        <div className="col-lg-12 mb-2 w-100">
+                    <div className="container px-0 my-0"  >
+                      <div className="row products-name">
+                        {/* <h5>{initialShippingAddress}</h5> */}
+                        <div className="col-lg-12 mb-2 w-100" >
                           <ul className="nav nav-tabs justify-content-center address_header">
                             <li className="nav-item " >
                               <a
@@ -270,18 +270,18 @@ const MobCheckout = ({
                           </ul>
                         </div>
 
-                        <div className="tab-content " >
+                        <div className="tab-content products-name" >
                           <div
                             className="address_details mb-3 tab-pane fade active show"
                             id="shipping"
                             role="tabpanel"
                           >
                             <div className="col-12 mt-2" >
-                              {initialShippingAddress}
+                              {/* {initialShippingAddress} */}
                               {shippingAddresses &&
                                 shippingAddresses.map(
                                   (detail: any, index: any) => (
-                                    <div className="container " key={index}>
+                                    <div className="container " key={index} >
                                       <div className="row ">
                                         <div className="col-1 pb-4">
                                           {shippingAddresses &&
@@ -315,12 +315,12 @@ const MobCheckout = ({
                                             />
                                           )}
                                         </div>
-                                        <label className="col-6">
+                                        <label className="col-6 products-name">
                                           {
                                             selectedMultiLangData?.shipping_addresses
                                           }
                                         </label>
-                                        <div className="col text-end edit_button">
+                                        <div className="col text-end edit_button" >
                                           <button
                                             type="button"
                                             onClick={() => {
@@ -328,12 +328,12 @@ const MobCheckout = ({
                                             }}
                                             className="text-decoration-underline  showmodal_button"
                                           >
-                                            {selectedMultiLangData?.edit}
+                                           <span className="edit_btn_web">{selectedMultiLangData?.edit}</span> 
                                           </button>
                                         </div>
                                       </div>
 
-                                      <div className="row" >
+                                      <div className="row products-name" >
                                         <div className="col-7">
                                           <div className="d-flex ">
                                             <p className="">{detail.name}</p>
@@ -370,7 +370,7 @@ const MobCheckout = ({
                                         </div>
                                         <div className="col-7 " >
                                           <a
-                                            className="text-dark"
+                                            className="text-dark products-name"
                                             href={`mailto:${detail.email}`}
                                             target="_blank"
                                             rel="noreferrer" style={{}}
@@ -378,7 +378,7 @@ const MobCheckout = ({
                                             {detail.email}
                                           </a>
                                         </div>
-                                        <div className="col-5 d-flex ">
+                                        <div className="col-5 d-flex products-name">
                                           <a
                                             className="text-dark"
                                             href={`tel:${detail.contact}`}
@@ -394,7 +394,7 @@ const MobCheckout = ({
                                   )
                                 )}
                             </div>
-                            <span className="d-flex align-items-center mt-2 px-4">
+                            <span className="d-flex align-items-center mt-2 px-4 products-name">
                               <button
                                 onClick={() => handleShow("Shipping")}
                                 className="fs-2 address_icon"
@@ -402,7 +402,7 @@ const MobCheckout = ({
                                 <i className="fa fa-edit text-primary "></i>
                               </button>
 
-                              <div className="fs-3 mx-2 mb-1">
+                              <div className="fs-3 mx-2 mb-5 ">
                                 {selectedMultiLangData?.create_new_address}
                               </div>
                             </span>
@@ -411,16 +411,16 @@ const MobCheckout = ({
                           <div
                             className="tech_details mb-3 tab-pane fade"
                             id="billing"
-                            role="tabpanel"
+                            role="tabpanel" 
                           >
-                            <div className="col-12 mt-2">
-                              {initialBillingAddress}
+                            <div className="col-12 mt-2 products-name">
+                              {/* {initialBillingAddress} */}
 
-                              <div className="container ">
-                                <div className="row px-2">
+                              <div className="container " >
+                                <div className="row px-2 products-name" >
                                   <div className="form-check">
                                     <input
-                                      className="form-check-input fs-5 bill_checkbox"
+                                      className="form-check-input fs-5 mt-2 bill_checkbox"
                                       type="checkbox"
                                       defaultChecked={true}
                                       id="flexCheckDefault"
@@ -431,8 +431,8 @@ const MobCheckout = ({
                                       }
                                     />
                                     <label
-                                      className="form-check-label fs-3"
-                                      htmlFor="flexCheckDefault"
+                                      className="form-check-label fs-3 mt-1"
+                                      htmlFor="flexCheckDefault" 
                                     >
                                       {
                                         selectedMultiLangData?.same_as_shipping_address
@@ -440,12 +440,12 @@ const MobCheckout = ({
                                     </label>
                                   </div>
                                 </div>
-                                <h5>{initialBillingAddress}</h5>
+                                {/* <h5>{initialBillingAddress}</h5> */}
 
                                 {!billingCheckbox ? (
                                   <>
                                     <div className="d-flex justify-content-between "></div>
-                                    <div className="col-12 mt-2">
+                                    <div className="col-12 mt-2" >
                                       {billingAddresses &&
                                         billingAddresses.map(
                                           (detail: any, index: any) => (
@@ -495,11 +495,11 @@ const MobCheckout = ({
                                                   }}
                                                   className="text-decoration-underline showmodal_button"
                                                 >
-                                                  {selectedMultiLangData?.edit}
+                                                  <span className="edit_btn_web">{selectedMultiLangData?.edit}</span>
                                                 </button>
                                               </div>
 
-                                              <div className="row">
+                                              <div className="row" >
                                                 <div className="col-6">
                                                   <div className="d-flex ">
                                                     <p className="">
@@ -571,7 +571,7 @@ const MobCheckout = ({
                                         )}
                                     </div>
 
-                                    <span className="d-flex align-items-center mt-2 ">
+                                    <span className="d-flex align-items-center mt-2 " >
                                       <button
                                         onClick={() => handleShow("Billing")}
                                         className="fs-2 address_icon"
@@ -613,7 +613,7 @@ const MobCheckout = ({
                   </div>
                 ) : (
                   <>
-                    <div className=" container row ">
+                    <div className=" container row products-name" >
                       <div className="col-lg-8 ">
                         <h3 className="text-uppercase bold">
                           {selectedMultiLangData?.checkout_details}

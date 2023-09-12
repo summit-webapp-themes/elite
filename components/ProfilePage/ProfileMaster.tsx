@@ -99,32 +99,44 @@ const ProfileMaster = () => {
 
   const personalDetails = () => {
     return (
-      <>
-        <div className="col-lg-4 bold fs-3" >
-          {selectedMultiLangData?.user_name}:
+      <div className="ms-2">
+        <div className="mob-userdetail-containers">
+          <div className="col-lg-4 col-md-5 bold fs-3 products-name" >
+            {selectedMultiLangData?.user_name}:
+          </div>
+          <div className="col-lg-8  col-md-7 fs-3 persons-data-mob products-name" >
+            {profileList && profileList?.profile_details?.customer_name}
+          </div>
         </div>
-        <div className="col-lg-8 fs-4">
-          {profileList && profileList?.profile_details?.customer_name}
+
+        <div className="mob-userdetail-containers">
+          <div className="col-lg-4 bold fs-3 products-name">
+            {selectedMultiLangData?.company_name} :
+          </div>
+          <div className="col-lg-8 fs-3 persons-data-mob products-name">
+            {profileList && profileList?.profile_details?.company_name}
+          </div>
         </div>
-        <div className="col-lg-4 bold fs-3">
-          {selectedMultiLangData?.company_name} :
+
+
+        <div className="mob-userdetail-containers products-name">
+          <div className="col-lg-4 bold fs-3">
+            {selectedMultiLangData?.mobile_number} :
+          </div>
+          <div className="col-lg-8 fs-3 persons-data-mob products-name">
+            {profileList && profileList?.profile_details?.contact_no}
+          </div>
         </div>
-        <div className="col-lg-8 fs-4">
-          {profileList && profileList?.profile_details?.company_name}
+
+        <div className="mob-userdetail-containers products-name">
+          <div className="col-lg-4 bold fs-3">
+            {selectedMultiLangData?.email} :
+          </div>
+          <div className="col-lg-8 fs-3 persons-data-mob products-name">
+            {profileList && profileList?.profile_details?.email}
+          </div>
         </div>
-        <div className="col-lg-4 bold fs-3">
-          {selectedMultiLangData?.mobile_number} :
-        </div>
-        <div className="col-lg-8 fs-4">
-          {profileList && profileList?.profile_details?.contact_no}
-        </div>
-        <div className="col-lg-4 bold fs-3">
-          {selectedMultiLangData?.email} :
-        </div>
-        <div className="col-lg-8 fs-4">
-          {profileList && profileList?.profile_details?.email}
-        </div>
-      </>
+      </div>
     );
   };
 
@@ -553,7 +565,7 @@ const ProfileMaster = () => {
       <div className="container">
         <section className="profile_section ">
           <div className="container">
-            <h1 className="bold text-uppercase mb-3 profile_heading profile_heading_mob">
+            <h1 className="bold text-uppercase mb-3 profile_heading profile_heading_mob ms-1">
               {selectedMultiLangData?.my_account}
             </h1>
             <div className="row">
@@ -564,7 +576,7 @@ const ProfileMaster = () => {
                     className="nav nav-tabs d-flex flex-column contact_tabs text-center"
                     role="tablist"
                   >
-                    <li className="nav-item account_tab_mob">
+                    <li className="nav-item account_tab_mob products-name">
                       <Link href="#contact_faq" legacyBehavior>
                         <a
                           className={`nav-link profile_nav border tab_width ${!documentQueued?.setTrue ? "active" : ""

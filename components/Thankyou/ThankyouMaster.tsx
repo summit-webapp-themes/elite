@@ -23,7 +23,7 @@ const ThankYou = ({}: any) => {
   return (
     <>
       <div className="container mt-5">
-        <div className="row">
+        <div className="row products-name">
           <div className="text-center mx-auto col-md-12 mt-5">
             <Image
               src={Thankyouimg}
