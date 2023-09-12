@@ -33,8 +33,8 @@ const PlaceOrder = ({
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   return (
     <>
-      <div role="tabpanel" aria-hidden="false">
-        <div className="row mb-3" >
+      <div role="tabpanel" aria-hidden="false" >
+        <div className="row mb-3 products-name" >
           <div className="col-lg-12">
             <div className="row">
               <div className="col-lg-2 col-sm-4 col-6">
@@ -58,7 +58,7 @@ const PlaceOrder = ({
                   <option value="2020">2020</option>
                 </select>
               </div>
-              <div className="col text-end">
+              <div className="col text-end me-1">
                 <p className="mb-0 order-ptag">
                   <span className="bold">{placeorderCount?.length}</span>{" "}
                   {selectedMultiLangData?.orders}
@@ -82,7 +82,7 @@ const PlaceOrder = ({
             orderHistoryItems
               ?.filter((items: any) => items?.payment_status !== "Cancelled")
               ?.map((data: any, i: any) => (
-                <div className="row" key={i} >
+                <div className="row products-name" key={i} >
                   <div className="col-lg-12">
                     <div className="order_card cart_table mb-3 card">
                       <MyOrderCard

@@ -732,3 +732,20 @@ transform: translateX(0);
   // border: 2px solid green;
   margin-top: -20px !important;
 }
+
+.item_names_web1{
+  padding-left: 2.5rem ;
+  // border: 2px solid red;
+}
+
+@media only screen and (max-width: 600px) {
+  .tabs_content_mob {
+    font-size: 10px !important;
+    
+  }
+  .item_names_web1{
+    padding-left: 4px !important ;
+    // border: 2px solid green;
+  }
+ 
+}

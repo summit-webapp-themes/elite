@@ -149,17 +149,17 @@ const CartCard = ({
       </td>
 
       {/* For mobile responsive */}
-      <div className="d-lg-none d-block productd-detail-mob" >
-        <div className="row">
-          <div className="col-7 fs-4 products-name">
+      <div className="d-lg-none d-block productd-detail-mob products-name" >
+        <div className="row products-name" >
+          <div className="col-7 fs-4 products-name ">
             {selectedMultiLangData?.item_with_desc}
           </div>
           :
-          <div className="col-4">
+          <div className="col-4 products-name" >
             <Link href={`${orders.product_url}`} legacyBehavior>
               <a className="prod_name">{orders.item_name}</a>
             </Link>
-            <b> {orders.item_code}</b>
+            <p className="pb-0 mb-0"> {orders.item_code}</p>
             <p className="my-0">
               <button
                 className="astext"
@@ -174,21 +174,21 @@ const CartCard = ({
             </p>
           </div>
         </div>
-        <div className="row">
+        <div className="row products-name">
           <div className="col-7 fs-4"> {selectedMultiLangData?.price}</div>:
-          <div className="col-4 text-start">
+          <div className="col-4 text-start products-name">
             {orders?.details.length > 0 && orders?.details !== null && (
               <p className="text-start my-0">
                 {" "}
                 <i className="fa fa-inr" aria-hidden="true"></i>{" "}
-                <span className="text-center">
+                <span className="text-center products-name">
                   {orders.amount}
                 </span>
               </p>
             )}
           </div>
         </div>
-        <div className="row">
+        <div className="row products-name">
           <div className="col-7 fs-4">
             {selectedMultiLangData?.unit_weight}{" "}
           </div>
@@ -200,14 +200,14 @@ const CartCard = ({
           </div>
           :<div className="col-4 text-start">{orders.total_weight}</div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-7 fs-4">{selectedMultiLangData?.tax} </div>:
-          <div className="col-4 text-start product-price">₹ {orders.tax}</div>
-        </div>
-        <div className="row my-5" style={{ order: "2px solid red" }}>
+          <div className="col-4 text-start products-name">₹ {orders.tax}</div>
+        </div> */}
+        <div className="row my-5" >
           <div className="col-7 fs-4">{selectedMultiLangData?.quantity_c} </div>
           :
-          <div className="col-4 " >
+          <div className="col-4 products-name" >
             <span
               className="fs-2 arrow_pointer"
               onClick={() => handleQuantityDecrement(orders.item_code)}
@@ -239,13 +239,13 @@ const CartCard = ({
             </Link> */}
           </div>
         </div>
-        <div className="row" >
+        <div className="row products-name" >
           <div className="col-7 fs-4" >{selectedMultiLangData?.total} </div>
           <div className="col-4 product-price ps-0 ms-0 "><span className="me-2 ">:</span> {orders.currency_symbol} {orders.amount}</div>
         </div>
 
-        <div className="row" >
-          <div className="col-7 fs-4" >
+        <div className="row products-name" >
+          {/* <div className="col-7 fs-4" >
             <h5 className="mb-0 sub-total-h5">
               {selectedMultiLangData?.sub_total}({cartListingItems?.total_qty}{" "}
               {selectedMultiLangData?.quantity_c}) </h5>
@@ -255,7 +255,7 @@ const CartCard = ({
               <span className="me-2">:</span> {orders?.currency_symbol}{" "}
               {cartListingItems?.grand_total_excluding_tax}
             </span>
-          </div>
+          </div> */}
         </div>
 
 
