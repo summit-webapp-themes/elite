@@ -13,19 +13,19 @@ const ProductSpecificationMaster = ({
 
   return (
     <>
-      <div className="container mt-3">
+      <div className="container mt-3" >
         <Tabs
           id="controlled-tab-example"
           activeKey={key}
           onSelect={(k) => setKey(k)}
-          className="mb-3 specs_tabs"
+          className="mb-3 specs_tabs tabs_content_mob" 
         >
           {specifications?.length > 0 &&
             specifications !== null &&
             specifications.map((specsData: any, index: any) => {
               console.log("specs name", specsData, index);
               return (
-                <Tab eventKey={index} title={specsData.name}>
+                <Tab eventKey={index} title={specsData.name} >
                   {specsData.name === "Specifications" && (
                     <ProductSpecification specificationData={specsData} />
                   )}
