@@ -1138,3 +1138,14 @@ header.header.fixed {
    
   }
 }
+
+
+
+
+
+@media only screen and (max-width: 1024px) {
+.header-home-title{
+  font-size: 13px !important;
+  // border: 2px solid red
+}
+}

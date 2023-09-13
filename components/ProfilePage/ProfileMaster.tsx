@@ -99,7 +99,7 @@ const ProfileMaster = () => {
 
   const personalDetails = () => {
     return (
-      <div className="ms-2">
+      <div className="ms-2 products-name">
         <div className="mob-userdetail-containers">
           <div className="col-lg-4 col-md-5 bold fs-3 products-name" >
             {selectedMultiLangData?.user_name}:
@@ -143,7 +143,7 @@ const ProfileMaster = () => {
   const availableCoupons = () => {
     return (
       <>
-        <div className="mb-2 row">
+        <div className="mb-2 row products-name">
           <div className="col-lg-2 fs-3 bold">
             {selectedMultiLangData?.coupons} :
           </div>
@@ -176,7 +176,7 @@ const ProfileMaster = () => {
     if (ageingReport.length > 0) {
       return (
         <>
-          <div className="row mt-5">
+          <div className="row mt-5 products-name">
             <div className="col-lg-12">
               <div className="">
                 <div className="profile">
@@ -225,12 +225,12 @@ const ProfileMaster = () => {
 
   const showBillingAddresses = () => {
     return (
-      <>
-        <div className="shadow-sm card">
+      <> 
+        <div className="shadow-sm card px-2 products-name" >
           <div className="card-body">
             <div className="row align-items-center">
               <div className="col-lg-8">
-                <h5 className="fw-bolder pt-1">
+                <h5 className="fw-bolder pt-1 products-name">
                   {selectedMultiLangData?.billing_addresses}
                 </h5>
               </div>
@@ -249,35 +249,35 @@ const ProfileMaster = () => {
             </div>
             {/* <hr /> */}
 
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.name} :</p>
               </div>
-              <div className="col-sm-7 fw-bolder">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.billing_address?.name}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2" >
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.email}:</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.billing_address?.email}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.mobile_number}:</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.billing_address?.contact}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.address} :</p>
               </div>
-              <div className="col-sm-7 w-lg-25 w-sm-75 ">
+              <div className="col-sm-7 w-lg-25 w-sm-75 ps-3 mt-2">
                 <div className="fw-bolder">
                   {profileList && profileList?.billing_address?.address_1}
                 </div>
@@ -287,35 +287,35 @@ const ProfileMaster = () => {
               </div>
             </div>
 
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.postal_code}:</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.billing_address?.postal_code}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.state} :</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.billing_address?.state}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.city} :</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.billing_address?.city}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.country}:</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.billing_address?.country}
               </div>
             </div>
@@ -328,11 +328,11 @@ const ProfileMaster = () => {
   const showShippigAddresses = () => {
     return (
       <>
-        <div className="shadow-sm card">
+        <div className="shadow-sm card px-2 products-name">
           <div className="card-body">
             <div className="row align-items-center">
               <div className="col-lg-8">
-                <h5 className="fw-bolder pt-1">
+                <h5 className="fw-bolder pt-1 products-name">
                   {selectedMultiLangData?.shipping_addresses}
                 </h5>
               </div>
@@ -350,35 +350,35 @@ const ProfileMaster = () => {
             </div>
             {/* <hr /> */}
 
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.name} :</p>
               </div>
-              <div className="col-sm-7 fw-bolder">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.shipping_address?.name}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.email} :</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.shipping_address?.email}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.mobile_number}:</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.shipping_address?.contact}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.address}:</p>
               </div>
-              <div className="col-sm-7 w-lg-25 w-sm-75 ">
+              <div className="col-sm-7 w-lg-25 w-sm-75 ps-3 mt-2">
                 <div className="fw-bolder">
                   {profileList && profileList?.shipping_address?.address_1}
                 </div>
@@ -388,35 +388,35 @@ const ProfileMaster = () => {
               </div>
             </div>
 
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.postal_code}:</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.shipping_address?.postal_code}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.state} :</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.shipping_address?.state}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.city} :</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.shipping_address?.city}
               </div>
             </div>
-            <div className="row mb-2">
+            <div className="d-flex align-items-center mb-2">
               <div className="col-sm-5">
                 <p className="">{selectedMultiLangData?.country}:</p>
               </div>
-              <div className="col-sm-7 fw-bolder ">
+              <div className="col-sm-7 fw-bolder ps-3">
                 {profileList && profileList?.shipping_address?.country}
               </div>
             </div>
@@ -428,8 +428,8 @@ const ProfileMaster = () => {
 
   const paymentTerms = () => {
     return (
-      <div className="row m-0">
-        <div className="shadow-sm card mt-4 ">
+      <div className="row m-0 products-name">
+        <div className="shadow-sm card mt-0 ">
           <div className="card-body">
             <div className="mb-2 row">
               <div className="col-lg-3 fs-3 bold">
@@ -482,11 +482,11 @@ const ProfileMaster = () => {
   const enquiryHistory = () => {
     return (
       <>
-        <div className="row mt-5">
-          <div className="col-lg-12">
+        <div className="row mt-0 products-name">
+          <div className="col-lg-12 products-name">
             <div className="">
-              <div className="profile">
-                <h4 className="text-start fw-bolder text-uppercase">
+              <div className="profile products-name">
+                <h4 className="text-start fw-bolder text-uppercase products-name mb-2">
                   {selectedMultiLangData?.enquiry_history}
                 </h4>
               </div>
@@ -565,7 +565,7 @@ const ProfileMaster = () => {
       <div className="container">
         <section className="profile_section ">
           <div className="container">
-            <h1 className="bold text-uppercase mb-3 profile_heading profile_heading_mob ms-1">
+            <h1 className="bold text-uppercase mb-3 profile_heading products-name profile_heading_mob ms-1">
               {selectedMultiLangData?.my_account}
             </h1>
             <div className="row">
@@ -588,7 +588,7 @@ const ProfileMaster = () => {
                           aria-controls="personal_details_faq"
                           aria-selected="true"
                         >
-                          <h6 className="link-tabs my-3">
+                          <h6 className="link-tabs my-3 products-name">
                             <i
                               className="fa fa-user-circle fs-1"
                               aria-hidden="true"
@@ -611,7 +611,7 @@ const ProfileMaster = () => {
                           aria-controls="address_faq"
                           aria-selected="true"
                         >
-                          <h6 className="link-tabs my-3">
+                          <h6 className="link-tabs my-3 products-name">
                             <i
                               className="fa fa-map-marker fs-1"
                               aria-hidden="true"
@@ -635,7 +635,7 @@ const ProfileMaster = () => {
                           aria-controls="offers_faq"
                           aria-selected="true"
                         >
-                          <h6 className="link-tabs my-3">
+                          <h6 className="link-tabs my-3 products-name">
                             <i
                               className="fa fa-tags fs-1"
                               aria-hidden="true"
@@ -661,7 +661,7 @@ const ProfileMaster = () => {
                           aria-controls="pay_faq"
                           aria-selected="false"
                         >
-                          <h6 className="link-tabs my-3 ">
+                          <h6 className="link-tabs my-3 products-name">
                             <i
                               className="fa fa-credit-card fs-1"
                               aria-hidden="true"
@@ -684,7 +684,7 @@ const ProfileMaster = () => {
                           aria-controls="enqHist_faq_tab"
                           aria-selected="false"
                         >
-                          <h6 className="link-tabs my-3 ">
+                          <h6 className="link-tabs my-3 products-name">
                             <i
                               className="fa fa-calendar-check-o fs-1"
                               aria-hidden="true"
@@ -737,7 +737,7 @@ const ProfileMaster = () => {
                       <div className="card-body">
                         {/* Coupon code */}
                         <div className="row m-0">
-                          <div className="shadow-sm card mt-4 ">
+                          <div className="shadow-sm card mt-0 ">
                             <div className="card-body">
                               {availableCoupons()}
                             </div>
@@ -767,7 +767,7 @@ const ProfileMaster = () => {
                   >
                     <div className="card">
                       <div className="card-body">
-                        <div className="text-center pt-5">
+                        <div className="text-center pt-0">
                           {paymentTerms()}
 
                           {handleAgeingReportDisplay()}
