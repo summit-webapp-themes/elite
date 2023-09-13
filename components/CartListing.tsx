@@ -207,8 +207,8 @@ const CartListing = () => {
                                           {selectedMultiLangData?.price}
                                         </span>
                                       </th>
-                                      <th className="product-quantity product-quantity-margin " >
-                                        <span>
+                                      <th className="product-quantity  "  >
+                                        <span className="product-quantity-margin">
                                           {selectedMultiLangData?.quantity_c}
                                         </span>
                                       </th>
