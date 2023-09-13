@@ -21,9 +21,9 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
   return (
     <>
       <div key={data.id}>
-        <div className="card-header" >
-          <div className="row">
-            <div className="mb-3 mb-sm-0 col-md-2 col-6 order-div">
+        <div className="card-header">
+          <div className="row pb-0">
+            <div className=" mb-sm-0 col-md-2 col-6 order-div">
               <p className="text-uppercase gray mb-0 myorder_p">
                 {selectedMultiLangData?.order_placed}
                <p>
@@ -32,7 +32,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
               </p>
               <p className="gray mb-0 myorder_p">{data?.creation}</p>
             </div>
-            <div className="mb-3 col-md-2 col-6 order-div">
+            <div className="col-md-2 col-6 order-div">
               <p className="text-uppercase gray mb-0 myorder_p ">
                 {" "}
                 {selectedMultiLangData?.total_price}
@@ -127,7 +127,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
             </div>
 
             <div className="d-flex align-items-center row">
-              <div className="mb-3 mb-sm-0 col-lg-2 col-md-2 col-4 mt-2">
+              <div className="mb-3 mb-sm-0 col-lg-2 col-md-2 col-4 mt-0">
                 <div className="product-img">
                   <img
                     src={`${CONSTANTS.API_BASE_URL}/${

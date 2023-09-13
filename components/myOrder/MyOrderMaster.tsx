@@ -32,7 +32,7 @@ const MyOrderMaster = () => {
         <div className="mt-4 row">
           <div className="col-md-6">
             <div className="page_heading">
-              <h4 className=" bold text-uppercase mb-3 order-heading" >
+              <h4 className=" bold text-uppercase mb-5 order-heading products-name" >
                 {selectedMultiLangData?.your_orders}
               </h4>
             </div>
@@ -55,7 +55,7 @@ const MyOrderMaster = () => {
           </li>
         </ul>
 
-        <div className="tab-content " >
+        <div className="tab-content" >
           <div id="placed_order" className="container tab-pane active show">
             <br />
             <PlaceOrder

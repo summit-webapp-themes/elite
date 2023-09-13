@@ -36,7 +36,7 @@ const PlaceOrder = ({
       <div role="tabpanel" aria-hidden="false" >
         <div className="row mb-3 products-name" >
           <div className="col-lg-12">
-            <div className="row">
+            <div className="row" >
               <div className="col-lg-2 col-sm-4 col-6">
                 <select
                   className="form-select placeorder_detail fs-5 w-75"

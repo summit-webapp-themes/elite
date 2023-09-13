@@ -208,7 +208,7 @@ const Home3WebNavbar = ({
         <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header "  >
           <div className="container">
             <div className="inner-wrap d-flex justify-content-between">
-              <div className="header-left">
+              <div className="header-left  " >
                 <div className="mobile-nav">
                   <Link href="#" legacyBehavior>
                     <a
@@ -235,7 +235,7 @@ const Home3WebNavbar = ({
                 </div>
 
                 <nav className="main-nav" >
-                  <ul className="menu active-underline">
+                  <ul className="menu active-underline  pe-4">
                     {navbarData?.length > 0 &&
                       navbarData.map((items: any, i: any) => (
                         <li
@@ -244,7 +244,7 @@ const Home3WebNavbar = ({
                           onMouseLeave={(i) => handleLeave(i)}
                           key={i}
                         >
-                          <a className="mainMenu-color">{items.name}</a>
+                          <a className="mainMenu-color header-home-title">{items.name}</a>
                           <ul className="ms-4 megamenu dropdown-mega-menu-web" >
                             {items.values.map((items_val: any, index: any) => (
                               <li key={index}>
