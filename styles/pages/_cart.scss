@@ -292,6 +292,9 @@
     margin-left: 25px !important;
 
 }
+.text-captilize{
+    text-transform: capitalize;
+}
 
 @media only screen and (max-width: 600px) {
     .cart-total-mobs {
@@ -305,6 +308,10 @@
     .btn-clear-cart-left{
         margin-left: -8px !important;
     
+    }
+    .item-cart-name-font{
+        font-size: 13px;
+        color: black !important
     }
   }
 
