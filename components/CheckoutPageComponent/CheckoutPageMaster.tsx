@@ -105,10 +105,10 @@ const CheckoutPageMaster = () => {
 
 
   return (
-    <div className="container mt-5 mb-5">
+    <div className="container mt-0 mb-0">
       {isBreakpoint ? (
         <>
-          <div className="container pt-5 ms-1">
+          <div className="container pt-0 ms-1">
             <h3>{selectedMultiLangData?.checkout_page}</h3>
             <hr />
           </div>

@@ -31,7 +31,7 @@ const QuickOrderCard = (props: any) => {
   }
   return (
     <>
-      <div className="mt-3">
+      <div className="mt-3" >
         <div className="col-12"></div>
 
         {partNumbersData?.length > 0 &&

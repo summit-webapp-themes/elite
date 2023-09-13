@@ -293,6 +293,12 @@
     margin-left: 25px !important;
 
 }
+.text-captilize{
+    text-transform: capitalize;
+}
+.product-quantity-margin {
+    padding-left: 35px !important;
+}
 
 
 @media only screen and (max-width: 600px) {
@@ -310,6 +316,10 @@
     
     }
 
+    .item-cart-name-font{
+        font-size: 13px;
+        color: black !important
+    }
 
   }
 

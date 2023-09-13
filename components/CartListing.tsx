@@ -146,12 +146,12 @@ const CartListing = () => {
           {Object.keys(cartListingItems).length > 0 ? (
             <div className="container py-5 pt-0 mt-0"  >
               <div className="cart_heading">
-                <h3 className="text-uppercase my-0">
+                <h3 className="text-captilize my-0 products-name">
                   {selectedMultiLangData?.shopping_cart}
                 </h3>
               </div>
 
-              <div className="row">
+              <div className="row mb-1" >
                 <div className="col-md-6"  >
                   {/* <h5>Customer name: {cartListingItems?.party_name} </h5> */}
                 </div>
@@ -170,7 +170,7 @@ const CartListing = () => {
                   </h5>
                 </div>
               </div>
-              <div className="ps-3 row cart_wrapper mt-0 pt-0"  >
+              <div className="ps-3 row cart_wrapper mt-0 pt-0 "  >
                 <hr />
                 <div className="page-content page-content-margin" >
                   <div className="container px-0">
@@ -207,8 +207,8 @@ const CartListing = () => {
                                           {selectedMultiLangData?.price}
                                         </span>
                                       </th>
-                                      <th className="product-quantity product-quantity-margin " >
-                                        <span>
+                                      <th className="product-quantity  "  >
+                                        <span className="product-quantity-margin">
                                           {selectedMultiLangData?.quantity_c}
                                         </span>
                                       </th>
@@ -226,7 +226,7 @@ const CartListing = () => {
                                         (orders: any, i: any) => (
                                           <tr key={i} className=" " >
                                             <td className="product-thumbnail" >
-                                              <div className="p-relative product_item_img_mob" >
+                                              <div className="p-relative product_item_img_mob"  >
                                                 {handleRenderingOfCartImages(
                                                   orders
                                                 )}
