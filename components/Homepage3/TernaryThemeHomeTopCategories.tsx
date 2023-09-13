@@ -13,7 +13,7 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
   };
   return (
     <>
-      <div className="container category_heading category_heading_mob">
+      <div className="container  category_heading_mob mt-4" >
         <div className="row">
           {homeTopCategories?.length > 0 && homeTopCategories !== null ? (
             <>
