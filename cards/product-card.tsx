@@ -16,6 +16,7 @@ import {
   updateAccessToken,
 } from "../store/slices/auth/token-login-slice";
 import { showToast } from "../components/ToastNotificationNew";
+import { profileData_state } from "../store/slices/general_slices/profile-page-slice";
 
 const ProductCard = (props: ProductCardProps) => {
   const {
@@ -35,23 +36,33 @@ const ProductCard = (props: ProductCardProps) => {
   } = props;
 
   const TokenFromStore: any = useSelector(get_access_token);
+  const profileData: any = useSelector(profileData_state);
+  console.log("profile partyname", profileData);
 
   let wishproducts: any;
   let requestNew: any;
   let requestList: any;
+  let partyName: any;
 
   const dispatch = useDispatch();
 
   const handleAddCart = async () => {
-    const addCartData:any = [];
+    const addCartData: any = [];
     addCartData.push({
       item_code: name,
       quantity: 1,
     });
+
+    if (Object?.keys(profileData?.partyName)?.length > 0) {
+      partyName = profileData?.partyName;
+    } else {
+      partyName = "Guest";
+    }
     let AddToCartProductRes: any = await AddToCartApi(
       addCartData,
       currency_state_from_redux?.selected_currency_value,
-      TokenFromStore?.token
+      TokenFromStore?.token,
+      partyName
     );
 
     if (AddToCartProductRes.msg === "success") {
@@ -68,21 +79,16 @@ const ProductCard = (props: ProductCardProps) => {
         }
       } else {
         dispatch(fetchCartListing(TokenFromStore?.token));
-        
       }
-      // setTimeout(() => {
-      //   dispatch(hideToast());
-      // }, 1200);
     } else {
       showToast("Failed to Add to cart", "error");
-      // dispatch(failmsg(AddToCartProductRes?.error));
-      // setTimeout(() => {
-      //   dispatch(hideToast());
-      // }, 1500);
     }
   };
   return (
-    <div key={key} className="border ps-0 ms-0  product-border-pd rounded-3 h-100 ">
+    <div
+      key={key}
+      className="border ps-0 ms-0  product-border-pd rounded-3 h-100 "
+    >
       <div className="d-flex justify-content-between icon-container-ps">
         <div
           className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${
@@ -176,7 +182,8 @@ const ProductCard = (props: ProductCardProps) => {
                     src={`${CONSTANTS.API_BASE_URL}${img_url}`}
                     alt="product-detail"
                     width={200}
-                    height={200} className="product_img_mob"
+                    height={200}
+                    className="product_img_mob"
                   />
                 </Link>
               </>
@@ -198,7 +205,7 @@ const ProductCard = (props: ProductCardProps) => {
               <Link
                 href={`${url}?currency=${currency_state_from_redux?.selected_currency_value}`}
               >
-               <span className="bold products-name"> {item_name}</span>
+                <span className="bold products-name"> {item_name}</span>
               </Link>
             </h4>
             <div className="product-price d-flex products-name margin-up">

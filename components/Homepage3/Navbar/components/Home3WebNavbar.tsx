@@ -14,6 +14,7 @@ import UseCartPageHook from "../../../../hooks/CartPageHooks/cart-page-hook";
 import { ClearToken } from "../../../../store/slices/auth/token-login-slice";
 import logoImg from "../../../../public/assets/images/b2c_logo.png";
 import LinguisticsAndForex from "./LinguisticsAndForex";
+import { ClearPartyName } from "../../../../store/slices/general_slices/profile-page-slice";
 const Home3WebNavbar = ({
   navbarData,
   isLoading,
@@ -72,6 +73,7 @@ const Home3WebNavbar = ({
     localStorage.removeItem("isDealer");
     localStorage.removeItem("isSuperAdmin");
     dispatch(ClearToken());
+    dispatch(ClearPartyName());
     setLoggedIn(false);
     router.push("/login");
 
@@ -88,11 +90,11 @@ const Home3WebNavbar = ({
   };
 
   return (
-    <div className="headers" >
-      <header className="header header_web" >
+    <div className="headers">
+      <header className="header header_web">
         <div className="header-middle ternarytheme-middle-header pt-1 pb-1 header_mob">
           <div className="container justify-content-sm-start justify-content-md-end justify-content-lg-end  justify-content-xl-end ">
-            <div className="mobile-nav d-flex justify-content-sm-between " >
+            <div className="mobile-nav d-flex justify-content-sm-between ">
               <Link href="#" legacyBehavior>
                 <a
                   className="mobile-menu-toggle  w-icon-hamburger"
@@ -118,11 +120,11 @@ const Home3WebNavbar = ({
 
             <LinguisticsAndForex />
 
-            <div className="ms-1 wishlist_mob" >
+            <div className="ms-1 wishlist_mob">
               <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
                 <Link href="/wishlist" legacyBehavior>
                   <a className="cart-toggle label-down link ">
-                    <i className="w-icon-heart wishlist-icon_mob icon-font-size" >
+                    <i className="w-icon-heart wishlist-icon_mob icon-font-size">
                       <span className="cart-count wishlist_count text-white">
                         {wishlistCount || 0}
                       </span>
@@ -131,11 +133,11 @@ const Home3WebNavbar = ({
                 </Link>
               </div>
             </div>
-            <div className="ms-1 mb-1 wishlist_mob" >
+            <div className="ms-1 mb-1 wishlist_mob">
               <div className="dropdown cart-dropdown cart-offcanvas text-white ">
                 <Link href="/cart" legacyBehavior>
                   <a className="cart-toggle label-down link wishlist-icon_mob">
-                    <i className="w-icon-cart icon-font-size wishlist-icon" >
+                    <i className="w-icon-cart icon-font-size wishlist-icon">
                       <span className="cart-count text-white cart-count-mob">
                         {cartCount || 0}
                       </span>
@@ -145,7 +147,7 @@ const Home3WebNavbar = ({
               </div>
             </div>
 
-            <div className="ms-1 mb-1 login-mob-margin" >
+            <div className="ms-1 mb-1 login-mob-margin">
               <Dropdown className="dropleft">
                 {loginStatus === "true" ? (
                   <Dropdown.Toggle
@@ -174,7 +176,7 @@ const Home3WebNavbar = ({
                         </Link>
                       </Dropdown.Item> */}
                     <Dropdown.Item className="nav_dropdown">
-                      <Link href="profile" className="text-dark">
+                      <Link href="/profile" className="text-dark">
                         {selectedMultiLangData?.my_account}
                       </Link>
                     </Dropdown.Item>
@@ -205,10 +207,10 @@ const Home3WebNavbar = ({
             </div>
           </div>
         </div>
-        <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header "  >
+        <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header ">
           <div className="container">
             <div className="inner-wrap d-flex justify-content-between">
-              <div className="header-left  " >
+              <div className="header-left  ">
                 <div className="mobile-nav">
                   <Link href="#" legacyBehavior>
                     <a
@@ -219,7 +221,7 @@ const Home3WebNavbar = ({
                   </Link>
                 </div>
 
-                <div className="mx-2 my-1 me-5 logo_containers ps-0 ms-0" >
+                <div className="mx-2 my-1 me-5 logo_containers ps-0 ms-0">
                   <Link href="/" legacyBehavior>
                     <a>
                       <Image
@@ -234,7 +236,7 @@ const Home3WebNavbar = ({
                   </Link>
                 </div>
 
-                <nav className="main-nav" >
+                <nav className="main-nav">
                   <ul className="menu active-underline  pe-4">
                     {navbarData?.length > 0 &&
                       navbarData.map((items: any, i: any) => (
@@ -244,8 +246,10 @@ const Home3WebNavbar = ({
                           onMouseLeave={(i) => handleLeave(i)}
                           key={i}
                         >
-                          <a className="mainMenu-color header-home-title">{items.name}</a>
-                          <ul className="ms-4 megamenu dropdown-mega-menu-web" >
+                          <a className="mainMenu-color header-home-title">
+                            {items.name}
+                          </a>
+                          <ul className="ms-4 megamenu dropdown-mega-menu-web">
                             {items.values.map((items_val: any, index: any) => (
                               <li key={index}>
                                 <Link
@@ -280,7 +284,7 @@ const Home3WebNavbar = ({
                   </ul>
                 </nav>
               </div>
-              <div className="header-search home-header-search hs-expanded hs-round d-none d-md-flex input-wrapper " >
+              <div className="header-search home-header-search hs-expanded hs-round d-none d-md-flex input-wrapper ">
                 <input
                   type="text"
                   className="form-control "

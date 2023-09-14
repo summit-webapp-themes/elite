@@ -19,7 +19,7 @@ import {
 import { getAccessToken } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import getOtpFetchApi from "../../services/api/auth/get-otp-api";
-import logoImg from "../../public/assets/images/b2c_logo.png"
+import logoImg from "../../public/assets/images/b2c_logo.png";
 import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 
 const Loginpage = () => {
@@ -33,7 +33,6 @@ const Loginpage = () => {
   const [isOtpLoginState, setIsOtpLoginState] = useState<boolean>(false);
 
   const { handleLanguageChange, multiLanguagesData }: any = useMultilangHook();
-
 
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
@@ -74,26 +73,24 @@ const Loginpage = () => {
 
     setTimeout(() => {
       const loginStatusFromStorage: any = localStorage.getItem("isLoggedIn");
+      console.log("loginStatusFromStorage", loginStatusFromStorage);
+      // if (loginStatusFromStorage === true) {
+      //   router.push("/");
+      // }
       setLoginStatus(loginStatusFromStorage);
       setIsOtpLoginState(false);
     }, 2000);
   };
+
+  // if (loginStatusFromStorage === true) {
+  //   router.push("/");
+  // }
   useEffect(() => {
     if (loginStatus === "true") {
-      // dispatch(successmsg("logged in sucessfully"));
-      // setTimeout(() => {
-      //   dispatch(hideToast());
-      // }, 800);
       router.push("/");
       localStorage.removeItem("guest");
       localStorage.removeItem("guestToken");
     }
-    // else if (loginStatus === null) {
-    //   dispatch(failmsg("Invalid Credential"));
-    //   setTimeout(() => {
-    //     dispatch(hideToast());
-    //   }, 800);
-    // }
   }, [handlesubmit]);
   console.log(loginSucess, "loginSucess");
 
@@ -133,14 +130,9 @@ const Loginpage = () => {
   return (
     <>
       <div className="container">
-      <div className="logo mt-5">
+        <div className="logo mt-5">
           <Link href="/" className="navbar-brand">
-            <Image
-               src={logoImg}
-              alt="logo"
-              width={250}
-              height={55}
-            />
+            <Image src={logoImg} alt="logo" width={250} height={55} />
           </Link>
         </div>
 
