@@ -72,9 +72,9 @@ const DisplayTagHome3 = (props: any) => {
                                   <Link href={`${list.url}?currency=${currency_state_from_redux?.selected_currency_value}`}>{list.item_name}</Link>
                                 </h4>
                                 <div className="product-price" >
-                                  <ins className="new-price">{list?.currency_symbol}{" "}{list?.price}</ins>
+                                  <ins className="new-price" >{list?.currency_symbol}{" "}{Math.round(list?.price)}</ins>
                                   <del className="old-price">
-                                    {list?.currency_symbol}{" "}{list?.mrp_price}
+                                    {list?.currency_symbol}{" "}{Math.round(list?.mrp_price)}
                                   </del>
                                 </div>
                               </div>
