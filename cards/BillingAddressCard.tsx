@@ -78,9 +78,10 @@ const BillingAddressCard = ({
         aria-label="Default select example"
         onChange={handleBilling}
       >
-        <option value="">
+        {/* <option value="">
           {selectedMultiLangData?.select_billing_address}
-        </option>
+        </option> */}
+        <option value=""> {initialShippingAddress}</option>
         {billingAddresses.map((billing_ad: any, i: any) => (
           <option key={i}>{billing_ad?.address_id}</option>
         ))}

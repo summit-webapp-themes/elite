@@ -43,7 +43,7 @@ const ProductCard = (props: ProductCardProps) => {
   const dispatch = useDispatch();
 
   const handleAddCart = async () => {
-    const addCartData:any = [];
+    const addCartData: any = [];
     addCartData.push({
       item_code: name,
       quantity: 1,
@@ -68,7 +68,7 @@ const ProductCard = (props: ProductCardProps) => {
         }
       } else {
         dispatch(fetchCartListing(TokenFromStore?.token));
-        
+
       }
       // setTimeout(() => {
       //   dispatch(hideToast());
@@ -85,9 +85,8 @@ const ProductCard = (props: ProductCardProps) => {
     <div key={key} className="border ps-0 ms-0  product-border-pd rounded-3 h-100 ">
       <div className="d-flex justify-content-between icon-container-ps">
         <div
-          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${
-            display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
-          }`}
+          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
+            }`}
         >
           {display_tag?.length > 0 && display_tag[0]}
         </div>
@@ -165,7 +164,7 @@ const ProductCard = (props: ProductCardProps) => {
       </div>
       <div className="product-wrap">
         <div className="product text-center ">
-          <div className="product-media product_card_h product-main-container">
+          <div className="product-media product_card_h product-main-container text-center d-flex justify-content-center">
             {img_url !== "" ? (
               <>
                 <Link
@@ -176,7 +175,7 @@ const ProductCard = (props: ProductCardProps) => {
                     src={`${CONSTANTS.API_BASE_URL}${img_url}`}
                     alt="product-detail"
                     width={200}
-                    height={200} className="product_img_mob"
+                    height={200} className="product_img_mob product_img_web"
                   />
                 </Link>
               </>
@@ -187,7 +186,7 @@ const ProductCard = (props: ProductCardProps) => {
                     src={"/assets/images/maximaCard.jpg"}
                     alt="Product"
                     width="200"
-                    height="200"
+                    height="200" className="product_img_mob product_img_web"
                   />
                 </Link>
               </>
@@ -198,7 +197,7 @@ const ProductCard = (props: ProductCardProps) => {
               <Link
                 href={`${url}?currency=${currency_state_from_redux?.selected_currency_value}`}
               >
-               <span className="bold products-name"> {item_name}</span>
+                <span className="bold products-name"> {item_name}</span>
               </Link>
             </h4>
             <div className="product-price d-flex products-name margin-up">

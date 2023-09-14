@@ -40,14 +40,14 @@ const ShippingAddressCard = ({
     <>
       <h4 className="mb-0 products-name">{selectedMultiLangData?.shipping_addresses}</h4>
       {/* <h5>{selectedAddress || initialShippingAddress}</h5> */}
-      <div className="d-flex align-items-center mb-0 mt-0 pt-0 mb-1 ">
+      <div className="d-flex align-items-center mb-0 mt-0 pt-0 mb-1 " >
         <button className="ms-0 ps-0 address_icon" onClick={() => handleShow("Shipping")}>
           <i className="fa fa-edit text-primary fs-2 ship_edit"></i>
         </button>
 
         <div
           className="fs-4 mt-0 ms-0 ps-0 ship_heading"
-          onClick={() => handleShow("Shipping")}
+          onClick={() => handleShow("Shipping")} 
         >
           {selectedMultiLangData?.create_new_shipping_address}
         </div>
@@ -58,9 +58,9 @@ const ShippingAddressCard = ({
         aria-label="Default select example"
         onChange={handleShipping}
       >
-        <option value="">
+        {/* <option value="">
           {selectedMultiLangData?.select_shipping_address}
-        </option>
+        </option> */}
         {shippingAddresses?.map((shipping_ad: any, i: any) => (
           <option key={i}>{shipping_ad?.address_id}</option>
         ))}

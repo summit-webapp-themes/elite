@@ -28,6 +28,7 @@ const Home3WebNavbar = ({
   handleKeyDown,
   multiLanguagesData,
   selectedMultiLangData,
+  handleSearchIputValue,
 }: any) => {
   const { wishlistCount } = useWishlist();
   const { cartListingItems } = UseCartPageHook();
@@ -288,7 +289,8 @@ const Home3WebNavbar = ({
                   id="search"
                   placeholder={selectedMultiLangData?.search_in}
                   value={searchValue}
-                  onChange={(e: any) => setSearchValue(e.target.value)}
+                  onChange={handleSearchIputValue}
+                  // onChange={(e: any) => setSearchValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   required
                 />
