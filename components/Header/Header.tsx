@@ -15,7 +15,7 @@ const Header = ({ meta_data }: any) => {
   return (
     <Head>
       <title>
-        {meta_data !== undefined
+        {meta_data !== undefined && meta_data !== null
           ? Object.keys(meta_data)?.length > 0
             ? meta_data?.meta_title
             : "Summit E-Commerce - A Comprehensive E-Commerce Solution"
@@ -24,7 +24,8 @@ const Header = ({ meta_data }: any) => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta
         name="keywords"
-        content={meta_data !== undefined&&
+        content={meta_data !== undefined &&
+          meta_data !== null &&
           Object.keys(meta_data)?.length > 0
             ? meta_data?.meta_title
             : "Summit E-Commerce - A Comprehensive E-Commerce Solution"
@@ -32,7 +33,8 @@ const Header = ({ meta_data }: any) => {
       />
       <meta
         name="description"
-        content={meta_data !== undefined&&
+        content={meta_data !== undefined &&
+          meta_data !== null &&
           Object.keys(meta_data)?.length > 0
             ? meta_data?.description
             : "Summit E-Commerce - A Comprehensive E-Commerce Solution"
@@ -41,7 +43,8 @@ const Header = ({ meta_data }: any) => {
       <meta
         name="robots"
         content={
-          meta_data !== undefined&&
+          meta_data !== undefined &&
+          meta_data !== null &&
           Object.keys(meta_data)?.length > 0 ? meta_data?.robot_name : "index"
         }
       />
@@ -52,7 +55,8 @@ const Header = ({ meta_data }: any) => {
       <meta
         property="og:title"
         content={
-          meta_data !== undefined&&
+          meta_data !== undefined &&
+          meta_data !== null &&
           Object.keys(meta_data)?.length > 0
             ? meta_data?.meta_title
             : "Summit E-Commerce - A Comprehensive E-Commerce Solution"
@@ -61,7 +65,8 @@ const Header = ({ meta_data }: any) => {
       <meta
         property="og:description"
         content={
-          meta_data !== undefined&&
+          meta_data !== undefined &&
+          meta_data !== null &&
           Object.keys(meta_data)?.length > 0
             ? meta_data?.description
             : "Summit E-Commerce - A Comprehensive E-Commerce Solution"

@@ -333,7 +333,7 @@ const WishlistMaster = () => {
                               </div>
                               <button
                                 type="submit"
-                                className=" btn btn-close fs-6 p-2 mx-2 rounded-circle"
+                                className=" btn btn-close fs-6 p-2 mx-2 rounded-circle" 
                                 onClick={() => {
                                   requestNew = {
                                     prod_id: item?.name,
@@ -390,7 +390,7 @@ const WishlistMaster = () => {
                             {item?.price?.toLocaleString("en-IN")}
                           </ins>
                         ) : (
-                          <p className="border price_request">
+                          <p className="border price_request "  >
                             {selectedMultiLangData?.price_on_request}
                           </p>
                         )}

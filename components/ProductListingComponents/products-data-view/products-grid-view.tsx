@@ -25,10 +25,10 @@ const ProductsGridView = (props: ProductsViewProps) => {
 
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [pageOffset, setpageOffset] = useState<number>(0);
-  const usersPerPage :number= 12;
+  const usersPerPage: number = 12;
   const pagesVisited = pageNumber * usersPerPage;
 
-  const pageCount:any = Math.ceil(productListTotalCount / 12);
+  const pageCount: any = Math.ceil(productListTotalCount / 12);
   // pageCount={Math.ceil( productListTotalCount/ 12)}
   const changePage = ({ selected }: any) => {
     setPageNumber(selected);
@@ -42,9 +42,8 @@ const ProductsGridView = (props: ProductsViewProps) => {
   const NextBtnDisabled: any = productListTotalCount > listItems?.length;
   return (
     <div
-      className={`${
-        filtersData && filtersData?.length > 0 ? "col-lg-9" : "col-lg-12"
-      }`}
+      className={`${filtersData && filtersData?.length > 0 ? "col-lg-9" : "col-lg-12"
+        }`}
     >
       <div className="row product-mg-r" >
         {loading ? (
@@ -59,7 +58,7 @@ const ProductsGridView = (props: ProductsViewProps) => {
           </div>
         ) : listItems.length > 0 ? (
           listItems?.map((items: any, index: number) => (
-            <div className="col-md-3 col-lg-3 mt-2 my-0" key={index}>
+            <div className="col-md-3 col-lg-3 mt-2 my-0 mb-3" key={index}>
               <ProductCard
                 key={index}
                 name={items?.name}
@@ -91,41 +90,41 @@ const ProductsGridView = (props: ProductsViewProps) => {
       </div>
       {CONSTANTS.ENABLE_PAGINATION
         ? productListTotalCount > listItems?.length && (
-            <div>
-              <ReactPaginate
-                previousLabel={selectLangData?.prev}
-                nextLabel={selectLangData?.next}
-                pageCount={pageCount}
-                pageRangeDisplayed={3}
-                onPageChange={handlePageClick}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={NextBtnDisabled ? "paginationDisabled" : ""}
-                activeClassName={"paginationActive"}
-                forcePage={pageOffset}
-              />
-            </div>
-          )
+          <div>
+            <ReactPaginate
+              previousLabel={selectLangData?.prev}
+              nextLabel={selectLangData?.next}
+              pageCount={pageCount}
+              pageRangeDisplayed={3}
+              onPageChange={handlePageClick}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={NextBtnDisabled ? "paginationDisabled" : ""}
+              activeClassName={"paginationActive"}
+              forcePage={pageOffset}
+            />
+          </div>
+        )
         : ""}
 
       {CONSTANTS.ENABLE_LOAD_MORE
         ? productListTotalCount > listItems?.length && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button
+              className="btn btn-primary button_color my-5"
+              onClick={handleLoadMore}
             >
-              <button
-                className="btn btn-primary button_color my-5"
-                onClick={handleLoadMore}
-              >
-                {selectLangData?.load_more}
-              </button>
-            </div>
-          )
+              {selectLangData?.load_more}
+            </button>
+          </div>
+        )
         : ""}
     </div>
   );
