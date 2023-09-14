@@ -36,7 +36,7 @@ const HandleOrderSection = (props: any) => {
           <button
             type="button"
             onClick={handlePlaceOrder}
-            className="d-grid gap-2 col-lg-12 col-12 btn btn-md bold button_color mt-2"
+            className="d-grid gap-2 col-lg-12 col-12 btn btn-md bold button_color mt-2 place_order_button"
           >
             {deleteCoupon}
             {selectedMultiLangData?.place_order}
@@ -52,7 +52,7 @@ const HandleOrderSection = (props: any) => {
                 <>
                   <div className="accordion-item border-0">
                     <h2 className="accordion-header" id="headingOne">
-                      <button
+                      <button 
                         className="accordion-button collapsed pt-3 px-2 ms-0 ps-2 pb-1 fs-4 accorder-btn-plus"
                         type="button"
                         data-bs-toggle="collapse"

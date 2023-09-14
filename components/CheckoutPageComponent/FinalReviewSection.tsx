@@ -78,7 +78,7 @@ console.log("itemsa",selectedMultiLangData )
           type="button"
           onClick={handlePlaceOrder}
           disabled={!acceptedTerms}
-          className="d-grid gap-2 col-lg-10 col-12  btn btn-md bold text-white border-0 button_color mt-2 btn-color-web"
+          className="d-grid gap-2 col-lg-10 col-12  btn btn-md bold text-white border-0 button_color mt-2 btn-color-web place_order_button"
         >
           {deleteCoupon}
           {selectedMultiLangData?.place_order}
