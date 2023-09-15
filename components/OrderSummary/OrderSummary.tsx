@@ -22,6 +22,7 @@ const OrderSummary = ({
 
   console.log("order Summary", currencySymbolForSummary);
 
+
   let order;
   useEffect(() => {
     setcartListingItems(cartProducts.data);
@@ -52,7 +53,7 @@ const OrderSummary = ({
         </span>
       )
     });
-
+    console.log("currencySymbol" , currencySymbol)
   return (
     <div>
       <div >
@@ -179,7 +180,7 @@ const OrderSummary = ({
                           <div className="col-6 text-end">
                             <p className={`mb-0 summary_p`}>
                               <div>
-                              {currencySymbol}
+                              {currencySymbol[0]}
                                 {/* {currencySymbolForSummary} */}
                                 <IndianNumber value={data?.value} />
                               </div>
@@ -216,7 +217,7 @@ const OrderSummary = ({
                               ) : (
                                 <div>
                                   {/* {currencySymbolForSummary} */}
-                                  {currencySymbol}
+                                  {currencySymbol[0]}
 
                                   <IndianNumber value={data?.value} />
                                 </div>

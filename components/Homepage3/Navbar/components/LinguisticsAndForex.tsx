@@ -7,7 +7,7 @@ const LinguisticsAndForex = () => {
 
   return (
     <>
-      <div className="ms-5">
+      <div className="ms-5" >
         <select
           onChange={(e: any) => handleCurrencyValueChange(e.target.value)}
           className="ternary-select product-price  price"
@@ -18,10 +18,10 @@ const LinguisticsAndForex = () => {
         </select>
       </div>
 
-      <div className="">
+      <div className="" >
         <select
           onChange={(e) => handleLanguageChange(e.target.value)}
-          className="ternary-select"
+          className="ternary-select fs-5 bold"
         >
           {multiLanguagesData?.length > 0 &&
             multiLanguagesData !== null &&
