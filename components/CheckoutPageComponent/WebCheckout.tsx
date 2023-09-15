@@ -80,7 +80,7 @@ const WebCheckout = ({
 
   useEffect(() => {
     const getStateData = async () => {
-      const stateData:any = await FetchStateForAddressForm(TokenFromStore?.token);
+      const stateData: any = await FetchStateForAddressForm(TokenFromStore?.token);
       if (stateData?.length > 0) {
         let stateValues = stateData
           .map((item: any) => item?.name)
@@ -95,7 +95,7 @@ const WebCheckout = ({
   const handleSelectedState = async (stateValue: string) => {
     setSelectedCity("");
     setCity([]);
-    const getCitiesFromState:any = await FetchCitiesForAddressForm(
+    const getCitiesFromState: any = await FetchCitiesForAddressForm(
       stateValue,
       TokenFromStore?.token
     );
@@ -107,7 +107,7 @@ const WebCheckout = ({
     }
   };
 
-  console.log(" webcheckoutcurrencySymbolForSummary",  currencySymbolForSummary)
+  console.log(" webcheckoutcurrencySymbolForSummary", currencySymbolForSummary)
   return (
     <>
       <div className="container mt-0 pt-0 ms-1">
@@ -215,14 +215,14 @@ const WebCheckout = ({
             <>
               <div className=" container row mb-4 mx-auto">
                 <div className="col-lg-12 ">
-              
+
                   <h4 className="text-uppercase bold mt-3">
                     {selectedMultiLangData?.checkout_details}
                   </h4>
                   <div className="d-flex align-items-center">
                     <button className="btn btn-sm rounded-0 bold button_color">
                       <Link href={"/login"} legacyBehavior>
-                        <a>{selectedMultiLangData?.login}</a>
+                        <a className="text-dark">{selectedMultiLangData?.login}</a>
                       </Link>
                     </button>
                     <span className="text-muted px-2 fs-4">or</span>
@@ -248,7 +248,7 @@ const WebCheckout = ({
                         </h4>
                         <h5 className="bold px-3 mb-0">
                           {selectedMultiLangData?.shipping}
-                          
+
                         </h5>
                         <VisitorAddressForm
                           address_type="Shipping"
@@ -297,14 +297,14 @@ const WebCheckout = ({
                         {" "}
                         {selectedMultiLangData?.order_summary}
                       </h5>
-                  
+
                       <OrderSummary
                         orderSummary={orderSummary}
                         selectedMultiLangData={selectedMultiLangData}
                         currencySymbolForSummary={currencySymbolForSummary}
-                        
+
                       />
-                      
+
                     </div>
                   </div>
                 </div>

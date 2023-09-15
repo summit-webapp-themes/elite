@@ -53,11 +53,14 @@ const ProductCard = (props: ProductCardProps) => {
       quantity: 1,
     });
 
-    if (Object?.keys(profileData?.partyName)?.length > 0) {
-      partyName = profileData?.partyName;
+    if (profileData?.partyName !== null) {
+      if (Object?.keys(profileData?.partyName)?.length > 0) {
+        partyName = profileData?.partyName;
+      }
     } else {
       partyName = "Guest";
     }
+
     let AddToCartProductRes: any = await AddToCartApi(
       addCartData,
       currency_state_from_redux?.selected_currency_value,
@@ -91,9 +94,8 @@ const ProductCard = (props: ProductCardProps) => {
     >
       <div className="d-flex justify-content-between icon-container-ps">
         <div
-          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${
-            display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
-          }`}
+          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
+            }`}
         >
           {display_tag?.length > 0 && display_tag[0]}
         </div>
