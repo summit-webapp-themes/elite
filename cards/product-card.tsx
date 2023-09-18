@@ -17,6 +17,7 @@ import {
 } from "../store/slices/auth/token-login-slice";
 import { showToast } from "../components/ToastNotificationNew";
 import { profileData_state } from "../store/slices/general_slices/profile-page-slice";
+import { useState } from "react";
 
 const ProductCard = (props: ProductCardProps) => {
   const {
@@ -39,6 +40,8 @@ const ProductCard = (props: ProductCardProps) => {
   const profileData: any = useSelector(profileData_state);
   console.log("profile partyname", profileData);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   let wishproducts: any;
   let requestNew: any;
   let requestList: any;
@@ -47,6 +50,7 @@ const ProductCard = (props: ProductCardProps) => {
   const dispatch = useDispatch();
 
   const handleAddCart = async () => {
+    setIsLoading(true);
     const addCartData: any = [];
     addCartData.push({
       item_code: name,
@@ -71,7 +75,7 @@ const ProductCard = (props: ProductCardProps) => {
     if (AddToCartProductRes.msg === "success") {
       // dispatch(successmsg("Item Added to cart"));
       showToast("Item Added to cart", "success");
-
+      setIsLoading(false);
       if (AddToCartProductRes?.data?.access_token !== null) {
         dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
         localStorage.setItem("guest", AddToCartProductRes?.data?.access_token);
@@ -85,6 +89,7 @@ const ProductCard = (props: ProductCardProps) => {
       }
     } else {
       showToast("Failed to Add to cart", "error");
+      setIsLoading(false);
     }
   };
   return (
@@ -229,11 +234,18 @@ const ProductCard = (props: ProductCardProps) => {
                 className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family`}
                 onClick={handleAddCart}
               >
-                <i
-                  className="fa fa-shopping-cart pe-5 pb-1"
-                  aria-hidden="true"
-                ></i>
-                {/* {multilingualData?.add_to_cart} */}
+                {isLoading ? (
+                  <span
+                    className="spinner-border spinner-border-md "
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                ) : (
+                  <i
+                    className="fa fa-shopping-cart pe-5 pb-1 pt-1"
+                    aria-hidden="true"
+                  ></i>
+                )}
               </button>
             </div>
           </div>
