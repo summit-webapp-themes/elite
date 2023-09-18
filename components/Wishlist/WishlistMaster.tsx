@@ -222,18 +222,18 @@ const WishlistMaster = () => {
                       {" "}
                       {stockData?.incoming_date !== ""
                         ? stockData?.incoming_date
-                            ?.split("-")
-                            .reverse()
-                            .join("-")
+                          ?.split("-")
+                          .reverse()
+                          .join("-")
                         : stockData?.incoming_date === ""}
                     </td>
                     <td className="text-center">{stockData?.additional_qty}</td>
                     <td className="text-center">
                       {stockData?.available_on !== ""
                         ? stockData?.available_on
-                            ?.split("-")
-                            .reverse()
-                            .join("-")
+                          ?.split("-")
+                          .reverse()
+                          .join("-")
                         : stockData?.available_on === ""}
                     </td>
                   </tr>
@@ -308,7 +308,7 @@ const WishlistMaster = () => {
                   <h5 className="col-lg-5 col-md-4 d-none d-md-block">
                     {selectedMultiLangData?.product}
                   </h5>
-                  <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block">
+                  <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ">
                     {selectedMultiLangData?.price}
                   </h5>
                   <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ">
@@ -333,7 +333,7 @@ const WishlistMaster = () => {
                               </div>
                               <button
                                 type="submit"
-                                className=" btn btn-close fs-6 p-2 mx-2 rounded-circle" 
+                                className=" btn btn-close fs-6 p-2 mx-2 rounded-circle"
                                 onClick={() => {
                                   requestNew = {
                                     prod_id: item?.name,
@@ -382,9 +382,9 @@ const WishlistMaster = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-lg-2 col-md-2 product-price">
+                      <div className="col-lg-2 col-md-2 product-price ">
                         {item?.price !== 0 ? (
-                          <ins className="new-price fs-3">
+                          <ins className="new-price fs-3 products-name">
                             {" "}
                             <span>&#x20B9;</span>
                             {item?.price?.toLocaleString("en-IN")}
@@ -414,7 +414,7 @@ const WishlistMaster = () => {
                           >
                             -
                           </span>
-                          <div className="pe-3 input-width " >
+                          <div className="pe-3 input-width products-name" >
                             <input
                               type="text"
                               // defaultValue={
@@ -427,12 +427,11 @@ const WishlistMaster = () => {
                               }
                               value={productCounts[index]}
                               // className="w-100 ml-2 "
-                              className={`${
-                                alertMinQty === true &&
-                                productCounts[index] === item?.min_order_qty
+                              className={`${alertMinQty === true &&
+                                  productCounts[index] === item?.min_order_qty
                                   ? "text-danger"
                                   : ""
-                              } w-100 ml-2 text-center`}
+                                } w-100 ml-2 text-center`}
                               onChange={(e: any) =>
                                 handleQuantityChange(
                                   +e?.target?.value,
@@ -444,7 +443,7 @@ const WishlistMaster = () => {
                               max="99999"
                             />
                           </div>
-                          <span 
+                          <span
                             className="fs-2 ml-2 ml-md-5 icon-cursor"
                             onClick={() =>
                               incrementCount(index, item?.min_order_qty)
@@ -455,12 +454,11 @@ const WishlistMaster = () => {
                         </div>
                         {item?.min_order_qty !== 0 ? (
                           <div
-                            className={`${
-                              alertMinQty === true &&
-                              productCounts[index] === item?.min_order_qty
+                            className={`${alertMinQty === true &&
+                                productCounts[index] === item?.min_order_qty
                                 ? "text-danger"
                                 : "text-dark"
-                            } fs-6 mt-1 text-uppercase bold`}
+                              } fs-6 mt-1 text-uppercase bold products-name`}
                           >
                             {selectedMultiLangData?.minimum_order_qty}:{" "}
                             {item?.min_order_qty}
@@ -493,8 +491,8 @@ const WishlistMaster = () => {
                           </button> */}
 
                           <button
-                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2 add_cart_btn "
-                           
+                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2 add_cart_btn products-name"
+
                             onClick={() =>
                               handleAddCart(
                                 item?.name,
