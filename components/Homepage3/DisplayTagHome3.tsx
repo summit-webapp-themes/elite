@@ -33,7 +33,7 @@ const DisplayTagHome3 = (props: any) => {
                           className="h-100 mx-1 mt-4 displaytag-listhome3"
                           key={i}
                         >
-                          <div className="product-wrap">
+                          <div className="product-wrap" >
                             <div className="product text-center">
                               <figure className="product-media">
                                 {list?.image_url !== null &&
@@ -67,7 +67,7 @@ const DisplayTagHome3 = (props: any) => {
                                   </>
                                 )}
                               </figure>
-                              <div className="product-details ternary-product-details " style={{backgroundColor:"red"}} >
+                              <div className="product-details ternary-product-details "  >
                                 <h4 className="product-name truncate-overflow">
                                   <Link href={`${list.url}?currency=${currency_state_from_redux?.selected_currency_value}`}>{list.item_name}</Link>
                                 </h4>
