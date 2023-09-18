@@ -57,7 +57,7 @@ const ProductDetail = ({
   selectedMultiLangData,
 }: any) => {
   const dispatch = useDispatch();
-  const currency_state_from_redux:any = useSelector(currency_selector_state);
+  const currency_state_from_redux: any = useSelector(currency_selector_state);
   // console.log(
   //   "productQuantity in detail page",
   //   doesSelectedVariantDoesNotExists
@@ -67,6 +67,7 @@ const ProductDetail = ({
   const TokenFromStore: any = useSelector(get_access_token);
 
   const [newobjectState, setnewObjectState] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleVariantsData = (newData: any) => {
     setnewObjectState(newData);
@@ -79,11 +80,14 @@ const ProductDetail = ({
     isDealer = localStorage.getItem("isDealer");
   }
 
+
   const handleAddCart = async () => {
     console.log(
       "add currency",
       currency_state_from_redux?.selected_currency_value
     );
+
+
     if (isDealer === "true") {
       console.log("dealer cart", newobjectState);
       let newObjects =
@@ -93,6 +97,7 @@ const ProductDetail = ({
       console.log("dealer api res", dealerApi);
       if (dealerApi.msg === "success") {
         // dispatch(successmsg("Item Added to cart"));
+        setIsLoading(false);
         showToast("Item Added to cart", "success");
         dispatch(fetchCartListing());
         // setTimeout(() => {
@@ -100,6 +105,15 @@ const ProductDetail = ({
         // }, 1200);
       } else {
         showToast("Failed to Add to cart", "error");
+        setTimeout(() => {
+
+          setIsLoading(false);
+
+
+        }, 5000);
+
+
+
         // dispatch(failmsg("Failed to Add to cart"));
         // setTimeout(() => {
         //   dispatch(hideToast());
@@ -122,6 +136,7 @@ const ProductDetail = ({
         quantity: productQuantity,
       });
       let AddToCartProductRes: any = await AddToCartApi(
+
         addCartData,
         currency_state_from_redux?.selected_currency_value,
         TokenFromStore?.token
@@ -129,7 +144,15 @@ const ProductDetail = ({
 
       if (AddToCartProductRes.msg === "success") {
         // dispatch(successmsg("Item Added to cart"));
+
         showToast("Item Added to cart", "success");
+        setIsLoading(true);
+        setTimeout(() => {
+          // Stop the loader after 2 seconds (adjust the time as needed)
+          setIsLoading(false);
+          // Add your actual functionality here (e.g., adding to the cart)
+          // ...
+        }, 2000);
 
         if (AddToCartProductRes?.data?.access_token !== null) {
           dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
@@ -142,13 +165,16 @@ const ProductDetail = ({
             console.log("token from api");
             dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
           }
+
         } else {
-          dispatch(fetchCartListing(TokenFromStore?.token));
+
+          // dispatch(fetchCartListing(TokenFromStore?.token));
         }
         // setTimeout(() => {
         //   dispatch(hideToast());
         // }, 1200);
       } else {
+        setIsLoading(false);
         showToast("Failed to Add to cart", "error");
         // dispatch(failmsg(AddToCartProductRes?.error));
         // setTimeout(() => {
@@ -157,9 +183,16 @@ const ProductDetail = ({
       }
     }
   };
+
+
+
+
+
+
+
   const [fullUrl, setFullUrl] = useState("");
   const shareUrl = fullUrl !== "" ? fullUrl : "http://3.13.55.94:3004/";
-  const shareMessage:string = `Check out this product: ${shareUrl}`;
+  const shareMessage: string = `Check out this product: ${shareUrl}`;
   useEffect(() => {
     if (router.asPath) {
       const currentUrl = window.location.origin + router.asPath;
@@ -176,7 +209,7 @@ const ProductDetail = ({
             {" "}
             {productDetailData?.short_description ===
               productDetailData.productDetailData_name ||
-            productDetailData?.short_description === ""
+              productDetailData?.short_description === ""
               ? ""
               : productDetailData?.short_description}
           </span>
@@ -267,7 +300,7 @@ const ProductDetail = ({
         </div>
 
         {productDetailData?.brand !== null &&
-        productDetailData?.brand !== "" ? (
+          productDetailData?.brand !== "" ? (
           <p className="mt-2 text-uppercase p-tagfont product_brand_name products-name">
             {selectedMultiLangData?.brand}: {productDetailData?.brand}
             {/* {multilingualData?.brand}: {productDetailData?.brand} */}
@@ -276,7 +309,7 @@ const ProductDetail = ({
           ""
         )}
         {productDetailData?.gst_hsn_code !== null &&
-        productDetailData?.gst_hsn_code !== "" ? (
+          productDetailData?.gst_hsn_code !== "" ? (
           <p className="mt-2 text-uppercase p-tagfont product_brand_name products-name">
             {selectedMultiLangData?.hsn_code}: {productDetailData?.gst_hsn_code}
           </p>
@@ -284,7 +317,7 @@ const ProductDetail = ({
           ""
         )}
         {productDetailData?.oem_part_number !== null &&
-        productDetailData?.oem_part_number !== "" ? (
+          productDetailData?.oem_part_number !== "" ? (
           <p className="mt-2 text-uppercase p-tagfont product_brand_name products-name">
             {selectedMultiLangData?.oem_part_number}:{" "}
             {productDetailData?.oem_part_number}
@@ -341,14 +374,13 @@ const ProductDetail = ({
                         <input
                           type="text"
                           value={productQuantity}
-                          className={`${
-                            productQuantity < minQty ? "disabled" : "enabled"
-                          } varient_input mx-2 text-center products-name`}
+                          className={`${productQuantity < minQty ? "disabled" : "enabled"
+                            } varient_input mx-2 text-center products-name`}
                           onChange={(e: any) => handleQuantity(e.target.value)}
                         />
 
                         <span
-                          className="fs-2 arrow_pointer products-name" 
+                          className="fs-2 arrow_pointer products-name"
                           onClick={handleQuantityIncrement}
                         >
                           <i className="fa fa-plus fs-4"></i>
@@ -373,7 +405,7 @@ const ProductDetail = ({
               <div className="row button_sec " >
                 {CONSTANTS.SHOW_FUTURE_STOCK_AVAILABILITY_TO_GUEST === true ? (
                   <div className="col-lg-4 text-start products-name btn-wrapper">
-                    <div className="mt-5">
+                    <div className="mt-5" >
                       <button
                         type="button"
                         id=""
@@ -400,7 +432,7 @@ const ProductDetail = ({
                 <div className="col-md-6 btn-wrapper">
                   <div className="mt-5">
                     <div className="row">
-                      <button
+                      {/* <button
                         type="button"
                         className={`${
                           productQuantity < minQty ? "disabled" : "enabled"
@@ -412,6 +444,22 @@ const ProductDetail = ({
                         }
                       >
                         {selectedMultiLangData?.add_to_cart}
+                      </button> */}
+                      <button
+                        type="button"
+                        className={`${productQuantity < minQty ? "disabled" : "enabled"
+                          } w-50 btn button_color cart_btn_gtag add_cart_btn_mob products-name`}
+                        onClick={handleAddCart}
+                        disabled={
+                          doesSelectedVariantDoesNotExists ||
+                          stockDoesNotExistsForSelectedVariants 
+                        }
+                      >
+                        {isLoading ? (
+                          <span className="cursor-change">Adding...<i className="fa fa-spinner" aria-hidden="true"></i></span>
+                        ) : (
+                          selectedMultiLangData?.add_to_cart
+                        )}
                       </button>
                     </div>
                     <div className="col-12">

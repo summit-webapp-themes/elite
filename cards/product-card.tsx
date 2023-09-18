@@ -174,7 +174,7 @@ const ProductCard = (props: ProductCardProps) => {
       </div>
       <div className="product-wrap">
         <div className="product text-center ">
-          <div className="product-media product_card_h product-main-container">
+          <div className="product-media product_card_h product-main-container text-center d-flex justify-content-center">
             {img_url !== "" ? (
               <>
                 <Link
@@ -186,7 +186,7 @@ const ProductCard = (props: ProductCardProps) => {
                     alt="product-detail"
                     width={200}
                     height={200}
-                    className="product_img_mob"
+                    className="product_img_mob product_img_web"
                   />
                 </Link>
               </>
@@ -198,6 +198,7 @@ const ProductCard = (props: ProductCardProps) => {
                     alt="Product"
                     width="200"
                     height="200"
+                    className="product_img_mob product_img_web"
                   />
                 </Link>
               </>

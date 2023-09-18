@@ -15,6 +15,11 @@ const TernaryThemeFooter = () => {
   const dispatch = useDispatch();
   const navbarData: any = [];
   const [subScription, setSubscriptions] = useState<any>("");
+
+  const handleSubscriptionInput = (e: any) => {
+    setSubscriptions(e?.target?.value);
+  };
+
   const handleSubscription = async (event: any) => {
     event?.preventDefault();
     console.log(subScription, "subScription");
@@ -44,6 +49,9 @@ const TernaryThemeFooter = () => {
       setLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore?.selectedLanguageData]);
+
+ 
+
 
   return (
     <>
@@ -85,17 +93,19 @@ const TernaryThemeFooter = () => {
                                 <input
                                   type="email"
                                   className="form-control mr-2 bg-white text-default"
-                                  name="email"
-                                  id="email"
-                                  onChange={(e: any) =>
-                                    setSubscriptions(e?.target?.value)
-                                  }
+                                  // name="email"
+                                  // id="email"
+                                  // onChange={(e: any) =>
+                                  //   setSubscriptions(e?.target?.value)
+                                  // }
+                                  value={subScription}
+                                  onChange={handleSubscriptionInput}
                                   placeholder="Your E-mail Address"
-                                  required
+                                  required 
                                 />
                                 <button 
-                                  className="btn btn-primary btn-rounded btn-left footer-button  ternaryTheme-btn subscribe_btn_mob"
-                                  type="submit"
+                                  className="btn btn-primary btn-rounded btn-left footer-button  ternaryTheme-btn subscribe_btn_mob px-2 sub-footer-mob"
+                                  type="submit" 
                                 
                                 >
                                   {selectLangData?.subscribe}

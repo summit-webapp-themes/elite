@@ -13,8 +13,9 @@ const Home3Navbar = () => {
     isLoading,
     handleCurrencyValueChange,
     selectedCurrencyValue,
+    
   } = useNavbar();
-  const { searchValue, setSearchValue, handleSearch, handleKeyDown } =
+  const { searchValue, setSearchValue, handleSearch, handleKeyDown , handleSearchIputValue,} =
     useSearchHook();
   const { handleLanguageChange, multiLanguagesData } = useMultilangHook();
   const [clicks, setClicks] = useState(false);
@@ -51,6 +52,7 @@ const Home3Navbar = () => {
         handleSearch={handleSearch}
         handleKeyDown={handleKeyDown}
         selectedMultiLangData={selectedMultiLangData}
+        handleSearchIputValue={handleSearchIputValue}
       />
       <MobNavbar
         navbarData={navbarData}
