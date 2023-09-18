@@ -89,7 +89,7 @@ const Home3WebNavbar = ({
   };
 
   return (
-    <div className="headers" >
+    <div className="headers  " >
       <header className="header header_web" >
         <div className="header-middle ternarytheme-middle-header pt-1 pb-1 header_mob">
           <div className="container justify-content-sm-start justify-content-md-end justify-content-lg-end  justify-content-xl-end ">
@@ -161,7 +161,7 @@ const Home3WebNavbar = ({
                 ) : (
                   <Dropdown.Toggle
                     id="dropdown-basic"
-                    className="dropdown-icon ternarytheme-login dropleft"
+                    className="dropdown-icon ternarytheme-login dropleft mt-1 color-black login-btn-mob" 
                   >
                     {selectedMultiLangData?.login}
                   </Dropdown.Toggle>

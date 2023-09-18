@@ -149,7 +149,7 @@ const CartCard = ({
       </td>
 
       {/* For mobile responsive */}
-      <div className="d-lg-none d-block productd-detail-mob products-name ">
+      <div className="d-lg-none d-block productd-detail-mob products-name " >
         <div className="row products-name" >
           <div className="col-6 fs-4 products-name ">
             {selectedMultiLangData?.item_with_desc}

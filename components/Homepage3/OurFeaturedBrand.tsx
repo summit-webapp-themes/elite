@@ -43,7 +43,7 @@ const OurFeaturedBrand = () => {
 
   return (
     <>
-      <div className="container category_heading" >
+      <div className="container category_heading features-brand features-brand-mob">
         <h3 className="text-center pb-3">
           {selectedMultiLangData?.featured_brands}
         </h3>
@@ -62,7 +62,7 @@ const OurFeaturedBrand = () => {
               {brandListing?.length > 0 &&
                 brandListing?.map((imgs: any, i: any) => (
                   <>
-                    <div className="col-md-3 mb-4 brand-container-sub" key={i}>
+                    <div className="col-md-3 mb-4 brand-container-sub brand-container-sub-mob" key={i} >
                       {imgs !== null && (
                         <>
                           <Link href={`${imgs?.url}?page=1`}>

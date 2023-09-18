@@ -118,7 +118,7 @@ const ProductsGridView = (props: ProductsViewProps) => {
             }}
           >
             <button
-              className="btn btn-primary button_color my-5"
+              className="btn btn-primary button_color my-5 "
               onClick={handleLoadMore}
             >
               {selectLangData?.load_more}

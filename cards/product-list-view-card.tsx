@@ -75,7 +75,7 @@ const ProductListViewCard = (props: any) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" >
         <div className=" col-lg-12">
           <div className="product-wrapper ">
             <div className="row w-100 product product-list border rounded py-3">
