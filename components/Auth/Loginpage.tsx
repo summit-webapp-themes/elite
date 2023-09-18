@@ -59,7 +59,7 @@ const Loginpage = () => {
     isLoggedIn = localStorage.getItem("isLoggedIn");
   }
 
-  const handlesubmit = (values: any) => {
+  const handlesubmit = async (values: any) => {
     const val = Object.assign(obj, values);
 
     const user_params = {
@@ -67,50 +67,16 @@ const Loginpage = () => {
       guest: guestLogin,
       isOtpLogin: isOtpLoginState === true ? true : false,
     };
-    console.log("userparams", user_params);
 
-    dispatch(getAccessToken(user_params));
-
-    // setTimeout(() => {
-    //   const loginStatusFromStorage: any = localStorage.getItem("isLoggedIn");
-    //   console.log("loginStatusFromStorage", loginStatusFromStorage);
-
-    //   setLoginStatus(loginStatusFromStorage);
-    //   setIsOtpLoginState(false);
-    // }, 2000);
-
-    setTimeout(() => {
-      // No need to check localStorage here
-      // Set the loginStatus state directly
-      const loginStatusFromStorage: any = localStorage.getItem("isLoggedIn");
-      console.log("loginStatusFromStorage", loginStatusFromStorage);
-      setLoginStatus(loginStatusFromStorage);
-      setIsOtpLoginState(false);
-
-      // Redirect based on the loginStatus state
-      if (loginStatusFromStorage === "true") {
-        router.push("/");
-        localStorage.removeItem("guest");
-        localStorage.removeItem("guestToken");
-      }
-    }, 2000);
-  };
-
-  useEffect(() => {
-    if (loginStatus === true) {
+    const AccessTokenApiRes = await dispatch(getAccessToken(user_params));
+    console.log("Thunk result:", AccessTokenApiRes.payload);
+    if (AccessTokenApiRes?.payload?.msg === "success") {
       router.push("/");
       localStorage.removeItem("guest");
       localStorage.removeItem("guestToken");
     }
-  }, [loginStatus]);
+  };
 
-  // useEffect(() => {
-  //   if (loginStatus === "true") {
-  //     router.push("/");
-  //     localStorage.removeItem("guest");
-  //     localStorage.removeItem("guestToken");
-  //   }
-  // }, [handlesubmit]);
   console.log(loginSucess, "loginSucess");
 
   console.log(isLoggedIn, "newState");
@@ -210,10 +176,11 @@ const Loginpage = () => {
                                   </div>
                                   {ShowAlertMsg && (
                                     <div
-                                      className={`alert ${messageState === "success"
-                                        ? "alert-success"
-                                        : "alert-danger"
-                                        } otp_alertbox`}
+                                      className={`alert ${
+                                        messageState === "success"
+                                          ? "alert-success"
+                                          : "alert-danger"
+                                      } otp_alertbox`}
                                       role="alert"
                                     >
                                       {messageState === "success"

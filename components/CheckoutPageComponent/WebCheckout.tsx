@@ -64,11 +64,6 @@ const WebCheckout = ({
   const [checkIsDealer, setCheckIsDealer] = useState<any>("");
   const TokenFromStore: any = useSelector(get_access_token);
 
-
-
-
-
-
   let isDealer: any = useRef("");
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -80,7 +75,9 @@ const WebCheckout = ({
 
   useEffect(() => {
     const getStateData = async () => {
-      const stateData: any = await FetchStateForAddressForm(TokenFromStore?.token);
+      const stateData: any = await FetchStateForAddressForm(
+        TokenFromStore?.token
+      );
       if (stateData?.length > 0) {
         let stateValues = stateData
           .map((item: any) => item?.name)
@@ -106,8 +103,15 @@ const WebCheckout = ({
       setCity(citiesValues);
     }
   };
+  const [loginAsGuest, setLoginAsGuest] = useState<boolean>(true);
 
-  console.log(" webcheckoutcurrencySymbolForSummary", currencySymbolForSummary)
+  // Step 2: Define a function to handle the input click
+  const handleInputClick: any = () => {
+    // Step 3: Update the state when the input is clicked
+    setLoginAsGuest(!loginAsGuest);
+  };
+
+  console.log(" webcheckoutcurrencySymbolForSummary", currencySymbolForSummary);
   return (
     <>
       <div className="container mt-0 pt-0 ms-1">
@@ -215,14 +219,15 @@ const WebCheckout = ({
             <>
               <div className=" container row mb-4 mx-auto">
                 <div className="col-lg-12 ">
-
                   <h4 className="text-uppercase bold mt-3">
                     {selectedMultiLangData?.checkout_details}
                   </h4>
                   <div className="d-flex align-items-center">
                     <button className="btn btn-sm rounded-0 bold button_color">
                       <Link href={"/login"} legacyBehavior>
-                        <a className="text-dark">{selectedMultiLangData?.login}</a>
+                        <a className="text-dark">
+                          {selectedMultiLangData?.login}
+                        </a>
                       </Link>
                     </button>
                     <span className="text-muted px-2 fs-4">or</span>
@@ -230,7 +235,8 @@ const WebCheckout = ({
                       <input
                         className="form-check-input fs-4"
                         type="checkbox"
-                        id="flexCheckDefault"
+                        onClick={handleInputClick}
+                        defaultChecked={loginAsGuest}
                       />
                       <label
                         className="form-check-label px-2 fs-4 text-muted"
@@ -248,7 +254,6 @@ const WebCheckout = ({
                         </h4>
                         <h5 className="bold px-3 mb-0">
                           {selectedMultiLangData?.shipping}
-
                         </h5>
                         <VisitorAddressForm
                           address_type="Shipping"
@@ -258,6 +263,7 @@ const WebCheckout = ({
                           setSelectedState={setSelectedStates}
                           selectedStates={selectedStates}
                           selectedMultiLangData={selectedMultiLangData}
+                          loginAsGuest={loginAsGuest}
                         />
                         <h6 className="bold px-3 mb-1">
                           {selectedMultiLangData?.billing}
@@ -288,12 +294,13 @@ const WebCheckout = ({
                             setSelectedState={setSelectedStates}
                             selectedStates={selectedStates}
                             selectedMultiLangData={selectedMultiLangData}
+                            loginAsGuest={loginAsGuest}
                           />
                         )}
                       </div>
                     </div>
-                    <div className="col-lg-4 mt-2 border" >
-                      <h5 className=" bold text-uppercase ms-1" >
+                    <div className="col-lg-4 mt-2 border">
+                      <h5 className=" bold text-uppercase ms-1">
                         {" "}
                         {selectedMultiLangData?.order_summary}
                       </h5>
@@ -302,9 +309,7 @@ const WebCheckout = ({
                         orderSummary={orderSummary}
                         selectedMultiLangData={selectedMultiLangData}
                         currencySymbolForSummary={currencySymbolForSummary}
-
                       />
-
                     </div>
                   </div>
                 </div>
@@ -318,11 +323,3 @@ const WebCheckout = ({
 };
 
 export default WebCheckout;
-
-
-
-
-
-
-
-

@@ -53,7 +53,7 @@ const ProductCard = (props: ProductCardProps) => {
       quantity: 1,
     });
 
-    if (profileData?.partyName !== null) {
+    if (profileData?.partyName !== "") {
       if (Object?.keys(profileData?.partyName)?.length > 0) {
         partyName = profileData?.partyName;
       }
@@ -94,8 +94,9 @@ const ProductCard = (props: ProductCardProps) => {
     >
       <div className="d-flex justify-content-between icon-container-ps">
         <div
-          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
-            }`}
+          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${
+            display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
+          }`}
         >
           {display_tag?.length > 0 && display_tag[0]}
         </div>

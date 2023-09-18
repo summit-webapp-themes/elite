@@ -103,7 +103,6 @@ const CheckoutPageMaster = () => {
   console.log("visitor state", currencySymbolForSummary);
   // console.log("currencySymbolForSummary", currencySymbolForSummary);
 
-
   return (
     <div className="container mt-0 mb-0">
       {isBreakpoint ? (
@@ -149,7 +148,6 @@ const CheckoutPageMaster = () => {
             handlePlaceOrder={handlePlaceOrder}
             selectedMultiLangData={selectedMultiLangData}
             currencySymbolForSummary={currencySymbolForSummary}
-
           />
         </>
       ) : (
@@ -188,7 +186,6 @@ const CheckoutPageMaster = () => {
               couponCodeApiRes={couponCodeApiRes}
               selectedMultiLangData={selectedMultiLangData}
               currencySymbolForSummary={currencySymbolForSummary}
-
             />
           ) : (
             <div className=" container row  mb-2 mx-auto">
@@ -199,7 +196,9 @@ const CheckoutPageMaster = () => {
                 <div className="d-flex align-items-center">
                   <button className="btn btn-sm rounded-0 bold yellow_btn ">
                     <Link href={"/login"} legacyBehavior>
-                      <a className="text-dark">{selectedMultiLangData?.login}</a>
+                      <a className="text-dark">
+                        {selectedMultiLangData?.login}
+                      </a>
                     </Link>
                   </button>
                   <span className="text-muted px-2 fs-4">
@@ -283,9 +282,3 @@ const CheckoutPageMaster = () => {
 };
 
 export default CheckoutPageMaster;
-
-
-
-
-
-
