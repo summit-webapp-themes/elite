@@ -1058,7 +1058,9 @@ header.header.fixed {
 .forget_btn_wrapper{
   margin-top: 40px !important;
 }
-
+.forget-password-heading{
+  font-size: 19px !important;
+}
 
 
 @media only screen and (max-width: 600px) {
@@ -1089,9 +1091,14 @@ header.header.fixed {
   .forget_password_wrapper{
     padding-top: 0px;
   }
+  .email-forget-mob{
+    margin-left: 0px !important;
+  }
 }
 
-
+.color-black{
+  color: black !important
+}
 
 .megamenu > li {
   flex: 1 1;
@@ -1120,7 +1127,44 @@ header.header.fixed {
 .icon-font-size{
   font-size: 20px !important;
 }
+.reset-pass-wrapper{
+  margin-bottom: 30px !important;
+}
 
+.btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active {
+  color: var(--bs-btn-active-color);
+ background-color: none !important; 
+  border-color: none !important; 
+}
+.btn.show{
+  background-color: none !important;
+}
+.dropdown-menu {
+  background-color: none !important;
+}
+.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: none !important; 
+  border-color: none !important; 
+}
+.btn-primary {
+  background-color: none !important;
+}
+.btn-primary:active{
+  background-color: none !important;
+}
+.ternarytheme-login:active{
+  background-color: none !important;
+}
+.nav_dropdown:active{
+  background-color: none !important;
+}
+.header-middle{
+  background-color: white;
+}
+.varient-type-title button{
+  color: black;
+}
 @media only screen and (max-width: 600px) {
   .mob-logo-img1 {
     width: 500px !important;
@@ -1137,6 +1181,61 @@ header.header.fixed {
     top: -3px !important
    
   }
+  .headers{
+    margin-top: -45px !important;
+  }
+  .home-banner1-mob{
+    margin-bottom: -14px !important;
+  }
+  .category_heading_mob_margin{
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
+  }
+  .home-products-mob{
+    margin-top: -12px !important;
+    // background-color: red !important;
+  }
+  .category_heading_mob{
+    // background-color: red !important;
+    margin-top: -10px !important;
+  }
+  .banner-margin-b{
+    margin-bottom: 10px !important;
+  }
+  .mob-reset-form-title{
+    display: flex !important;
+    justify-content: start !important;
+  }
+  .mob-reset-form-wrapper{
+    margin-left: -15px !important;
+  }
+  .reset-titles-mob{
+    padding-left: 22px !important;
+  }
+
+  .reset-pass-wrapper {
+    padding-top: 0px !important;
+    margin: auto !important;
+    padding-bottom: 30px !important; 
+}
+.login-btn-mob{
+  // margin-top: 10px !important;
+}
+.account-margin-mob{
+  margin-left: -4px !important;
+}
+.varient-type-title button{
+  font-size: 12px !important;
+
+  // background-color: red !important;
+}
+.features-brand-mob{
+  margin-top: -22px ;
+}
+.brand-container-sub-mob{
+  margin-top: 20px;
+  margin-bottom: 10px !important;
+}
 }
 
 

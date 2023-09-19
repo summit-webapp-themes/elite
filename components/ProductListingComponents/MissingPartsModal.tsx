@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MissingPartsAPI } from "../../services/api/product-listing-page-api/missing-parts-api";
 import { get_access_token } from "../../store/slices/auth/token-login-slice";
+import { showToast } from "../ToastNotificationNew";
 
 const MissingPartsModal = ({
   show,
@@ -14,7 +15,7 @@ const MissingPartsModal = ({
   const TokenFromStore: any = useSelector(get_access_token);
   const [descriptionVal, setdescriptionval] = useState<any>("");
   const [message, setMessage] = useState<any>("");
-  const [showToast, setshowToast] = useState<boolean>(false);
+  // const [showToast, setshowToast] = useState<boolean>(false);
   const [messageNew, setmessageNew] = useState<string>("");
   const dispatch = useDispatch();
 
@@ -22,11 +23,13 @@ const MissingPartsModal = ({
     e.preventDefault();
     if (descriptionVal !== "") {
       const missingPartsApiRes:any = await MissingPartsAPI(TokenFromStore?.token,null, descriptionVal);
+      
       if (
         missingPartsApiRes?.status === 200 &&
         missingPartsApiRes?.data?.message?.msg === "success"
       ) {
         setdescriptionval("");
+        showToast("Enquiry Submitted", "success");
       }
       handlemodalclose();
       //   setmessageNew("");
@@ -40,16 +43,16 @@ const MissingPartsModal = ({
       //     setShow(false);
       //   }
     } else {
-      setmessageNew("*Please fill one of the field");
+      setmessageNew("*This field is required");
     }
   };
   return (
     <>
-      <Modal show={show} onHide={handlemodalclose}>
+      <Modal show={show} onHide={handlemodalclose} >
         <Modal.Header closeButton>
           <h4 className="text-center mt-2">{selectLangData?.missing_parts}</h4>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body >
           <div className="form-group mt-2">
             <h6 className="text-capitalize">
               {selectLangData?.choice_product_not_f}
@@ -64,7 +67,7 @@ const MissingPartsModal = ({
               )}
             ></textarea>
           </div>
-          <p className="text-danger">{messageNew}</p>
+          <p className="text-danger" >{messageNew}</p>
           <div className="text-right mt-4">
             <button
               className="btn button_color"

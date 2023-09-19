@@ -12,8 +12,8 @@ const Pagenotfound = () => {
           height={125}
           alt="page not found image"
         ></Image>
-        <h3 className="notfound_heading">Looking for something ?</h3>
-        <p className="notfound_p">
+        <h3 className="notfound_heading ">Looking for something ?</h3>
+        <p className="notfound_p color-black">
           We&apos;re sorry. The Web address you entered is not a functioning
           page on our site.
         </p>

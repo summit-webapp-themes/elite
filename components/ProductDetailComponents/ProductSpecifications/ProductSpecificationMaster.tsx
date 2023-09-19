@@ -18,21 +18,21 @@ const ProductSpecificationMaster = ({
           id="controlled-tab-example"
           activeKey={key}
           onSelect={(k) => setKey(k)}
-          className="mb-3 specs_tabs tabs_content_mob" 
+          className="mb-3 specs_tabs tabs_content_mob varient-type-title" 
         >
           {specifications?.length > 0 &&
             specifications !== null &&
             specifications.map((specsData: any, index: any) => {
               console.log("specs name", specsData, index);
               return (
-                <Tab eventKey={index} title={specsData.name} >
+                <Tab eventKey={index} title={specsData.name}  >
                   {specsData.name === "Specifications" && (
                     <ProductSpecification specificationData={specsData} />
                   )}
                   {specsData.name === "Technologies" && (
                     <ProductTechnology
                       technologyData={specsData}
-                      selectedMultiLangData={selectedMultiLangData}
+                      selectedMultiLangData={selectedMultiLangData} 
                     />
                   )}
                 </Tab>
