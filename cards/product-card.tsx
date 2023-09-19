@@ -82,7 +82,7 @@ const ProductCard = (props: ProductCardProps) => {
     }
   };
   return (
-    <div key={key} className="border ps-0 ms-0  product-border-pd rounded-3 h-100 ">
+    <div key={key} className="border ps-0 ms-0  product-border-pd rounded-3 h-100 " >
       <div className="d-flex justify-content-between icon-container-ps">
         <div
           className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"

@@ -7,7 +7,7 @@ const MobileFilter = ({
   selectedFilters,
   handleApplyFilters,
 }: any) => {
-  const SelectedLangDataFromStore:any = useSelector(
+  const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
 
@@ -22,8 +22,8 @@ const MobileFilter = ({
   }, [SelectedLangDataFromStore?.selectedLanguageData]);
 
   return (
-    <div className="container-fluid d-block d-lg-none">
-      <div className="row sticky_btn_bar " >
+    <div className="container-fluid d-block d-lg-none" >
+      <div className="row sticky_btn_bar "  >
         <a
           data-bs-toggle="modal"
           data-bs-target="#myFilterModal"
@@ -34,11 +34,11 @@ const MobileFilter = ({
         </a>
       </div>
 
-      <div className="modal" id="myFilterModal">
+      <div className="modal color-black" id="myFilterModal" >
         <div className="modal-dialog">
           <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">{selectLangData?.filter}</h4>
+            <div className="modal-header" >
+              <h4 className="modal-title color-black text-captilize" >{selectLangData?.filter}</h4>
               <button
                 type="button"
                 className="btn-close"
@@ -48,7 +48,7 @@ const MobileFilter = ({
 
             <div className="modal-body">
               <div className="clear_filter mb-1">
-                <a href="#" className="clear_filter_link">
+                <a href="#" className="clear_filter_link color-black" >
                   {selectLangData?.clear_filter}
                 </a>
               </div>
@@ -57,76 +57,76 @@ const MobileFilter = ({
                   <div className="accordion accordion_custom" id="myAccordion">
                     {filtersData && filtersData.length > 0
                       ? filtersData?.map((item: any, index: any) => {
-                          return (
-                            <div
-                              className="accordion-item accordion_item_custom"
-                              key={index}
+                        return (
+                          <div
+                            className="accordion-item accordion_item_custom"
+                            key={index}
+                          >
+                            <h2
+                              className="accordion-header bold color-black fs-5 accordion-header-mob "
+                              id={"heading" + index}
                             >
-                              <h2
-                                className="accordion-header bold"
-                                id={"heading" + index}
+                              <button
+                                type="button"
+                                className="text-uppercase accordion-button bold accordion_btn_custom"
+                                data-bs-toggle="collapse"
+                                data-bs-target={"#collapse" + index}
+                                aria-expanded={index === 0 ? "true" : "false"}
+                                aria-controls={"collapse" + index}
                               >
-                                <button
-                                  type="button"
-                                  className="text-uppercase accordion-button bold accordion_btn_custom"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target={"#collapse" + index}
-                                  aria-expanded={index === 0 ? "true" : "false"}
-                                  aria-controls={"collapse" + index}
-                                >
-                                  {item?.section}
-                                </button>
-                              </h2>
+                                {item?.section}
+                              </button>
+                            </h2>
 
-                              <div
-                                id={"collapse" + index}
-                                className={
-                                  index === 0
-                                    ? "accordion-collapse collapse custom_collapse_css show "
-                                    : "accordion-collapse custom_collapse_css collapsed"
-                                }
-                                aria-labelledby={"heading" + index}
-                              >
-                                <div className="card-body p-0">
-                                  {item.values.map((vals: any, index: any) => (
-                                    <div
-                                      className="form_check_filter"
-                                      key={index}
+                            <div
+                              id={"collapse" + index}
+                              className={
+                                index === 0
+                                  ? "accordion-collapse collapse custom_collapse_css show "
+                                  : "accordion-collapse custom_collapse_css collapsed"
+                              }
+                              aria-labelledby={"heading" + index}
+                            >
+                              <div className="card-body pt-2 pb-3"  >
+                                {item.values.map((vals: any, index: any) => (
+                                  <div
+                                    className="form_check_filter d-flex align-items-center color-black mb-1"
+                                    key={index}
+                                  >
+                                    <input
+                                      className="form_check_input"
+                                      type="checkbox"
+                                      name={item.section}
+                                      value={vals}
+                                      id="flexCheckDefault"
+                                      checked={selectedFilters.some(
+                                        (selectedFilter: any) =>
+                                          selectedFilter.name ===
+                                          item.section &&
+                                          selectedFilter.value.includes(vals)
+                                      )}
+                                      onChange={(e) =>
+                                        handleApplyFilters(
+                                          e,
+                                          item.section,
+                                          vals
+                                        )
+                                      }
+                                    />
+                                    <label
+                                      className="form-check-label filter-label accordion-checkbox "
+                                      htmlFor="flexCheckDefault"
                                     >
-                                      <input
-                                        className="form_check_input"
-                                        type="checkbox"
-                                        name={item.section}
-                                        value={vals}
-                                        id="flexCheckDefault"
-                                        checked={selectedFilters.some(
-                                          (selectedFilter: any) =>
-                                            selectedFilter.name ===
-                                              item.section &&
-                                            selectedFilter.value.includes(vals)
-                                        )}
-                                        onChange={(e) =>
-                                          handleApplyFilters(
-                                            e,
-                                            item.section,
-                                            vals
-                                          )
-                                        }
-                                      />
-                                      <label
-                                        className="form-check-label filter-label accordion-checkbox"
-                                        htmlFor="flexCheckDefault"
-                                      >
-                                        {vals}
-                                      </label>
-                                    </div>
-                                  ))}
-                                </div>
+                                      {vals}
+                                    </label>
+                                  </div>
+                                ))}
                               </div>
-                              <hr className="hr_line" />
                             </div>
-                          );
-                        })
+                            <hr className="hr_line" />
+                          </div>
+                        );
+                      })
                       : ""}
                   </div>
                 </div>
@@ -137,7 +137,7 @@ const MobileFilter = ({
               <button
                 type="submit"
                 className="btn button_color text-center"
-                data-bs-dismiss="modal"  
+                data-bs-dismiss="modal"
               >
                 {selectLangData?.submit}
               </button>

@@ -24,6 +24,7 @@ import { fetchOrderSummary } from "../store/slices/checkoutPage-slice/order-summ
 import ListViewLoadingLayout from "./ProductListingComponents/products-data-view/ListViewLoadingLayout";
 import { get_access_token } from "../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../store/slices/general_slices/selected-multilanguage-slice";
+import { showToast } from "./ToastNotificationNew";
 
 const CartListing = () => {
   const router = useRouter();
@@ -354,7 +355,7 @@ const CartListing = () => {
                   </div>
                 </div>
                 <hr />
-                <div className="col-12"   >
+                <div className="col-12 "   >
                   <div className="row justify-content-end">
                     <h5>{selectedMultiLangData?.note}:-</h5>
                     <p className="mb-0">{selectedMultiLangData?.note_1}</p>

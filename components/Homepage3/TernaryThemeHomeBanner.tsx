@@ -53,8 +53,8 @@ const TernaryThemeHomeBanner = () => {
           <div className="row banner_wrapper_mob banner_wrapper_web"    >
             <div className="intro-slide-wrapper col-lg-8 banner_first_mob banner_first" >
               <div className="swiper-container swiper-theme animation-slider pg-inner pg-xxl-hide pg-show pg-white nav-xxl-show nav-hide">
-                <div className="swiper-wrapper gutter-no row cols-1 " >
-                  <div className="banner banner-fixed intro-banner col-lg-12 col-sm-6 br-sm mb-4 d-flex justify-content-around banner_1">
+                <div className="swiper-wrapper gutter-no row cols-1 home-banner1-mob " >
+                  <div className="banner banner-fixed intro-banner col-lg-12 col-sm-6 br-sm mb-4 d-flex justify-content-around banner_1" >
                     <figure>
                       {homeBannerData?.length > 0 && (
                         <Image

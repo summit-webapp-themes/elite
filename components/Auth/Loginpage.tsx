@@ -162,19 +162,19 @@ const Loginpage = () => {
                     <div className="container">
                       <div className="row">
                         <div className="col-lg-6 logo-wrapper">
-                          <h2 className="login_heading mt-3">
+                          <h2 className="login_heading mt-3 color-black">
                             {selectedMultiLangData?.login}
                           </h2>
                           <Form.Group controlId="formName">
                             <div className="row mt-3">
                               <div className="col-md-4">
-                                <Form.Label className="login-label">
+                                <Form.Label className="login-label color-black bold">
                                   {selectedMultiLangData?.mobile_number} /{" "}
                                   {selectedMultiLangData?.email}:
                                 </Form.Label>
                               </div>
 
-                              <div className="col-md-8">
+                              <div className="col-md-8 ">
                                 <Form.Control
                                   onChange={handleChange}
                                   onBlur={handleBlur}
@@ -219,7 +219,7 @@ const Loginpage = () => {
                           <Form.Group controlId="formPassword">
                             <div className="row mt-3">
                               <div className="col-md-4">
-                                <Form.Label className="login-label">
+                                <Form.Label className="login-label color-black bold">
                                   {selectedMultiLangData?.password_otp}:
                                 </Form.Label>
                               </div>
@@ -272,8 +272,8 @@ const Loginpage = () => {
                             <div
                               className={`col-12 text-lg-start register_account`}
                             >
-                              <div className="register ms-2 account-margin">
-                                <span className="not_an_account">
+                              <div className="register ms-2 account-margin account-margin-mob">
+                                <span className="not_an_account color-black">
                                   {selectedMultiLangData?.not_an_account}?{" "}
                                   <Link className={`linkss`} href="/register">
                                     {selectedMultiLangData?.register}

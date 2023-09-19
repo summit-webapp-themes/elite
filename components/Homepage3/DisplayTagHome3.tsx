@@ -17,13 +17,13 @@ const DisplayTagHome3 = (props: any) => {
   // const { bestSellerTagListingOfProducts } =
   //   useDisplayTagHooks();
   return (
-    <div className="pt-0 mt-0" >
+    <div className="pt-0 mt-0 " >
       <div className="container">
         <div className="row banner-product-wrapper category_heading pt-5 mt-4 " >
           <h3 className="text-center ">{data?.tag_name}</h3>
           <div className="product-wrapper col-xl-12 col-md-12" >
             <div className="swiper-container swiper-theme" />
-            <div className="row " >
+            <div className="row home-products-mob" >
               {data?.value?.length > 0 ? (
                 <>
                   {data?.value?.length > 0 &&
@@ -33,7 +33,7 @@ const DisplayTagHome3 = (props: any) => {
                           className="h-100 mx-1 mt-4 displaytag-listhome3"
                           key={i}
                         >
-                          <div className="product-wrap">
+                          <div className="product-wrap" >
                             <div className="product text-center">
                               <figure className="product-media">
                                 {list?.image_url !== null &&
@@ -67,7 +67,7 @@ const DisplayTagHome3 = (props: any) => {
                                   </>
                                 )}
                               </figure>
-                              <div className="product-details ternary-product-details">
+                              <div className="product-details ternary-product-details "  >
                                 <h4 className="product-name truncate-overflow">
                                   <Link href={`${list.url}?currency=${currency_state_from_redux?.selected_currency_value}`}>{list.item_name}</Link>
                                 </h4>
