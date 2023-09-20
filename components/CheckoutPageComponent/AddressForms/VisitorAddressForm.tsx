@@ -13,6 +13,7 @@ import {
 import { fetchShippingAddress } from "../../../store/slices/checkoutPage-slice/customer-shipping-address-slice";
 import { fetchBillingAddress } from "../../../store/slices/checkoutPage-slice/customer-billing-address-slice";
 import { get_access_token } from "../../../store/slices/auth/token-login-slice";
+import { showToast } from "../../ToastNotificationNew";
 
 const VisitorAddress = ({
   address_type,
@@ -21,6 +22,7 @@ const VisitorAddress = ({
   setSelectedState,
   selectedStates,
   selectedMultiLangData,
+  loginAsGuest,
 }: any) => {
   const dispatch = useDispatch();
   const TokenFromStore: any = useSelector(get_access_token);
@@ -69,41 +71,49 @@ const VisitorAddress = ({
         initialValues={initialValues}
         validationSchema={ShippingValidation}
         onSubmit={async (values: any, action: any) => {
-          if (shipping_check) {
-            console.log("checking address", values);
-            const requestParams = {
-              value: { ...values },
-              token: TokenFromStore?.token,
-            };
-            dispatch(storeCustomerAddresses(requestParams));
-
-            localStorage.setItem("guestLogin", "true");
-            localStorage.setItem("isLoggedIn", "true");
-
-            setTimeout(() => {
-              dispatch(fetchShippingAddress(TokenFromStore?.token));
-              dispatch(fetchBillingAddress(TokenFromStore?.token));
-            }, 6000);
+          console.log("visitor values", values);
+          console.log("same as shi", shipping_check);
+          if (loginAsGuest === false) {
+            showToast("Please click the checkbox to proceed.", "warning");
           } else {
-            const requestParams = {
-              value: { ...values },
-              token: TokenFromStore?.token,
-            };
-            console.log("checking address else", values);
-            dispatch(storeCustomerAddresses(requestParams));
-
-            localStorage.setItem("guestLogin", "true");
-            localStorage.setItem("isLoggedIn", "true");
-
-            setTimeout(() => {
-              dispatch(fetchShippingAddress(TokenFromStore?.token));
-              dispatch(fetchBillingAddress(TokenFromStore?.token));
-              // dispatch(navbarAPI());
-            }, 6000);
-            setTimeout(() => {
-              window.location.reload();
-            }, 8000);
+            console.log("show fire api");
           }
+
+          // if (shipping_check) {
+          //   console.log("checking address", values);
+          //   const requestParams = {
+          //     value: { ...values },
+          //     token: TokenFromStore?.token,
+          //   };
+          //   dispatch(storeCustomerAddresses(requestParams));
+
+          //   localStorage.setItem("guestLogin", "true");
+          //   localStorage.setItem("isLoggedIn", "true");
+
+          //   setTimeout(() => {
+          //     dispatch(fetchShippingAddress(TokenFromStore?.token));
+          //     dispatch(fetchBillingAddress(TokenFromStore?.token));
+          //   }, 6000);
+          // } else {
+          //   const requestParams = {
+          //     value: { ...values },
+          //     token: TokenFromStore?.token,
+          //   };
+          //   console.log("checking address else", values);
+          //   dispatch(storeCustomerAddresses(requestParams));
+
+          //   localStorage.setItem("guestLogin", "true");
+          //   localStorage.setItem("isLoggedIn", "true");
+
+          //   setTimeout(() => {
+          //     dispatch(fetchShippingAddress(TokenFromStore?.token));
+          //     dispatch(fetchBillingAddress(TokenFromStore?.token));
+
+          //   }, 6000);
+          //   setTimeout(() => {
+          //     window.location.reload();
+          //   }, 8000);
+          // }
         }}
       >
         {({ handleChange, isSubmitting, handleBlur }) => (
@@ -368,7 +378,7 @@ const VisitorAddress = ({
                     <div className="text-center ">
                       <button
                         type="submit"
-                        className="btn mt-3 px-4 py-3 text-uppercase rounded-0 button_color"
+                        className=" btn mt-3 px-4 py-3 text-uppercase rounded-0 button_color"
                         disabled={isSubmitting}
                       >
                         {selectedMultiLangData?.save_address}
