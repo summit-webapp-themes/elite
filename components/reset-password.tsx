@@ -53,7 +53,7 @@ const ResetPassword: any = () => {
 
   return (
     <>
-      <div className="container change_pwd margin_from_nav reset-pass-wrapper">
+      <div className="container change_pwd margin_from_nav reset-pass-wrapper " >
         <div className="page_heading text-center">
           <h4 className="text-uppercase change_pwdh4">Reset Your Password</h4>
         </div>
@@ -65,17 +65,17 @@ const ResetPassword: any = () => {
         >
           {({ handleChange }) => (
             <FormikForm className="">
-              <div className=" text-center mt-4">
+              <div className=" text-center mt-4 ms-5 mob-reset-form-wrapper">
                 <div className="container">
                   <div className="row mb-4 pwd_height">
-                    <div className="col-md-3 d-flex align-items-center justify-content-end">
-                      <div className="label text-end">
-                        <label htmlFor="" className="">
+                    <div className="col-md-3 d-flex align-items-center justify-content-end mob-reset-form-title">
+                      <div className="label reset-titles-mob">
+                        <label htmlFor="" className="color-black">
                           Email ID:
                         </label>
                       </div>
                     </div>
-                    <div className="col-md-9 ">
+                    <div className="col-md-9 color-black">
                       <div className="password_block">
                         <Field
                           type="email"
@@ -92,14 +92,14 @@ const ResetPassword: any = () => {
                   </div>
 
                   <div className="row mb-4 pwd_height ">
-                    <div className="col-md-3  d-flex align-items-center justify-content-end">
-                      <div className="text-end label">
-                        <label htmlFor="" className="">
+                    <div className="col-md-3  d-flex align-items-center justify-content-end mob-reset-form-title">
+                      <div className=" label reset-titles-mob">
+                        <label htmlFor="" className="color-black">
                           New Password:
                         </label>
                       </div>
                     </div>
-                    <div className="col-md-9">
+                    <div className="col-md-9 color-black">
                       <div className="password_block">
                         <Field
                           type="password"
@@ -116,14 +116,14 @@ const ResetPassword: any = () => {
                   </div>
 
                   <div className="row mb-4 pwd_height">
-                    <div className="col-md-3  d-flex align-items-center justify-content-end">
-                      <div className="text-end label">
-                        <label htmlFor="" className="">
+                    <div className="col-md-3  d-flex align-items-center justify-content-end  mob-reset-form-title">
+                      <div className=" label reset-titles-mob">
+                        <label htmlFor="" className="color-black">
                           Confirm Password:
                         </label>
                       </div>
                     </div>
-                    <div className="col-md-9">
+                    <div className="col-md-9 color-black">
                       <div className="password_block">
                         <Field
                           type="password"
@@ -138,15 +138,15 @@ const ResetPassword: any = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="custom_btn mt-4">
+                  <div className="custom_btn mt-4 me-5 " >
                     <Link href="/login" >
-                      <button type="button" className="btn standard_button btn_reset">
+                      <button type="button" className="btn standard_button btn_reset color-black">
                         BACK
                       </button>
                     </Link>
                     <button
                       type="submit"
-                      className="btn standard_button text-uppercase bold ms-5 btn_reset"
+                      className="btn standard_button text-uppercase bold ms-5 btn_reset color-black"
                     >
                       RESET
                     </button>

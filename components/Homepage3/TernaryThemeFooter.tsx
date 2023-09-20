@@ -121,7 +121,7 @@ const TernaryThemeFooter = () => {
                 </div>
               </div>
               <div className="col-lg-2 col-sm-6">
-                <div className="widget">
+                <div className="widget footer-widget-mob">
                   <h3 className="widget-title ternaryTheme-footerTitle">
                     {selectLangData?.company}
                   </h3>
@@ -162,7 +162,7 @@ const TernaryThemeFooter = () => {
                 </div> */}
               </div>
               <div className="col-lg-2 col-sm-6">
-                <div className="widget">
+                <div className="widget footer-widget-mob">
                   <h4 className="widget-title ternaryTheme-footerTitle">
                     {selectLangData?.my_account}
                   </h4>
@@ -186,7 +186,7 @@ const TernaryThemeFooter = () => {
                 </div>
               </div>
               <div className="col-lg-2 col-sm-6">
-                <div className="widget">
+                <div className="widget footer-widget-mob">
                   <h4 className="widget-title ternaryTheme-footerTitle">
                     {selectLangData?.customer_service}
                   </h4>

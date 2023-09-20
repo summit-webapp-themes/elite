@@ -19,7 +19,7 @@ import {
 import { getAccessToken } from "../../store/slices/auth/token-login-slice";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import getOtpFetchApi from "../../services/api/auth/get-otp-api";
-import logoImg from "../../public/assets/images/b2c_logo.png"
+import logoImg from "../../public/assets/images/b2c_logo.png";
 import useMultilangHook from "../../hooks/LanguageHook/Multilanguages-hook";
 
 const Loginpage = () => {
@@ -33,7 +33,6 @@ const Loginpage = () => {
   const [isOtpLoginState, setIsOtpLoginState] = useState<boolean>(false);
 
   const { handleLanguageChange, multiLanguagesData }: any = useMultilangHook();
-
 
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
@@ -60,7 +59,7 @@ const Loginpage = () => {
     isLoggedIn = localStorage.getItem("isLoggedIn");
   }
 
-  const handlesubmit = (values: any) => {
+  const handlesubmit = async (values: any) => {
     const val = Object.assign(obj, values);
 
     const user_params = {
@@ -68,33 +67,16 @@ const Loginpage = () => {
       guest: guestLogin,
       isOtpLogin: isOtpLoginState === true ? true : false,
     };
-    console.log("userparams", user_params);
 
-    dispatch(getAccessToken(user_params));
-
-    setTimeout(() => {
-      const loginStatusFromStorage: any = localStorage.getItem("isLoggedIn");
-      setLoginStatus(loginStatusFromStorage);
-      setIsOtpLoginState(false);
-    }, 2000);
-  };
-  useEffect(() => {
-    if (loginStatus === "true") {
-      // dispatch(successmsg("logged in sucessfully"));
-      // setTimeout(() => {
-      //   dispatch(hideToast());
-      // }, 800);
+    const AccessTokenApiRes = await dispatch(getAccessToken(user_params));
+    console.log("Thunk result:", AccessTokenApiRes.payload);
+    if (AccessTokenApiRes?.payload?.msg === "success") {
       router.push("/");
       localStorage.removeItem("guest");
       localStorage.removeItem("guestToken");
     }
-    // else if (loginStatus === null) {
-    //   dispatch(failmsg("Invalid Credential"));
-    //   setTimeout(() => {
-    //     dispatch(hideToast());
-    //   }, 800);
-    // }
-  }, [handlesubmit]);
+  };
+
   console.log(loginSucess, "loginSucess");
 
   console.log(isLoggedIn, "newState");
@@ -133,14 +115,9 @@ const Loginpage = () => {
   return (
     <>
       <div className="container">
-      <div className="logo mt-5">
+        <div className="logo mt-5">
           <Link href="/" className="navbar-brand">
-            <Image
-               src={logoImg}
-              alt="logo"
-              width={250}
-              height={55}
-            />
+            <Image src={logoImg} alt="logo" width={250} height={55} />
           </Link>
         </div>
 
@@ -162,19 +139,19 @@ const Loginpage = () => {
                     <div className="container">
                       <div className="row">
                         <div className="col-lg-6 logo-wrapper">
-                          <h2 className="login_heading mt-3">
+                          <h2 className="login_heading mt-3 color-black">
                             {selectedMultiLangData?.login}
                           </h2>
                           <Form.Group controlId="formName">
                             <div className="row mt-3">
                               <div className="col-md-4">
-                                <Form.Label className="login-label">
+                                <Form.Label className="login-label color-black bold">
                                   {selectedMultiLangData?.mobile_number} /{" "}
                                   {selectedMultiLangData?.email}:
                                 </Form.Label>
                               </div>
 
-                              <div className="col-md-8">
+                              <div className="col-md-8 ">
                                 <Form.Control
                                   onChange={handleChange}
                                   onBlur={handleBlur}
@@ -219,7 +196,7 @@ const Loginpage = () => {
                           <Form.Group controlId="formPassword">
                             <div className="row mt-3">
                               <div className="col-md-4">
-                                <Form.Label className="login-label">
+                                <Form.Label className="login-label color-black bold">
                                   {selectedMultiLangData?.password_otp}:
                                 </Form.Label>
                               </div>
@@ -272,8 +249,8 @@ const Loginpage = () => {
                             <div
                               className={`col-12 text-lg-start register_account`}
                             >
-                              <div className="register ms-2 account-margin">
-                                <span className="not_an_account">
+                              <div className="register ms-2 account-margin account-margin-mob">
+                                <span className="not_an_account color-black">
                                   {selectedMultiLangData?.not_an_account}?{" "}
                                   <Link className={`linkss`} href="/register">
                                     {selectedMultiLangData?.register}

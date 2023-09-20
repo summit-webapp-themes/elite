@@ -37,6 +37,7 @@ import {
   updateAccessToken,
 } from "../../../store/slices/auth/token-login-slice";
 import { showToast } from "../../ToastNotificationNew";
+import { profileData_state } from "../../../store/slices/general_slices/profile-page-slice";
 const ProductDetail = ({
   productDetailData,
   productVariants,
@@ -57,7 +58,7 @@ const ProductDetail = ({
   selectedMultiLangData,
 }: any) => {
   const dispatch = useDispatch();
-  const currency_state_from_redux:any = useSelector(currency_selector_state);
+  const currency_state_from_redux: any = useSelector(currency_selector_state);
   // console.log(
   //   "productQuantity in detail page",
   //   doesSelectedVariantDoesNotExists
@@ -65,8 +66,10 @@ const ProductDetail = ({
   const router = useRouter();
 
   const TokenFromStore: any = useSelector(get_access_token);
+  const profileData: any = useSelector(profileData_state);
 
   const [newobjectState, setnewObjectState] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleVariantsData = (newData: any) => {
     setnewObjectState(newData);
@@ -74,6 +77,7 @@ const ProductDetail = ({
 
   let isLoggedIn: any;
   let isDealer: any;
+  let partyName: any;
   if (typeof window !== "undefined") {
     isLoggedIn = localStorage.getItem("isLoggedIn");
     isDealer = localStorage.getItem("isDealer");
@@ -84,6 +88,7 @@ const ProductDetail = ({
       "add currency",
       currency_state_from_redux?.selected_currency_value
     );
+
     if (isDealer === "true") {
       console.log("dealer cart", newobjectState);
       let newObjects =
@@ -93,6 +98,7 @@ const ProductDetail = ({
       console.log("dealer api res", dealerApi);
       if (dealerApi.msg === "success") {
         // dispatch(successmsg("Item Added to cart"));
+        setIsLoading(false);
         showToast("Item Added to cart", "success");
         dispatch(fetchCartListing());
         // setTimeout(() => {
@@ -100,6 +106,10 @@ const ProductDetail = ({
         // }, 1200);
       } else {
         showToast("Failed to Add to cart", "error");
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 5000);
+
         // dispatch(failmsg("Failed to Add to cart"));
         // setTimeout(() => {
         //   dispatch(hideToast());
@@ -121,15 +131,33 @@ const ProductDetail = ({
         item_code: productDetailData?.name,
         quantity: productQuantity,
       });
+
+      if (profileData?.partyName !== "") {
+        if (Object?.keys(profileData?.partyName)?.length > 0) {
+          partyName = profileData?.partyName;
+        }
+      } else {
+        partyName = "Guest";
+      }
+
       let AddToCartProductRes: any = await AddToCartApi(
         addCartData,
         currency_state_from_redux?.selected_currency_value,
-        TokenFromStore?.token
+        TokenFromStore?.token,
+        partyName
       );
 
       if (AddToCartProductRes.msg === "success") {
         // dispatch(successmsg("Item Added to cart"));
+
         showToast("Item Added to cart", "success");
+        setIsLoading(true);
+        setTimeout(() => {
+          // Stop the loader after 2 seconds (adjust the time as needed)
+          setIsLoading(false);
+          // Add your actual functionality here (e.g., adding to the cart)
+          // ...
+        }, 2000);
 
         if (AddToCartProductRes?.data?.access_token !== null) {
           dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
@@ -143,12 +171,13 @@ const ProductDetail = ({
             dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
           }
         } else {
-          dispatch(fetchCartListing(TokenFromStore?.token));
+          // dispatch(fetchCartListing(TokenFromStore?.token));
         }
         // setTimeout(() => {
         //   dispatch(hideToast());
         // }, 1200);
       } else {
+        setIsLoading(false);
         showToast("Failed to Add to cart", "error");
         // dispatch(failmsg(AddToCartProductRes?.error));
         // setTimeout(() => {
@@ -157,9 +186,10 @@ const ProductDetail = ({
       }
     }
   };
+
   const [fullUrl, setFullUrl] = useState("");
   const shareUrl = fullUrl !== "" ? fullUrl : "http://3.13.55.94:3004/";
-  const shareMessage:string = `Check out this product: ${shareUrl}`;
+  const shareMessage: string = `Check out this product: ${shareUrl}`;
   useEffect(() => {
     if (router.asPath) {
       const currentUrl = window.location.origin + router.asPath;
@@ -168,9 +198,11 @@ const ProductDetail = ({
   }, [router.asPath]);
   // console.log("details@@", fullUrl);
   return (
-    <div >
-      <div className="product-info"  >
-        <b className="product_name products-name  bold-name">{productDetailData?.item_name}</b>
+    <div>
+      <div className="product-info">
+        <b className="product_name products-name  bold-name">
+          {productDetailData?.item_name}
+        </b>
         <p className=" text-dark products-name">
           <span className="products-name">
             {" "}
@@ -228,13 +260,13 @@ const ProductDetail = ({
         {productDetailData?.price !== 0 ? (
           <div>
             {productDetailData?.tax_value !== null && (
-              <p className="products-name text-dark mt-3 text-uppercase taxx_value font-weight-normal" >
+              <p className="products-name text-dark mt-3 text-uppercase taxx_value font-weight-normal">
                 &#43; {selectedMultiLangData?.gst} &#x40;{" "}
                 {productDetailData?.tax_value}% {selectedMultiLangData?.extra}
               </p>
             )}
 
-            <p className=" text-dark mt-2 text-uppercase taxx_value products-name " >
+            <p className=" text-dark mt-2 text-uppercase taxx_value products-name ">
               &#43; {selectedMultiLangData?.cost_of_transportation_extra}
             </p>
           </div>
@@ -252,7 +284,9 @@ const ProductDetail = ({
                       (featureL: any, index: any) => {
                         return (
                           <li key={index} className="d-flex">
-                            <span className="feature_list products-name"> </span>
+                            <span className="feature_list products-name">
+                              {" "}
+                            </span>
                             <span className="fs-5 py-1 products-name">
                               {featureL.description}
                             </span>
@@ -330,7 +364,7 @@ const ProductDetail = ({
                         {" "}
                         {selectedMultiLangData?.quantity}:{" "}
                       </div>
-                      <div >
+                      <div>
                         <span
                           className="fs-2 ml-lg-2 arrow_pointer products-name"
                           onClick={handleQuantityDecrement}
@@ -348,14 +382,14 @@ const ProductDetail = ({
                         />
 
                         <span
-                          className="fs-2 arrow_pointer products-name" 
+                          className="fs-2 arrow_pointer products-name"
                           onClick={handleQuantityIncrement}
                         >
                           <i className="fa fa-plus fs-4"></i>
                         </span>
                       </div>
                     </div>
-                    <div className="fs-6 mt-1 text-uppercase text-dark bold products-name" >
+                    <div className="fs-6 mt-1 text-uppercase text-dark bold products-name">
                       {productDetailData.min_order_qty === 0 ? (
                         ""
                       ) : (
@@ -370,7 +404,7 @@ const ProductDetail = ({
                 )}
               </div>
 
-              <div className="row button_sec " >
+              <div className="row button_sec ">
                 {CONSTANTS.SHOW_FUTURE_STOCK_AVAILABILITY_TO_GUEST === true ? (
                   <div className="col-lg-4 text-start products-name btn-wrapper">
                     <div className="mt-5">
@@ -400,7 +434,7 @@ const ProductDetail = ({
                 <div className="col-md-6 btn-wrapper">
                   <div className="mt-5">
                     <div className="row">
-                      <button
+                      {/* <button
                         type="button"
                         className={`${
                           productQuantity < minQty ? "disabled" : "enabled"
@@ -412,6 +446,26 @@ const ProductDetail = ({
                         }
                       >
                         {selectedMultiLangData?.add_to_cart}
+                      </button> */}
+                      <button
+                        type="button"
+                        className={`${
+                          productQuantity < minQty ? "disabled" : "enabled"
+                        } w-50 btn button_color cart_btn_gtag add_cart_btn_mob products-name`}
+                        onClick={handleAddCart}
+                        disabled={
+                          doesSelectedVariantDoesNotExists ||
+                          stockDoesNotExistsForSelectedVariants
+                        }
+                      >
+                        {isLoading ? (
+                          <span className="cursor-change">
+                            Adding...
+                            <i className="fa fa-spinner" aria-hidden="true"></i>
+                          </span>
+                        ) : (
+                          selectedMultiLangData?.add_to_cart
+                        )}
                       </button>
                     </div>
                     <div className="col-12">
@@ -458,14 +512,14 @@ const ProductDetail = ({
                   </div>
                 )} */}
               </div>
-              <div className="mt-2" >
+              <div className="mt-2">
                 <p className="text-danger">
                   {productDetailData.in_stock_status === false &&
                     "Product is out of stock"}
                 </p>
               </div>
               {/* WhatsApp share button */}
-              <div className="mt-5 d-flex align-items-center" >
+              <div className="mt-5 d-flex align-items-center">
                 <i
                   className="fa fa-share me-2"
                   aria-hidden="true"

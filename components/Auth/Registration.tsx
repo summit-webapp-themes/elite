@@ -136,7 +136,7 @@ const Registration = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container ">
         <div className="row">
           <div className="col-12">
             <div className="logo mt-3">
@@ -153,7 +153,7 @@ const Registration = () => {
         </div>
         <div className="registration_form">
           <div className="registr-heading text-center mb-2">
-            <h1 className="text-uppercase registration_title" >
+            <h1 className="text-uppercase registration_title color-black" >
               {selectedMultiLangData?.register}
             </h1>
           </div>
@@ -185,9 +185,9 @@ const Registration = () => {
                         {register_details.map((details: any, i) => (
                           <div className="row mt-3" key={i}>
                             <Form.Group controlId={details?.controlId}>
-                              <div className="row">
+                              <div className="row ">
                                 <div className="col-md-4">
-                                  <Form.Label className="registration_label" >
+                                  <Form.Label className="registration_label color-black bold" >
                                     {HandleRegistrationForm(details)}:
                                   </Form.Label>
                                 </div>
@@ -203,7 +203,7 @@ const Registration = () => {
                                       className={`${details?.name === "address"
                                           ? "address_textarea"
                                           : ""
-                                        } form-control rounded-0`}
+                                        } form-control rounded-0 `}
                                         
                                     />
                                      
@@ -222,7 +222,7 @@ const Registration = () => {
                                   <div className="col-md-8">
                                     <Field
                                       component="select"
-                                      className="form-control rounded-0"
+                                      className="form-control rounded-0 "
                                       id="state"
                                       name="state"
                                      
@@ -269,7 +269,7 @@ const Registration = () => {
                                   <div className="col-md-8" >
                                     <Field
                                       component="select"
-                                      className="form-control rounded-0"
+                                      className="form-control rounded-0 "
                                       id="city"
                                       name="city"
                                       value={selectedCity}

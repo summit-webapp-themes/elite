@@ -16,14 +16,14 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
 
   return (
     <>
-      <div className="container category_heading">
-        <div className="row">
+      <div className="container category_heading " >
+        <div className="row category_heading_mob" >
           {homeTopCategories?.length > 0 && homeTopCategories !== null ? (
             <>
               {homeTopCategories?.length > 0 ? (
                 <>
                   <>
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 banner-margin-b" >
                       <Link
                         href={`/product-category/${homeTopCategories[1]?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                       >
@@ -37,7 +37,7 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                         />
                       </Link>
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 banner-margin-b">
                       <Link
                         href={`/product-category/${homeTopCategories[0]?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                       >
