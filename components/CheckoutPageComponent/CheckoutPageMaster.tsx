@@ -87,7 +87,7 @@ const CheckoutPageMaster = () => {
     }
   }, []);
 
-  const SelectedLangDataFromStore:any = useSelector(
+  const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -102,7 +102,6 @@ const CheckoutPageMaster = () => {
 
   console.log("visitor state", currencySymbolForSummary);
   // console.log("currencySymbolForSummary", currencySymbolForSummary);
-
 
   return (
     <div className="container mt-0 mb-0">
@@ -149,7 +148,6 @@ const CheckoutPageMaster = () => {
             handlePlaceOrder={handlePlaceOrder}
             selectedMultiLangData={selectedMultiLangData}
             currencySymbolForSummary={currencySymbolForSummary}
-
           />
         </>
       ) : (
@@ -188,7 +186,6 @@ const CheckoutPageMaster = () => {
               couponCodeApiRes={couponCodeApiRes}
               selectedMultiLangData={selectedMultiLangData}
               currencySymbolForSummary={currencySymbolForSummary}
-
             />
           ) : (
             <div className=" container row  mb-2 mx-auto">
@@ -197,9 +194,11 @@ const CheckoutPageMaster = () => {
                   {selectedMultiLangData?.checkout_details}
                 </h4>
                 <div className="d-flex align-items-center">
-                  <button className="btn btn-sm rounded-0 bold yellow_btn">
+                  <button className="btn btn-sm rounded-0 bold yellow_btn ">
                     <Link href={"/login"} legacyBehavior>
-                      <a>{selectedMultiLangData?.login}</a>
+                      <a className="text-dark">
+                        {selectedMultiLangData?.login}
+                      </a>
                     </Link>
                   </button>
                   <span className="text-muted px-2 fs-4">
@@ -272,7 +271,7 @@ const CheckoutPageMaster = () => {
                   {" "}
                   {selectedMultiLangData?.order_summary}
                 </h5>
-                <OrderSummary selectedMultiLangData={selectedMultiLangData}  />
+                <OrderSummary selectedMultiLangData={selectedMultiLangData} />
               </div>
             </div>
           )}
@@ -283,9 +282,3 @@ const CheckoutPageMaster = () => {
 };
 
 export default CheckoutPageMaster;
-
-
-
-
-
-

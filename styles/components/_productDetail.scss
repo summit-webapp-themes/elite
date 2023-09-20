@@ -737,6 +737,17 @@ transform: translateX(0);
   padding-left: 2.5rem ;
   // border: 2px solid red;
 }
+.cursor-change{
+  cursor: none !important;
+
+  
+}
+.product-details {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+
 
 @media only screen and (max-width: 600px) {
   .tabs_content_mob {

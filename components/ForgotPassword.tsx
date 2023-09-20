@@ -67,7 +67,7 @@ const ForgotPassword = () => {
       <div className="container my-5 margin_from_nav forget_password_wrapper">
         <div className={`col-lg-6 col-sm-9 col-12  mx-auto form_wrap`}>
           <div className="page_heading text-center">
-            <h4 className="forgot_passwordh4">
+            <h4 className=" text-uppercase forget-password-heading">
               {selectedMultiLangData?.forgot_your_password}
             </h4>
           </div>
@@ -88,9 +88,9 @@ const ForgotPassword = () => {
                   <div className="container">
                     <div className="row">
                       <div className="col-md-3 ">
-                        <div className={`label text-end mt-1`}>
-                          <label htmlFor="" className="forgotpassword_label">
-                            {selectedMultiLangData?.email}
+                        <div className={`label text-end mt-1 email-forget-mob`}>
+                          <label htmlFor="" className="forgotpassword_label color-black">
+                           <span className="bold">{selectedMultiLangData?.email} :</span>  
                           </label>
                         </div>
                       </div>
@@ -101,6 +101,7 @@ const ForgotPassword = () => {
                             className="email_field"
                             name="email"
                             onChange={handleChange}
+                            placeholder="Enter your Email Address"
                           />
                           <br />
                           <div className="error_message error-message-field">

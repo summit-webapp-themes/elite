@@ -16,6 +16,8 @@ import {
   updateAccessToken,
 } from "../store/slices/auth/token-login-slice";
 import { showToast } from "../components/ToastNotificationNew";
+import { profileData_state } from "../store/slices/general_slices/profile-page-slice";
+import { useState } from "react";
 
 const ProductCard = (props: ProductCardProps) => {
   const {
@@ -35,29 +37,45 @@ const ProductCard = (props: ProductCardProps) => {
   } = props;
 
   const TokenFromStore: any = useSelector(get_access_token);
+  const profileData: any = useSelector(profileData_state);
+  console.log("profile partyname", profileData);
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   let wishproducts: any;
   let requestNew: any;
   let requestList: any;
+  let partyName: any;
 
   const dispatch = useDispatch();
 
   const handleAddCart = async () => {
+    setIsLoading(true);
     const addCartData: any = [];
     addCartData.push({
       item_code: name,
       quantity: 1,
     });
+
+    if (profileData?.partyName !== "") {
+      if (Object?.keys(profileData?.partyName)?.length > 0) {
+        partyName = profileData?.partyName;
+      }
+    } else {
+      partyName = "Guest";
+    }
+
     let AddToCartProductRes: any = await AddToCartApi(
       addCartData,
       currency_state_from_redux?.selected_currency_value,
-      TokenFromStore?.token
+      TokenFromStore?.token,
+      partyName
     );
 
     if (AddToCartProductRes.msg === "success") {
       // dispatch(successmsg("Item Added to cart"));
       showToast("Item Added to cart", "success");
-
+      setIsLoading(false);
       if (AddToCartProductRes?.data?.access_token !== null) {
         dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
         localStorage.setItem("guest", AddToCartProductRes?.data?.access_token);
@@ -68,25 +86,22 @@ const ProductCard = (props: ProductCardProps) => {
         }
       } else {
         dispatch(fetchCartListing(TokenFromStore?.token));
-
       }
-      // setTimeout(() => {
-      //   dispatch(hideToast());
-      // }, 1200);
     } else {
       showToast("Failed to Add to cart", "error");
-      // dispatch(failmsg(AddToCartProductRes?.error));
-      // setTimeout(() => {
-      //   dispatch(hideToast());
-      // }, 1500);
+      setIsLoading(false);
     }
   };
   return (
-    <div key={key} className="border ps-0 ms-0  product-border-pd rounded-3 h-100 ">
+    <div
+      key={key}
+      className="border ps-0 ms-0  product-border-pd rounded-3 h-100 "
+    >
       <div className="d-flex justify-content-between icon-container-ps">
         <div
-          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
-            }`}
+          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${
+            display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
+          }`}
         >
           {display_tag?.length > 0 && display_tag[0]}
         </div>
@@ -175,7 +190,8 @@ const ProductCard = (props: ProductCardProps) => {
                     src={`${CONSTANTS.API_BASE_URL}${img_url}`}
                     alt="product-detail"
                     width={200}
-                    height={200} className="product_img_mob product_img_web"
+                    height={200}
+                    className="product_img_mob product_img_web"
                   />
                 </Link>
               </>
@@ -186,7 +202,8 @@ const ProductCard = (props: ProductCardProps) => {
                     src={"/assets/images/maximaCard.jpg"}
                     alt="Product"
                     width="200"
-                    height="200" className="product_img_mob product_img_web"
+                    height="200"
+                    className="product_img_mob product_img_web"
                   />
                 </Link>
               </>
@@ -217,11 +234,18 @@ const ProductCard = (props: ProductCardProps) => {
                 className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family`}
                 onClick={handleAddCart}
               >
-                <i
-                  className="fa fa-shopping-cart pe-5 pb-1"
-                  aria-hidden="true"
-                ></i>
-                {/* {multilingualData?.add_to_cart} */}
+                {isLoading ? (
+                  <span
+                    className="spinner-border spinner-border-md "
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                ) : (
+                  <i
+                    className="fa fa-shopping-cart pe-5 pb-1 pt-1"
+                    aria-hidden="true"
+                  ></i>
+                )}
               </button>
             </div>
           </div>

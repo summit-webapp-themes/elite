@@ -35,7 +35,7 @@ const WebNavbar = ({
   const [isShown, setIsShown] = useState<boolean>(false);
   const [isId, setId] = useState();
   const [LoggedIn, setLoggedIn] = useState<boolean>(false);
-  const isLoggedIn:any = useSelector(login_state);
+  const isLoggedIn: any = useSelector(login_state);
   const MultilanguageDataFromStore: any = useSelector(
     multiLanguageDataFromStore
   );
