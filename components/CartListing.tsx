@@ -131,7 +131,7 @@ const CartListing = () => {
   };
 
   return (
-    <div className="container" >
+    <div className="container margin_from_nav" >
       {Loadings === "pending" ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
@@ -145,11 +145,11 @@ const CartListing = () => {
       ) : (
         <>
           {Object.keys(cartListingItems).length > 0 ? (
-            <div className="container py-5 pt-0 mt-0"  >
-              <div className="cart_heading">
-                <h3 className="text-captilize my-0 products-name">
+            <div className="container py-0 pt-0 mt-0 "  >
+              <div className="page_heading">
+                <h4 className="" >
                   {selectedMultiLangData?.shopping_cart}
-                </h3>
+                </h4>
               </div>
 
               <div className="row mb-1" >

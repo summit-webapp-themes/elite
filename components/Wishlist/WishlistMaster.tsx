@@ -297,13 +297,13 @@ const WishlistMaster = () => {
         </div>
       ) : (
         <>
-          <div className="container wishlist-container  products-name wishlist_container_webs" >
+          <div className="container wishlist-container  color-black wishlist_container_webs page_heading margin_from_nav" >
             {wishlistCount > 0 ? (
               <>
-                <h3 className="wishlist-title ">
+                <h4 className="">
                   {" "}
                   {selectedMultiLangData?.my_wishlist}
-                </h3>
+                </h4>
                 <div className="row mt-2 mx-4 ">
                   <h5 className="col-lg-5 col-md-4 d-none d-md-block">
                     {selectedMultiLangData?.product}
@@ -311,7 +311,7 @@ const WishlistMaster = () => {
                   <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ">
                     {selectedMultiLangData?.price}
                   </h5>
-                  <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ">
+                  <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ms-3">
                     {selectedMultiLangData?.quantity}
                   </h5>
                   <h5 className="col-lg-3 col-md-2 col-3 d-none d-md-block">
@@ -384,7 +384,7 @@ const WishlistMaster = () => {
                       </div>
                       <div className="col-lg-2 col-md-2 product-price ">
                         {item?.price !== 0 ? (
-                          <ins className="new-price fs-3 products-name">
+                          <ins className="new-price fs-3 color-black">
                             {" "}
                             <span>&#x20B9;</span>
                             {item?.price?.toLocaleString("en-IN")}
@@ -414,7 +414,7 @@ const WishlistMaster = () => {
                           >
                             -
                           </span>
-                          <div className="pe-3 input-width products-name" >
+                          <div className="pe-3 input-width color-black" >
                             <input
                               type="text"
                               // defaultValue={
@@ -458,7 +458,7 @@ const WishlistMaster = () => {
                                 productCounts[index] === item?.min_order_qty
                                 ? "text-danger"
                                 : "text-dark"
-                              } fs-6 mt-1 text-uppercase bold products-name`}
+                              } fs-6 mt-1 text-uppercase bold color-black`}
                           >
                             {selectedMultiLangData?.minimum_order_qty}:{" "}
                             {item?.min_order_qty}
@@ -491,7 +491,7 @@ const WishlistMaster = () => {
                           </button> */}
 
                           <button
-                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2 add_cart_btn products-name"
+                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2 add_cart_btn color-black"
 
                             onClick={() =>
                               handleAddCart(
@@ -531,7 +531,7 @@ const WishlistMaster = () => {
               </>
             )}
           </div>
-          <div className="container ">
+          <div className="container " >
             <div className="modal" id="stockModal">
               {showAvailabilityModal === false ? (
                 <>

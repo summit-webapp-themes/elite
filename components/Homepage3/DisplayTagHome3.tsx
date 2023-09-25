@@ -17,7 +17,7 @@ const DisplayTagHome3 = (props: any) => {
   // const { bestSellerTagListingOfProducts } =
   //   useDisplayTagHooks();
   return (
-    <div className="pt-0 mt-0 " >
+    <div className="pt-0 mt-0 "  >
       <div className="container">
         <div className="row banner-product-wrapper category_heading pt-5 mt-4 " >
           <h3 className="text-center ">{data?.tag_name}</h3>
@@ -28,10 +28,10 @@ const DisplayTagHome3 = (props: any) => {
                 <>
                   {data?.value?.length > 0 &&
                     data?.value?.map((list: any, i: any) => (
-                      <div className="col-md-5 col-lg-4 col-xl-3 col-xxl-3 py-2 card-mob-wrapper pb-2"  >
+                      <div className="col-md-5 col-lg-4 col-xl-3 col-xxl-3 py-0 card-mob-wrapper pb-5"  >
                         <div
-                          className="h-100 mx-1 mt-4 displaytag-listhome3"
-                          key={i}
+                          className="h-100 mx-1 mt-3 displaytag-listhome3"
+                          key={i} 
                         >
                           <div className="product-wrap" >
                             <div className="product text-center">

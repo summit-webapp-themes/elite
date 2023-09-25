@@ -104,11 +104,11 @@ const CheckoutPageMaster = () => {
   // console.log("currencySymbolForSummary", currencySymbolForSummary);
 
   return (
-    <div className="container mt-0 mb-0">
+    <div className="container mt-0 mb-0 margin_from_nav ">
       {isBreakpoint ? (
         <>
-          <div className="container pt-0 ms-1">
-            <h3>{selectedMultiLangData?.checkout_page}</h3>
+          <div className="container page_heading  pt-0 ms-1">
+            <h4>{selectedMultiLangData?.checkout_page}</h4>
             <hr />
           </div>
           <WebCheckout

@@ -28,11 +28,11 @@ const MyOrderMaster = () => {
   return (
     <>
 
-      <div className="container mt-3 my-order-container-pd" >
-        <div className="mt-4 row">
+      <div className="container mt-0 my-order-container-pd" >
+        <div className="mt-0 row">
           <div className="col-md-6">
-            <div className="page_heading">
-              <h4 className=" bold text-uppercase mb-5 order-heading products-name" >
+            <div className="page_heading" >
+              <h4 className="" >
                 {selectedMultiLangData?.your_orders}
               </h4>
             </div>

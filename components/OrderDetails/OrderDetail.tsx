@@ -89,7 +89,7 @@ const Index = ({ sales_order_id }: any) => {
 
   return (
     <div className="container">
-    {detail?.length === 0 ? (
+      {detail?.length === 0 ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
             <>
@@ -99,22 +99,22 @@ const Index = ({ sales_order_id }: any) => {
             </>
           ))}
         </div>
-      ) : (  <>
+      ) : (<>
         {detail?.length > 0 &&
-            detail !== null &&
-            detail?.map((data: any) => (
-              <div className="container products-name" key={data?.name} >
-        <>
-          <div className="row products-name">
+          detail !== null &&
+          detail?.map((data: any) => (
+            <div className="container color-black" key={data?.name} >
+              <>
+                <div className="row color-black">
                   <div className="col-md-6" >
                     <div className="page_heading">
-                      <h5 className="bold text-uppercase black mb-2 mt-5 orderDetail-heading orderDetail-heading-mob ">
+                      <h5 className="bold text-uppercase black mb-2 mt-5 orderDetail-heading orderDetail-heading-mob " >
                         {selectedMultiLangData?.order_details}
                       </h5>
                     </div>
                   </div>
                 </div>
-                <div className="order_detail_head row products-name"  >
+                <div className="order_detail_head row color-black"  >
                   <div className="col-12">
                     <div className="item_action d-flex ">
                       <div className="item_action_link me-3 ">{data.creation}</div>
@@ -126,7 +126,7 @@ const Index = ({ sales_order_id }: any) => {
                     </div>
                   </div>
                 </div>
-                <div id="printableArea" className="row products-name" >
+                <div id="printableArea" className="row color-black" >
                   <div className="col-lg-12">
                     <div className="order_card mb-3 card">
                       <div className="card-body">
@@ -318,32 +318,32 @@ const Index = ({ sales_order_id }: any) => {
                         </div>
                       </div>
                     </div>
-                  
+
                   </div>
                 </div>
 
 
-                <div className="container" key={data?.name} > 
-                <div className="order_card cart_table mb-3 card products-name" >
-                      {data?.order_details.map((oDetail: any, index: any) => ( 
-                        <>
-                        <OrderDetailCard oDetail={oDetail} index={index}  currency_symbol={data?.currency_symbol}/>
-                        </>
-                       ))}
-                    </div>
+                <div className="container" key={data?.name} >
+                  <div className="order_card cart_table mb-3 card color-black" >
+                    {data?.order_details.map((oDetail: any, index: any) => (
+                      <>
+                        <OrderDetailCard oDetail={oDetail} index={index} currency_symbol={data?.currency_symbol} />
+                      </>
+                    ))}
+                  </div>
 
 
-    </div>
-        </>
-      
+                </div>
+              </>
 
-     
 
-              </div>
-            ))}
-      </>  
 
-        )}
+
+            </div>
+          ))}
+      </>
+
+      )}
 
     </div>
   );

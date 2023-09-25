@@ -21,7 +21,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
   return (
     <>
       <div key={data.id}>
-        <div className="card-header">
+        <div className="card-header" >
           <div className="row pb-0">
             <div className=" mb-sm-0 col-md-2 col-6 order-div">
               <p className="text-uppercase gray mb-0 myorder_p">

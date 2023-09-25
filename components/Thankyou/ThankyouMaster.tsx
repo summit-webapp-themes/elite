@@ -21,13 +21,13 @@ const ThankYou = ({}: any) => {
   }, [SelectedLangDataFromStore]);
 
   return (
-    <>
-      <div className="container mt-5">
-        <div className="row products-name">
+    <div className="thankyou-mg-bt">
+      <div className="container mt-5 margin_from_nav ">
+        <div className="row color-black" >
           <div className="text-center mx-auto col-md-12 mt-5">
             <Image
               src={Thankyouimg}
-              className="mb-1 success_thanku"
+              className="mb-1 success_thanku thankyou-img-b2c"
               width={100}
               height={100}
               alt="success_img"
@@ -40,7 +40,7 @@ const ThankYou = ({}: any) => {
         </div>
         <OrderDetail selectedMultiLangData={selectedMultiLangData} />
       </div>
-    </>
+    </div>
   );
 };
 

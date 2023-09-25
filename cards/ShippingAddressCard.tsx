@@ -38,7 +38,7 @@ const ShippingAddressCard = ({
 
   return (
     <>
-      <h4 className="mb-0 products-name">{selectedMultiLangData?.shipping_addresses}</h4>
+      <h4 className="mb-0 color-black">{selectedMultiLangData?.shipping_addresses}</h4>
       {/* <h5>{selectedAddress || initialShippingAddress}</h5> */}
       <div className="d-flex align-items-center mb-0 mt-0 pt-0 mb-1 " >
         <button className="ms-0 ps-0 address_icon" onClick={() => handleShow("Shipping")}>
@@ -47,14 +47,14 @@ const ShippingAddressCard = ({
 
         <div
           className="fs-4 mt-0 ms-0 ps-0 ship_heading"
-          onClick={() => handleShow("Shipping")} 
+          onClick={() => handleShow("Shipping")}
         >
           {selectedMultiLangData?.create_new_shipping_address}
         </div>
       </div>
 
       <select
-        className="form-select form-select-lg w-50 mb-3 products-name"
+        className="form-select form-select-lg w-50 mb-3 color-black"
         aria-label="Default select example"
         onChange={handleShipping}
       >
@@ -78,10 +78,10 @@ const ShippingAddressCard = ({
                 className="border px-1 addresscard-width"
                 key={detail?.address_id}
               >
-                <div className="ps-2 products-name">
+                <div className="ps-2 color-black pt-1" >
                   <p className={`mb-0 addresscard-p`}>{detail?.name}</p>
 
-                  <p className="mb-0 card_p">{detail?.address_1}</p>
+                  <p className="mb-0 card_p" >{detail?.address_1}</p>
                   <p className="mb-0 card_p">{detail?.address_2}</p>
                   <p className="mb-0 card_p">{detail?.city}</p>
                   <p className="mb-0 card_p">{detail?.postal_code}</p>
@@ -89,7 +89,7 @@ const ShippingAddressCard = ({
                   <p className="mb-0 card_p">{detail?.country}</p>
                   <p className="mb-0 card_p ">
                     <a
-                      className="text-dark products-name"
+                      className="text-dark color-black"
                       href={`mailto:${detail?.email}`}
                       target="_blank"
                       rel="noreferrer"
@@ -99,7 +99,7 @@ const ShippingAddressCard = ({
                   </p>
                   <p className="mb-0 card_p">
                     <a
-                      className="text-dark products-name"
+                      className="text-dark color-black"
                       href={`tel:${detail?.contact}`}
                       target="_blank"
                       rel="noreferrer"
@@ -108,7 +108,7 @@ const ShippingAddressCard = ({
                     </a>
                   </p>
                 </div>
-                <div className="mb-1 products-name">
+                <div className="mb-1 color-black">
                   {/* <button
                     type="button"
                     onChange={() =>
@@ -137,7 +137,7 @@ const ShippingAddressCard = ({
                       }}
                       className="showmodal_button"
                     >
-                     <span className="edit_btn_web">{selectedMultiLangData?.edit}</span> 
+                      <span className="edit_btn_web">{selectedMultiLangData?.edit}</span>
                     </button>
                   </div>
                 </div>

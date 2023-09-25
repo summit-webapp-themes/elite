@@ -97,11 +97,10 @@ const ProductCard = (props: ProductCardProps) => {
       key={key}
       className="border ps-0 ms-0  product-border-pd rounded-3 h-100 "
     >
-      <div className="d-flex justify-content-between icon-container-ps">
+      <div className="d-flex justify-content-between icon-container-ps" >
         <div
-          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${
-            display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
-          }`}
+          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
+            }`}
         >
           {display_tag?.length > 0 && display_tag[0]}
         </div>
@@ -209,17 +208,17 @@ const ProductCard = (props: ProductCardProps) => {
               </>
             )}
           </div>
-          <div className="product-details products-name product-margin-up">
-            <h4 className="bold product-name truncate-overflow products-name">
+          <div className="product-details color-black product-margin-up">
+            <h4 className="bold product-name truncate-overflow color-black">
               <Link
                 href={`${url}?currency=${currency_state_from_redux?.selected_currency_value}`}
               >
-                <span className="bold products-name"> {item_name}</span>
+                <span className="bold color-black"> {item_name}</span>
               </Link>
             </h4>
-            <div className="product-price d-flex products-name margin-up">
+            <div className="product-price d-flex color-black margin-up">
               <div className="w-75">
-                <ins className="new-price products-name">
+                <ins className="new-price color-black">
                   {currency_symbol}
                   {price}
                 </ins>
