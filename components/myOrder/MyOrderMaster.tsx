@@ -28,9 +28,9 @@ const MyOrderMaster = () => {
   return (
     <>
 
-      <div className="container mt-0 my-order-container-pd" >
+      <div className="container mt-0 my-order-container-pd margin_from_nav" >
         <div className="mt-0 row">
-          <div className="col-md-6">
+          <div className="col-md-6" >
             <div className="page_heading" >
               <h4 className="" >
                 {selectedMultiLangData?.your_orders}
@@ -55,8 +55,8 @@ const MyOrderMaster = () => {
           </li>
         </ul>
 
-        <div className="tab-content" >
-          <div id="placed_order" className="container tab-pane active show">
+        <div className="tab-content py-0 my-0" >
+          <div id="placed_order" className="container tab-pane active show py-0 my-0">
             <br />
             <PlaceOrder
               orderHistoryItems={orderHistoryItems}

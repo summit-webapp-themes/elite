@@ -297,21 +297,21 @@ const WishlistMaster = () => {
         </div>
       ) : (
         <>
-          <div className="container wishlist-container  color-black wishlist_container_webs page_heading margin_from_nav" >
+          <div className="container wishlist-container  color-black wishlist_container_webs" >
             {wishlistCount > 0 ? (
               <>
-                <h4 className="">
+                <h3 className="wishlist-title ">
                   {" "}
                   {selectedMultiLangData?.my_wishlist}
-                </h4>
+                </h3>
                 <div className="row mt-2 mx-4 ">
                   <h5 className="col-lg-5 col-md-4 d-none d-md-block">
                     {selectedMultiLangData?.product}
                   </h5>
-                  <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ">
+                  <h5 className="col-lg-2 col-md-2 col-3 ps-5 d-none d-md-block ">
                     {selectedMultiLangData?.price}
                   </h5>
-                  <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ms-3">
+                  <h5 className="col-lg-2 col-md-2 col-3 ps-5 d-none d-md-block ">
                     {selectedMultiLangData?.quantity}
                   </h5>
                   <h5 className="col-lg-3 col-md-2 col-3 d-none d-md-block">
@@ -356,24 +356,24 @@ const WishlistMaster = () => {
                               ></button>
                             </div>
                           </div>
-                          <div className="col-lg-7 col-12">
-                            <p className="mb-0 fs-5 ">
-                              <span className="bold">
+                          <div className="col-lg-7 col-12 line-height" >
+                            <p className="mb-0 fs-5 pb-1" >
+                              <span className="bold" >
                                 {" "}
                                 {selectedMultiLangData?.item_code}:
                               </span>
                               {item?.name}
                             </p>
                             <a
-                              className="text-dark fs-5 bold"
+                              className="text-dark fs-5 bold pb-1"
                               href={`${item?.url}?currency=${currency_state_from_redux?.selected_currency_value}`}
                             >
                               {item?.item_name}
                             </a>
-                            <p className="mb-0 fs-6 ">
+                            <p className="mb-0 fs-6 py-2" >
                               {item?.short_description}
                             </p>
-                            <p className="mb-0 fs-5 ">
+                            <p className="mb-0 fs-5 pb-2">
                               <span className="bold">
                                 {selectedMultiLangData?.brand}:{" "}
                               </span>
@@ -382,7 +382,7 @@ const WishlistMaster = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-lg-2 col-md-2 product-price ">
+                      <div className="col-lg-2 col-md-2 product-price " >
                         {item?.price !== 0 ? (
                           <ins className="new-price fs-3 color-black">
                             {" "}
@@ -428,9 +428,9 @@ const WishlistMaster = () => {
                               value={productCounts[index]}
                               // className="w-100 ml-2 "
                               className={`${alertMinQty === true &&
-                                  productCounts[index] === item?.min_order_qty
-                                  ? "text-danger"
-                                  : ""
+                                productCounts[index] === item?.min_order_qty
+                                ? "text-danger"
+                                : ""
                                 } w-100 ml-2 text-center`}
                               onChange={(e: any) =>
                                 handleQuantityChange(
@@ -455,9 +455,9 @@ const WishlistMaster = () => {
                         {item?.min_order_qty !== 0 ? (
                           <div
                             className={`${alertMinQty === true &&
-                                productCounts[index] === item?.min_order_qty
-                                ? "text-danger"
-                                : "text-dark"
+                              productCounts[index] === item?.min_order_qty
+                              ? "text-danger"
+                              : "text-dark"
                               } fs-6 mt-1 text-uppercase bold color-black`}
                           >
                             {selectedMultiLangData?.minimum_order_qty}:{" "}
@@ -531,7 +531,7 @@ const WishlistMaster = () => {
               </>
             )}
           </div>
-          <div className="container " >
+          <div className="container ">
             <div className="modal" id="stockModal">
               {showAvailabilityModal === false ? (
                 <>

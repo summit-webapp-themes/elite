@@ -58,8 +58,8 @@ const ProductsGridView = (props: ProductsViewProps) => {
           </div>
         ) : listItems.length > 0 ? (
           listItems?.map((items: any, index: number) => (
-            <div className="col-md-3 col-lg-3 mt-2 my-0 mb-3" key={index}>
-              <ProductCard
+            <div className="col-md-3 col-lg-3 mt-2 my-0 mb-3" key={index} >
+              <ProductCard 
                 key={index}
                 name={items?.name}
                 item_name={items?.item_name}

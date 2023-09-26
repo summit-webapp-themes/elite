@@ -13,7 +13,7 @@ const DisplayTagHome3 = (props: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
   const currency_state_from_redux: any = useSelector(currency_selector_state);
-  console.log("currency",currency_state_from_redux )
+  console.log("currency", currency_state_from_redux)
   // const { bestSellerTagListingOfProducts } =
   //   useDisplayTagHooks();
   return (
@@ -23,17 +23,17 @@ const DisplayTagHome3 = (props: any) => {
           <h3 className="text-center ">{data?.tag_name}</h3>
           <div className="product-wrapper col-xl-12 col-md-12" >
             <div className="swiper-container swiper-theme" />
-            <div className="row home-products-mob" >
+            <div className="row home-products-mob "  >
               {data?.value?.length > 0 ? (
                 <>
                   {data?.value?.length > 0 &&
                     data?.value?.map((list: any, i: any) => (
-                      <div className="col-md-5 col-lg-4 col-xl-3 col-xxl-3 py-0 card-mob-wrapper pb-5"  >
+                      <div className="col-md-5 col-lg-4 col-xl-3 col-xxl-3 py-4 card-mob-wrapper pb-5"  >
                         <div
                           className="h-100 mx-1 mt-3 displaytag-listhome3"
-                          key={i} 
+                          key={i}
                         >
-                          <div className="product-wrap" >
+                          <div className="product-wrap"  >
                             <div className="product text-center">
                               <figure className="product-media">
                                 {list?.image_url !== null &&
@@ -45,7 +45,7 @@ const DisplayTagHome3 = (props: any) => {
                                         src={list?.image_url}
                                         alt="Product"
                                         width="300"
-                                        height="300" 
+                                        height="300"
                                       />
                                     </Link>
                                   </>
@@ -61,7 +61,7 @@ const DisplayTagHome3 = (props: any) => {
                                         }
                                         alt="Product"
                                         width="300"
-                                        height="300" 
+                                        height="300"
                                       />
                                     </Link>
                                   </>

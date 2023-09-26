@@ -33,8 +33,8 @@ const CartListing = () => {
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const TokenFromStore: any = useSelector(get_access_token);
 
-  const cart_listing_data_store:any = useSelector(cart_listing_state);
-  const SelectedLangDataFromStore:any = useSelector(
+  const cart_listing_data_store: any = useSelector(cart_listing_state);
+  const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -78,7 +78,7 @@ const CartListing = () => {
   };
 
   const HandleDeleteCart = async (item_code: any, quotationId: any) => {
-    let DeleteProduct:any = await DeleteProductFromCart(
+    let DeleteProduct: any = await DeleteProductFromCart(
       item_code,
       quotationId,
       TokenFromStore?.token
@@ -182,7 +182,8 @@ const CartListing = () => {
                           cartListingItems?.categories.map(
                             (category: any, index: any) => (
                               <div className="" >
-                                <h3 className="mt-3 text-decoration-underline" >
+                                <h3 className="mt-3 text-decoration-underline fs-20"
+                                >
                                   {category.category}
                                 </h3>
                                 <table
@@ -190,31 +191,32 @@ const CartListing = () => {
                                   key={index}
                                 >
                                   <thead className="table-heading px-0 mx-0" >
-                                    <tr>
+                                    <tr >
                                       <th className="product-name">
                                         <span >
                                           {/* {selectedMultiLangData?.item} */}
                                         </span>
                                       </th>
                                       <th>
-                                        <span>
+                                        <span className="fs-13">
                                           {
                                             selectedMultiLangData?.item_with_desc
                                           }
                                         </span>
                                       </th>
                                       <th className="product-price text-capital ">
-                                        <span >
+                                        <span className="fs-13 ms-3"
+                                        >
                                           {selectedMultiLangData?.price}
                                         </span>
                                       </th>
                                       <th className="product-quantity  "  >
-                                        <span className="product-quantity-margin">
+                                        <span className="product-quantity-margin fs-13">
                                           {selectedMultiLangData?.quantity_c}
                                         </span>
                                       </th>
                                       <th className="product-subtotal">
-                                        <span>
+                                        <span className="fs-13">
                                           {selectedMultiLangData?.total}
                                         </span>
                                       </th>
@@ -233,11 +235,11 @@ const CartListing = () => {
                                                 )}
                                                 <button
                                                   type="submit"
-                                                  className="btn btn-close" 
+                                                  className="btn btn-close"
                                                   onClick={() =>
                                                     HandleDeleteCart(
                                                       orders.item_code,
-                                                      cartListingItems.name 
+                                                      cartListingItems.name
                                                     )
                                                   }
                                                 >
@@ -271,7 +273,7 @@ const CartListing = () => {
                       <div className=" col-lg-3 sticky-sidebar-wrapper d-flex justify-content-end justify-content-sm-start " >
                         <div className="sticky-sidebar cart-total-mobs">
                           <div className="cart-summary mb-4">
-                            <h3 className="cart-title">
+                            <h3 className="cart-title fs-20">
                               {selectedMultiLangData?.cart_total}
                             </h3>
 
@@ -326,31 +328,31 @@ const CartListing = () => {
                       </div>
 
                       <div className="row cart-action ms-0 ps-0" >
-                       
-                       <div className="col-md-12 ">
-                       <button
-                          onClick={goToHomeCheckout}
-                          className="btn btn-dark btn-rounded btn-icon-left btn-shopping  ms-0  ternaryTheme-CheckOutbtn CheckOutbtn_mob"
-                        >
-                          <i className="w-icon-long-arrow-left"></i>
-                          {selectedMultiLangData?.continue_shopping}
-                        </button>
-                     
-                      
-                        <button
-                          type="submit"
-                          className="btn btn-rounded btn-default btn-clear btn-cart-mob btn-clear-cart-left ternaryTheme-Clearbtn CheckOutbtn_mob"
-                          name="clear_cart"
-                          value="Clear Cart"
-                          onClick={() => ClearCartHandle(cartListingItems.name)}
-                        >
-                          {selectedMultiLangData?.clear_cart}
-                        </button>
-                       </div>
-                     
-                      
+
+                        <div className="col-md-12 ">
+                          <button
+                            onClick={goToHomeCheckout}
+                            className="btn btn-dark btn-rounded btn-icon-left btn-shopping  ms-0  ternaryTheme-CheckOutbtn CheckOutbtn_mob"
+                          >
+                            <i className="w-icon-long-arrow-left"></i>
+                            {selectedMultiLangData?.continue_shopping}
+                          </button>
+
+
+                          <button
+                            type="submit"
+                            className="btn btn-rounded btn-default btn-clear btn-cart-mob btn-clear-cart-left ternaryTheme-Clearbtn CheckOutbtn_mob"
+                            name="clear_cart"
+                            value="Clear Cart"
+                            onClick={() => ClearCartHandle(cartListingItems.name)}
+                          >
+                            {selectedMultiLangData?.clear_cart}
+                          </button>
+                        </div>
+
+
                       </div>
-                    
+
                     </div>
                   </div>
                 </div>
@@ -378,7 +380,7 @@ const CartListing = () => {
             <Norecord
               heading={selectedMultiLangData?.cart_is_empty}
               content={selectedMultiLangData?.cart_is_empty_s}
-              selectLangData={selectedMultiLangData} 
+              selectLangData={selectedMultiLangData}
             />
           )}
         </>

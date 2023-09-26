@@ -52,7 +52,7 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                     />
                     {/* </Link> */}
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6" >
                     {/* <Link
                       href={`/product-category/moisturizers?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                     > */}
@@ -61,7 +61,8 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                       alt="banner of Topcategory"
                       width={600}
                       height={350}
-                      className="hometopcat_banner" 
+                      className="hometopcat_banner"  
+
                     />
                     {/* </Link> */}
                   </div>

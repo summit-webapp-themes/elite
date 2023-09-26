@@ -23,7 +23,7 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
               {homeTopCategories?.length > 0 ? (
                 <>
                   <>
-                    <div className="col-lg-4 banner-margin-b" >
+                    <div className="col-lg-4 banner-margin-b mt-0 pt-0" >
                       <Link
                         href={`/product-category/${homeTopCategories[1]?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                       >
@@ -33,11 +33,11 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                           width={500}
                           height={331}
                           className=""
-                          alt="categories banner img" 
+                          alt="categories banner img"
                         />
                       </Link>
                     </div>
-                    <div className="col-lg-4 banner-margin-b">
+                    <div className="col-lg-4 banner-margin-b mt-0 pt-0" >
                       <Link
                         href={`/product-category/${homeTopCategories[0]?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                       >
@@ -51,7 +51,7 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                         />
                       </Link>
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 mt-0 pt-0" >
                       <Link
                         href={`/product-category/${homeTopCategories[2]?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                       >
@@ -77,7 +77,8 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                       style={{ height: "250px", width: "auto" }}
                     />
                   </div>
-                  <div className="col-lg-6" style={{ backgroundColor: "gray" }}>
+                  <div className="col-lg-6"
+                  >
                     <Image
                       src="/assets/images/maximaCard.jpg"
                       width="300"

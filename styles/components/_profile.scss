@@ -1,28 +1,26 @@
 .profile_section {
-    .tab_width{
-        width: 200px;
-    }
+  .tab_width {
+    width: 200px;
+  }
 }
 .tab_width.active {
-    background-color: $themeternary-btncolor !important;
- 
-   
+  background-color: $themeternary-btncolor !important;
 }
 .fa-user-circle.active {
-    content: "\f2bd";
-    color: white;
+  content: "\f2bd";
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
-    .profile_heading_mob {
+  .profile_heading_mob {
     //   background-color: lightblue;
-      text-align: center;
-    }
-    .account_tab_mob{
-        display: flex;
-        justify-content: center;
-    }
-    .mob-profile-tabcontent{
-        margin-top: 20px;
-    }
+    text-align: center;
   }
+  .account_tab_mob {
+    display: flex;
+    justify-content: center;
+  }
+  .mob-profile-tabcontent {
+    margin-top: 20px;
+  }
+}

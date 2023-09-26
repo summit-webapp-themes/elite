@@ -33,6 +33,7 @@ const ProductCard = (props: ProductCardProps) => {
     item_slug,
     wishlistData,
     currency_state_from_redux,
+    selectedMultiLangData,
     selectLangData,
   } = props;
 
@@ -41,66 +42,47 @@ const ProductCard = (props: ProductCardProps) => {
   console.log("profile partyname", profileData);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  let isLoggedIn: any;
   let wishproducts: any;
   let requestNew: any;
   let requestList: any;
   let partyName: any;
 
+  if (typeof window !== "undefined") {
+    isLoggedIn = localStorage.getItem("isLoggedIn");
+  }
   const dispatch = useDispatch();
 
   const handleAddCart = async () => {
-    setIsLoading(true);
-    const addCartData: any = [];
+    // setAddToCartButtonDisabled(true);
+    const addCartData = [];
     addCartData.push({
       item_code: name,
       quantity: 1,
     });
-
-    if (profileData?.partyName !== "") {
-      if (Object?.keys(profileData?.partyName)?.length > 0) {
-        partyName = profileData?.partyName;
-      }
-    } else {
-      partyName = "Guest";
-    }
-
-    let AddToCartProductRes: any = await AddToCartApi(
+    let AddToCartRes: any = await AddToCartApi(
       addCartData,
       currency_state_from_redux?.selected_currency_value,
-      TokenFromStore?.token,
-      partyName
+      TokenFromStore?.token
     );
-
-    if (AddToCartProductRes.msg === "success") {
-      // dispatch(successmsg("Item Added to cart"));
+    if (AddToCartRes.msg === "success") {
       showToast("Item Added to cart", "success");
-      setIsLoading(false);
-      if (AddToCartProductRes?.data?.access_token !== null) {
-        dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
-        localStorage.setItem("guest", AddToCartProductRes?.data?.access_token);
-        console.log("token api res", AddToCartProductRes);
-        if (AddToCartProductRes?.data?.access_token !== null) {
-          console.log("token from api");
-          dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
-        }
-      } else {
-        dispatch(fetchCartListing(TokenFromStore?.token));
-      }
+      dispatch(fetchCartListing());
+      // setAddToCartButtonDisabled(false);
     } else {
-      showToast("Failed to Add to cart", "error");
-      setIsLoading(false);
+      showToast(AddToCartRes?.error, "error");
+      // setAddToCartButtonDisabled(false);
     }
   };
   return (
     <div
       key={key}
-      className="border ps-0 ms-0  product-border-pd rounded-3 h-100 "
+      className="border ps-0 ms-0  product-border-pd rounded-3 h-100 " 
     >
       <div className="d-flex justify-content-between icon-container-ps" >
         <div
           className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
-            }`}
+            }`} 
         >
           {display_tag?.length > 0 && display_tag[0]}
         </div>
@@ -228,6 +210,7 @@ const ProductCard = (props: ProductCardProps) => {
                 </del>
               </div>
 
+              {isLoggedIn === "true" ? (
               <button
                 type="button"
                 className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family`}
@@ -245,7 +228,14 @@ const ProductCard = (props: ProductCardProps) => {
                     aria-hidden="true"
                   ></i>
                 )}
-              </button>
+              </button>  ) : (
+                  <button
+                    className="btn  standard_button py-3 add-cart-btns"
+                    onClick={handleAddCart}
+                  >
+                    {selectedMultiLangData?.add_to_cart}
+                  </button>
+                )}
             </div>
           </div>
         </div>

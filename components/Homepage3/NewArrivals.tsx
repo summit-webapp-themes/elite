@@ -17,7 +17,7 @@ const NewArrivals = ({ newArrivalTagListingOfProducts }: any) => {
         {newArrivalTagListingOfProducts?.length > 0 &&
         newArrivalTagListingOfProducts !== null ? (
           <>
-              <div className="row justify-content-center" >
+              <div className="row justify-content-center"  >
                 {newArrivalTagListingOfProducts.map(
                   (arrivalItems: any, index: any) => {
                     return (
@@ -33,7 +33,7 @@ const NewArrivals = ({ newArrivalTagListingOfProducts }: any) => {
                                 src={arrivalItems.image_url}
                                 width={300}
                                 height={300}
-                                alt="newArrivals img"
+                                alt="newArrivals img" 
                               />
                             </>
                           ) : (
