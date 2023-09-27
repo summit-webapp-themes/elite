@@ -222,7 +222,7 @@ const Home3WebNavbar = ({
                   </Link>
                 </div>
 
-                <div className="mx-2 my-1 me-5 logo_containers ps-0 ms-0 logo-b2c-margin-tp"  >
+                <div className="mx-2 my-1 me-5 logo_containers ps-0 ms-0 "  >
                   <Link href="/" legacyBehavior>
                     <a>
                       <Image
