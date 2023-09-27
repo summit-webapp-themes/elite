@@ -297,24 +297,28 @@ const WishlistMaster = () => {
         </div>
       ) : (
         <>
-          <div className="container wishlist-container  color-black wishlist_container_webs" >
+          <div className="container margin_from_nav  color-black wishlist_container_webs" >
             {wishlistCount > 0 ? (
               <>
-                <h3 className="wishlist-title ">
+              <div className="page_heading ">
+              <h4 className="">
                   {" "}
                   {selectedMultiLangData?.my_wishlist}
-                </h3>
+                </h4>
+              </div>
+             
                 <div className="row mt-2 mx-4 ">
                   <h5 className="col-lg-5 col-md-4 d-none d-md-block">
                     {selectedMultiLangData?.product}
                   </h5>
-                  <h5 className="col-lg-2 col-md-2 col-3 ps-5 d-none d-md-block ">
+                  <h5 className="col-lg-2 col-md-2 col-3 ps-5  d-none d-md-block " 
+ >
                     {selectedMultiLangData?.price}
                   </h5>
                   <h5 className="col-lg-2 col-md-2 col-3 ps-5 d-none d-md-block ">
                     {selectedMultiLangData?.quantity}
                   </h5>
-                  <h5 className="col-lg-3 col-md-2 col-3 d-none d-md-block">
+                  <h5 className="col-lg-3 col-md-2 col-3 ps-5  d-none d-md-block">
                     {selectedMultiLangData?.actions}
                   </h5>
                 </div>
@@ -491,7 +495,7 @@ const WishlistMaster = () => {
                           </button> */}
 
                           <button
-                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2 add_cart_btn color-black"
+                            className="ml-1 text-dark btn px-5 mt-lg-0 mt-md-2 b2c_btn color-black bold"
 
                             onClick={() =>
                               handleAddCart(
@@ -500,7 +504,8 @@ const WishlistMaster = () => {
                                 productCounts[index],
                                 item?.min_order_qty
                               )
-                            }
+                            } 
+
                           >
                             {selectedMultiLangData?.add_to_cart}
                           </button>

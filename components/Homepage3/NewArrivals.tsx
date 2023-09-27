@@ -23,7 +23,7 @@ const NewArrivals = ({ newArrivalTagListingOfProducts }: any) => {
                     return (
                       <div
                         className="col-lg-2 col-md-2 mx-md-3 mb-3 card"
-                        style={{ textAlign: "center" }} 
+                        style={{ textAlign: "center" }}  
                       >
                         <Link href={arrivalItems.url}>
                           {arrivalItems.image_url !== null ? (

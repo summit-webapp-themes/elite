@@ -72,14 +72,14 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
                             </div>
 
                           </div>
-                          <div className="d-flex align-items-center row">
+                          <div className="d-flex align-items-center row py-3" >
                             <div className="mb-0 mb-sm-0 col-lg-2 col-md-2 col-4">
                               <div className="product-image cart-image ">
                                 {oDetail?.img === null ||
                                   oDetail?.img?.length === 0 ? (
                                   <Image
                                     src={`${oDetail?.brand_img}`}
-                                    className="product_item_img img-fluid"
+                                    className="product_item_img img-fluid orderdetail-img"
                                     alt="product images"
                                     width={100}
                                     height={100}
@@ -177,13 +177,21 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
                             </div>
                             <div className="text-right col-lg-2 col-md-3 col-12">
                               {thankyou === "thankyou" ? (
-                                ""
+                                <button className=" order_links b2c_btn mb-2 d-block text-uppercase">
+                                <Link
+                                  href={`${oDetail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
+                                  legacyBehavior>
+                                  <a className="bold text-dark">
+                                    {selectedMultiLangData?.view_product}
+                                  </a>
+                                </Link>
+                              </button>
                               ) : (
-                                <button className=" order_links mb-2 d-block text-uppercase">
+                                <button className=" order_links b2c_btn mb-2 d-block text-uppercase">
                                   <Link
                                     href={`${oDetail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
                                     legacyBehavior>
-                                    <a className="order_linkshover text-dark">
+                                    <a className="bold text-dark">
                                       {selectedMultiLangData?.view_product}
                                     </a>
                                   </Link>

@@ -16,8 +16,9 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
 
   return (
     <>
-      <div className="container category_heading " >
-        <div className="row category_heading_mob" >
+      <div className="container  " >
+        <div className="row category_heading_mob pt-4"   
+>
           {homeTopCategories?.length > 0 && homeTopCategories !== null ? (
             <>
               {homeTopCategories?.length > 0 ? (

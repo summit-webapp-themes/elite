@@ -104,7 +104,7 @@ const Home3WebNavbar = ({
                 ></a>
               </Link>
             </div>
-            <div className="my-1 ms-0  logo_containers_mob">
+            <div className="my-1 ms-0  logo_containers_mob" >
               <Link href="/" legacyBehavior>
                 <a>
                   <Image
@@ -121,12 +121,12 @@ const Home3WebNavbar = ({
 
             <LinguisticsAndForex />
 
-            <div className="ms-1 wishlist_mob">
+            <div className="ms-1 wishlist_mob" >
               <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
                 <Link href="/wishlist" legacyBehavior>
                   <a className="cart-toggle label-down link ">
-                    <i className="w-icon-heart wishlist-icon_mob icon-font-size">
-                      <span className="cart-count wishlist_count text-white">
+                    <i className="w-icon-heart wishlist-icon_mob icon-font-size " >
+                      <span className="cart-count wishlist_count text-white cart-count-mob"  >
                         {wishlistCount || 0}
                       </span>
                     </i>
@@ -134,12 +134,12 @@ const Home3WebNavbar = ({
                 </Link>
               </div>
             </div>
-            <div className="ms-1 mb-1 wishlist_mob">
+            <div className="ms-1 mb-1 wishlist_mob"  >
               <div className="dropdown cart-dropdown cart-offcanvas text-white ">
                 <Link href="/cart" legacyBehavior>
-                  <a className="cart-toggle label-down link wishlist-icon_mob">
-                    <i className="w-icon-cart icon-font-size wishlist-icon">
-                      <span className="cart-count text-white cart-count-mob">
+                  <a className="cart-toggle label-down link wishlist-icon_mob" >
+                    <i className="w-icon-cart icon-font-size wishlist-icon" >
+                      <span className="cart-count text-white cart-count-mob" > 
                         {cartCount || 0}
                       </span>
                     </i>
@@ -148,47 +148,47 @@ const Home3WebNavbar = ({
               </div>
             </div>
 
-            <div className="ms-1 mb-1 login-mob-margin">
-              <Dropdown className="dropleft">
+            <div className="ms-1 mb-1 login-mob-margin dark-blue header-login-bg " >
+              <Dropdown className="dropleft"  >
                 {loginStatus === "true" ? (
                   <Dropdown.Toggle
                     id="dropdown-basic"
-                    className="dropdown-icon ternarytheme-login dropleft "
+                    className="dropdown-icon ternarytheme-login dropleft logo-width-login dark-blue" 
                   >
                     <i
-                      className="fa fa-user-o mt-5 mb-2 fs-1 logout-icon me-4"
-                      aria-hidden="true"
+                      className="fa fa-user-o mt-5 mb-2 fs-1 logout-icon me-4 dark-blue login-icon-font-size"
+                      aria-hidden="true" 
                     ></i>
                   </Dropdown.Toggle>
                 ) : (
                   <Dropdown.Toggle
                     id="dropdown-basic"
-                    className="dropdown-icon ternarytheme-login dropleft mt-1 color-black login-btn-mob"
+                    className="dropdown-icon ternarytheme-login dropleft mt-1 color-black login-btn-mob dark-blue"
                   >
                     {selectedMultiLangData?.login}
                   </Dropdown.Toggle>
                 )}
 
                 {loginStatus === "true" ? (
-                  <Dropdown.Menu className="fs-4 nav_dropdown_mob dropleft nav-dropdown-web">
+                  <Dropdown.Menu className="fs-4 nav_dropdown_mob dropleft nav-dropdown-web" >
                     {/* <Dropdown.Item className="nav_dropdown">
                         <Link href="/quick-order" className="text-dark">
                           {selectedMultiLangData?.quick_order}
                         </Link>
                       </Dropdown.Item> */}
-                    <Dropdown.Item className="nav_dropdown">
-                      <Link href="/profile" className="text-dark">
+                    <Dropdown.Item className="nav_dropdown dropdown-item-b2c" >
+                      <Link href="/profile" className="text-dark dropdown-item-b2c">
                         {selectedMultiLangData?.my_account}
                       </Link>
                     </Dropdown.Item>
 
-                    <Dropdown.Item className="nav_dropdown">
-                      <Link href="/myOrder" className="text-dark">
+                    <Dropdown.Item className="nav_dropdown dropdown-item-b2c">
+                      <Link href="/myOrder" className="text-dark dropdown-item-b2c">
                         {selectedMultiLangData?.my_order}
                       </Link>
                     </Dropdown.Item>
                     <Dropdown.Item
-                      className="nav_dropdown text-dark"
+                      className="nav_dropdown text-dark dropdown-item-b2c"
                       onClick={handleClick}
                     >
                       {selectedMultiLangData?.logout}
@@ -208,7 +208,7 @@ const Home3WebNavbar = ({
             </div>
           </div>
         </div>
-        <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header ">
+        <div className="header-bottom sticky-content fix-top sticky-header has-dropdown ternarytheme-middle-header " >
           <div className="container">
             <div className="inner-wrap d-flex justify-content-between">
               <div className="header-left  ">
@@ -222,7 +222,7 @@ const Home3WebNavbar = ({
                   </Link>
                 </div>
 
-                <div className="mx-2 my-1 me-5 logo_containers ps-0 ms-0">
+                <div className="mx-2 my-1 me-5 logo_containers ps-0 ms-0 logo-b2c-margin-tp"  >
                   <Link href="/" legacyBehavior>
                     <a>
                       <Image
@@ -231,7 +231,7 @@ const Home3WebNavbar = ({
                         width={260}
                         height={200}
                         alt="logo"
-                        className="logo_mob ms-3"
+                        className="logo_mob ms-3" 
                       />
                     </a>
                   </Link>
@@ -310,8 +310,8 @@ const Home3WebNavbar = ({
             <div className="mx-2 ">
               <div className=" dropdown cart-dropdown cart-offcanvas text-white mx-lg-3">
                 <Link href="/wishlist" legacyBehavior>
-                  <a className="cart-toggle label-down link ternarytheme-icon">
-                    <i className="w-icon-heart fs-1 wishlist-icon icon-font-size">
+                  <a className="cart-toggle label-down link ternarytheme-icon" >
+                    <i className="w-icon-heart fs-1 wishlist-icon icon-font-size heart-pd-t" >
                       <span className="cart-count wishlist_count text-white">
                         {wishlistCount || 0}
                       </span>
