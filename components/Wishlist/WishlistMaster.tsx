@@ -308,7 +308,7 @@ const WishlistMaster = () => {
               </div>
              
                 <div className="row mt-2 mx-4 ">
-                  <h5 className="col-lg-5 col-md-4 d-none d-md-block">
+                  <h5 className="col-lg-6 col-md-4 d-none d-md-block">
                     {selectedMultiLangData?.product}
                   </h5>
                   <h5 className="col-lg-2 col-md-2 col-3 ps-5  d-none d-md-block " 
@@ -318,7 +318,7 @@ const WishlistMaster = () => {
                   <h5 className="col-lg-2 col-md-2 col-3 ps-5 d-none d-md-block ">
                     {selectedMultiLangData?.quantity}
                   </h5>
-                  <h5 className="col-lg-3 col-md-2 col-3 ps-5  d-none d-md-block">
+                  <h5 className="col-lg-2 col-md-2 col-3 ps-5  d-none d-md-block">
                     {selectedMultiLangData?.actions}
                   </h5>
                 </div>
@@ -326,7 +326,7 @@ const WishlistMaster = () => {
                 <div className="row  mx-4">
                   {wishlistData?.map((item: any, index: any) => (
                     <div className="row " key={index}>
-                      <div className="col-lg-5 col-md-4 w-100">
+                      <div className="col-lg-6 col-md-4 w-100">
                         <div className="row">
                           <div className="col-lg-4 col-12">
                             <div className="p-relative d-flex justify-content-center">
@@ -471,7 +471,7 @@ const WishlistMaster = () => {
                           ""
                         )}
                       </div>
-                      <div className="col-lg-3 col-md-3 ">
+                      <div className="col-lg-2 col-md-3 ">
                         <div className="add_cart_btn_wrapper">
                           {/* <button
                             type="button"

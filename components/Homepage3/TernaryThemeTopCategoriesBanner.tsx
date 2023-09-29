@@ -31,7 +31,7 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                         <Image
                           loader={imageLoader}
                           src={homeTopCategories[1]?.product_img}
-                          width={500}
+                          width={385}
                           height={331}
                           className=""
                           alt="categories banner img"
@@ -45,7 +45,7 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                         <Image
                           loader={imageLoader}
                           src={homeTopCategories[0]?.product_img}
-                          width={500}
+                          width={380}
                           height={260}
                           className="ternarytheme-topcategory"
                           alt="categories banner img"
@@ -59,7 +59,7 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                         <Image
                           loader={imageLoader}
                           src={homeTopCategories[2]?.product_img}
-                          width={500}
+                          width={385}
                           height={331}
                           alt="categories banner img"
                         />
