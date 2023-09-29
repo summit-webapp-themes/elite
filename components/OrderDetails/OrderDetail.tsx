@@ -88,8 +88,8 @@ const Index = ({ sales_order_id }: any) => {
   }, [SelectedLangDataFromStore]);
 
   return (
-    <div className="container">
-    {detail?.length === 0 ? (
+    <div className="container margin_from_nav">
+      {detail?.length === 0 ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
             <>
@@ -99,26 +99,26 @@ const Index = ({ sales_order_id }: any) => {
             </>
           ))}
         </div>
-      ) : (  <>
+      ) : (<>
         {detail?.length > 0 &&
-            detail !== null &&
-            detail?.map((data: any) => (
-              <div className="container products-name" key={data?.name} >
-        <>
-          <div className="row products-name">
+          detail !== null &&
+          detail?.map((data: any) => (
+            <div className="container color-black" key={data?.name} >
+              <>
+                <div className="row color-black">
                   <div className="col-md-6" >
-                    <div className="page_heading">
-                      <h5 className="bold text-uppercase black mb-2 mt-5 orderDetail-heading orderDetail-heading-mob ">
+                    <div className="page_heading" >
+                      <h4 className="p-0 m-0" >
                         {selectedMultiLangData?.order_details}
-                      </h5>
+                      </h4>
                     </div>
                   </div>
                 </div>
-                <div className="order_detail_head row products-name"  >
+                <div className="order_detail_head row color-black pb-2"  >
                   <div className="col-12">
                     <div className="item_action d-flex ">
                       <div className="item_action_link me-3 ">{data.creation}</div>
-                      <div className="item_action_link order-pipe" >
+                      <div className="item_action_link order-pipe color-black" >
                         <span>
                           | {selectedMultiLangData?.orders} # {data?.name}
                         </span>
@@ -126,29 +126,29 @@ const Index = ({ sales_order_id }: any) => {
                     </div>
                   </div>
                 </div>
-                <div id="printableArea" className="row products-name" >
+                <div id="printableArea" className="row color-black" >
                   <div className="col-lg-12">
                     <div className="order_card mb-3 card">
                       <div className="card-body">
                         <div className="row">
                           {data?.addresses?.map((addr: any, index: any) => (
-                            <div className="mb-3 mb-sm-0 col-md-3" key={index}>
+                            <div className="mb-0 mb-sm-0 col-md-3" key={index}>
                               <div>
                                 <h5 className="data_heading mb-1">{addr?.name}</h5>
                                 {addr?.values &&
                                   addr?.values.map((addrValue: any, i: any) => (
                                     <div className="myorders" key={i}>
-                                      <p className="mb-0 address_tiitles">
+                                      <p className="mb-0 my-0 py-0  address_tiitles">
                                         {addrValue?.address_title}
                                       </p>
-                                      <p className="mb-0">{addrValue?.address_1}</p>
+                                      <p className="mb-0 my-0 py-0 ">{addrValue?.address_1}</p>
                                       <p className="mb-0" >
                                         {addrValue?.postal_code}
                                       </p>
-                                      <p className="mb-0">
+                                      <p className="mb-0  ">
                                         {addrValue?.city}, {addrValue?.state}
                                       </p>
-                                      <p className="mb-0">{addrValue?.country}</p>
+                                      <p className="mb-0  ">{addrValue?.country}</p>
                                     </div>
                                   ))}
                               </div>
@@ -209,22 +209,22 @@ const Index = ({ sales_order_id }: any) => {
                               {" "}
                               {selectedMultiLangData?.order_summary}
                             </h5>
-                            <div className="mb-1 row">
+                            <div className="mb-1 row" >
                               <div className="col-6">
-                                <p className="mb-0 order_summary_p ">
+                                <p className="mb-0 ">
                                   {selectedMultiLangData?.sub_total_excl_tax}
                                 </p>
                               </div>
                               <div className="text-right col-6">
-                                <p className="mb-0 order_summary_p product-price">
+                                <p className="mb-0  product-price">
                                   {data?.currency_symbol}{" "}
                                   {data?.subtotal_exclude_tax}
                                 </p>
                               </div>
                             </div>
-                            <div className="mb-1 row">
+                            <div className="mb-1 row" >
                               <div className="col-6">
-                                <p className="mb-0 order_summary_p ">
+                                <p className="mb-0  ">
                                   {selectedMultiLangData?.tax}
                                 </p>
                               </div>
@@ -234,7 +234,7 @@ const Index = ({ sales_order_id }: any) => {
                                 </p>
                               </div>
                             </div>
-                            <div className="mb-1 row">
+                            {/* <div className="mb-0 row" style={{border:"2px solid red"}}>
                               {data?.coupon_code !== null ? (
                                 <>
                                   <div className="col-6">
@@ -252,7 +252,7 @@ const Index = ({ sales_order_id }: any) => {
                                 ""
                               )}
                             </div>
-                            <div className="mb-1 row">
+                            <div className="mb-0 row" style={{border:"2px solid red"}}>
                               {data?.coupon_amount !== 0 ? (
                                 <>
                                   <div className="col-6">
@@ -273,42 +273,42 @@ const Index = ({ sales_order_id }: any) => {
                               ) : (
                                 ""
                               )}
-                            </div>
+                            </div> */}
 
-                            <div className="mb-1 row">
+                            <div className="mb-1 row" >
                               <div className="col-6">
-                                <p className="mb-0 order_summary_p ">
+                                <p className="mb-0  ">
                                   {selectedMultiLangData?.sub_total_incl_tax}
                                 </p>
                               </div>
                               <div className="text-right col-6">
-                                <p className="mb-0 order_summary_p product-price">
+                                <p className="mb-0  product-price">
                                   {data?.currency_symbol}{" "}
                                   {data?.subtotal_include_tax}
                                 </p>
                               </div>
                             </div>
-                            <hr className="mt-1 mb-1" />
-                            <div className="row">
+                            <hr className="mt-0 mb-0" />
+                            <div className="row" >
                               <div className="col-6">
-                                <p className="mb-0 bold order_summary_p">
+                                <p className="mb-0 bold order_summary_p" >
                                   {selectedMultiLangData?.order_total}
                                 </p>
                               </div>
                               <div className="text-right col-6">
-                                <p className="mb-0 bold order_summary_p product-price">
+                                <p className="mb-0 bold order_summary_p product-price" >
                                   {data?.currency_symbol} {data?.total}
                                 </p>
                               </div>
                             </div>
-                            <hr className="mt-1 mb-1" />
-                            <div className="row">
+                            <hr className="mt-0 mb-1" />
+                            <div className="row" >
                               <div className="col-6">
                                 <p className="mb-0 bold order_summary_p">
                                   {selectedMultiLangData?.total}
                                 </p>
                               </div>
-                              <div className="text-right col-6">
+                              <div className="text-right col-6" >
                                 <p className="mb-0 bold order_summary_p product-price">
                                   {data?.currency_symbol} {data?.total}
                                 </p>
@@ -318,32 +318,32 @@ const Index = ({ sales_order_id }: any) => {
                         </div>
                       </div>
                     </div>
-                  
+
                   </div>
                 </div>
 
 
-                <div className="container" key={data?.name} > 
-                <div className="order_card cart_table mb-3 card products-name" >
-                      {data?.order_details.map((oDetail: any, index: any) => ( 
-                        <>
-                        <OrderDetailCard oDetail={oDetail} index={index}  currency_symbol={data?.currency_symbol}/>
-                        </>
-                       ))}
-                    </div>
+                <div className="font-weight" key={data?.name} >
+                  <div className="order_card cart_table mb-3 card color-black" >
+                    {data?.order_details.map((oDetail: any, index: any) => (
+                      <>
+                        <OrderDetailCard oDetail={oDetail} index={index} currency_symbol={data?.currency_symbol} />
+                      </>
+                    ))}
+                  </div>
 
 
-    </div>
-        </>
-      
+                </div>
+              </>
 
-     
 
-              </div>
-            ))}
-      </>  
 
-        )}
+
+            </div>
+          ))}
+      </>
+
+      )}
 
     </div>
   );

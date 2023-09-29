@@ -17,13 +17,13 @@ const NewArrivals = ({ newArrivalTagListingOfProducts }: any) => {
         {newArrivalTagListingOfProducts?.length > 0 &&
         newArrivalTagListingOfProducts !== null ? (
           <>
-              <div className="row justify-content-center" >
+              <div className="row justify-content-center"  >
                 {newArrivalTagListingOfProducts.map(
                   (arrivalItems: any, index: any) => {
                     return (
                       <div
                         className="col-lg-2 col-md-2 mx-md-3 mb-3 card"
-                        style={{ textAlign: "center" }} 
+                        style={{ textAlign: "center" }}  
                       >
                         <Link href={arrivalItems.url}>
                           {arrivalItems.image_url !== null ? (
@@ -33,7 +33,7 @@ const NewArrivals = ({ newArrivalTagListingOfProducts }: any) => {
                                 src={arrivalItems.image_url}
                                 width={300}
                                 height={300}
-                                alt="newArrivals img"
+                                alt="newArrivals img" 
                               />
                             </>
                           ) : (

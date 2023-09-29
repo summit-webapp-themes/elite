@@ -30,8 +30,8 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                             src={banner?.product_img}
                             alt="banner of Topcategory"
                             width={600}
-                            height={150}  
-                            className="" 
+                            height={150}
+                            className=""
                           />
                           {/* </Link> */}
                         </>
@@ -48,11 +48,11 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                       src="/assets/images/jucierBanner.png"
                       alt="banner of Topcategory"
                       width={100}
-                      height={100} style={{height:"100px", width:"100px", border:"2px solid red"}}
+                      height={100} style={{ height: "100px", width: "100px", border: "2px solid red" }}
                     />
                     {/* </Link> */}
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6" >
                     {/* <Link
                       href={`/product-category/moisturizers?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                     > */}
@@ -61,7 +61,8 @@ const TernaryThemeHomeTopCategories = ({ homeTopCategories }: any) => {
                       alt="banner of Topcategory"
                       width={600}
                       height={350}
-                      className="hometopcat_banner" 
+                      className="hometopcat_banner"
+
                     />
                     {/* </Link> */}
                   </div>

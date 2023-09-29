@@ -297,24 +297,28 @@ const WishlistMaster = () => {
         </div>
       ) : (
         <>
-          <div className="container wishlist-container  products-name wishlist_container_webs" >
+          <div className="container margin_from_nav  color-black wishlist_container_webs" >
             {wishlistCount > 0 ? (
               <>
-                <h3 className="wishlist-title ">
+              <div className="page_heading ">
+              <h4 className="">
                   {" "}
                   {selectedMultiLangData?.my_wishlist}
-                </h3>
+                </h4>
+              </div>
+             
                 <div className="row mt-2 mx-4 ">
                   <h5 className="col-lg-5 col-md-4 d-none d-md-block">
                     {selectedMultiLangData?.product}
                   </h5>
-                  <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ">
+                  <h5 className="col-lg-2 col-md-2 col-3 ps-5  d-none d-md-block " 
+ >
                     {selectedMultiLangData?.price}
                   </h5>
-                  <h5 className="col-lg-2 col-md-2 col-3 d-none d-md-block ">
+                  <h5 className="col-lg-2 col-md-2 col-3 ps-5 d-none d-md-block ">
                     {selectedMultiLangData?.quantity}
                   </h5>
-                  <h5 className="col-lg-3 col-md-2 col-3 d-none d-md-block">
+                  <h5 className="col-lg-3 col-md-2 col-3 ps-5  d-none d-md-block">
                     {selectedMultiLangData?.actions}
                   </h5>
                 </div>
@@ -356,24 +360,24 @@ const WishlistMaster = () => {
                               ></button>
                             </div>
                           </div>
-                          <div className="col-lg-7 col-12">
-                            <p className="mb-0 fs-5 ">
-                              <span className="bold">
+                          <div className="col-lg-7 col-12 line-height" >
+                            <p className="mb-0 fs-5 pb-1" >
+                              <span className="bold" >
                                 {" "}
                                 {selectedMultiLangData?.item_code}:
                               </span>
                               {item?.name}
                             </p>
                             <a
-                              className="text-dark fs-5 bold"
+                              className="text-dark fs-5 bold pb-1"
                               href={`${item?.url}?currency=${currency_state_from_redux?.selected_currency_value}`}
                             >
                               {item?.item_name}
                             </a>
-                            <p className="mb-0 fs-6 ">
+                            <p className="mb-0 fs-6 py-2" >
                               {item?.short_description}
                             </p>
-                            <p className="mb-0 fs-5 ">
+                            <p className="mb-0 fs-5 pb-2">
                               <span className="bold">
                                 {selectedMultiLangData?.brand}:{" "}
                               </span>
@@ -382,9 +386,9 @@ const WishlistMaster = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-lg-2 col-md-2 product-price ">
+                      <div className="col-lg-2 col-md-2 product-price " >
                         {item?.price !== 0 ? (
-                          <ins className="new-price fs-3 products-name">
+                          <ins className="new-price fs-3 color-black">
                             {" "}
                             <span>&#x20B9;</span>
                             {item?.price?.toLocaleString("en-IN")}
@@ -414,7 +418,7 @@ const WishlistMaster = () => {
                           >
                             -
                           </span>
-                          <div className="pe-3 input-width products-name" >
+                          <div className="pe-3 input-width color-black" >
                             <input
                               type="text"
                               // defaultValue={
@@ -428,9 +432,9 @@ const WishlistMaster = () => {
                               value={productCounts[index]}
                               // className="w-100 ml-2 "
                               className={`${alertMinQty === true &&
-                                  productCounts[index] === item?.min_order_qty
-                                  ? "text-danger"
-                                  : ""
+                                productCounts[index] === item?.min_order_qty
+                                ? "text-danger"
+                                : ""
                                 } w-100 ml-2 text-center`}
                               onChange={(e: any) =>
                                 handleQuantityChange(
@@ -455,10 +459,10 @@ const WishlistMaster = () => {
                         {item?.min_order_qty !== 0 ? (
                           <div
                             className={`${alertMinQty === true &&
-                                productCounts[index] === item?.min_order_qty
-                                ? "text-danger"
-                                : "text-dark"
-                              } fs-6 mt-1 text-uppercase bold products-name`}
+                              productCounts[index] === item?.min_order_qty
+                              ? "text-danger"
+                              : "text-dark"
+                              } fs-6 mt-1 text-uppercase bold color-black`}
                           >
                             {selectedMultiLangData?.minimum_order_qty}:{" "}
                             {item?.min_order_qty}
@@ -491,7 +495,7 @@ const WishlistMaster = () => {
                           </button> */}
 
                           <button
-                            className="ml-1 text-dark btn px-3 mt-lg-0 mt-md-2 add_cart_btn products-name"
+                            className="ml-1 text-dark btn px-5 mt-lg-0 mt-md-2 b2c_btn color-black bold"
 
                             onClick={() =>
                               handleAddCart(
@@ -500,7 +504,8 @@ const WishlistMaster = () => {
                                 productCounts[index],
                                 item?.min_order_qty
                               )
-                            }
+                            } 
+
                           >
                             {selectedMultiLangData?.add_to_cart}
                           </button>

@@ -14,8 +14,8 @@ export const Norecord = ({ heading, content, img, selectLangData }: any) => {
 
   // console.log("no product heading", heading, content);
   return (
-    <div className="container text-center norecord_container">
-      <div className="row products-name">
+    <div className="container text-center norecord_container  " >
+      <div className="row color-black">
         <div className="col-lg-12">
           <Image src={NoProducts} alt="" width={100} height={100} />
           <h1 className="black bold fs-5">{heading}</h1>

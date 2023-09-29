@@ -1063,6 +1063,15 @@ header.header.fixed {
 }
 
 
+
+.thankyou-img-b2c{
+  // width: 20px;
+  height: 30px;
+}
+.thankyou-mg-bt{
+  margin-bottom: 190px;
+}
+
 @media only screen and (max-width: 600px) {
   .icon-anchor-mob {
     font-size: 2rem !important;
@@ -1221,6 +1230,7 @@ header.header.fixed {
 .login-btn-mob{
   // margin-top: 10px !important;
 }
+
 .account-margin-mob{
   margin-left: -4px !important;
 }
@@ -1241,10 +1251,56 @@ header.header.fixed {
 
 
 
+.header-middle :hover{
 
+  background: white !important;
+
+}
+.header-login-bg{
+  background-color: white !important;
+}
+.header-login-bg :hover{
+  background-color: white !important;
+}
+.header-login-bg  :active{
+  background-color: white !important;
+}
+.ternarytheme-login, .ternarytheme-login:hover {
+  background-color: white !important;
+  
+}
+.dropdown-item-b2c:hover{
+  background-color: gainsboro !important;
+}
+.nav-dropdown-web{
+  margin-top: -18px !important;
+}
+.header-middle{
+  border-bottom: none !important;
+}
+.login-icon-font-size{
+  font-size: 20px !important;
+  font-weight: bold;
+  color: #2c4152 !important;
+}
 @media only screen and (max-width: 1024px) {
 .header-home-title{
   font-size: 13px !important;
   // border: 2px solid red
 }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .logo-width-login{
+    width: 23px !important
+  }
+  // .ternarytheme-login {
+  //   background-color: none !important;
+  //   // border: 2px solid red;
+  //   // width: 10px !important;
+  //   margin-bottom: 20px !important;
+    
+  // }
+  
 }

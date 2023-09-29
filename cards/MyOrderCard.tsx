@@ -16,107 +16,110 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
     }
   }, []);
 
-  
+
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   return (
     <>
-      <div key={data.id}>
-        <div className="card-header">
-          <div className="row pb-0">
+      <div key={data.id} >
+        <div className="card-header " >
+          <div className="row pb-0 pt-1 pb-1">
             <div className=" mb-sm-0 col-md-2 col-6 order-div">
-              <p className="text-uppercase gray mb-0 myorder_p">
+              <p className="text-uppercase gray mb-0 myorder_p" >
                 {selectedMultiLangData?.order_placed}
-               <p>
-               {data?.transaction_date}
-                </p> 
+                <p className="pt-1">
+                  {data?.transaction_date.split("-")?.reverse()?.join("/")}
+                </p>
               </p>
               <p className="gray mb-0 myorder_p">{data?.creation}</p>
             </div>
             <div className="col-md-2 col-6 order-div">
-              <p className="text-uppercase gray mb-0 myorder_p ">
+              <p className="text-uppercase gray mb-0 myorder_p " >
                 {" "}
                 {selectedMultiLangData?.total_price}
               </p>
               {data?.total === 0 ? (
-                <p className="border price_request ">
+                <p className="border price_request " >
                   {" "}
                   {selectedMultiLangData?.price_on_request}
                 </p>
               ) : (
-                <p className="gray mb-0 myorder_p product-price">
+                <p className="gray mb-0 myorder_p product-price pt-1" >
                   {data?.currency_symbol} {data?.total}
                 </p>
               )}
             </div>
             <div className="col-md-2 col-4 order-cards">
-              <p className="text-uppercase gray mb-0 myorder_p">
+              <p className="text-uppercase gray mb-0 myorder_p " >
                 {selectedMultiLangData?.ship_to}
               </p>
               {data?.addresses?.map((personAddress: any, index: number) => (
                 <div className="dropdown text-dark" key={index}>
                   {personAddress?.name === "Shipping Address"
                     ? personAddress?.values.map((addr: any) => (
-                        <div key={addr.address_id}>
-                          <a
-                            className="dropdown-toggle p-0 bold text-dark"
-                            role="button"
-                            id="ship_to"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            {personAddress?.name}
-                          </a>
-                          <ul
-                            className="dropdown-menu"
-                            aria-labelledby="ship_to"
-                          >
-                            <li className="ps-1 pe-1 mb-0 ">
-                              {addr?.address_title}
-                            </li>
-                            <li className="ps-1 pe-1 mb-0 ">
-                              {addr?.address_1}
-                            </li>
-                            <li className="ps-1 pe-1 mb-0">
-                              {addr?.address_2}
-                            </li>
-                            <li className="ps-1 pe-1 mb-0">
-                              {addr?.city} - {addr?.postal_code}
-                            </li>
-                            <li className="ps-1 pe-1 mb-0">{addr?.country}</li>
-                            <li className="ps-1 pe-1 mb-0">
-                              {selectedMultiLangData?.mobile_number}:{" "}
-                              {addr?.contact}
-                            </li>
-                          </ul>
-                        </div>
-                      ))
+                      <div key={addr.address_id}>
+                        <a
+                          className="dropdown-toggle p-0 bold text-dark"
+                          role="button"
+                          id="ship_to"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          {personAddress?.name}
+                        </a>
+                        <ul
+                          className="dropdown-menu"
+                          aria-labelledby="ship_to"
+                        >
+                          <li className="ps-1 pe-1 mb-0 ">
+                            {addr?.address_title}
+                          </li>
+                          <li className="ps-1 pe-1 mb-0 ">
+                            {addr?.address_1}
+                          </li>
+                          <li className="ps-1 pe-1 mb-0">
+                            {addr?.address_2}
+                          </li>
+                          <li className="ps-1 pe-1 mb-0">
+                            {addr?.city} - {addr?.postal_code}
+                          </li>
+                          <li className="ps-1 pe-1 mb-0">{addr?.country}</li>
+                          <li className="ps-1 pe-1 mb-0">
+                            {selectedMultiLangData?.mobile_number}:{" "}
+                            {addr?.contact}
+                          </li>
+                        </ul>
+                      </div>
+                    ))
                     : null}
                 </div>
               ))}
             </div>
-            <div className="text-end col-md-6 col-8 order-cards">
-              <p className="mb-0 myorder_p">
+            <div className="text-end col-md-4 col-4 order-cards ">
+              <p className="myorder_p pt-2">
                 {selectedMultiLangData?.orders} # {data?.name}
               </p>
-
-              <div className="d-flex justify-content-end align-items-center" >
-                <div className="flex-fill detail_link text-capitalize">
+              </div>
+<div className="col-md-2 col-4  text-end" >
+<div className=" text-center " >
+                <div className="flex-fill detail_link text-capitalize  b2c_btn btn_order_detail fs-13" >
                   <Link href={`myOrder/${data?.name}`} legacyBehavior>
-                    <a href={`myOrder/${data?.name}`} className="order_details">
+                    <a href={`myOrder/${data?.name}`} className="color-black fs-13 btn-orderdetail-mob" >
                       {selectedMultiLangData?.order_details}
                     </a>
                   </Link>
                 </div>
               </div>
-            </div>
+</div>
+             
+           
           </div>
         </div>
         {data?.order_details?.map((detail: any) => (
           <div
             className="cart_item card-body order_cartdetails"
             key={detail?.item_name} 
-          >
+          > 
             <div className="d-flex mb-2">
               <div className="flex-fill">
                 <h6 className="green text-capitalize bold mb-0 mt-2 order-ptag ">
@@ -130,27 +133,26 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
               <div className="mb-3 mb-sm-0 col-lg-2 col-md-2 col-4 mt-0">
                 <div className="product-img">
                   <img
-                    src={`${CONSTANTS.API_BASE_URL}/${
-                      detail?.img !== null ? detail?.img : detail?.brand_img
-                    }`}
-                    className="product_img img-fluid orderdetail_img"
+                    src={`${CONSTANTS.API_BASE_URL}/${detail?.img !== null ? detail?.img : detail?.brand_img
+                      }`}
+                    className="product_img img-fluid orderdetail_img cart-image"
                     alt="product-img"
                   />
                 </div>
               </div>
-              <div className="product_item_details col-lg-6 col-md-7 col-8">
+              <div className="product_item_details col-lg-8 col-md-9 col-8">
                 <div className="d-flex orderDetail-card">
                   <div className="flex-fill">
                     <Link href="#" legacyBehavior>
-                      <a className="product_item_name bold">
+                      <a className="product_item_name bold "  >
                         {detail?.item_name}
                       </a>
                     </Link>
-                    <table width="100%" className="mt-2 table table-borderless">
+                    <table width="100%" className="mt-1 table table-borderless" >
                       <tbody>
                         <tr className="item_options myorder_tr">
                           <td className="px-0 py-0 pb-0 myorder_td">
-                            <p className="text-capitalize black mb-0 myorder_p">
+                            <p className="text-capitalize black mb-0 myorder_p pb-1">
                               {selectedMultiLangData?.item_code}
                             </p>
                           </td>
@@ -158,7 +160,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                             width="85%"
                             className="px-0 py-0 pb-0 myorder_width"
                           >
-                            <p className="text-capitalize black mb-0 myorder_p">
+                            <p className="text-capitalize black mb-0 myorder_p pb-1" >
                               : {detail?.name}
                             </p>
                           </td>
@@ -166,7 +168,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
 
                         <tr className="item_options myorder_tr">
                           <td className="px-0 py-0 pb-0 myorder_td">
-                            <p className="text-capitalize black mb-0 myorder_p ">
+                            <p className="text-capitalize black mb-0 myorder_p pb-1" >
                               {selectedMultiLangData?.price}
                             </p>
                           </td>
@@ -174,7 +176,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                             width="85%"
                             className="px-0 py-0 pb-0 myorder_width"
                           >
-                            <p className="text-capitalize black mb-0 myorder_p">
+                            <p className="text-capitalize black mb-0 myorder_p pb-1" >
                               {detail?.prod_info[1]?.value !== 0 ? (
                                 <p className="mb-0 product-price">
                                   {" "}
@@ -210,20 +212,20 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                   </div>
                 </div>
               </div>
-              {isDealer && (
-                <div className="product_item_details col-lg-2 col-md-7 col-8">
-                  <h5 className="data_heading mb-1">
+              {/* {isDealer && (
+                <div className="product_item_details col-lg-2 col-md-7 col-8"> */}
+                  {/* <h5 className="data_heading mb-1" >
                     {" "}
                     {selectedMultiLangData?.shipping_method}
-                  </h5>
-                  <div>
+                  </h5> */}
+                  {/* <div>
                     <p className="mb-0">
                       {selectedMultiLangData?.transporter}:{" "}
                       {data?.shipping_method?.transporter}
                     </p>
 
                     {data?.shipping_method.door_delivery === 0 &&
-                    data?.shipping_method?.godown_delivery === 0 ? (
+                      data?.shipping_method?.godown_delivery === 0 ? (
                       <p className="mb-0">
                         {selectedMultiLangData?.door_delivery_yes}
                       </p>
@@ -231,7 +233,7 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                       ""
                     )}
                     {data?.shipping_method?.door_delivery === 0 &&
-                    data?.shipping_method?.godown_delivery !== 0 ? (
+                      data?.shipping_method?.godown_delivery !== 0 ? (
                       <>
                         <p className="mb-0">
                           {selectedMultiLangData?.godown_delivery_yes}
@@ -257,17 +259,17 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                         {data?.shipping_method?.remarks}
                       </p>
                     )}
-                  </div>
-                </div>
-              )}
+                  </div> */}
+                {/* </div>
+              )} */}
 
               {isDealer ? (
-                <div className="text-end col-lg-2 col-md-2 col-12">
-                  <button className=" order_links mb-2 d-block text-uppercase">
-                    <Link 
-                      href={`${detail?.product_urll}?currency=${currency_state_from_redux?.selected_currency_value}`}
-                    legacyBehavior>
-                      <a className="orderdetails_btn">
+                <div className=" col-lg-2 col-md-2 col-12 view-product-link-b2c ps-5" >
+                  <button className=" order_links mb-2 d-block text-uppercase b2c_btn view-product-link-b2c " >
+                    <Link
+                      href={`${detail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
+                      legacyBehavior>
+                      <a className="color-blue">
                         {" "}
                         {selectedMultiLangData?.view_product}
                       </a>
@@ -278,11 +280,11 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                 <>
                   <div className=" col-lg-2"></div>
                   <div className="text-end col-lg-2 col-md-2 col-12">
-                    <button className=" order_links mb-2 d-block text-uppercase">
-                      <Link 
+                    <button className=" order_links mb-2 d-block text-uppercase b2c_btn">
+                      <Link
                         href={`${detail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
-                       legacyBehavior>
-                        <a className="orderdetails_btn">
+                        legacyBehavior>
+                        <a className="orderdetails_btn ">
                           {" "}
                           {selectedMultiLangData?.view_product}
                         </a>
