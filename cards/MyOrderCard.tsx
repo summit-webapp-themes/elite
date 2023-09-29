@@ -278,13 +278,13 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                 </div>
               ) : (
                 <>
-                  <div className=" col-lg-2"></div>
-                  <div className="text-end col-lg-2 col-md-2 col-12">
-                    <button className=" order_links mb-2 d-block text-uppercase b2c_btn">
+                  
+                  <div className="col-lg-2 col-md-2 col-12 col-12 view-product-link-b2c ps-5">
+                    <button className=" order_links mb-2 d-block text-uppercase b2c_btn view-product-link-b2c">
                       <Link
                         href={`${detail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
                         legacyBehavior>
-                        <a className="orderdetails_btn ">
+                        <a className="color-blue">
                           {" "}
                           {selectedMultiLangData?.view_product}
                         </a>
