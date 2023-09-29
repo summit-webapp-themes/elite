@@ -100,7 +100,7 @@ const OrderSummary = ({
             {couponError === false
               ? orderSummary?.map((data: any, index: number) => (
                 <>
-                  {data?.name === "Tax" && (
+                  {/* {data?.name === "Tax" && (
                     <>
                       <div
                         className="order-summery px-2 px-sm-0 px-xm-0 mx-3 products-name"
@@ -119,7 +119,7 @@ const OrderSummary = ({
                         </div>
                       </div>
                     </>
-                  )}
+                  )} */}
                   {data?.value !== 0 && data?.value !== null && (
                     <>
                       <div

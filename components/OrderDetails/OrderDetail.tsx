@@ -20,7 +20,7 @@ type PropsType = {
 
 const Index = ({ sales_order_id }: any) => {
   let { id, detail }: any = UseThankyou();
-  // console.log("detail", detail);
+  console.log("detail id", id);
   const dispatch = useDispatch();
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const [typeOf, setTypeOf] = useState("Replacement");
