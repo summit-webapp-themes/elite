@@ -15,7 +15,7 @@ const PlaceOrder = ({
   loadingStatus,
 
 }: any) => {
-  // console.log("orderHistoryItems", orderHistoryItems, loading);
+  console.log("orderHistoryItems", orderHistoryItems, loading);
 
   const placeorderCount: any =
     orderHistoryItems &&
@@ -37,7 +37,7 @@ const PlaceOrder = ({
         <div className="row mb-3 products-name" >
           <div className="col-lg-12">
             <div className="row" >
-              <div className="col-lg-2 col-sm-4 col-6">
+              <div className="col-lg-2 col-sm-4 col-6" >
                 <select
                   className="form-select placeorder_detail fs-5 w-75"
                   onChange={handleHistoryDate}
@@ -58,7 +58,7 @@ const PlaceOrder = ({
                   <option value="2020">2020</option>
                 </select>
               </div>
-              <div className="col text-end me-1">
+              <div className="col text-end me-1 pt-1" >
                 <p className="mb-0 order-ptag">
                   <span className="bold">{placeorderCount?.length}</span>{" "}
                   {selectedMultiLangData?.orders}

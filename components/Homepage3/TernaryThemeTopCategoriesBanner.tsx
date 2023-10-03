@@ -16,49 +16,50 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
 
   return (
     <>
-      <div className="container category_heading " >
-        <div className="row category_heading_mob" >
+      <div className="container  " >
+        <div className="row category_heading_mob pt-4"   
+>
           {homeTopCategories?.length > 0 && homeTopCategories !== null ? (
             <>
               {homeTopCategories?.length > 0 ? (
                 <>
                   <>
-                    <div className="col-lg-4 banner-margin-b" >
+                    <div className="col-lg-4 banner-margin-b mt-0 pt-0" >
                       <Link
                         href={`/product-category/${homeTopCategories[1]?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                       >
                         <Image
                           loader={imageLoader}
                           src={homeTopCategories[1]?.product_img}
-                          width={500}
+                          width={385}
                           height={331}
                           className=""
-                          alt="categories banner img" 
+                          alt="categories banner img"
                         />
                       </Link>
                     </div>
-                    <div className="col-lg-4 banner-margin-b">
+                    <div className="col-lg-4 banner-margin-b mt-0 pt-0" >
                       <Link
                         href={`/product-category/${homeTopCategories[0]?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                       >
                         <Image
                           loader={imageLoader}
                           src={homeTopCategories[0]?.product_img}
-                          width={500}
+                          width={380}
                           height={260}
                           className="ternarytheme-topcategory"
                           alt="categories banner img"
                         />
                       </Link>
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 mt-0 pt-0" >
                       <Link
                         href={`/product-category/${homeTopCategories[2]?.slug}?page=1&currency=${currency_state_from_redux?.selected_currency_value}`}
                       >
                         <Image
                           loader={imageLoader}
                           src={homeTopCategories[2]?.product_img}
-                          width={500}
+                          width={385}
                           height={331}
                           alt="categories banner img"
                         />
@@ -77,7 +78,8 @@ const TernaryThemeTopCategoriesBanner = ({ homeTopCategories }: any) => {
                       style={{ height: "250px", width: "auto" }}
                     />
                   </div>
-                  <div className="col-lg-6" style={{ backgroundColor: "gray" }}>
+                  <div className="col-lg-6"
+                  >
                     <Image
                       src="/assets/images/maximaCard.jpg"
                       width="300"

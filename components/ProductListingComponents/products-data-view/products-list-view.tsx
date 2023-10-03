@@ -43,7 +43,7 @@ const ProductsListView = (props: ProductsProps) => {
                     product_data={product}
                     key={index}
                     wishlistData={wishlistData}
-                    handleRenderingOfImages={handleRenderingOfImages}
+                    handleRenderingOfImages={handleRenderingOfImages} 
                   />
                 </div>
               );

@@ -12,6 +12,7 @@ const MobNavbar = ({
   handleSearch,
   isLoading,
   selectedMultiLangData,
+  selectedCurrencyValue,
 }: any) => {
   // const setmainLink = () => {
   //   let element: HTMLElement = document.getElementsByClassName(
@@ -45,7 +46,7 @@ const MobNavbar = ({
     <>
       <div className="mobile-menu-wrapper" >
         <div className="mobile-menu-overlay"></div>
-        <div className="mobile-menu-container scrollable bg-light">
+        <div className="mobile-menu-container scrollable bg-light" >
           <div className="d-flex justify-content-end mb-1 ">
             <Link href="#" legacyBehavior>
               <a className="#" onClick={navMenuclick}>
@@ -53,13 +54,13 @@ const MobNavbar = ({
               </a>
             </Link>
           </div>
-          <div className="header-search hs-expanded hs-round input-wrapper">
+          <div className="header-search hs-expanded hs-round input-wrapper" >
             <input
               type="text"
               className="form-control border"
               name="search"
               id="search"
-              placeholder="Search in..."
+              placeholder={selectedMultiLangData?.search_in}
               value={searchValue}
               onChange={(e: any) => setSearchValue(e.target.value)}
               required
@@ -92,8 +93,8 @@ const MobNavbar = ({
                       >
                         {navbardata?.values?.map(
                           (navbarVal: any, index: any) => (
-                            <li key={index}>
-                              <Link href={navbarVal.url} legacyBehavior>
+                            <li key={index} >
+                              <Link href={`${navbarVal.url}?page=1&currency=${selectedCurrencyValue}`} legacyBehavior >
                                 <a
                                   className="text-dark"
                                 // onClick={onClickCloseNav}
@@ -101,7 +102,7 @@ const MobNavbar = ({
                                   {navbarVal.name}
                                   <span
                                     className="toggle-btn "
-                                    onClick={() => arrowHandle(index)}
+                                    onClick={() => arrowHandle(index)} 
                                   ></span>
                                 </a>
                               </Link>
@@ -115,12 +116,12 @@ const MobNavbar = ({
                                   (navbarlist: any, i: any) => (
                                     <li key={i}>
                                       <Link
-                                        href={navbarlist?.url}
+                                        href={`${navbarVal.url}?page=1`}
                                         legacyBehavior
                                       >
                                         <a
                                           className="text-dark"
-                                          onClick={onClickCloseNav}
+                                          onClick={onClickCloseNav} 
                                         >
                                           {navbarlist?.name}
                                         </a>
