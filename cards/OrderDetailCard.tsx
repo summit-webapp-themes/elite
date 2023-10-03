@@ -63,23 +63,23 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
             
 
                         <div
-                          className="cart_item card-body products-name" 
-                          key={index}
+                          className="cart_item card-body products-name my-0 py-0" 
+                          key={index} 
                         >
-                          <div className="d-flex mb-2">
+                          <div className="d-flex mb-0">
                             <div className="flex-fill">
                               <h6 className="green text-capitalize bold mb-0 status"></h6>
                             </div>
 
                           </div>
-                          <div className="d-flex align-items-center row">
-                            <div className="mb-3 mb-sm-0 col-lg-2 col-md-2 col-4">
-                              <div className="product-image">
+                          <div className="d-flex align-items-center row py-3" >
+                            <div className="mb-0 mb-sm-0 col-lg-2 col-md-2 col-4">
+                              <div className="product-image cart-image ">
                                 {oDetail?.img === null ||
                                   oDetail?.img?.length === 0 ? (
                                   <Image
                                     src={`${oDetail?.brand_img}`}
-                                    className="product_item_img img-fluid"
+                                    className="product_item_img img-fluid orderdetail-img"
                                     alt="product images"
                                     width={100}
                                     height={100}
@@ -99,21 +99,21 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
                             </div>
                             <div className="product_item_details col-lg-8 col-md-7 col-8">
                               <div className="d-flex orderdetail-name">
-                                <div className="flex-fill">
+                                <div className="flex-fill" >
                                   <Link href={oDetail.product_url} legacyBehavior>
-                                    <a className="product_item_name">
+                                    <a className="product_item_name bold color-black" >
                                       {oDetail?.item_name}
                                     </a>
                                   </Link>
 
                                   <table
                                     width="100%"
-                                    className="mt-2 table table-borderless"
+                                    className="mt-0 table table-borderless"
                                   >
                                     <tbody>
                                       <tr className="item_options myorder_tr">
                                         <td className="px-0 py-0 pb-0 myorder_td">
-                                          <p className="text-capitalize black mb-0 myorder_p">
+                                          <p className="text-capitalize black mb-1 myorder_p color-black">
                                             {selectedMultiLangData?.item_code}
                                           </p>
                                         </td>
@@ -121,7 +121,7 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
                                           width="85%"
                                           className="px-0 py-0 pb-0 myorder_width"
                                         >
-                                          <p className="text-capitalize black mb-0 myorder_p">
+                                          <p className="text-capitalize black mb-1 myorder_p color-black">
                                             : {oDetail?.name}
                                           </p>
                                         </td>
@@ -129,23 +129,23 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
 
                                       <tr className="item_options myorder_tr">
                                         <td className="px-0 py-0 pb-0 myorder_td">
-                                          <p className="text-capitalize black mb-0 myorder_p">
+                                          <p className="text-capitalize black mb-1 myorder_p color-black">
                                             {selectedMultiLangData?.price}
                                           </p>
                                         </td>
                                         <td
                                           width="85%"
-                                          className="px-0 py-0 pb-0 myorder_width"
+                                          className="px-0 py-0 mc-1 pb-0 myorder_width"
                                         >
-                                          <p className="text-capitalize black mb-0 myorder_p">
+                                          <p className="text-capitalize black mb-0 myorder_p font-weight-normal" >
                                             {oDetail?.prod_info[1].value !== 0 ? (
-                                              <p className="mb-0 product-price">
+                                              <p className="mb-0 color-black">
                                                 {" "}
                                                 : {currency_symbol}{" "}
                                                 {oDetail?.prod_info[1].value}
                                               </p>
                                             ) : (
-                                              <p className="border price_request">
+                                              <p className="border price_request color-black">
                                                 {
                                                   selectedMultiLangData?.price_on_request
                                                 }
@@ -157,7 +157,7 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
 
                                       <tr className="item_options myorder_tr">
                                         <td className="px-0 py-0 pb-0 myorder_td">
-                                          <p className="text-capitalize black mb-0 myorder_p">
+                                          <p className="text-capitalize black mb-0 myorder_p color-black">
                                             {selectedMultiLangData?.quantity}
                                           </p>
                                         </td>
@@ -165,7 +165,7 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
                                           width="85%"
                                           className="px-0 py-0 pb-0 myorder_width"
                                         >
-                                          <p className="text-capitalize black mb-0 myorder_p">
+                                          <p className="text-capitalize black mb-0 myorder_p color-black">
                                             : {oDetail?.prod_info[2].value}
                                           </p>
                                         </td>
@@ -177,13 +177,21 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
                             </div>
                             <div className="text-right col-lg-2 col-md-3 col-12">
                               {thankyou === "thankyou" ? (
-                                ""
+                                <button className=" order_links b2c_btn mb-2 d-block text-uppercase">
+                                <Link
+                                  href={`${oDetail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
+                                  legacyBehavior>
+                                  <a className="bold text-dark">
+                                    {selectedMultiLangData?.view_product}
+                                  </a>
+                                </Link>
+                              </button>
                               ) : (
-                                <button className=" order_links mb-2 d-block text-uppercase">
+                                <button className=" order_links b2c_btn mb-2 d-block text-uppercase">
                                   <Link
                                     href={`${oDetail?.product_url}?currency=${currency_state_from_redux?.selected_currency_value}`}
                                     legacyBehavior>
-                                    <a className="order_linkshover text-dark">
+                                    <a className="bold text-dark">
                                       {selectedMultiLangData?.view_product}
                                     </a>
                                   </Link>
@@ -200,7 +208,7 @@ const OrderDetailCard = ({oDetail, index, currency_symbol}:any) => {
                               <div className="modal-dialog">
                                 <div className="modal-content">
                                   <div className="modal-header">
-                                    <div className="modal-title h4">
+                                    <div className="modal-title h4 color-black">
                                       {selectedMultiLangData?.return_replacement}
                                     </div>
                                     <a className="action_icon">

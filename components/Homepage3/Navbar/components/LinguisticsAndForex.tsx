@@ -10,7 +10,7 @@ const LinguisticsAndForex = () => {
       <div className="ms-5" >
         <select
           onChange={(e: any) => handleCurrencyValueChange(e.target.value)}
-          className="ternary-select product-price  price"
+          className="ternary-select product-price  price  dark-blue"
         >
           <option value="INR">₹</option>
           <option value="USD">$</option>
@@ -18,10 +18,10 @@ const LinguisticsAndForex = () => {
         </select>
       </div>
 
-      <div className="" >
+      <div className="py-1" >
         <select
           onChange={(e) => handleLanguageChange(e.target.value)}
-          className="ternary-select fs-5 bold"
+          className="ternary-select fs-5 bold product-price fs-14 dark-blue"
         >
           {multiLanguagesData?.length > 0 &&
             multiLanguagesData !== null &&

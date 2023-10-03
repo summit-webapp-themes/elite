@@ -93,11 +93,11 @@ const BillingAddressCard = ({
               .filter((val: any) => val?.address_id === selectedbillAddress)
               .map((detail: any, index: any) => (
                 <div
-                  className="border px-1 addresscard-width"
+                  className="border px-1 pt-1 addresscard-width"
                   key={detail?.address_id}
                 >
-                  <div className="products-name" >
-                    <p className={`mb-0 addresscard-p`}>{detail.name}</p>
+                  <div className="color-black" >
+                    <p className={`mb-0 addresscard-p`} >{detail.name}</p>
                     <p className="mb-0 card_p">{detail?.address_1}</p>
                     <p className="mb-0 card_p">{detail?.address_2}</p>
                     <p className="mb-0 card_p">{detail?.city}</p>
@@ -133,13 +133,13 @@ const BillingAddressCard = ({
                       }
                       className={
                         billingAddresses &&
-                        initialBillingAddress === detail?.address_id
+                          initialBillingAddress === detail?.address_id
                           ? "btn btn-sm d-block w-100 h-100 mt-1  selected_address_button"
                           : "btn btn-sm d-block w-100 h-100 mt-1 address_button"
                       }
                     >
                       {billingAddresses &&
-                      initialBillingAddress === detail?.address_id
+                        initialBillingAddress === detail?.address_id
                         ? "Address Selected"
                         : "Bill to this address"}
                     </button>
@@ -187,11 +187,11 @@ const BillingAddressCard = ({
                   className="border px-1 addresscard-width"
                   key={detail?.contact_info}
                 >
-                  <div className="ps-2 products-name" >
+                  <div className="ps-2 pt-1 color-black" >
                     {/* <p>{detail.address_id}</p> */}
                     <p className={`mb-0 addresscard-p`}>{detail?.name}</p>
                     {/* <p className="mb-0">{detail.phone}</p> */}
-                    <p className="mb-0 card_p">{detail?.address_1}</p>
+                    <p className="mb-0 card_p" >{detail?.address_1}</p>
                     <p className="mb-0 card_p">{detail?.address_2}</p>
                     <p className="mb-0 card_p">{detail?.city}</p>
                     <p className="mb-0 card_p">{detail?.postal_code}</p>
@@ -202,7 +202,7 @@ const BillingAddressCard = ({
                         href={`mailto:${detail?.email}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-dark products-name"
+                        className="text-dark color-black"
                       >
                         {detail.email}
                       </a>
@@ -212,7 +212,7 @@ const BillingAddressCard = ({
                         href={`tel:${detail?.contact}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-dark products-name"
+                        className="text-dark color-black"
                       >
                         {detail?.contact}
                       </a>

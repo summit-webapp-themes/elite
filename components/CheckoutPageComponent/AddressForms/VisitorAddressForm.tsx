@@ -128,7 +128,7 @@ const VisitorAddress = ({
                   <div className="mt-3 mt-lg-0 col-lg-12 mt-3">
                     <div className="fields-group-md mb-4 fs-4">
                       <div className="form-group">
-                        <label className="form-Form.Label">
+                        <label className="form-Form.Label color-black" >
                           {selectedMultiLangData?.name}
                           <span className="red">*</span>
                         </label>

@@ -1,0 +1,135 @@
+.margin_from_nav {
+  margin-top: 0px !important;
+  margin-bottom: 25px !important;
+}
+
+.page_heading {
+  font-size: 24px !important;
+  text-transform: capitalize !important;
+  font-weight: bold;
+  color: black !important;
+}
+
+.page_heading h4 {
+  font-size: 24px !important;
+  text-transform: capitalize !important;
+  font-weight: bold;
+  color: black !important;
+  padding-bottom: 6px !important;
+}
+
+.item_action_link {
+  margin-left: -4px;
+}
+
+.line-height {
+  line-height: 1;
+}
+
+p {
+  line-height: 1 !important;
+}
+
+.price_request {
+  color: white !important;
+  background-color: #0071dc !important;
+  padding: 6px 0px;
+  margin: 2px 0px !important;
+  margin-left: 5px !important;
+  width: 120px !important;
+}
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.font-weight-normal{
+  font-weight: normal;
+}
+.cart-image{
+  width: 100px;
+}
+.fs-20{
+  font-size: 20px;
+}
+.fs-13{
+  font-size: 13px;
+}
+.old-price{
+  font-weight: 400;
+    color: #aaa;
+}
+.price_request {
+  width: 150px !important;
+  text-align: center !important;
+  background-color: #d5a249 !important;
+  color: #fff !important;
+  border-radius: 5px !important;
+}
+
+.b2c_btn{
+  border: 2px solid #2c4152 !important;
+  font-size: 13px !important;
+}
+.b2c_btn:hover{
+  border: 2px solid #2c4152 !important;
+  background-color: gainsboro !important;
+  color: black !important;
+}
+.heart-pd-t{
+  padding-top: 2px;
+}
+.btn_order_detail{
+  padding: 4px 10px;
+}
+.fs-13{
+  font-size: 13px !important;
+  font-weight: bold;
+  text-transform: uppercase !important;
+}
+.fs-14{
+  font-size: 14px !important;
+}
+.logo-b2c-margin-tp{
+  margin-top:-32px !important;
+}
+.dark-blue{
+  color: #2c4152 !important;
+}
+.view-product-link-b2c{
+  border: none !important;
+  color: #0071dc !important;
+  background-color: white !important;
+}
+
+.view-product-link-b2c :hover{
+  border: none !important;
+  color: #0071dc !important;
+  background-color: white !important;
+  text-decoration: underline !important;
+  
+}
+
+.color-blue{
+  color: #0071dc !important;
+}
+// .btn_b2c_hover:hover{
+//   border: 1px solid #2c4152 !important;
+//   background-color: gray !important;
+// }
+@media only screen and (max-width: 600px) {
+  .margin_from_nav {
+    margin-top: 90px !important;
+    margin-bottom: 25px !important;
+  }
+  .orderdetail-img{
+    width: 86px !important
+  }
+  .btn_order_detail{
+    padding: 0px;
+    margin-top: 20px;
+    
+  }
+  .btn-orderdetail-mob{
+    font-size: 12px !important;
+  }
+}
