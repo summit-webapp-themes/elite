@@ -75,8 +75,8 @@ const ShippingAddressCard = ({
           ?.map((detail: any) => (
             <>
               <div
-                className="border px-1 addresscard-width"
-                key={detail?.address_id}
+                className="border px-1 addresscard-width pt-1"
+                key={detail?.address_id} 
               >
                 <div className="ps-2 color-black pt-1" >
                   <p className={`mb-0 addresscard-p`}>{detail?.name}</p>
