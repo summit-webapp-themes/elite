@@ -93,8 +93,8 @@ const BillingAddressCard = ({
               .filter((val: any) => val?.address_id === selectedbillAddress)
               .map((detail: any, index: any) => (
                 <div
-                  className="border px-1 pt-1 addresscard-width"
-                  key={detail?.address_id}
+                  className="border px-1 pt-1 addresscard-width "
+                  key={detail?.address_id} 
                 >
                   <div className="color-black" >
                     <p className={`mb-0 addresscard-p`} >{detail.name}</p>
@@ -184,7 +184,7 @@ const BillingAddressCard = ({
               )
               ?.map((detail: any, index: any) => (
                 <div
-                  className="border px-1 addresscard-width"
+                  className="border px-1 addresscard-width pt-1"
                   key={detail?.contact_info}
                 >
                   <div className="ps-2 pt-1 color-black" >

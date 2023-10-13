@@ -1,23 +1,23 @@
-import Image from "next/image";
-import Link from "next/link";
-import { CONSTANTS } from "../services/config/app-config";
-import { ProductCardProps } from "../interfaces/product-card-interface";
-import { fetchWishlistUser } from "../store/slices/wishlist-slice/wishlist-slice";
-import { useDispatch, useSelector } from "react-redux";
+import Image from 'next/image';
+import Link from 'next/link';
+import { CONSTANTS } from '../services/config/app-config';
+import { ProductCardProps } from '../interfaces/product-card-interface';
+import { fetchWishlistUser } from '../store/slices/wishlist-slice/wishlist-slice';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   failmsg,
   hideToast,
   successmsg,
-} from "../store/slices/general_slices/toast_notification_slice";
-import { fetchCartListing } from "../store/slices/cart-listing-page-slice/cart-listing-slice";
-import AddToCartApi from "../services/api/cart-page-api/add-to-cart-api";
+} from '../store/slices/general_slices/toast_notification_slice';
+import { fetchCartListing } from '../store/slices/cart-listing-page-slice/cart-listing-slice';
+import AddToCartApi from '../services/api/cart-page-api/add-to-cart-api';
 import {
   get_access_token,
   updateAccessToken,
-} from "../store/slices/auth/token-login-slice";
-import { showToast } from "../components/ToastNotificationNew";
-import { profileData_state } from "../store/slices/general_slices/profile-page-slice";
-import { useState } from "react";
+} from '../store/slices/auth/token-login-slice';
+import { showToast } from '../components/ToastNotificationNew';
+import { profileData_state } from '../store/slices/general_slices/profile-page-slice';
+import { useState } from 'react';
 
 const ProductCard = (props: ProductCardProps) => {
   const {
@@ -39,7 +39,7 @@ const ProductCard = (props: ProductCardProps) => {
 
   const TokenFromStore: any = useSelector(get_access_token);
   const profileData: any = useSelector(profileData_state);
-  console.log("profile partyname", profileData);
+  console.log('profile partyname', profileData);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   let isLoggedIn: any;
@@ -48,8 +48,8 @@ const ProductCard = (props: ProductCardProps) => {
   let requestList: any;
   let partyName: any;
 
-  if (typeof window !== "undefined") {
-    isLoggedIn = localStorage.getItem("isLoggedIn");
+  if (typeof window !== 'undefined') {
+    isLoggedIn = localStorage.getItem('isLoggedIn');
   }
   const dispatch = useDispatch();
 
@@ -65,24 +65,25 @@ const ProductCard = (props: ProductCardProps) => {
       currency_state_from_redux?.selected_currency_value,
       TokenFromStore?.token
     );
-    if (AddToCartRes.msg === "success") {
-      showToast("Item Added to cart", "success");
+    if (AddToCartRes.msg === 'success') {
+      showToast('Item Added to cart', 'success');
       dispatch(fetchCartListing());
       // setAddToCartButtonDisabled(false);
     } else {
-      showToast(AddToCartRes?.error, "error");
+      showToast(AddToCartRes?.error, 'error');
       // setAddToCartButtonDisabled(false);
     }
   };
   return (
     <div
       key={key}
-      className="border ps-0 ms-0  product-border-pd rounded-3 h-100 " 
+      className="border ps-0 ms-0  product-border-pd rounded-3 h-100 "
     >
-      <div className="d-flex justify-content-between icon-container-ps" >
+      <div className="d-flex justify-content-between icon-container-ps">
         <div
-          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${display_tag?.length > 0 && display_tag[0] ? "visible" : "invisible"
-            }`} 
+          className={`badge text-bg-primary fs-5 display_tag_badge product-font-family ${
+            display_tag?.length > 0 && display_tag[0] ? 'visible' : 'invisible'
+          }`}
         >
           {display_tag?.length > 0 && display_tag[0]}
         </div>
@@ -95,7 +96,7 @@ const ProductCard = (props: ProductCardProps) => {
           })}
           {!wishproducts ? (
             <a
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
               onClick={() => {
                 requestNew = {
                   prod_id: name,
@@ -161,7 +162,7 @@ const ProductCard = (props: ProductCardProps) => {
       <div className="product-wrap">
         <div className="product text-center ">
           <div className="product-media product_card_h product-main-container text-center d-flex justify-content-center">
-            {img_url !== "" ? (
+            {img_url !== '' ? (
               <>
                 <Link
                   href={`${url}?currency=${currency_state_from_redux?.selected_currency_value}`}
@@ -180,7 +181,7 @@ const ProductCard = (props: ProductCardProps) => {
               <>
                 <Link href={url}>
                   <Image
-                    src={"/assets/images/maximaCard.jpg"}
+                    src={'/assets/images/maximaCard.jpg'}
                     alt="Product"
                     width="200"
                     height="200"
@@ -210,32 +211,39 @@ const ProductCard = (props: ProductCardProps) => {
                 </del>
               </div>
 
-              {isLoggedIn === "true" ? (
-              <button
-                type="button"
-                className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family`}
-                onClick={handleAddCart}
-              >
-                {isLoading ? (
-                  <span
-                    className="spinner-border spinner-border-md "
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                ) : (
-                  <i
-                    className="fa fa-shopping-cart pe-5 pb-1 pt-1"
-                    aria-hidden="true"
-                  ></i>
-                )}
-              </button>  ) : (
-                  <button
-                    className="btn  standard_button py-3 add-cart-btns"
-                    onClick={handleAddCart}
-                  >
-                    {selectedMultiLangData?.add_to_cart}
-                  </button>
-                )}
+              {isLoggedIn === 'true' ? (
+                <button
+                  type="button"
+                  className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family`}
+                  onClick={handleAddCart}
+                >
+                  {isLoading ? (
+                    <span
+                      className="spinner-border spinner-border-md "
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  ) : (
+                    <i
+                      className="fa fa-shopping-cart pe-5 pb-1 pt-1"
+                      aria-hidden="true"
+                    ></i>
+                  )}
+                </button>
+              ) : (
+                <button
+                  className="btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family"
+                  // onClick={handleAddCart}
+                >
+                  <Link href="/login" className="text-white ">
+                    <i
+                      className="fa fa-shopping-cart d-flex justify-content-center"
+                      aria-hidden="true"
+                    ></i>
+                  </Link>
+                  {/* {selectedMultiLangData?.add_to_cart} */}
+                </button>
+              )}
             </div>
           </div>
         </div>
