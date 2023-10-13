@@ -87,8 +87,9 @@ const Index = ({ sales_order_id }: any) => {
     }
   }, [SelectedLangDataFromStore]);
 
+  console.log("selectedMultiLangData",selectedMultiLangData)
   return (
-    <div className="container margin_from_nav">
+    <div className="container margin_from_nav" >
       {detail?.length === 0 ? (
         <div className="row justify-content-center">
           {[...Array(10)].map(() => (
@@ -117,9 +118,10 @@ const Index = ({ sales_order_id }: any) => {
                 <div className="order_detail_head row color-black pb-2"  >
                   <div className="col-12">
                     <div className="item_action d-flex ">
-                      <div className="item_action_link me-3 ">{data.creation}</div>
+                      <div className="item_action_link me-3 " >{data.creation}</div>
                       <div className="item_action_link order-pipe color-black" >
-                        <span>
+                        <span 
+>
                           | {selectedMultiLangData?.orders} # {data?.name}
                         </span>
                       </div>
