@@ -60,18 +60,31 @@ const ProductCard = (props: ProductCardProps) => {
       item_code: name,
       quantity: 1,
     });
-    let AddToCartRes: any = await AddToCartApi(
+    let AddToCartProductRes: any = await AddToCartApi(
       addCartData,
       currency_state_from_redux?.selected_currency_value,
       TokenFromStore?.token
     );
-    if (AddToCartRes.msg === 'success') {
-      showToast('Item Added to cart', 'success');
-      dispatch(fetchCartListing());
-      // setAddToCartButtonDisabled(false);
+    let token = AddToCartProductRes.data.access_token
+    console.log('token in guest',AddToCartProductRes.data.access_token)
+    if (AddToCartProductRes.msg === "success") {
+      // dispatch(successmsg("Item Added to cart"));
+      showToast("Item Added to cart", "success");
+      console.log("AddToCartProductRes", AddToCartProductRes);
+      if (AddToCartProductRes?.data?.access_token !== null) {
+        localStorage.setItem("guest", AddToCartProductRes?.data?.email);
+        dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
+        // dispatch(fetchCartListing(token));
+      }
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1200);
     } else {
-      showToast(AddToCartRes?.error, 'error');
-      // setAddToCartButtonDisabled(false);
+      showToast("Failed to Add to cart", "error");
+      // dispatch(failmsg("Failed to Add to cart"));
+      // setTimeout(() => {
+      //   dispatch(hideToast());
+      // }, 1500);
     }
   };
   return (
@@ -233,14 +246,14 @@ const ProductCard = (props: ProductCardProps) => {
               ) : (
                 <button
                   className="btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family"
-                  // onClick={handleAddCart}
+                  onClick={handleAddCart}
                 >
-                  <Link href="/login" className="text-white ">
+                 {/* <Link href="/login" className="text-white ">
+                  </Link>*/} 
                     <i
                       className="fa fa-shopping-cart d-flex justify-content-center"
                       aria-hidden="true"
                     ></i>
-                  </Link>
                   {/* {selectedMultiLangData?.add_to_cart} */}
                 </button>
               )}
