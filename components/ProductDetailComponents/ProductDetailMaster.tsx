@@ -10,6 +10,7 @@ import ProductItemsOptions from "./ProductDetails/ProductItemsOptions";
 import ProductEnlargeImage from "./ProductEnlargeImage";
 import ProductSpecificationMaster from "./ProductSpecifications/ProductSpecificationMaster";
 import { useEffect, useState } from "react";
+import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
 
 const ProductDetailMaster = () => {
   const {
@@ -38,6 +39,7 @@ const ProductDetailMaster = () => {
   const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
+  const currency_state_from_redux: any = useSelector(currency_selector_state);
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
 
   useEffect(() => {
@@ -140,6 +142,7 @@ const ProductDetailMaster = () => {
                   <ProductItemsOptions
                     items={items}
                     selectedMultiLangData={selectedMultiLangData}
+                    currency_state_from_redux={currency_state_from_redux}
                   />
                 )}
               </div>

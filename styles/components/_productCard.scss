@@ -157,3 +157,30 @@ a:hover {
     width: 17rem !important;
   }
 }
+
+// product card css.
+.displaytag-listhome3 {
+  background-color: #fefae2;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.display_tag_badge {
+  background-color: $themeternary-color !important;
+}
+.product_img {
+  height: 175px;
+}
+.product-content {
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  text-align: center;
+}
+
+.icon-container-ps{
+  position: absolute;
+ z-index: 2;
+ width: 82%;
+ 
+}

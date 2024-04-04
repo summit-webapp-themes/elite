@@ -79,41 +79,41 @@ const VisitorAddress = ({
             console.log("show fire api");
           }
 
-          // if (shipping_check) {
-          //   console.log("checking address", values);
-          //   const requestParams = {
-          //     value: { ...values },
-          //     token: TokenFromStore?.token,
-          //   };
-          //   dispatch(storeCustomerAddresses(requestParams));
+          if (shipping_check) {
+            console.log("checking address", values);
+            const requestParams = {
+              value: { ...values },
+              token: TokenFromStore?.token,
+            };
+            dispatch(storeCustomerAddresses(requestParams));
 
-          //   localStorage.setItem("guestLogin", "true");
-          //   localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("guestLogin", "true");
+            localStorage.setItem("isLoggedIn", "true");
 
-          //   setTimeout(() => {
-          //     dispatch(fetchShippingAddress(TokenFromStore?.token));
-          //     dispatch(fetchBillingAddress(TokenFromStore?.token));
-          //   }, 6000);
-          // } else {
-          //   const requestParams = {
-          //     value: { ...values },
-          //     token: TokenFromStore?.token,
-          //   };
-          //   console.log("checking address else", values);
-          //   dispatch(storeCustomerAddresses(requestParams));
+            setTimeout(() => {
+              dispatch(fetchShippingAddress(TokenFromStore?.token));
+              dispatch(fetchBillingAddress(TokenFromStore?.token));
+            }, 6000);
+          } else {
+            const requestParams = {
+              value: { ...values },
+              token: TokenFromStore?.token,
+            };
+            console.log("checking address else", values);
+            dispatch(storeCustomerAddresses(requestParams));
 
-          //   localStorage.setItem("guestLogin", "true");
-          //   localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("guestLogin", "true");
+            localStorage.setItem("isLoggedIn", "true");
 
-          //   setTimeout(() => {
-          //     dispatch(fetchShippingAddress(TokenFromStore?.token));
-          //     dispatch(fetchBillingAddress(TokenFromStore?.token));
+            setTimeout(() => {
+              dispatch(fetchShippingAddress(TokenFromStore?.token));
+              dispatch(fetchBillingAddress(TokenFromStore?.token));
 
-          //   }, 6000);
-          //   setTimeout(() => {
-          //     window.location.reload();
-          //   }, 8000);
-          // }
+            }, 6000);
+            setTimeout(() => {
+              window.location.reload();
+            }, 8000);
+          }
         }}
       >
         {({ handleChange, isSubmitting, handleBlur }) => (
