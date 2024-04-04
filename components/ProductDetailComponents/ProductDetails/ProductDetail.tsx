@@ -188,7 +188,7 @@ const ProductDetail = ({
   };
 
   const [fullUrl, setFullUrl] = useState("");
-  const shareUrl = fullUrl !== "" ? fullUrl : "http://3.13.55.94:3004/";
+  const shareUrl = fullUrl !== "" ? fullUrl : "https://summit-b2c-demo.8848digital.com/";
   const shareMessage: string = `Check out this product: ${shareUrl}`;
   useEffect(() => {
     if (router.asPath) {

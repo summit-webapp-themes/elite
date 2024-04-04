@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
 import Topbar from "./Topbar";
+import { useRouter } from "next/router";
 const ProductListingMaster = () => {
   const {
     productsLoading,
@@ -26,6 +27,8 @@ const ProductListingMaster = () => {
     handlePaginationBtn,
   } = useProductListing();
   // console.log("cube ", productListTotalCount);
+  const router = useRouter();
+  const pathname = router.asPath
   const SelectedLangDataFromStore:any = useSelector(
     SelectedFilterLangDataFromStore
   );
@@ -68,7 +71,10 @@ const ProductListingMaster = () => {
         <section className="container listing-page mt-0 ">
           <div className="container">
             <div className="mt-0">
-            <BreadCrumbs />
+              {
+                pathname.includes('search') ? '' : <BreadCrumbs />
+              }
+            
             </div>
             <div className="mt-0">
             {/* <Topbar/> */}

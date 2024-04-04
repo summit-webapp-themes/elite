@@ -20,6 +20,7 @@ import { profileData_state } from '../store/slices/general_slices/profile-page-s
 import { useState } from 'react';
 import AddtoCartModal from '../components/ProductListingComponents/products-data-view/AddtoCartModal';
 import DealerAddToCartApi from '../services/api/cart-page-api/dealer-add-to-cart-api';
+import useProfilePage from '../hooks/GeneralHooks/ProfileHooks/ProfileHooks';
 const ProductCard = (props: ProductCardProps) => {
   const {
     key,
@@ -39,6 +40,7 @@ const ProductCard = (props: ProductCardProps) => {
   } = props;
 
   const TokenFromStore: any = useSelector(get_access_token);
+  const {  profileList,ageingReport,loading,setLoading,enquiryHistoryPro} = useProfilePage();
   const profileData: any = useSelector(profileData_state);
   console.log('profile partyname', profileData);
 
@@ -163,7 +165,7 @@ const ProductCard = (props: ProductCardProps) => {
         TokenFromStore?.token,
         partyName
       );
-
+      console.log('cart@',AddToCartProductRes)
       if (AddToCartProductRes.msg === "success") {
         // dispatch(successmsg("Item Added to cart"));
 
@@ -215,11 +217,12 @@ const ProductCard = (props: ProductCardProps) => {
   const handleCloseModalCart = () => {
     setshow1(false);
   };
+  console.log('currency',currency_state_from_redux?.selected_currency_value)
   return (
     <>
     <div
       key={key}
-      className="border ps-0 ms-0  product-border-pd rounded-3 h-100 "
+      className="border p-3 h-100"
     >
       <div className="d-flex justify-content-between icon-container-ps">
         <div
@@ -301,9 +304,8 @@ const ProductCard = (props: ProductCardProps) => {
           )}
         </div>
       </div>
-      <div className="product-wrap">
-        <div className="product text-center ">
-          <div className="product-media product_card_h product-main-container text-center d-flex justify-content-center">
+        <div className="product">
+          <div className="product_img product-media mt-2">
             {img_url !== '' ? (
               <>
                 <Link
@@ -333,7 +335,7 @@ const ProductCard = (props: ProductCardProps) => {
               </>
             )}
           </div>
-          <div className="product-details color-black product-margin-up">
+          <div className="product-content">
             <h4 className="bold product-name truncate-overflow color-black">
               <Link
                 href={`${url}?currency=${currency_state_from_redux?.selected_currency_value}`}
@@ -341,7 +343,7 @@ const ProductCard = (props: ProductCardProps) => {
                 <span className="bold color-black"> {item_name}</span>
               </Link>
             </h4>
-            <div className="product-price d-flex color-black margin-up">
+            <div className="product-price d-flex color-black">
               <div className="w-75">
                 <ins className="new-price color-black">
                   {currency_symbol}
@@ -390,7 +392,7 @@ const ProductCard = (props: ProductCardProps) => {
           </div>
         </div>
        
-      </div>
+     
     </div>  
     <AddtoCartModal
           show={show1}
