@@ -171,11 +171,11 @@ const ProductDetail = ({
             dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
           }
         } else {
-          // dispatch(fetchCartListing(TokenFromStore?.token));
+          dispatch(fetchCartListing(TokenFromStore?.token));
         }
-        // setTimeout(() => {
-        //   dispatch(hideToast());
-        // }, 1200);
+        setTimeout(() => {
+          dispatch(hideToast());
+        }, 1200);
       } else {
         setIsLoading(false);
         showToast("Failed to Add to cart", "error");
@@ -188,7 +188,7 @@ const ProductDetail = ({
   };
 
   const [fullUrl, setFullUrl] = useState("");
-  const shareUrl = fullUrl !== "" ? fullUrl : "http://3.13.55.94:3004/";
+  const shareUrl = fullUrl !== "" ? fullUrl : "https://summit-b2c-demo.8848digital.com/";
   const shareMessage: string = `Check out this product: ${shareUrl}`;
   useEffect(() => {
     if (router.asPath) {
@@ -453,10 +453,10 @@ const ProductDetail = ({
                           productQuantity < minQty ? "disabled" : "enabled"
                         } w-50 btn button_color cart_btn_gtag add_cart_btn_mob products-name`}
                         onClick={handleAddCart}
-                        disabled={
-                          doesSelectedVariantDoesNotExists ||
-                          stockDoesNotExistsForSelectedVariants
-                        }
+                        // disabled={
+                        //   doesSelectedVariantDoesNotExists ||
+                        //   stockDoesNotExistsForSelectedVariants
+                        // }
                       >
                         {isLoading ? (
                           <span className="cursor-change">
@@ -514,7 +514,7 @@ const ProductDetail = ({
               </div>
               <div className="mt-2">
                 <p className="text-danger">
-                  {productDetailData.in_stock_status === false &&
+                  {productDetailData.in_stock_status === true &&
                     "Product is out of stock"}
                 </p>
               </div>

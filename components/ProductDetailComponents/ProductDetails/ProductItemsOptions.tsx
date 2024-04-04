@@ -3,7 +3,7 @@ import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import ProductCard from "../../../cards/product-card";
 import useWishlist from "../../../hooks/WishListHooks/WishListHooks";
-const ProductItemsOptions: any = ({ items, selectedMultiLangData }: any) => {
+const ProductItemsOptions: any = ({ items, selectedMultiLangData , currency_state_from_redux }: any) => {
   const { wishlistData } = useWishlist();
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -45,11 +45,11 @@ const ProductItemsOptions: any = ({ items, selectedMultiLangData }: any) => {
             {items?.values?.length > 0 &&
               items?.values?.map((newdata: any, i: any) => (
                 <div
-                  className="keen-slider__slide number-slide1 product border ml-2"
+                  className="keen-slider__slide number-slide1 product  ml-2"
                   key={i} 
                 >
                   <div
-                    className=" col-lg-11 p-3 mb-2 mx-0"
+                    className=" col-lg-11  mb-2 mx-0"
                    
                   >
                     <ProductCard
@@ -68,6 +68,7 @@ const ProductItemsOptions: any = ({ items, selectedMultiLangData }: any) => {
                       display_tag={newdata?.display_tag}
                       star_rating={newdata?.rating}
                       wishlistData={wishlistData}
+                      currency_state_from_redux={currency_state_from_redux}
                     />
                   </div>
                 </div>

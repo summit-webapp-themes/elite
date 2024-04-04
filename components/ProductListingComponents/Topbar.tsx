@@ -18,7 +18,7 @@ const Topbar = (props: any) => {
           </div>
         </div>
         <div className="col-lg-9 text-end">
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-3"></div>
             <div className="col-lg-3"></div>
             <div className="col-lg-6">
@@ -27,9 +27,9 @@ const Topbar = (props: any) => {
                   <>
                     <div className="row">
                       <div className="col-lg-6 col-8">
-                        {/* Price :-{" "}
+                        Price :-{" "}
                         <select
-                          className={`${styles.form_select}`}
+                          // className={`${styles.form_select}`}
                           aria-label="Default select example"
                         >
                           <option value="low_to_high" selected>
@@ -37,7 +37,7 @@ const Topbar = (props: any) => {
                           </option>
                           <option value="high_to_low">High to Low</option>
                         </select>
-                       */}
+                      
                       </div>
                       <div className="col-lg-6 col-4">
                         <div className="ms-3">
@@ -80,6 +80,18 @@ const Topbar = (props: any) => {
                 )}
               </div>
             </div>
+          </div> */}
+          <div>
+            Price :-{" "}
+            <select
+              className="form_select"
+              aria-label="Default select example"
+            >
+              <option value="low_to_high" selected>
+                Low to High
+              </option>
+              <option value="high_to_low">High to Low</option>
+            </select>
           </div>
         </div>
       </div>
