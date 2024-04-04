@@ -18,7 +18,9 @@ import {
 import { showToast } from '../components/ToastNotificationNew';
 import { profileData_state } from '../store/slices/general_slices/profile-page-slice';
 import { useState } from 'react';
-
+import AddtoCartModal from '../components/ProductListingComponents/products-data-view/AddtoCartModal';
+import DealerAddToCartApi from '../services/api/cart-page-api/dealer-add-to-cart-api';
+import useProfilePage from '../hooks/GeneralHooks/ProfileHooks/ProfileHooks';
 const ProductCard = (props: ProductCardProps) => {
   const {
     key,
@@ -38,10 +40,14 @@ const ProductCard = (props: ProductCardProps) => {
   } = props;
 
   const TokenFromStore: any = useSelector(get_access_token);
+  const {  profileList,ageingReport,loading,setLoading,enquiryHistoryPro} = useProfilePage();
   const profileData: any = useSelector(profileData_state);
   console.log('profile partyname', profileData);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [show, setshow] = useState(false);
+  const [show1, setshow1] = useState(false);
+  const [qty , setQty] = useState<any>(1)
   let isLoggedIn: any;
   let wishproducts: any;
   let requestNew: any;
@@ -53,44 +59,170 @@ const ProductCard = (props: ProductCardProps) => {
   }
   const dispatch = useDispatch();
 
+  // const handleAddCart = async () => {
+  //   // setAddToCartButtonDisabled(true);
+  //   const addCartData = [];
+  //   addCartData.push({
+  //     item_code: name,
+  //     quantity: qty,
+  //   });
+  //   let AddToCartProductRes: any = await AddToCartApi(
+  //     addCartData,
+  //     currency_state_from_redux?.selected_currency_value,
+  //     TokenFromStore?.token
+  //   );
+  //   // let token = AddToCartProductRes.data.access_token
+  //   console.log('token in guest',AddToCartProductRes.data.access_token)
+  //   if (AddToCartProductRes.msg === "success") {
+  //     // dispatch(successmsg("Item Added to cart"));
+  //     showToast("Item Added to cart", "success");
+  //     dispatch(fetchCartListing(TokenFromStore?.token));
+  //     console.log("AddToCartProductRes", AddToCartProductRes);
+  //     if (AddToCartProductRes?.data?.access_token !== null) {
+  //       localStorage.setItem("guest", AddToCartProductRes?.data?.email);
+  //       dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
+  //     }
+  //     // setTimeout(() => {
+  //     //   dispatch(hideToast());
+  //     // }, 1200);
+  //     setTimeout(()=>{
+  //       handleCloseModalCart();
+  //     },2000)
+  //   } else {
+  //     showToast("Failed to Add to cart", "error");
+  //     // dispatch(failmsg("Failed to Add to cart"));
+  //     // setTimeout(() => {
+  //     //   dispatch(hideToast());
+  //     // }, 1500);
+  //   }
+  // };
+
+  let isDealer: any;
+  if (typeof window !== "undefined") {
+    isLoggedIn = localStorage.getItem("isLoggedIn");
+    isDealer = localStorage.getItem("isDealer");
+  }
+  const [newobjectState, setnewObjectState] = useState<any>([]);
   const handleAddCart = async () => {
-    // setAddToCartButtonDisabled(true);
-    const addCartData = [];
-    addCartData.push({
-      item_code: name,
-      quantity: 1,
-    });
-    let AddToCartProductRes: any = await AddToCartApi(
-      addCartData,
-      currency_state_from_redux?.selected_currency_value,
-      TokenFromStore?.token
+    console.log(
+      "add currency",
+      currency_state_from_redux?.selected_currency_value
     );
-    let token = AddToCartProductRes.data.access_token
-    console.log('token in guest',AddToCartProductRes.data.access_token)
-    if (AddToCartProductRes.msg === "success") {
-      // dispatch(successmsg("Item Added to cart"));
-      showToast("Item Added to cart", "success");
-      console.log("AddToCartProductRes", AddToCartProductRes);
-      if (AddToCartProductRes?.data?.access_token !== null) {
-        localStorage.setItem("guest", AddToCartProductRes?.data?.email);
-        dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
-        // dispatch(fetchCartListing(token));
+
+    if (isDealer === "true") {
+      let newObjects =
+        newobjectState &&
+        newobjectState?.filter((newitems: any) => newitems.quantity !== "");
+      let dealerApi = await DealerAddToCartApi(newObjects);
+      console.log("dealer api res", dealerApi);
+      if (dealerApi.msg === "success") {
+        // dispatch(successmsg("Item Added to cart"));
+        setIsLoading(false);
+        showToast("Item Added to cart", "success");
+        dispatch(fetchCartListing());
+        // setTimeout(() => {
+        //   dispatch(hideToast());
+        // }, 1200);
+      } else {
+        showToast("Failed to Add to cart", "error");
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 5000);
+
+        // dispatch(failmsg("Failed to Add to cart"));
+        // setTimeout(() => {
+        //   dispatch(hideToast());
+        // }, 1500);
       }
-      // setTimeout(() => {
-      //   dispatch(hideToast());
-      // }, 1200);
+      // ga.event({
+      //   action: "add_to_cart",
+      //   params: {
+      //     not_set: JSON.stringify(newobjectState),
+      //   },
+      // });
     } else {
-      showToast("Failed to Add to cart", "error");
-      // dispatch(failmsg("Failed to Add to cart"));
-      // setTimeout(() => {
-      //   dispatch(hideToast());
-      // }, 1500);
+      // console.log(
+      //   "add currency in else",
+      //   currency_state_from_redux?.selected_currency_value
+      // );
+      const addCartData = [];
+      addCartData.push({
+        item_code: name,
+        quantity: qty,
+      });
+
+      if (profileData?.partyName !== "") {
+        if (Object?.keys(profileData?.partyName)?.length > 0) {
+          partyName = profileData?.partyName;
+        }
+      } else {
+        partyName = "Guest";
+      }
+
+      let AddToCartProductRes: any = await AddToCartApi(
+        addCartData,
+        currency_state_from_redux?.selected_currency_value,
+        TokenFromStore?.token,
+        partyName
+      );
+      console.log('cart@',AddToCartProductRes)
+      if (AddToCartProductRes.msg === "success") {
+        // dispatch(successmsg("Item Added to cart"));
+
+        showToast("Item Added to cart", "success");
+        setIsLoading(true);
+        setTimeout(() => {
+          // Stop the loader after 2 seconds (adjust the time as needed)
+          setIsLoading(false);
+          // Add your actual functionality here (e.g., adding to the cart)
+          // ...
+        }, 2000);
+
+        if (AddToCartProductRes?.data?.access_token !== null) {
+          dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
+          localStorage.setItem(
+            "guest",
+            AddToCartProductRes?.data?.access_token
+          );
+          console.log("token api res", AddToCartProductRes);
+          if (AddToCartProductRes?.data?.access_token !== null) {
+            console.log("token from api");
+            dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
+          }
+        } else {
+          dispatch(fetchCartListing(TokenFromStore?.token));
+        }
+        setTimeout(()=>{
+                handleCloseModalCart();
+              },2000)
+        setTimeout(() => {
+          dispatch(hideToast());
+        }, 1200);
+      } else {
+        setIsLoading(false);
+        showToast("Failed to Add to cart", "error");
+        // dispatch(failmsg(AddToCartProductRes?.error));
+        // setTimeout(() => {
+        //   dispatch(hideToast());
+        // }, 1500);
+      }
     }
   };
+  const handleClose = () => {
+    setshow(false);
+  };
+  const handleShowModalCart = (val: any) => {
+    setshow1(true);
+  };
+  const handleCloseModalCart = () => {
+    setshow1(false);
+  };
+  console.log('currency',currency_state_from_redux?.selected_currency_value)
   return (
+    <>
     <div
       key={key}
-      className="border ps-0 ms-0  product-border-pd rounded-3 h-100 "
+      className="border p-3 h-100"
     >
       <div className="d-flex justify-content-between icon-container-ps">
         <div
@@ -172,9 +304,8 @@ const ProductCard = (props: ProductCardProps) => {
           )}
         </div>
       </div>
-      <div className="product-wrap">
-        <div className="product text-center ">
-          <div className="product-media product_card_h product-main-container text-center d-flex justify-content-center">
+        <div className="product">
+          <div className="product_img product-media mt-2">
             {img_url !== '' ? (
               <>
                 <Link
@@ -204,7 +335,7 @@ const ProductCard = (props: ProductCardProps) => {
               </>
             )}
           </div>
-          <div className="product-details color-black product-margin-up">
+          <div className="product-content">
             <h4 className="bold product-name truncate-overflow color-black">
               <Link
                 href={`${url}?currency=${currency_state_from_redux?.selected_currency_value}`}
@@ -212,7 +343,7 @@ const ProductCard = (props: ProductCardProps) => {
                 <span className="bold color-black"> {item_name}</span>
               </Link>
             </h4>
-            <div className="product-price d-flex color-black margin-up">
+            <div className="product-price d-flex color-black">
               <div className="w-75">
                 <ins className="new-price color-black">
                   {currency_symbol}
@@ -228,7 +359,7 @@ const ProductCard = (props: ProductCardProps) => {
                 <button
                   type="button"
                   className={` btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family`}
-                  onClick={handleAddCart}
+                  onClick={handleShowModalCart}
                 >
                   {isLoading ? (
                     <span
@@ -246,7 +377,7 @@ const ProductCard = (props: ProductCardProps) => {
               ) : (
                 <button
                   className="btn btn-primary ml-2 cart_btn_gtag listing-cartbtn product-font-family"
-                  onClick={handleAddCart}
+                  onClick={handleShowModalCart}
                 >
                  {/* <Link href="/login" className="text-white ">
                   </Link>*/} 
@@ -260,92 +391,21 @@ const ProductCard = (props: ProductCardProps) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    // <div className="product_card">
-    //   <div className="">
-    //     <div className={!in_stock_status ? "out_of_stock" : "in_stock"}>
-    //       {<p className="out_of_stock_text mb-0">Out of stock</p>}
-    //     </div>
-    //   </div>
-
-    //   <div className="card_inner">
-    //     <div className="card_img">
-    //       <Link href={url} className="">
-    // <Image
-    //   loader={() => `${CONSTANTS.API_BASE_URL}${img_url}`}
-    //   src={`${CONSTANTS.API_BASE_URL}${img_url}`}
-    //   alt="product-detail"
-    //   width={142}
-    //   height={142}
-    //   className="img-fluid"
-    // />
-    //       </Link>
-    //     </div>
-
-    //     <div className="row mt-3">
-    //       <div className="col-12 d-flex justify-content-between">
-    //         <div>
-    //           <p className="product_name mb-0">
-    //             <div className="display_tag">
-    //               {display_tag?.length > 0 ? (
-    //                 <>
-    //                   {display_tag
-    //                     ?.slice(0, 1)
-    //                     ?.map((item: any, index: number) => {
-    //                       console.log("display in map", item);
-    //                       return (
-    //                         <>
-    //                           <span
-    //                             className="d-inline-block px-1 py-0 text-uppercase"
-    //                             style={{
-    //                               border: "1px solid #96c7ef",
-    //                               backgroundColor: "#cae0f1",
-    //                               fontSize: "12px",
-    //                             }}
-    //                           >
-    //                             {item}
-    //                           </span>
-    //                         </>
-    //                       );
-    //                     })}
-    //                 </>
-    //               ) : (
-    //                 ""
-    //               )}
-    //             </div>
-    //             <Link href={url} className="text-dark">{item_name}</Link>
-    //           </p>
-    //         </div>
-    //         {in_stock_status ? (
-    //           <div className="cart ps-2">
-    //             <a className="prodCart" style={{ cursor: "pointer" }}>
-    //               <span
-    //                 className="material-symbols-outlined"
-    //                 id="shopping_cart"
-    //               >
-    //                 shopping_cart
-    //               </span>
-    //             </a>
-    //             {/* </Link> */}
-    //           </div>
-    //         ) : (
-    //           ""
-    //         )}
-    //       </div>
-    //     </div>
-
-    //     <div className="product-price">
-    //       <p className="mb-0 price_p">
-    //         <i className="fa fa-inr" aria-hidden="true"></i>
-    //         <span className="price pe-2 ">{price}</span>
-    //         <span className="price">
-    //           <s>{mrp_price}</s>
-    //         </span>
-    //       </p>
-    //     </div>
-    //   </div>
-    // </div>
+       
+     
+    </div>  
+    <AddtoCartModal
+          show={show1}
+          toHide={()=>setshow1(false)}
+          name={name}
+          item_name={item_name}
+          handleClose={handleCloseModalCart}
+          handleAddCart={handleAddCart}
+          // min_order_qty={min_order_qty}
+          qty={qty}
+          setQty={setQty}
+        />  
+    </>
   );
 };
 
