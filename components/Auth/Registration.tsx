@@ -25,6 +25,8 @@ import { showToast } from "../ToastNotificationNew";
 const Registration = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [isPasswordRevealed, setIsPasswordRevealed] = useState<boolean>(false);
+  const [isConfirmPasswordRevealed, setIsConfirmPasswordRevealed] = useState<boolean>(false)
   const TokenFromStore: any = useSelector(get_access_token);
 
   const SelectedLangDataFromStore: any = useSelector(
@@ -133,7 +135,13 @@ const Registration = () => {
       return selectedMultiLangData?.confirm_password;
     }
   };
-
+  const togglePasswordVisibility = (fieldName: string) => {
+    if (fieldName === 'password') {
+      setIsPasswordRevealed(!isPasswordRevealed);
+    } else if (fieldName === 'confirm_password') {
+      setIsConfirmPasswordRevealed(!isConfirmPasswordRevealed);
+    }
+  };
   return (
     <>
       <div className="container ">
@@ -193,31 +201,81 @@ const Registration = () => {
                                 </div>
                                 {details?.name !== "state" &&
                                   details?.name !== "city" ? (
-                                  <div className="col-md-8">
-                                    <Field
-                                      onChange={handleChange} 
-                                      onBlur={handleBlur}
-                                      type={details?.type}
-                                      name={details?.name}
-                                      placeholder={`Enter ${details?.label}`}
-                                      className={`${details?.name === "address"
-                                          ? "address_textarea"
-                                          : ""
-                                        } form-control rounded-0 `}
-                                        
-                                    />
-                                     
-                                    <div className="error_message">
-                                      <ErrorMessage
-                                        className="error_message"
-                                        name={details?.name}
-                                      />
+                                  <>
+                                    <div className="col-md-8">
+                                      <div className="input-group">
+                                        <Field
+                                          onChange={handleChange}
+                                          onBlur={handleBlur}
+                                          // type={details?.type}
+                                          type={
+                                            details?.name === 'password'
+                                              ? isPasswordRevealed
+                                                ? 'text'
+                                                : 'password'
+                                              : details?.name === 'confirm_password'
+                                                ? isConfirmPasswordRevealed
+                                                  ? 'text'
+                                                  : 'password'
+                                                : 'text'
+                                          }
+                                          name={details?.name}
+                                          placeholder={`Enter ${details?.label}`}
+                                          className={`${details?.name === "address"
+                                            ? "address_textarea"
+                                            : ""
+                                            } form-control rounded-0 `}
+
+                                        />
+                                        {
+                                          details?.name === 'password' && (<span className="input-group-text px-4">
+                                            {isPasswordRevealed ? (
+                                              <i
+                                                className="fa fa-eye visibility_icon"
+                                                onClick={() => togglePasswordVisibility('password')}
+
+                                              />
+                                            ) : (
+                                              <i
+                                                className="fa fa-eye-slash visibility_icon"
+                                                onClick={() => togglePasswordVisibility('password')}
+                                              />
+                                            )}
+                                          </span>)
+                                        }
+                                        {
+                                          details?.name === 'confirm_password' && (
+                                            <span className="input-group-text px-4">
+                                              { isConfirmPasswordRevealed ? (
+                                                <i
+                                                  className="fa fa-eye visibility_icon"
+                                                  onClick={() => togglePasswordVisibility('confirm_password')}
+
+                                                />
+                                              ) : (
+                                                <i
+                                                  className="fa fa-eye-slash visibility_icon"
+                                                  onClick={() => togglePasswordVisibility('confirm_password')}
+                                                />
+                                              )}
+                                            </span>
+                                          )
+                                        }
+                                      </div>
+
+                                      <div className="error_message">
+                                        <ErrorMessage
+                                          className="error_message"
+                                          name={details?.name}
+                                        />
+                                      </div>
                                     </div>
-                                  </div>
+
+                                  </>
+
                                 ) : (
                                   ""
                                 )}
-
                                 {details?.name === "state" && (
                                   <div className="col-md-8">
                                     <Field
@@ -225,7 +283,7 @@ const Registration = () => {
                                       className="form-control rounded-0 "
                                       id="state"
                                       name="state"
-                                     
+
                                       value={selectedStates}
                                       onBlur={handleBlur}
                                       onChange={(e: any) => {
@@ -314,14 +372,14 @@ const Registration = () => {
                               </Link>
                             </div>
                             <div className="m-2">
-                          
+
                               <button
                                 type="submit"
-                                className="btn btn-warning text-uppercase bold button_color btn-color-submit" 
+                                className="btn btn-warning text-uppercase bold button_color btn-color-submit"
                               >
-                                {selectedMultiLangData?.submit} 
+                                {selectedMultiLangData?.submit}
                               </button>
-                           
+
                             </div>
                           </div>
                         </div>

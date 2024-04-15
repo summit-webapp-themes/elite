@@ -16,17 +16,16 @@ const AddtoCartModal = ({
   setQty,
 }: any) => {
   const handleQuantity = (val: any) => {
-    // Parse the input value as an integer
-    const parsedValue = parseInt(val, 10);
-
-    // Check if the parsed value is a valid number
-    if (!isNaN(parsedValue)) {
-      setQty(parsedValue >= 1 ? parsedValue : 1);
+    const inputValue = parseInt(val);
+    if (isNaN(inputValue)) {
+      setQty('');
+    } else {
+      setQty(inputValue);
     }
   };
   console.log('qty', qty);
   const handleQuantityIncrement = () => {
-    setQty(Number(qty + 1));
+    setQty(parseInt(qty + 1));
   };
   const handleQuantityDecrement = () => {
     setQty((prevQty: number) => (prevQty > 1 ? prevQty - 1 : 1));
@@ -111,9 +110,12 @@ const AddtoCartModal = ({
         <Modal.Footer>
           <>
             <button className="btn standard_button_filled cart_btn_gtag  product-font-family me-3"
-             onClick={handleAddCart}
-            //  disabled={qty < min_order_qty}
-             >
+              onClick={handleAddCart}
+              disabled={
+                // qty < min_order_qty|| 
+                qty === '' || qty === 0
+               }
+            >
               Add to Cart
             </button>
 

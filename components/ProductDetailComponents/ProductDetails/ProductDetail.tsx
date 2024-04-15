@@ -453,10 +453,10 @@ const ProductDetail = ({
                           productQuantity < minQty ? "disabled" : "enabled"
                         } w-50 btn button_color cart_btn_gtag add_cart_btn_mob products-name`}
                         onClick={handleAddCart}
-                        // disabled={
-                        //   doesSelectedVariantDoesNotExists ||
-                        //   stockDoesNotExistsForSelectedVariants
-                        // }
+                        disabled={
+                          doesSelectedVariantDoesNotExists ||
+                          stockDoesNotExistsForSelectedVariants
+                        }
                       >
                         {isLoading ? (
                           <span className="cursor-change">
