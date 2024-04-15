@@ -31,7 +31,10 @@ const Loginpage = () => {
   const [ShowAlertMsg, setShowAlertMsg] = useState<boolean>(false);
   const [messageState, setMessageState] = useState<any>("");
   const [isOtpLoginState, setIsOtpLoginState] = useState<boolean>(false);
-
+  const [isRevaled, setIsRevaled] = useState(false);
+  const hideshow = () => {
+    setIsRevaled(!isRevaled);
+  };
   const { handleLanguageChange, multiLanguagesData }: any = useMultilangHook();
 
   const SelectedLangDataFromStore: any = useSelector(
@@ -157,7 +160,7 @@ const Loginpage = () => {
                                   onBlur={handleBlur}
                                   type="text"
                                   name="email"
-                                  className="login_inputs"
+                                  className="form-control"
                                 />
                                 <div className="row">
                                   <div className="col-8">
@@ -176,11 +179,10 @@ const Loginpage = () => {
                                   </div>
                                   {ShowAlertMsg && (
                                     <div
-                                      className={`alert ${
-                                        messageState === "success"
+                                      className={`alert ${messageState === "success"
                                           ? "alert-success"
                                           : "alert-danger"
-                                      } otp_alertbox`}
+                                        } otp_alertbox`}
                                       role="alert"
                                     >
                                       {messageState === "success"
@@ -200,15 +202,30 @@ const Loginpage = () => {
                                   {selectedMultiLangData?.password_otp}:
                                 </Form.Label>
                               </div>
-
                               <div className="col-md-8">
-                                <Form.Control
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  type="password"
-                                  name="password"
-                                  className="login_inputs"
-                                />
+                                <div className="input-group">
+                                  <Form.Control
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    type={isRevaled ? "text" : "password"}
+                                    name="password"
+                                    className="login_inputs"
+                                  />
+                                  <span className="input-group-text px-4">
+                                    {isRevaled ? (
+                                      <i
+                                        className="fa fa-eye visibility_icon"
+                                        onClick={() => hideshow()}
+
+                                      />
+                                    ) : (
+                                      <i
+                                        className="fa fa-eye-slash visibility_icon"
+                                        onClick={() => hideshow()}
+                                      />
+                                    )}
+                                  </span>
+                                </div>
                                 <div className="row">
                                   <div className="col-6">
                                     <div className="error_message">
