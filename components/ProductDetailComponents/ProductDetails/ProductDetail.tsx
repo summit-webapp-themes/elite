@@ -31,6 +31,7 @@ import {
   FacebookIcon,
   TwitterIcon,
   WorkplaceShareButton,
+  XIcon
 } from "react-share";
 import {
   get_access_token,
@@ -538,9 +539,11 @@ const ProductDetail = ({
                 </div>
 
                 <div>
-                  <TwitterShareButton url={shareUrl}>
-                    <TwitterIcon size={32} round={true} />
+                <div>
+                  <TwitterShareButton  url={shareUrl}>
+                    <XIcon size={32} round={true} />
                   </TwitterShareButton>
+                </div>
                 </div>
               </div>
             </td>
