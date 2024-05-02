@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CONSTANTS } from "../../services/config/app-config";
 
 const Topbar = (props: any) => {
-  const { listItems, handleToggleProductsListingView } = props;
+  const { listItems, handleToggleProductsListingView, handlePrice, price, selectedMultiLangData, } = props;
 
   const [showMissingPartsModal, setShowMissingPartsModal] = useState<boolean>(false);
 
@@ -82,16 +82,43 @@ const Topbar = (props: any) => {
             </div>
           </div> */}
           <div>
-            Price :-{" "}
+            {selectedMultiLangData?.price}  :-{" "}
             <select
               className="form_select"
               aria-label="Default select example"
+              onChange={handlePrice} // Event that updates the state
+              value={price} // Reflects the current selected value
             >
-              <option value="low_to_high" selected>
-                Low to High
+              <option value="low_to_high">
+                {selectedMultiLangData?.low_to_high}
               </option>
-              <option value="high_to_low">High to Low</option>
+              <option value="high_to_low">
+                {selectedMultiLangData?.high_to_low}
+              </option>
             </select>
+            {/* <div className="d-flex">
+                      <div className="d-flex pe-1 ">
+                        <p className="mb-0 mt-1">
+                          {selectedMultiLangData?.price} 
+                        </p>
+                        <p className="mt-1">:-</p> 
+                      </div>
+                      <div>
+                        <select
+                          className="form_select"
+                          aria-label="Default select example"
+                          onChange={handlePrice} // Event that updates the state
+                          value={price} // Reflects the current selected value
+                        >
+                          <option value="low_to_high">
+                            {selectedMultiLangData?.low_to_high}
+                          </option>
+                          <option value="high_to_low">
+                            {selectedMultiLangData?.high_to_low}
+                          </option>
+                        </select>
+                      </div>
+                    </div> */}
           </div>
         </div>
       </div>

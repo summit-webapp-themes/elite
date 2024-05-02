@@ -25,6 +25,8 @@ const ProductListingMaster = () => {
     handleLoadMore,
     currency_state_from_redux,
     handlePaginationBtn,
+    // handlePrice,
+    // price
   } = useProductListing();
   // console.log("cube ", productListTotalCount);
   const router = useRouter();
@@ -77,7 +79,15 @@ const ProductListingMaster = () => {
             
             </div>
             <div className="mt-0">
-            {/* <Topbar/> */}
+            <Topbar
+             listItems={productListingData}
+             handleToggleProductsListingView={
+               handleToggleProductsListingView
+             }
+             selectedMultiLangData={selectedMultiLangData}
+            //  price={price}
+            //  handlePrice={handlePrice}
+            />
             </div>
             <div className="row mt-2 ">
               <span className="col-lg-3 handle_display_web_filter">
