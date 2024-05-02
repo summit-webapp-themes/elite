@@ -15,7 +15,7 @@ const CustomerVariants = ({
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
-
+console.log('variant@',selectedVariant);
   const showThumbnailOnBtn = (attr: any) => {
     if (Object.keys(thumbnailOfVariants).length > 0 && attr?.field_name) {
       return (
