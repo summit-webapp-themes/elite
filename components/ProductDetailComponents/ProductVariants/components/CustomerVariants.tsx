@@ -3,68 +3,81 @@ import { CONSTANTS } from "../../../../services/config/app-config";
 import useMultiLingual from "../../../../hooks/LanguageHook/multilingual-hook";
 
 const CustomerVariants = ({
+  productDetailData,
   productVariants,
   selectedVariant,
   thumbnailOfVariants,
   handleVariantSelect,
   doesSelectedVariantDoesNotExists,
   stockDoesNotExistsForSelectedVariants,
+  selectedMultiLangData
 }: any) => {
-  const languageData = useMultiLingual();
 
   const myLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
-console.log('variant@',selectedVariant);
+  console.log('variant@', selectedVariant);
   const showThumbnailOnBtn = (attr: any) => {
-    if (Object.keys(thumbnailOfVariants).length > 0 && attr?.field_name) {
-      return (
-        <>
-          {attr?.values?.map((attribute_value: string, index: number) => {
-            console.log(
-              "thumbnail of variants each",
-              thumbnailOfVariants[attr?.field_name][index]
-            );
-            return (
-              <>
-                <button
-                  type="button"
-                  className={`btn mb-3 btn_thumb_size p-0 mx-3
-                              ${
-                                attribute_value ===
-                                selectedVariant[attr?.field_name]
-                                  ? "active"
-                                  : ""
-                              }
-                              `}
-                  onClick={() =>
-                    handleVariantSelect(attr.field_name, attribute_value)
-                  }
-                  value={attribute_value}
-                  key={index}
-                >
-                  <Image
-                    loader={myLoader}
-                    src={`${thumbnailOfVariants[attr?.field_name][index]}`}
-                    alt="variant image"
-                    className="img-fluid"
-                    width={50}
-                    height={50}
-                  />
-                </button>
-              </>
-            );
-          })}
-        </>
-      );
-    }
-    return 0;
+    return (
+      <>
+        {attr?.values?.map((attribute_value: string, index: number) => {
+          // Find the corresponding thumbnail for the attribute_value
+          const matchingThumbnail = productDetailData?.thumbnail_images.find(
+            (img: any) =>
+              img?.field_name === attr?.field_name &&
+              img?.Colour === attribute_value
+          );
+          console.log('variant attr', attribute_value, attr?.field_name, matchingThumbnail)
+          return (
+            <button
+              type="button"
+              className={`btn mb-3 btn_thumb_size mx-3 rounded p-1 ${attribute_value === selectedVariant[attr?.field_name]
+                ? "active_color"
+                : ""
+                }`}
+              onClick={() =>
+                handleVariantSelect(attr.field_name, attribute_value)
+              }
+              key={index} // Using unique index as the key for React
+              value={attribute_value}
+            >
+              {
+                attr?.display_thumbnail ? (
+                  <>
+                    {matchingThumbnail ? (
+                      <Image
+                        loader={myLoader} // Assuming 'myLoader' is defined elsewhere
+                        src={matchingThumbnail.image}
+                        alt={`variant image for ${attribute_value}`}
+                        className="img-fluid"
+                        width={50}
+                        height={50}
+                      />
+                    ) : (
+                      <span>No Image</span> // Fallback if no matching thumbnail is found
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {attribute_value}
+                  </>
+                )
+              }
+
+              {/* Display the attribute value as text */}
+
+            </button>
+          );
+        })}
+      </>
+    );
   };
+
   return (
     <div className="size_btn_block">
       <div>
-        {productVariants?.attributes?.length > 0 &&
-          productVariants?.attributes?.map((attribute: any, index: number) => {
+        {productDetailData?.attributes?.length > 0 &&
+          productDetailData?.attributes?.map((attribute: any, index: number) => {
             return (
               <>
                 <div>
@@ -88,13 +101,12 @@ console.log('variant@',selectedVariant);
                             <>
                               <button
                                 type="button"
-                                className={`btn mb-3 btn_size mx-2 py-3 
-                    ${
-                      attribute_value === selectedVariant[attribute?.field_name]
-                        ? "active"
-                        : ""
-                    }
-                    `}
+                                className={`btn mb-3 btn_size mx-2 py-3 rounded
+                                 ${attribute_value === selectedVariant[attribute?.field_name]
+                                    ? "active_color"
+                                    : ""
+                                  }
+                                `}
                                 onClick={() =>
                                   handleVariantSelect(
                                     attribute.field_name,
@@ -118,11 +130,11 @@ console.log('variant@',selectedVariant);
           })}
       </div>
       {doesSelectedVariantDoesNotExists && (
-        <p style={{ color: "red" }}>{languageData?.currently_unavailable}</p>
+        <p style={{ color: "red" }}>{selectedMultiLangData?.currently_unavailable}</p>
       )}
-      {stockDoesNotExistsForSelectedVariants && (
-        <p style={{ color: "red" }}>{languageData?.item_out_of_stock}</p>
-      )}
+      {/* {productDetailData.in_stock_status === false && (
+        <p style={{ color: "red" }}>{selectedMultiLangData?.item_out_of_stock}</p>
+      )} */}
     </div>
   );
 };
