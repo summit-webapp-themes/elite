@@ -11,45 +11,62 @@ import ProductEnlargeImage from "./ProductEnlargeImage";
 import ProductSpecificationMaster from "./ProductSpecifications/ProductSpecificationMaster";
 import { useEffect, useState } from "react";
 import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
+import useProductDetails from "../../hooks/ProductDetailHook/ProductDetailHookNew/product-details-hook";
+import useMatchingItem from "../../hooks/ProductDetailHook/matching-item-option-hook";
+import useMatchingItemOptions from "../../hooks/ProductDetailHook/matching-item-option-hook";
 
 const ProductDetailMaster = () => {
+  // const {
+  //   productDetailData,
+  //   productVariants,
+  //   selectedVariant,
+  //   thumbnailOfVariants,
+  //   handleVariantSelect,
+  //   productImages,
+  //   handleQuantity,
+  //   handleQuantityIncrement,
+  //   handleQuantityDecrement,
+  //   productQuantity,
+  //   minQty,
+  //   stockAvailabilityTextChanges,
+  //   checkStock,
+  //   handleStockAvail,
+  //   stockAvailability,
+  //   testBtn,
+  //   doesSelectedVariantDoesNotExists,
+  //   stockDoesNotExistsForSelectedVariants,
+  //   productItemOptions,
+  //   productDetailLoading,
+  // } = useProductDetail();
+
   const {
+    productImageLoading,
+    productDetailLoading,
     productDetailData,
-    productVariants,
-    selectedVariant,
-    thumbnailOfVariants,
-    handleVariantSelect,
     productImages,
+    handleStockAvail,
     handleQuantity,
     handleQuantityIncrement,
     handleQuantityDecrement,
     productQuantity,
-    minQty,
+    handleAddCartB2c,
     stockAvailabilityTextChanges,
+    isDealer,
     checkStock,
-    handleStockAvail,
-    stockAvailability,
-    testBtn,
+    currency_state_from_redux,
+    newobjectState,
+    setnewObjectState,
     doesSelectedVariantDoesNotExists,
     stockDoesNotExistsForSelectedVariants,
-    productItemOptions,
-    productDetailLoading,
-  } = useProductDetail();
+    stockAvailability,
+    handleVariantSelect,
+    selectedVariant,
+    isLoading,
+    thumbnailOfVariants,
+    selectedMultiLangData
+  } = useProductDetails();
 
-  const SelectedLangDataFromStore:any = useSelector(
-    SelectedFilterLangDataFromStore
-  );
-  const currency_state_from_redux: any = useSelector(currency_selector_state);
-  const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
-
-  useEffect(() => {
-    if (
-      Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0
-    ) {
-      setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
-    }
-  }, [SelectedLangDataFromStore]);
-
+  const {productItemOptions , matchingItemLoading} = useMatchingItemOptions();
   // console.log("no product heading set", selectedMultiLangData);
   return (
     <div className="container">
@@ -78,7 +95,7 @@ const ProductDetailMaster = () => {
                   <div className="col-lg-6">
                     <ProductDetail
                       productDetailData={productDetailData}
-                      productVariants={productVariants}
+                      // productVariants={productVariants}
                       selectedVariant={selectedVariant}
                       thumbnailOfVariants={thumbnailOfVariants}
                       handleVariantSelect={handleVariantSelect}
@@ -86,12 +103,12 @@ const ProductDetailMaster = () => {
                       handleQuantityIncrement={handleQuantityIncrement}
                       handleQuantityDecrement={handleQuantityDecrement}
                       productQuantity={productQuantity}
-                      minQty={minQty}
+                      // minQty={minQty}
                       stockAvailabilityTextChanges={
                         stockAvailabilityTextChanges
                       }
                       handleStockAvail={handleStockAvail}
-                      testBtn={testBtn}
+                      // testBtn={testBtn}
                       productDetailLoading={productDetailLoading}
                       doesSelectedVariantDoesNotExists={
                         doesSelectedVariantDoesNotExists
@@ -99,8 +116,11 @@ const ProductDetailMaster = () => {
                       stockDoesNotExistsForSelectedVariants={
                         stockDoesNotExistsForSelectedVariants
                       }
-                      SelectedLangDataFromStore={SelectedLangDataFromStore}
+                      // SelectedLangDataFromStore={SelectedLangDataFromStore}
                       selectedMultiLangData={selectedMultiLangData}
+                      currency_state_from_redux={currency_state_from_redux}
+                      handleAddCartB2c={handleAddCartB2c}
+                      isLoading={isLoading}
                     />
                   </div>
                 </>
@@ -143,6 +163,7 @@ const ProductDetailMaster = () => {
                     items={items}
                     selectedMultiLangData={selectedMultiLangData}
                     currency_state_from_redux={currency_state_from_redux}
+                    matchingItemLoading={matchingItemLoading}
                   />
                 )}
               </div>
