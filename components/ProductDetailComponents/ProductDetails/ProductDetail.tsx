@@ -39,6 +39,7 @@ import {
 } from "../../../store/slices/auth/token-login-slice";
 import { showToast } from "../../ToastNotificationNew";
 import { profileData_state } from "../../../store/slices/general_slices/profile-page-slice";
+import CustomerVariants from "../ProductVariants/components/CustomerVariants";
 const ProductDetail = ({
   productDetailData,
   productVariants,
@@ -57,20 +58,21 @@ const ProductDetail = ({
   stockDoesNotExistsForSelectedVariants,
   productDetailLoading,
   selectedMultiLangData,
+  currency_state_from_redux,
+  handleAddCartB2c,
+  isLoading
+
 }: any) => {
   const dispatch = useDispatch();
-  const currency_state_from_redux: any = useSelector(currency_selector_state);
-  // console.log(
-  //   "productQuantity in detail page",
-  //   doesSelectedVariantDoesNotExists
-  // );
+  // const currency_state_from_redux: any = useSelector(currency_selector_state);
+  
   const router = useRouter();
 
   const TokenFromStore: any = useSelector(get_access_token);
   const profileData: any = useSelector(profileData_state);
 
   const [newobjectState, setnewObjectState] = useState<any>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const handleVariantsData = (newData: any) => {
     setnewObjectState(newData);
@@ -84,109 +86,66 @@ const ProductDetail = ({
     isDealer = localStorage.getItem("isDealer");
   }
 
-  const handleAddCart = async () => {
-    console.log(
-      "add currency",
-      currency_state_from_redux?.selected_currency_value
-    );
+  // const handleAddCart = async () => {
+  //     const addCartData = [];
+  //     addCartData.push({
+  //       item_code: productDetailData?.name,
+  //       quantity: productQuantity,
+  //     });
 
-    if (isDealer === "true") {
-      console.log("dealer cart", newobjectState);
-      let newObjects =
-        newobjectState &&
-        newobjectState?.filter((newitems: any) => newitems.quantity !== "");
-      let dealerApi = await DealerAddToCartApi(newObjects);
-      console.log("dealer api res", dealerApi);
-      if (dealerApi.msg === "success") {
-        // dispatch(successmsg("Item Added to cart"));
-        setIsLoading(false);
-        showToast("Item Added to cart", "success");
-        dispatch(fetchCartListing());
-        // setTimeout(() => {
-        //   dispatch(hideToast());
-        // }, 1200);
-      } else {
-        showToast("Failed to Add to cart", "error");
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 5000);
+  //     if (profileData?.partyName !== "") {
+  //       if (Object?.keys(profileData?.partyName)?.length > 0) {
+  //         partyName = profileData?.partyName;
+  //       }
+  //     } else {
+  //       partyName = "Guest";
+  //     }
 
-        // dispatch(failmsg("Failed to Add to cart"));
-        // setTimeout(() => {
-        //   dispatch(hideToast());
-        // }, 1500);
-      }
-      // ga.event({
-      //   action: "add_to_cart",
-      //   params: {
-      //     not_set: JSON.stringify(newobjectState),
-      //   },
-      // });
-    } else {
-      // console.log(
-      //   "add currency in else",
-      //   currency_state_from_redux?.selected_currency_value
-      // );
-      const addCartData = [];
-      addCartData.push({
-        item_code: productDetailData?.name,
-        quantity: productQuantity,
-      });
+  //     let AddToCartProductRes: any = await AddToCartApi(
+  //       addCartData,
+  //       currency_state_from_redux?.selected_currency_value,
+  //       TokenFromStore?.token,
+  //       partyName
+  //     );
+  //     if (AddToCartProductRes.msg === "success") {
+  //       // dispatch(successmsg("Item Added to cart"));
 
-      if (profileData?.partyName !== "") {
-        if (Object?.keys(profileData?.partyName)?.length > 0) {
-          partyName = profileData?.partyName;
-        }
-      } else {
-        partyName = "Guest";
-      }
+  //       showToast("Item Added to cart", "success");
+  //       setIsLoading(true);
+  //       setTimeout(() => {
+  //         // Stop the loader after 2 seconds (adjust the time as needed)
+  //         setIsLoading(false);
+  //         // Add your actual functionality here (e.g., adding to the cart)
+  //         // ...
+  //       }, 2000);
 
-      let AddToCartProductRes: any = await AddToCartApi(
-        addCartData,
-        currency_state_from_redux?.selected_currency_value,
-        TokenFromStore?.token,
-        partyName
-      );
-
-      if (AddToCartProductRes.msg === "success") {
-        // dispatch(successmsg("Item Added to cart"));
-
-        showToast("Item Added to cart", "success");
-        setIsLoading(true);
-        setTimeout(() => {
-          // Stop the loader after 2 seconds (adjust the time as needed)
-          setIsLoading(false);
-          // Add your actual functionality here (e.g., adding to the cart)
-          // ...
-        }, 2000);
-
-        if (AddToCartProductRes?.data?.access_token !== null) {
-          dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
-          localStorage.setItem(
-            "guest",
-            AddToCartProductRes?.data?.access_token
-          );
-          console.log("token api res", AddToCartProductRes);
-          if (AddToCartProductRes?.data?.access_token !== null) {
-            console.log("token from api");
-            dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
-          }
-        } else {
-          dispatch(fetchCartListing(TokenFromStore?.token));
-        }
-        setTimeout(() => {
-          dispatch(hideToast());
-        }, 1200);
-      } else {
-        setIsLoading(false);
-        showToast("Failed to Add to cart", "error");
-        // dispatch(failmsg(AddToCartProductRes?.error));
-        // setTimeout(() => {
-        //   dispatch(hideToast());
-        // }, 1500);
-      }
-    }
-  };
+  //       if (AddToCartProductRes?.data?.access_token !== null) {
+  //         dispatch(updateAccessToken(AddToCartProductRes?.data?.access_token));
+  //         localStorage.setItem(
+  //           "guest",
+  //           AddToCartProductRes?.data?.access_token
+  //         );
+  //         console.log("token api res", AddToCartProductRes);
+  //         if (AddToCartProductRes?.data?.access_token !== null) {
+  //           console.log("token from api");
+  //           dispatch(fetchCartListing(AddToCartProductRes?.data?.access_token));
+  //         }
+  //       } else {
+  //         dispatch(fetchCartListing(TokenFromStore?.token));
+  //       }
+  //       setTimeout(() => {
+  //         dispatch(hideToast());
+  //       }, 1200);
+  //     } else {
+  //       setIsLoading(false);
+  //       showToast("Failed to Add to cart", "error");
+  //       // dispatch(failmsg(AddToCartProductRes?.error));
+  //       // setTimeout(() => {
+  //       //   dispatch(hideToast());
+  //       // }, 1500);
+  //     }
+    
+  // };
 
   const [fullUrl, setFullUrl] = useState("");
   const shareUrl = fullUrl !== "" ? fullUrl : "https://summit-b2c-demo.8848digital.com/";
@@ -231,18 +190,6 @@ const ProductDetail = ({
             <button className="button_color p-2 rounded-3 fs-4 mb-2 products-name">
               {selectedMultiLangData?.price_on_request}
             </button>
-            // <p
-            //   className="border text-center"
-            //   style={{
-            //     width: "150px",
-            //     margin: "0",
-            //     background: "#f15622",
-            //     color: "white",
-            //     borderRadius: "5px",
-            //   }}
-            // >
-            //   Price on Request
-            // </p>
           )}
 
           {productDetailData?.mrp_price !== 0 ? (
@@ -337,8 +284,9 @@ const ProductDetail = ({
         )}
       </div>
 
-      <div>
+      {/* <div>
         <VariantsMaster
+          
           productVariants={productVariants}
           selectedVariant={selectedVariant}
           thumbnailOfVariants={thumbnailOfVariants}
@@ -350,6 +298,17 @@ const ProductDetail = ({
             stockDoesNotExistsForSelectedVariants
           }
           selectedMultiLangData={selectedMultiLangData}
+        />
+      </div> */}
+      <div>
+        <CustomerVariants
+        productDetailData={productDetailData}
+        doesSelectedVariantDoesNotExists={doesSelectedVariantDoesNotExists}
+        stockDoesNotExistsForSelectedVariants={stockDoesNotExistsForSelectedVariants}
+        handleVariantSelect={handleVariantSelect}
+        selectedVariant={selectedVariant}
+        thumbnailOfVariants={thumbnailOfVariants}
+        selectedMultiLangData={selectedMultiLangData}
         />
       </div>
 
@@ -453,10 +412,11 @@ const ProductDetail = ({
                         className={`${
                           productQuantity < minQty ? "disabled" : "enabled"
                         } w-50 btn button_color cart_btn_gtag add_cart_btn_mob products-name`}
-                        onClick={handleAddCart}
+                        onClick={handleAddCartB2c}
                         disabled={
                           doesSelectedVariantDoesNotExists ||
                           stockDoesNotExistsForSelectedVariants
+                          || productDetailData.in_stock_status === false 
                         }
                       >
                         {isLoading ? (
@@ -515,8 +475,9 @@ const ProductDetail = ({
               </div>
               <div className="mt-2">
                 <p className="text-danger">
-                  {productDetailData.in_stock_status === true &&
-                    "Product is out of stock"}
+                  {productDetailData.in_stock_status === false ?
+                    <p>{selectedMultiLangData?.item_out_of_stock}</p> :''
+                    }
                 </p>
               </div>
               {/* WhatsApp share button */}
